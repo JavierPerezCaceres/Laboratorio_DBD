@@ -20,6 +20,8 @@ Route::get('/card_payment','CardPaymentController@index');
 Route::get('/payment_method','PaymentMethodController@index');
 Route::get('/purchase_order','PurchaseOrderController@index');
 
-
-
-
+Route::get('/address', 'AddressController@index');
+Route::get('/city', 'CityController@index');
+Route::get('/district', 'DistrictController@index');
+Route::get('/role', 'RoleController@index');
+Route::get('/user', 'UserController@index');
