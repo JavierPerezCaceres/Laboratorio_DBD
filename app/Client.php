@@ -7,20 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     protected $fillable = [
-    	'name';
-    	'lastname';
-    	'phone';
-    	'client_id';
-    ]
+    	'name',
+    	'lastname',
+    	'phone',
+    	'client_id',
+    ];
 
-    protected $hidden = ['created_at','updated_at'];
+    protected $hidden = ['created_at','updated_at',];
 
     public function purchaseOrder(){
-    	return $this->hasMany(PurchaseOrder::class);
+    	return $this->hasMany(PurchaseOrder::class)
+    };
 
     public function user(){
-    	return $this->hasOne(User::class);
+    	return $this->hasOne(User::class)
+    };
 
     /*public function tableReservation(){
-    	return $this->belongsTo(TableReservation::class);*/
+    	return $this->belongsTo(TableReservation::class)
+    };*/
 }

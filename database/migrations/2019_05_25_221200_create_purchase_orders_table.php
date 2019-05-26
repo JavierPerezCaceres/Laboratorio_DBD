@@ -27,7 +27,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->unsignedInteger('delivery_id');
 
 
-           $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
 
