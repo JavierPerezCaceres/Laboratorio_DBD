@@ -18,8 +18,8 @@ class CardPayment extends Model
     protected $hidden = ['created_at','updated_at',];
 
     public function paymentMethod(){
-    	return $this->belongsTo(PaymentMethod::class)
-    };
+    	return $this->belongsTo(PaymentMethod::class);
+    }
 
     
 }

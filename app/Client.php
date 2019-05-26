@@ -16,14 +16,14 @@ class Client extends Model
     protected $hidden = ['created_at','updated_at',];
 
     public function purchaseOrder(){
-    	return $this->hasMany(PurchaseOrder::class)
-    };
+    	return $this->hasMany(PurchaseOrder::class);
+    }
 
     public function user(){
-    	return $this->hasOne(User::class)
-    };
+    	return $this->hasOne(User::class);
+    }
 
     /*public function tableReservation(){
-    	return $this->belongsTo(TableReservation::class)
-    };*/
+    	return $this->belongsTo(TableReservation::class);
+    }*/
 }

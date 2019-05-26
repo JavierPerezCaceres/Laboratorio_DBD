@@ -14,10 +14,10 @@ class PaymentMethod extends Model
     protected $hidden = ['created_at','updated_at',];
 
     public function purchaseOrder(){
-    	return $this->belongsTo(PurchaseOrder::class)
-    };
+    	return $this->belongsTo(PurchaseOrder::class);
+    }
 
     public function cardPayment(){
-    	return $this->hasOne(CardPayment::class)
-    };
+    	return $this->hasOne(CardPayment::class);
+    }
 }
