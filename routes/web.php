@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/client','ClientController@index');
+Route::get('/card_payment','CardPaymentController@index');
+Route::get('/payment_method','PaymentMethodController@index');
+Route::get('/purchase_order','PurchaseOrderController@index');
+
+
+
+
