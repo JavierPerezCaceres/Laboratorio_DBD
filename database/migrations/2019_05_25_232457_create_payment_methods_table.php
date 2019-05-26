@@ -20,7 +20,7 @@ class CreatePaymentMethodsTable extends Migration
 
             $table->unsignedInteger('card_payment_id');
 
-           $table->foreign('card_payment_id')->references('id')->on('card_payments')->onDelete('cascade');
+            $table->foreign('card_payment_id')->references('id')->on('card_payments')->onDelete('cascade');
 
 
         });

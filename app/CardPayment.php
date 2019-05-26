@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CardPayment extends Model
 {
+    protected $table = 'card_payments';
+    
     protected $fillable = [
             'autorization_code',
             'transaction_code',

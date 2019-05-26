@@ -18,10 +18,13 @@ class CreateAddressesTable extends Migration
             $table->timestamps();
             $table->string('street');
             $table->string('number');
+
             $table->unsignedInteger('district_id');
-            //$table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
             $table->unsignedInteger('user_id');
-            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
