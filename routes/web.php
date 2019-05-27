@@ -25,3 +25,9 @@ Route::get('/city', 'CityController@index');
 Route::get('/district', 'DistrictController@index');
 Route::get('/role', 'RoleController@index');
 Route::get('/user', 'UserController@index');
+
+Route::get('/category', 'CategorieController@index');
+Route::get('/product_category', 'ProductCategorie@index');
+Route::get('/restaurant', 'RestaurantController@index');
+Route::get('/table', 'TableController@index');
+Route::get('/table_reservation', 'TableReservation@index');
