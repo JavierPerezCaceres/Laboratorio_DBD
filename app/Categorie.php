@@ -8,7 +8,11 @@ class Categorie extends Model
 {
     protected $table = 'categories';
     
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name'
+    ];
+
+    protected $hidden = ['created_at','updated_at',];
 
     public function product_category(){
         return $this->hasMany(ProductCategorie::class);

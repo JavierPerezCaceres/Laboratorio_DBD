@@ -8,6 +8,8 @@ class ProductCategorie extends Model
 {
     protected $table = 'product_categories';
 
+    protected $hidden = ['created_at','updated_at',];
+
     public function product(){
         return $this->belongsTo(Product::class);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Restaurant;
+use App\User;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -14,6 +15,7 @@ class RestaurantController extends Controller
      */
     public function index()
     {
+        // Se retorna todo el contenido de la tabla restaurant.
         $restaurant = Restaurant::all();
         return $restaurant;
     }
@@ -36,7 +38,57 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyRestaurant = Restaurant::find($request->id);
+
+		if($verifyRestaurant == null){
+
+			// Se instancia un objeto del modelo
+            $restaurant = new Restaurant();
+            
+			// Se guardan valores en las distintas variables de modelo.
+            $category = $request->category;
+            $contact_number = $request->contact_number;
+            $kitchen_type = $request->kitchen_type;
+            $opening_hour = $request->opening_hour;
+            $closing_hour = $request->closing_hour;
+            $person_cost = $request->person_cost;
+            $wait_time = $request->wait_time;
+            $direction = $request->direction;
+
+            // Se busca si la llave foranea existe.
+            $user_id = Flight::find($request->user_id);
+            
+            // Se realizan las validaciones de los datos.
+            if($user_id != null and !(is_numeric($category)) and !(is_numeric($contact_number)) and !(is_numeric($kitchen_type))
+                and is_numeric($person_cost) and is_numeric($wait_time) and !(is_numeric($direction))){
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+				$restaurant->updateOrCreate([
+					
+				    'category' = $category,
+                    'contact_number' = $contact_number,
+                    'kitchen_type' = $kitchen_type,
+                    'opening_hour' = $opening_hour,
+                    'closing_hour' = $closing_hour,
+                    'person_cost' = $person_cost,
+                    'wait_time' = $wait_time,
+                    'direction' = $direction,
+					'user_id' => $request->user_id
+	
+				]);
+			}
+			else{
+				return "Error en los parametros ingresados.";
+			}
+        }
+        
+        else{
+            return "Error al ingresar Restaurant, llave primaria repetida.";
+        }
+
+        // Se muestran todos el contenido de la tabla Restaurant.
+        return Restaurant::all();
     }
 
     /**
@@ -46,8 +98,17 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Restaurant $restaurant)
-    {
-        //
+    {  
+        // Se busca la id de lo que se desea mostrar.
+        $restaurant = Restaurant::find($id);
+        
+        if($restaurant == null){
+            return "No se ha encontrado el Restaurant buscado.";
+        }
+        else{
+            return $restaurant;
+        }
+
     }
 
     /**
@@ -70,7 +131,60 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, Restaurant $restaurant)
     {
-        //
+        // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyRestaurant = Restaurant::find($request->id);
+
+		if($verifyRestaurant != null){
+
+			// Se instancia un objeto del modelo
+            $restaurant = new Restaurant();
+            
+			// Se guardan valores en las distintas variables de modelo.
+            $category = $request->category;
+            $contact_number = $request->contact_number;
+            $kitchen_type = $request->kitchen_type;
+            $opening_hour = $request->opening_hour;
+            $closing_hour = $request->closing_hour;
+            $person_cost = $request->person_cost;
+            $wait_time = $request->wait_time;
+            $direction = $request->direction;
+
+            // Se busca si la llave foranea existe.
+            $user_id = Flight::find($request->user_id);
+            
+            // Se realizan las validaciones de los datos.
+            if($user_id != null and !(is_numeric($category)) and !(is_numeric($contact_number)) and !(is_numeric($kitchen_type))
+                and is_numeric($person_cost) and is_numeric($wait_time) and !(is_numeric($direction))){
+                
+                // En caso de pasar las validaciones se actualiza la fila en la tabla.
+				$restaurant->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                    
+                [
+				    'category' => $category,
+                    'contact_number' => $contact_number,
+                    'kitchen_type' => $kitchen_type,
+                    'opening_hour' => $opening_hour,
+                    'closing_hour' => $closing_hour,
+                    'person_cost' => $person_cost,
+                    'wait_time' => $wait_time,
+                    'direction' => $direction,
+					'user_id' => $request->user_id
+	
+				]);
+			}
+			else{
+				return "Error en los parametros ingresados.";
+			}
+        }
+        
+        else{
+            return "Error al actualizar Restaurant, llave primaria no existe.";
+        }
+
+        return Restaurant::all();
     }
 
     /**
@@ -81,6 +195,18 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        //
+        // Se busca la id de lo que se desea eliminar.
+        $restaurant = Restaurant::find($id);
+
+        // Si la id no existe en la tabla, se avisa al usuario.
+        if($restaurant == null){
+            return "No se ha encontrado el Restaurant a eliminar.";
+        }
+        // Si la id existe en la tabla, se elimina.
+        else{
+            $restaurant->delete();
+            return "Se ha eliminado un Restaurant";
+        }
     }
+
 }
