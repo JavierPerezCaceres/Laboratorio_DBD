@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Categorie;
+use App\Category;
 use Illuminate\Http\Request;
 
-class CategorieController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $category = Categorie::all();
+        $category = Category::all();
         return $category;
     }
 
@@ -37,12 +37,12 @@ class CategorieController extends Controller
     public function store(Request $request)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyCategory = Categorie::find($request->id);
+        $verifyCategory = Category::find($request->id);
 
 		if($verifyCategory == null){
 
 			// Se instancia un objeto del modelo
-            $category = new Categorie();
+            $category = new Category();
             
 			// Se guardan valores en las distintas variables de modelo.
             $name = $request->name;
@@ -67,21 +67,18 @@ class CategorieController extends Controller
         }
 
         // Se muestran todos el contenido de la tabla Restaurant.
-        return Categorie::all();
+        return Category::all();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Categorie  $categorie
+     * @param  \App\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function show(Categorie $categorie)
+    public function show(Category $category)
     {
-        // Se busca la id de lo que se desea mostrar.
-        $category = Categorie::find($id);
         
-
         if($category == null){
             return "No se ha encontrado la Categoria buscada.";
         }
@@ -93,10 +90,10 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Categorie  $categorie
+     * @param  \App\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categorie $categorie)
+    public function edit(Category $category)
     {
        //
     }
@@ -105,18 +102,18 @@ class CategorieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Categorie  $categorie
+     * @param  \App\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorie $categorie)
+    public function update(Request $request, Category $category)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyCategory = Categorie::find($request->id);
+        $verifyCategory = Category::find($request->id);
 
         if($verifyCategory != null){
  
             // Se instancia un objeto del modelo
-            $category = new Categorie();
+            $category = new Category();
              
             // Se guardan valores en las distintas variables de modelo.
             $name = $request->name;
@@ -146,20 +143,17 @@ class CategorieController extends Controller
             return "Error al actualizar Categoria, llave primaria no existe.";
         }
  
-        return Categorie::all();
+        return Category::all();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Categorie  $categorie
+     * @param  \App\Category  $Category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categorie $categorie)
+    public function destroy(Category $category)
     {
-        // Se busca la id de lo que se desea eliminar.
-        $category = Categorie::find($id);
-
         // Si la id no existe en la tabla, se avisa al usuario.
         if($category == null){
             return "No se ha encontrado la Categoria a eliminar.";

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\ProductCategorie;
+use App\ProductCategory;
 use App\Product;
-use App\Categorie;
+use App\Category;
 use Illuminate\Http\Request;
 
-class ProductCategorieController extends Controller
+class ProductCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ProductCategorieController extends Controller
      */
     public function index()
     {
-        $product_category = ProductCategorie::all();
+        $product_category = ProductCategory::all();
         return $product_category;
     }
 
@@ -39,16 +39,16 @@ class ProductCategorieController extends Controller
     public function store(Request $request)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyProductCategorie = ProductCategorie::find($request->id);
+        $verifyProductCategory = ProductCategory::find($request->id);
 
-		if($verifyRestaurant == null){
+		if($verifyProductCategory == null){
 
 			// Se instancia un objeto del modelo
-            $productCategory = new ProductCategorie();
+            $productCategory = new ProductCategory();
 
             // Se busca si la llave foranea existe.
             $product_id = Product::find($request->product_id);
-            $category_id = Categorie::find($request->category_id);
+            $category_id = Category::find($request->category_id);
             
             // Se realizan las validaciones de los datos.
             if($product_id != null and $category_id != null){
@@ -71,21 +71,18 @@ class ProductCategorieController extends Controller
         }
 
         // Se muestran todos el contenido de la tabla Restaurant.
-        return ProductCategorie::all();
+        return ProductCategory::all();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ProductCategorie  $productCategorie
+     * @param  \App\ProductCategory  $ProductCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductCategorie $productCategorie)
+    public function show(ProductCategory $productCategory)
     {
-        // Se busca la id de lo que se desea mostrar.
-        $productCategory = ProductCategorie::find($id);
         
-
         if($productCategory == null){
             return "No se ha encontrado el ProductoCategoria buscado.";
         }
@@ -97,10 +94,10 @@ class ProductCategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ProductCategorie  $productCategorie
+     * @param  \App\ProductCategory  $ProductCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductCategorie $productCategorie)
+    public function edit(ProductCategory $productCategory)
     {
         //
     }
@@ -109,22 +106,22 @@ class ProductCategorieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProductCategorie  $productCategorie
+     * @param  \App\ProductCategory  $ProductCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductCategorie $productCategorie)
+    public function update(Request $request, ProductCategory $productCategory)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyProductCategorie = ProductCategorie::find($request->id);
+        $verifyProductCategory = ProductCategory::find($request->id);
 
-		if($verifyRestaurant != null){
+		if($verifyProductCategory!= null){
 
 			// Se instancia un objeto del modelo
-            $productCategory = new ProductCategorie();
+            $productCategory = new ProductCategory();
 
             // Se busca si la llave foranea existe.
             $product_id = Product::find($request->product_id);
-            $category_id = Categorie::find($request->category_id);
+            $category_id = Category::find($request->category_id);
             
             // Se realizan las validaciones de los datos.
             if($product_id != null and $category_id != null){
@@ -152,20 +149,17 @@ class ProductCategorieController extends Controller
         }
 
         // Se muestran todos el contenido de la tabla Restaurant.
-        return ProductCategorie::all();
+        return ProductCategory::all();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ProductCategorie  $productCategorie
+     * @param  \App\ProductCategory  $ProductCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductCategorie $productCategorie)
+    public function destroy(ProductCategory $productCategory)
     {
-        // Se busca la id de lo que se desea eliminar.
-        $productCategory = ProductCategorie::find($id);
-
         // Si la id no existe en la tabla, se avisa al usuario.
         if($productCategory == null){
             return "No se ha encontrado el ProductoCategoria a eliminar.";

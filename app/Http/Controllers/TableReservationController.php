@@ -96,8 +96,6 @@ class TableReservationController extends Controller
      */
     public function show(TableReservation $tableReservation)
     {
-        // Se busca la id de lo que se desea mostrar.
-        $tableReservation = TableReservation::find($id);
         
         if($tableReservation == null){
             return "No se ha encontrado la Reserva de Mesa buscada.";
@@ -190,9 +188,6 @@ class TableReservationController extends Controller
      */
     public function destroy(TableReservation $tableReservation)
     {
-        // Se busca la id de lo que se desea eliminar.
-        $tableReservation = TableReservation::find($id);
-
         // Si la id no existe en la tabla, se avisa al usuario.
         if($tableReservation == null){
             return "No se ha encontrado la Reserva de Mesa a eliminar.";
