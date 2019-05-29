@@ -52,13 +52,13 @@ class PaymentMethodController extends Controller
             $user_id = Flight::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and (is_numeric($payment_type))
+            if($user_id != null and (is_numeric($payment_type)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $payment_type->updateOrCreate([
                     
-                    'payment_type' = $payment_type,
+                    'payment_type' => $payment_type,
                 ]);
             }
             else{
@@ -125,7 +125,7 @@ class PaymentMethodController extends Controller
             $user_id = Flight::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and (is_numeric($payment_type))
+            if($user_id != null and (is_numeric($payment_type)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
@@ -135,7 +135,7 @@ class PaymentMethodController extends Controller
                 ],
                 [
                     
-                    'payment_type' = $payment_type,
+                    'payment_type' => $payment_type,
                 ]);
             }
             else{

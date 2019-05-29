@@ -56,17 +56,17 @@ class PurchaseOrderController extends Controller
             $user_id = Flight::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and (is_numeric($amount)) and !(is_numeric($delivery_method)) and !(is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))
+            if($user_id != null and (is_numeric($amount)) and !(is_numeric($delivery_method)) and !(is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $purchase_order->updateOrCreate([
                     
-                    'amount' = $amount,
-                    'delivery_method' = $delivery_method,
-                    'purchase_type' = $purchase_type,
-                    'confirmation' = $confirmation,
-                    'observations' = $observations,
+                    'amount' => $amount,
+                    'delivery_method' => $delivery_method,
+                    'purchase_type' => $purchase_type,
+                    'confirmation' => $confirmation,
+                    'observations' => $observations,
                 ]);
             }
             else{
@@ -137,7 +137,7 @@ class PurchaseOrderController extends Controller
             $user_id = Flight::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and (is_numeric($amount)) and !(is_numeric($delivery_method)) and !(is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))
+            if($user_id != null and (is_numeric($amount)) and !(is_numeric($delivery_method)) and !(is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
@@ -146,11 +146,11 @@ class PurchaseOrderController extends Controller
                     'id' => $request->id
                 ],
                 [   
-                    'amount' = $amount,
-                    'delivery_method' = $delivery_method,
-                    'purchase_type' = $purchase_type,
-                    'confirmation' = $confirmation,
-                    'observations' = $observations,
+                    'amount' => $amount,
+                    'delivery_method' => $delivery_method,
+                    'purchase_type' => $purchase_type,
+                    'confirmation' => $confirmation,
+                    'observations' => $observations,
                 ]);
             }
             else{

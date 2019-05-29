@@ -54,15 +54,15 @@ class ClientController extends Controller
             $user_id = Flight::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone))
+            if($user_id != null and !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $client->updateOrCreate([
                     
-                    'name' = $name,
-                    'last_name' = $last_name,
-                    'phone' = $phone,
+                    'name' => $name,
+                    'last_name' => $last_name,
+                    'phone' => $phone,
                 ]);
             }
             else{
@@ -130,19 +130,19 @@ class ClientController extends Controller
             $user_id = Flight::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone))
+            if($user_id != null and !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $client->updateOrCreate([
 
-                    'id' => $request->id
+                    'id' => $request->id,
                 ],
                     
                 [
-                    'name' = $name,
-                    'last_name' = $last_name,
-                    'phone' = $phone,
+                    'name' => $name,
+                    'last_name' => $last_name,
+                    'phone' => $phone,
     
                 ]);
             }
