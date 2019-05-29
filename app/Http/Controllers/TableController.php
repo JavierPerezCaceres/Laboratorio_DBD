@@ -59,9 +59,9 @@ class TableController extends Controller
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
 				$restaurant->updateOrCreate([
 					
-				    'capacity' = $capacity,
-                    'number' = $number,
-                    'avaible' = $avaible
+				    'capacity' => $capacity,
+                    'number' => $number,
+                    'avaible' => $avaible
 
 				]);
 			}
@@ -141,9 +141,9 @@ class TableController extends Controller
                 
                 [
 					
-				    'capacity' = $capacity,
-                    'number' = $number,
-                    'avaible' = $avaible
+				    'capacity' => $capacity,
+                    'number' => $number,
+                    'avaible' => $avaible
 
 				]);
 			}

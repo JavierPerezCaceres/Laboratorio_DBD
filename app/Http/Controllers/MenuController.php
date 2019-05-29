@@ -59,10 +59,10 @@ class MenuController extends Controller
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $menu->updateOrCreate([
                     
-                    'name' = $name,
-                    'total_price' = $total_price,
-                    'discount' = $discount,
-                    'restaurant_id' = $restaurant_id
+                    'name' => $name,
+                    'total_price' => $total_price,
+                    'discount' => $discount,
+                    'restaurant_id' => $restaurant_id
     
                 ]);
             }
@@ -137,10 +137,10 @@ class MenuController extends Controller
                 ],
 
                 [
-                    'name' = $name,
-                    'total_price' = $total_price,
-                    'discount' = $discount,
-                    'restaurant_id' = $restaurant_id
+                    'name' => $name,
+                    'total_price' => $total_price,
+                    'discount' => $discount,
+                    'restaurant_id' => $restaurant_id
     
                 ]);
             }
@@ -165,8 +165,6 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        // Se busca la id de lo que se desea eliminar.
-        $menu = Menu::find($menu->'id');
 
         // Si la id no existe en la tabla, se avisa al usuario.
         if($menu == null){
@@ -175,7 +173,7 @@ class MenuController extends Controller
         // Si la id existe en la tabla, se elimina.
         else{
             $menu->delete();
-            return "Se ha eliminado un Restaurant";
+            return "Se ha eliminado un Menu";
         }
     }
 }

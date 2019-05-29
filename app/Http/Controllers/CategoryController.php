@@ -53,7 +53,7 @@ class CategoryController extends Controller
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
 				$category->updateOrCreate([
 					
-				    'name' = $name
+				    'name' => $name
 	
 				]);
 			}

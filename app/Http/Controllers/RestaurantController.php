@@ -66,14 +66,14 @@ class RestaurantController extends Controller
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
 				$restaurant->updateOrCreate([
 					
-				    'category' = $category,
-                    'contact_number' = $contact_number,
-                    'kitchen_type' = $kitchen_type,
-                    'opening_hour' = $opening_hour,
-                    'closing_hour' = $closing_hour,
-                    'person_cost' = $person_cost,
-                    'wait_time' = $wait_time,
-                    'direction' = $direction,
+				    'category' => $category,
+                    'contact_number' => $contact_number,
+                    'kitchen_type' => $kitchen_type,
+                    'opening_hour' => $opening_hour,
+                    'closing_hour' => $closing_hour,
+                    'person_cost' => $person_cost,
+                    'wait_time' => $wait_time,
+                    'direction' => $direction,
 					'user_id' => $request->user_id
 	
 				]);

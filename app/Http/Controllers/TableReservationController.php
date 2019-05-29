@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TableReservation;
 use App\Table;
-use App\PurchaseOrder
+use App\PurchaseOrder;
 use Illuminate\Http\Request;
 
 class TableReservationController extends Controller

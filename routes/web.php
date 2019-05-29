@@ -57,18 +57,18 @@ Route::put('/category/{category}', 'CategoryController@update');
 Route::delete('/category/{category}', 'CategoryController@destroy');
 
 // Menu
-Route::get('/menu', 'Menu@index');
-Route::get('/menu/{menu}', 'Menu@show');
-Route::post('/menu', 'Menu@store');
-Route::put('/menu/{menu}', 'Menu@update');
-Route::delete('/menu/{menu}', 'Menu@destroy');
+Route::get('/menu', 'MenuController@index');
+Route::get('/menu/{menu}', 'MenuController@show');
+Route::post('/menu', 'MenuController@store');
+Route::put('/menu/{menu}', 'MenuController@update');
+Route::delete('/menu/{menu}', 'MenuController@destroy');
 
 // ProductoCategoria.
-Route::get('/product_category', 'ProductCategory@index');
-Route::get('/product_category/{product_category}', 'ProductCategory@show');
-Route::post('/product_category', 'ProductCategory@store');
-Route::put('/product_category/{product_category}', 'ProductCategory@update');
-Route::delete('/product_category/{product_category}', 'ProductCategory@destroy');
+Route::get('/product_category', 'ProductCategoryController@index');
+Route::get('/product_category/{product_category}', 'ProductCategoryController@show');
+Route::post('/product_category', 'ProductCategoryController@store');
+Route::put('/product_category/{product_category}', 'ProductCategoryController@update');
+Route::delete('/product_category/{product_category}', 'ProductCategoryController@destroy');
 
 // Restaurant.
 Route::get('/restaurant', 'RestaurantController@index');
@@ -85,8 +85,8 @@ Route::put('/table/{table}', 'TableController@update');
 Route::delete('/table/{table}', 'TableController@destroy');
 
 // TableReservation.
-Route::get('/table_reservation', 'TableReservation@index');
-Route::get('/table_reservation/{table_reservation}', 'TableReservation@show');
-Route::post('/table_reservation', 'TableReservation@store');
-Route::put('/table_reservation/{table_reservation}', 'TableReservation@update');
-Route::delete('/table_reservation/{table_reservation}', 'TableReservation@destroy');
+Route::get('/table_reservation', 'TableReservationController@index');
+Route::get('/table_reservation/{table_reservation}', 'TableReservationController@show');
+Route::post('/table_reservation', 'TableReservationController@store');
+Route::put('/table_reservation/{table_reservation}', 'TableReservationController@update');
+Route::delete('/table_reservation/{table_reservation}', 'TableReservationController@destroy');
