@@ -9,6 +9,9 @@ class Menu extends Model
     protected $table = 'menus';
     
     protected $fillable = ['name','total_price','discount'];
+    //protected $fillable = ['name','total_price','discount','restaurant_id'];
+
+    protected $hidden=['created_at','updated_at'];
 
     public function restaurant(){
         return $this->belongsTo(Restaurant::class);

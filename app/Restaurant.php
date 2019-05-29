@@ -8,7 +8,18 @@ class Restaurant extends Model
 {
     protected $table = 'restaurants';
     
-    protected $fillable = ['category','contact_number','kitchen_type','opening_hour','closing_hour','person_cost','wait_time','direction'];
+    protected $fillable = [
+        'category',
+        'contact_number',
+        'kitchen_type',
+        'opening_hour',
+        'closing_hour',
+        'person_cost',
+        'wait_time',
+        'direction'
+    ];
+
+    protected $hidden = ['created_at','updated_at'];
 
     public function table(){
         return $this->hasMany(Table::class);

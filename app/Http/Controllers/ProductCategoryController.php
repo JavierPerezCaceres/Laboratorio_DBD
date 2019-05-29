@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Table;
-use App\Restaurant;
+use App\ProductCategory;
+use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 
-class TableController extends Controller
+class ProductCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class TableController extends Controller
      */
     public function index()
     {
-        $table = Table::all();
-        return $table;
+        $product_category = ProductCategory::all();
+        return $product_category;
     }
 
     /**
@@ -38,31 +39,26 @@ class TableController extends Controller
     public function store(Request $request)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyTable = Table::find($request->id);
+        $verifyProductCategory = ProductCategory::find($request->id);
 
-		if($verifyTable == null){
+		if($verifyProductCategory == null){
 
 			// Se instancia un objeto del modelo
-            $table = new Table();
-            
-			// Se guardan valores en las distintas variables de modelo.
-            $capacity = $request->capacity;
-            $number = $request->number;
-            $avaible = $request->avaible;
+            $productCategory = new ProductCategory();
 
             // Se busca si la llave foranea existe.
-            $restaurant_id = Restaurant::find($request->restaurant_id);
+            $product_id = Product::find($request->product_id);
+            $category_id = Category::find($request->category_id);
             
             // Se realizan las validaciones de los datos.
-            if($restaurant_id != null and is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
+            if($product_id != null and $category_id != null){
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-				$restaurant->updateOrCreate([
+				$productCategory->updateOrCreate([
 					
-				    'capacity' => $capacity,
-                    'number' => $number,
-                    'avaible' => $avaible
-
+                    'product_id' => $request->product_id,
+                    'category_id' => $request->category_id,
+	
 				]);
 			}
 			else{
@@ -71,36 +67,37 @@ class TableController extends Controller
         }
         
         else{
-            return "Error al ingresar Mesa, llave primaria repetida.";
+            return "Error al ingresar ProductoCategoria, llave primaria repetida.";
         }
 
         // Se muestran todos el contenido de la tabla Restaurant.
-        return Table::all();
+        return ProductCategory::all();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Table  $table
+     * @param  \App\ProductCategory  $ProductCategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Table $table)
+    public function show(ProductCategory $productCategory)
     {
-        if($table == null){
-            return "No se ha encontrado la Mesa buscada.";
+        
+        if($productCategory == null){
+            return "No se ha encontrado el ProductoCategoria buscado.";
         }
         else{
-            return $table;
+            return $productCategory;
         }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Table  $table
+     * @param  \App\ProductCategory  $ProductCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Table $table)
+    public function edit(ProductCategory $productCategory)
     {
         //
     }
@@ -109,42 +106,37 @@ class TableController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Table  $table
+     * @param  \App\ProductCategory  $ProductCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Table $table)
+    public function update(Request $request, ProductCategory $productCategory)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyTable = Table::find($request->id);
+        $verifyProductCategory = ProductCategory::find($request->id);
 
-		if($verifyTable != null){
+		if($verifyProductCategory!= null){
 
 			// Se instancia un objeto del modelo
-            $table = new Table();
-            
-			// Se guardan valores en las distintas variables de modelo.
-            $capacity = $request->capacity;
-            $number = $request->number;
-            $avaible = $request->avaible;
+            $productCategory = new ProductCategory();
 
             // Se busca si la llave foranea existe.
-            $restaurant_id = Restaurant::find($request->restaurant_id);
+            $product_id = Product::find($request->product_id);
+            $category_id = Category::find($request->category_id);
             
             // Se realizan las validaciones de los datos.
-            if($restaurant_id != null and is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
+            if($product_id != null and $category_id != null){
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $restaurant->updateOrCreate(
+                $productCategory->updateOrCreate(
                 [
+
                     'id' => $request->id
                 ],
                 
                 [
-					
-				    'capacity' => $capacity,
-                    'number' => $number,
-                    'avaible' => $avaible
-
+                    'product_id' => $request->product_id,
+                    'category_id' => $request->category_id,
+	
 				]);
 			}
 			else{
@@ -153,29 +145,29 @@ class TableController extends Controller
         }
         
         else{
-            return "Error al actualizar Mesa, llave primaria no existe.";
+            return "Error al actualizar ProductoCategoria, llave primaria no existe.";
         }
 
         // Se muestran todos el contenido de la tabla Restaurant.
-        return Table::all();
+        return ProductCategory::all();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Table  $table
+     * @param  \App\ProductCategory  $ProductCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Table $table)
+    public function destroy(ProductCategory $productCategory)
     {
         // Si la id no existe en la tabla, se avisa al usuario.
-        if($table == null){
-            return "No se ha encontrado la Mesa a eliminar.";
+        if($productCategory == null){
+            return "No se ha encontrado el ProductoCategoria a eliminar.";
         }
         // Si la id existe en la tabla, se elimina.
         else{
-            $table->delete();
-            return "Se ha eliminado una Mesa";
+            $productCategory->delete();
+            return "Se ha eliminado un ProductoCategoria.";
         }
     }
 }

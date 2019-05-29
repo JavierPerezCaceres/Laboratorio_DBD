@@ -8,7 +8,13 @@ class Table extends Model
 {
     protected $table = 'restaurants';
     
-    protected $fillable = ['capacity', 'number', 'avaible'];
+    protected $fillable = [
+        'capacity', 
+        'number', 
+        'avaible'
+    ];
+
+    protected $hidden = ['created_at','updated_at',];
 
     public function restaurant(){
         return $this->belongsTo(Restaurant::class);

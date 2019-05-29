@@ -10,6 +10,8 @@ class MenuReservation extends Model
     
     protected $fillable = ['price','quantity'];
 
+    protected $hidden = ['created_at','updated_at'];
+
     public function purchaseOrder(){
         return $this->belongsTo(PurchaseOrder::class);
     }
