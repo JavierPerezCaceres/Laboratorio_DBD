@@ -99,9 +99,7 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {  
-        // Se busca la id de lo que se desea mostrar.
-        $restaurant = Restaurant::find($id);
-        
+
         if($restaurant == null){
             return "No se ha encontrado el Restaurant buscado.";
         }
@@ -195,9 +193,6 @@ class RestaurantController extends Controller
      */
     public function destroy(Restaurant $restaurant)
     {
-        // Se busca la id de lo que se desea eliminar.
-        $restaurant = Restaurant::find($id);
-
         // Si la id no existe en la tabla, se avisa al usuario.
         if($restaurant == null){
             return "No se ha encontrado el Restaurant a eliminar.";

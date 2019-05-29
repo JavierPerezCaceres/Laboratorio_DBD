@@ -86,9 +86,6 @@ class TableController extends Controller
      */
     public function show(Table $table)
     {
-        // Se busca la id de lo que se desea mostrar.
-        $talbe = Table::find($id);
-        
         if($table == null){
             return "No se ha encontrado la Mesa buscada.";
         }
@@ -171,9 +168,6 @@ class TableController extends Controller
      */
     public function destroy(Table $table)
     {
-        // Se busca la id de lo que se desea eliminar.
-        $table = Table::find($id);
-
         // Si la id no existe en la tabla, se avisa al usuario.
         if($table == null){
             return "No se ha encontrado la Mesa a eliminar.";
