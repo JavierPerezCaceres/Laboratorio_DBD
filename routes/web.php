@@ -27,11 +27,11 @@ Route::get('/role', 'RoleController@index');
 Route::get('/user', 'UserController@index');
 
 // Categoria.
-Route::get('/category', 'CategorieController@index');
-Route::get('/category/{category}', 'CategorieController@show');
-Route::post('/category', 'CategorieController@store');
-Route::put('/category/{category}', 'CategorieController@update');
-Route::delete('/category/{category}', 'CategorieController@destroy');
+Route::get('/category', 'CategoryController@index');
+Route::get('/category/{category}', 'CategoryController@show');
+Route::post('/category', 'CategoryController@store');
+Route::put('/category/{category}', 'CategoryController@update');
+Route::delete('/category/{category}', 'CategoryController@destroy');
 
 // Menu
 Route::get('/menu', 'Menu@index');
@@ -41,11 +41,11 @@ Route::put('/menu/{menu}', 'Menu@update');
 Route::delete('/menu/{menu}', 'Menu@destroy');
 
 // ProductoCategoria.
-Route::get('/product_category', 'ProductCategorie@index');
-Route::get('/product_category/{product_category}', 'ProductCategorie@show');
-Route::post('/product_category', 'ProductCategorie@store');
-Route::put('/product_category/{product_category}', 'ProductCategorie@update');
-Route::delete('/product_category/{product_category}', 'ProductCategorie@destroy');
+Route::get('/product_category', 'ProductCategory@index');
+Route::get('/product_category/{product_category}', 'ProductCategory@show');
+Route::post('/product_category', 'ProductCategory@store');
+Route::put('/product_category/{product_category}', 'ProductCategory@update');
+Route::delete('/product_category/{product_category}', 'ProductCategory@destroy');
 
 // Restaurant.
 Route::get('/restaurant', 'RestaurantController@index');
