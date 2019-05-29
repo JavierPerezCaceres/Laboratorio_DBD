@@ -33,6 +33,13 @@ Route::post('/category', 'CategorieController@store');
 Route::put('/category/{category}', 'CategorieController@update');
 Route::delete('/category/{category}', 'CategorieController@destroy');
 
+// Menu
+Route::get('/menu', 'Menu@index');
+Route::get('/menu/{menu}', 'Menu@show');
+Route::post('/menu', 'Menu@store');
+Route::put('/menu/{menu}', 'Menu@update');
+Route::delete('/menu/{menu}', 'Menu@destroy');
+
 // ProductoCategoria.
 Route::get('/product_category', 'ProductCategorie@index');
 Route::get('/product_category/{product_category}', 'ProductCategorie@show');
