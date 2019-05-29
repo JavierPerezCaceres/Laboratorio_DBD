@@ -19,7 +19,7 @@ class Restaurant extends Model
         'direction'
     ];
 
-    protected $hidden = ['created_at','updated_at',];
+    protected $hidden = ['created_at','updated_at'];
 
     public function table(){
         return $this->hasMany(Table::class);

@@ -16,7 +16,7 @@ class CreateMenuProductsTable extends Migration
         Schema::create('menu_products', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('precio');
+            $table->integer('price');
 
             $table->unsignedInteger('menu_id');
             $table->unsignedInteger('product_id');

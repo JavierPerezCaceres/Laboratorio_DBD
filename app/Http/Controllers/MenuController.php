@@ -37,6 +37,11 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'total_price' => 'required',
+            'discount' => 'required',
+        ]);
         // Se busca la id ingresada, en caso de no existir arroja null.
         $verifyMenu = Menu::find($request->id);
 
@@ -51,10 +56,11 @@ class MenuController extends Controller
             $discount = $request->discount;
 
             // Se busca si la llave foranea existe.
-            $restaurant_id = Restaurant::find($request->restaurant_id);
+            //$restaurant_id = Restaurant::find($request->restaurant_id);
             
             // Se realizan las validaciones de los datos.
-            if($restaurant_id != null and !(is_numeric($total_price)) and !(is_numeric($discount)) ){
+            //if($restaurant_id != null and !(is_numeric($total_price)) and !(is_numeric($discount)) ){
+            if(!(is_numeric($total_price)) and !(is_numeric($discount)) ){
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $menu->updateOrCreate([
@@ -62,7 +68,7 @@ class MenuController extends Controller
                     'name' => $name,
                     'total_price' => $total_price,
                     'discount' => $discount,
-                    'restaurant_id' => $restaurant_id
+                    //'restaurant_id' => $restaurant_id
     
                 ]);
             }
@@ -124,10 +130,11 @@ class MenuController extends Controller
             $discount = $request->discount;
 
             // Se busca si la llave foranea existe.
-            $restaurant_id = Restaurant::find($request->restaurant_id);
+            //$restaurant_id = Restaurant::find($request->restaurant_id);
             
             // Se realizan las validaciones de los datos.
-            if($restaurant_id != null and !(is_numeric($total_price)) and !(is_numeric($discount)) ){
+            //if($restaurant_id != null and !(is_numeric($total_price)) and !(is_numeric($discount)) ){
+            if(!(is_numeric($total_price)) and !(is_numeric($discount)) ){
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $menu->updateOrCreate(
@@ -140,7 +147,7 @@ class MenuController extends Controller
                     'name' => $name,
                     'total_price' => $total_price,
                     'discount' => $discount,
-                    'restaurant_id' => $restaurant_id
+                    //'restaurant_id' => $restaurant_id
     
                 ]);
             }
@@ -165,10 +172,9 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-
         // Si la id no existe en la tabla, se avisa al usuario.
         if($menu == null){
-            return "No se ha encontrado el Restaurant a eliminar.";
+            return "No se ha encontrado el menu a eliminar.";
         }
         // Si la id existe en la tabla, se elimina.
         else{

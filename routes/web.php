@@ -62,6 +62,7 @@ Route::get('/menu/{menu}', 'MenuController@show');
 Route::post('/menu', 'MenuController@store');
 Route::put('/menu/{menu}', 'MenuController@update');
 Route::delete('/menu/{menu}', 'MenuController@destroy');
+//Route::resource('menu','MenuController');
 
 // ProductoCategoria.
 Route::get('/product_category', 'ProductCategoryController@index');
