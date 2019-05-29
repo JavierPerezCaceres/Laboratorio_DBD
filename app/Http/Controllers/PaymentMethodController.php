@@ -37,7 +37,41 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyPaymentMethod = PaymentMethod::find($request->id);
+
+        if($verifyPaymentMethod == null){
+
+            // Se instancia un objeto del modelo
+            $payment_method = new PaymentMethod();
+            
+            // Se guardan valores en las distintas variables de modelo.
+            $payment_type = $request->payment_type;
+
+            // Se busca si la llave foranea existe.
+            $user_id = Flight::find($request->user_id);
+            
+            // Se realizan las validaciones de los datos.
+            if($user_id != null and (is_numeric($payment_type))
+            {
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+                $payment_type->updateOrCreate([
+                    
+                    'payment_type' = $payment_type,
+                ]);
+            }
+            else{
+                return "Error en los parametros ingresados.";
+            }
+        }
+        
+        else{
+            return "Error al ingresar Medio de pago, llave primaria repetida.";
+        }
+
+        // Se muestran todos el contenido de la tabla Client.
+        return PaymentMethod::all();
     }
 
     /**
@@ -48,7 +82,12 @@ class PaymentMethodController extends Controller
      */
     public function show(PaymentMethod $paymentMethod)
     {
-        return PaymentMethod::find($id);
+        if($paymentMethod == null){
+            return "No se ha encontrado el Medio de pago buscado.";
+        }
+        else{
+            return $paymentMethod;
+        }
     }
 
     /**
@@ -71,7 +110,45 @@ class PaymentMethodController extends Controller
      */
     public function update(Request $request, PaymentMethod $paymentMethod)
     {
-        //
+        // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyPaymentMethod = PaymentMethod::find($request->id);
+
+        if($verifyPaymentMethod != null){
+
+            // Se instancia un objeto del modelo
+            $payment_method = new PaymentMethod();
+            
+            // Se guardan valores en las distintas variables de modelo.
+            $payment_type = $request->payment_type;
+
+            // Se busca si la llave foranea existe.
+            $user_id = Flight::find($request->user_id);
+            
+            // Se realizan las validaciones de los datos.
+            if($user_id != null and (is_numeric($payment_type))
+            {
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+                $payment_type->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [
+                    
+                    'payment_type' = $payment_type,
+                ]);
+            }
+            else{
+                return "Error en los parametros ingresados.";
+            }
+        }
+        
+        else{
+            return "Error al ingresar Medio de pago, llave primaria no existe.";
+        }
+
+        // Se muestran todos el contenido de la tabla Client.
+        return PaymentMethod::all();
     }
 
     /**
@@ -82,6 +159,14 @@ class PaymentMethodController extends Controller
      */
     public function destroy(PaymentMethod $paymentMethod)
     {
-        //
+        // Si la id no existe en la tabla, se avisa al usuario.
+        if($paymentMethod == null){
+            return "No se ha encontrado el Medio de pago a eliminar.";
+        }
+        // Si la id existe en la tabla, se elimina.
+        else{
+            $paymentMethod->delete();
+            return "Se ha eliminado un Medio de pago";
+        }
     }
 }

@@ -14,7 +14,6 @@ class PurchaseOrder extends Model
     	'purchase_type',
     	'confirmation',
     	'observations',
-    	'purchase_order_id',
 	];
 
     protected $hidden = ['created_at','updated_at',];

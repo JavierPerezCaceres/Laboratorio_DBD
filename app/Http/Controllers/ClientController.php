@@ -37,7 +37,46 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        return Client::create($request->all());
+         // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyClient = Client::find($request->id);
+
+        if($verifyClient == null){
+
+            // Se instancia un objeto del modelo
+            $client = new Client();
+            
+            // Se guardan valores en las distintas variables de modelo.
+            $name = $request->name;
+            $last_name = $request->last_name;
+            $phone = $request->phone;
+
+            // Se busca si la llave foranea existe.
+            $user_id = Flight::find($request->user_id);
+            
+            // Se realizan las validaciones de los datos.
+            if($user_id != null and !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone))
+            {
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+                $client->updateOrCreate([
+                    
+                    'name' = $name,
+                    'last_name' = $last_name,
+                    'phone' = $phone,
+                ]);
+            }
+            else{
+                return "Error en los parametros ingresados.";
+            }
+        }
+        
+        else{
+            return "Error al ingresar Cliente, llave primaria repetida.";
+        }
+
+        // Se muestran todos el contenido de la tabla Client.
+        return Client::all();
+        
     }
 
     /**
@@ -48,7 +87,12 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        return Client::find($id);
+        if($client == null){
+            return "No se ha encontrado el Cliente buscado.";
+        }
+        else{
+            return $client;
+        }
     }
 
     /**
@@ -71,7 +115,48 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+
+        if($verifyClient != null){
+
+            // Se instancia un objeto del modelo
+            $client = new Client();
+            
+            // Se guardan valores en las distintas variables de modelo.
+            $name = $request->name;
+            $last_name = $request->last_name;
+            $phone = $request->phone;
+
+            // Se busca si la llave foranea existe.
+            $user_id = Flight::find($request->user_id);
+            
+            // Se realizan las validaciones de los datos.
+            if($user_id != null and !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone))
+            {
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+                $client->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                    
+                [
+                    'name' = $name,
+                    'last_name' = $last_name,
+                    'phone' = $phone,
+    
+                ]);
+            }
+            else{
+                return "Error en los parametros ingresados.";
+            }
+        }
+        
+        else{
+            return "Error al ingresar Cliente, llave primaria no existe.";
+        }
+
+        // Se muestran todos el contenido de la tabla Client.
+        return Client::all();
     }
 
     /**
@@ -82,8 +167,14 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        $client = Client::find($id);
-        $client->delete();
-        return "cliente eliminado";
+        // Si la id no existe en la tabla, se avisa al usuario.
+        if($client == null){
+            return "No se ha encontrado el Cliente a eliminar.";
+        }
+        // Si la id existe en la tabla, se elimina.
+        else{
+            $client->delete();
+            return "Se ha eliminado un Cliente";
+        }
     }
 }

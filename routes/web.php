@@ -15,10 +15,33 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Cliente
 Route::get('/client','ClientController@index');
+Route::get('/client/{client}','ClientController@show');
+Route::post('/client', 'ClientController@store');
+Route::put('/client/{client}', 'ClientController@update');
+Route::delete('/client/{client}', 'ClientController@destroy');
+
+// Pago con Tarjeta
 Route::get('/card_payment','CardPaymentController@index');
+Route::get('/card_payment/{card_payment}','CardPaymentController@show');
+Route::post('/card_payment', 'CardPaymentController@store');
+Route::put('/card_payment/{card_payment}', 'CardPaymentController@update');
+Route::delete('/card_payment/{card_payment}', 'CardPaymentController@destroy');
+
+// Medio de Pago
 Route::get('/payment_method','PaymentMethodController@index');
+Route::get('/payment_method/{payment_method}','PaymentMethodController@show');
+Route::post('/payment_method', 'PaymentMethodController@store');
+Route::put('/payment_method/{payment_method}', 'PaymentMethodController@update');
+Route::delete('/payment_method/{payment_method}', 'PaymentMethodController@destroy');
+
+// Orden de Compra
 Route::get('/purchase_order','PurchaseOrderController@index');
+Route::get('/purchase_order/{purchase_order}','PurchaseOrderController@show');
+Route::post('/purchase_order', 'PurchaseOrderController@store');
+Route::put('/purchase_order/{purchase_order}', 'PurchaseOrderController@update');
+Route::delete('/purchase_order/{purchase_order}', 'PurchaseOrderController@destroy');
 
 Route::get('/address', 'AddressController@index');
 Route::get('/city', 'CityController@index');

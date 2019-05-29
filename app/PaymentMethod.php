@@ -10,7 +10,6 @@ class PaymentMethod extends Model
     
 	protected $fillable = [
     'payment_type',
-    'payment_method_type',
 	];
 
     protected $hidden = ['created_at','updated_at',];
