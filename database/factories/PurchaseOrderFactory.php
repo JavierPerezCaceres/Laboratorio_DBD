@@ -12,5 +12,9 @@ $factory->define(PurchaseOrder::class, function (Faker $faker) {
     	'purchase_type' => $faker->numberBetween($min = 1, $max = 3),
     	'confirmation' => $faker->numberBetween($min = 0, $max = 1),
     	'observations' => $faker->realText($maxNbChars = 120, $indexSize = 2),
+
+    	'payment_method_id' => $faker->numberBetween($min = 1, $max = 9),
+        'client_id' => $faker->numberBetween($min = 1, $max = 9),
+        'delivery_id' => $faker->numberBetween($min = 1, $max = 9)
     ];
 });

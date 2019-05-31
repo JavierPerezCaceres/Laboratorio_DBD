@@ -24,7 +24,7 @@ class Client extends Model
     	return $this->hasOne(User::class);
     }
 
-    /*public function tableReservation(){
+    public function tableReservation(){
     	return $this->belongsTo(TableReservation::class);
-    }*/
+    }
 }

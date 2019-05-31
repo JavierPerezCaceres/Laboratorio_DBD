@@ -46,11 +46,11 @@ class ClientController extends Controller
             
             // Se guardan valores en las distintas variables de modelo.
             $name = $request->name;
-            $last_name = $request->last_name;
+            $lastname = $request->lastname;
             $phone = $request->phone;
 
             // Se busca si la llave foranea existe.
-            $user_id = Client::find($request->user_id);
+            //$user_id = Client::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
             if( !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone)))
@@ -60,7 +60,7 @@ class ClientController extends Controller
                 $client->updateOrCreate([
                     
                     'name' => $name,
-                    'last_name' => $last_name,
+                    'lastname' => $lastname,
                     'phone' => $phone,
                 ]);
             }
@@ -114,6 +114,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
+        $verifyClient = Client::find($request->id);
 
         if($verifyClient != null){
 
@@ -122,14 +123,15 @@ class ClientController extends Controller
             
             // Se guardan valores en las distintas variables de modelo.
             $name = $request->name;
-            $last_name = $request->last_name;
+            $lastname = $request->lastname;
             $phone = $request->phone;
 
             // Se busca si la llave foranea existe.
-            $user_id = Flight::find($request->user_id);
+            // $user_id = Flight::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone)))
+            if(//$user_id != null and 
+                !(is_numeric($name)) and !(is_numeric($lastname)) and (is_numeric($phone)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
@@ -140,7 +142,7 @@ class ClientController extends Controller
                     
                 [
                     'name' => $name,
-                    'last_name' => $last_name,
+                    'lastname' => $lastname,
                     'phone' => $phone,
     
                 ]);

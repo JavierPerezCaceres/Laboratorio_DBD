@@ -14,6 +14,10 @@ class PurchaseOrder extends Model
     	'purchase_type',
     	'confirmation',
     	'observations',
+
+        'payment_method_id',
+        'client_id',
+        'delivery_id'
 	];
 
     protected $hidden = ['created_at','updated_at',];
@@ -22,13 +26,13 @@ class PurchaseOrder extends Model
     	return $this->belongsTo(PaymentMethod::class);
     }
 
-    /*public function menuReservation(){
+    public function menuReservation(){
     	return $this->hasMany(MenuReservation::class);
     }
 
     public function delivery(){
     	return $this->belongsTo(Delivery::class);
-    }*/
+    }
 
     public function client(){
     	return $this->belongsTo(Client::class);

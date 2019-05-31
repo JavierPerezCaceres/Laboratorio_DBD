@@ -1,5 +1,6 @@
 <?php
 
+use App\CardPayment;
 use Illuminate\Database\Seeder;
 
 class CardPaymentSeeder extends Seeder

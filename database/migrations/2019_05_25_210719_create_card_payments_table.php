@@ -16,9 +16,9 @@ class CreateCardPaymentsTable extends Migration
         Schema::create('card_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('autorization_code');
-            $table->integer('transaction_code');
-            $table->integer('card_number')->unique();
+            $table->bigInteger('autorization_code')->unique();
+            $table->bigInteger('transaction_code')->unique();
+            $table->bigInteger('card_number')->unique();
             $table->string('account_type');
             $table->string('expiration_date');
 

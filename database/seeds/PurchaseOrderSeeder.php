@@ -1,8 +1,9 @@
 <?php
 
+use App\PurchaseOrder;
 use Illuminate\Database\Seeder;
 
-class PurchaseOrder extends Seeder
+class PurchaseOrderSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -18,7 +18,7 @@ class CreateClientsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('lastname');
-            $table->string('phone'); //lo dejé como string por el +56
+            $table->string('phone'); 
 
 
         });
