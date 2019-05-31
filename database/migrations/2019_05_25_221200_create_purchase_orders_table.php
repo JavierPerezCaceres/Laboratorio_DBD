@@ -31,7 +31,7 @@ class CreatePurchaseOrdersTable extends Migration
 
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
 
-            /*$table->foreign('delivery_id')->references('id')->on('deliverys')->onDelete('cascade');*/
+            $table->foreign('delivery_id')->references('id')->on('deliverys')->onDelete('cascade');
         });
     }
 

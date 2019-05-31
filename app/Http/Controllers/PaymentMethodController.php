@@ -49,7 +49,7 @@ class PaymentMethodController extends Controller
             $payment_type = $request->payment_type;
 
             // Se busca si la llave foranea existe.
-            $user_id = Flight::find($request->user_id);
+            $user_id = PaymentMethod::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
             if($user_id != null and (is_numeric($payment_type)))
@@ -122,7 +122,7 @@ class PaymentMethodController extends Controller
             $payment_type = $request->payment_type;
 
             // Se busca si la llave foranea existe.
-            $user_id = Flight::find($request->user_id);
+            $user_id = PaymentMethod::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
             if($user_id != null and (is_numeric($payment_type)))

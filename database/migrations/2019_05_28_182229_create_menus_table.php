@@ -21,9 +21,9 @@ class CreateMenusTable extends Migration
             $table->integer('discount');
 
 
-            //$table->unsignedInteger('restaurant_id');
+            $table->unsignedInteger('restaurant_id');
 
-            //$table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
         });
     }
 

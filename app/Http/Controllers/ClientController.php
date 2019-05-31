@@ -15,7 +15,6 @@ class ClientController extends Controller
     public function index()
     {
         $client = Client::all();
-
         return $client;
     }
 
@@ -51,10 +50,10 @@ class ClientController extends Controller
             $phone = $request->phone;
 
             // Se busca si la llave foranea existe.
-            $user_id = Flight::find($request->user_id);
+            $user_id = Client::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone)))
+            if( !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.

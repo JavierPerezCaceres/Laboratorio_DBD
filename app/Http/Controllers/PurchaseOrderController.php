@@ -53,7 +53,7 @@ class PurchaseOrderController extends Controller
             $observations = $request->$observations;
 
             // Se busca si la llave foranea existe.
-            $user_id = Flight::find($request->user_id);
+            $user_id = PurchaseOrder::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
             if($user_id != null and (is_numeric($amount)) and !(is_numeric($delivery_method)) and !(is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))))
@@ -134,7 +134,7 @@ class PurchaseOrderController extends Controller
             $observations = $request->$observations;
 
             // Se busca si la llave foranea existe.
-            $user_id = Flight::find($request->user_id);
+            $user_id = PurchaseOrder::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
             if($user_id != null and (is_numeric($amount)) and !(is_numeric($delivery_method)) and !(is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))))
