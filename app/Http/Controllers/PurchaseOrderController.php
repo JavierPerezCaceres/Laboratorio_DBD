@@ -49,24 +49,30 @@ class PurchaseOrderController extends Controller
             $amount = $request->amount;
             $delivery_method = $request->delivery_method;
             $purchase_type = $request->purchase_type;
-            $confirmation = $request->$confirmation;
-            $observations = $request->$observations;
+            $confirmation = $request->confirmation;
+            $observations = $request->observations;
 
-            // Se busca si la llave foranea existe.
-            $user_id = PurchaseOrder::find($request->user_id);
-            
+            $payment_method_id = $request->payment_method_id;
+            $client_id = $request->client_id;
+            $delivery_id = $request->delivery_id;
+
+
             // Se realizan las validaciones de los datos.
-            if($user_id != null and (is_numeric($amount)) and !(is_numeric($delivery_method)) and !(is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))))
+            if((is_numeric($amount)) and (is_numeric($delivery_method)) and (is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $purchase_order->updateOrCreate([
+                PurchaseOrder::create([
                     
                     'amount' => $amount,
                     'delivery_method' => $delivery_method,
                     'purchase_type' => $purchase_type,
                     'confirmation' => $confirmation,
                     'observations' => $observations,
+
+                    'payment_method_id' => $payment_method_id,
+                    'client_id' => $client_id,
+                    'delivery_id' => $delivery_id
                 ]);
             }
             else{
@@ -119,7 +125,7 @@ class PurchaseOrderController extends Controller
     public function update(Request $request, PurchaseOrder $purchaseOrder)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verify= PurchaseOrder::find($request->id);
+        $verifyPurchaseOrder = PurchaseOrder::find($request->id);
 
         if($verifyPurchaseOrder != null){
 
@@ -130,14 +136,15 @@ class PurchaseOrderController extends Controller
             $amount = $request->amount;
             $delivery_method = $request->delivery_method;
             $purchase_type = $request->purchase_type;
-            $confirmation = $request->$confirmation;
-            $observations = $request->$observations;
+            $confirmation = $request->confirmation;
+            $observations = $request->observations;
+            $payment_method_id = $request->payment_method_id;
+            $client_id = $request->client_id;
+            $delivery_id = $request->delivery_id;
 
-            // Se busca si la llave foranea existe.
-            $user_id = PurchaseOrder::find($request->user_id);
-            
+
             // Se realizan las validaciones de los datos.
-            if($user_id != null and (is_numeric($amount)) and !(is_numeric($delivery_method)) and !(is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))))
+            if( (is_numeric($amount)) and (is_numeric($delivery_method)) and (is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
@@ -151,6 +158,9 @@ class PurchaseOrderController extends Controller
                     'purchase_type' => $purchase_type,
                     'confirmation' => $confirmation,
                     'observations' => $observations,
+                    'payment_method_id' => $payment_method_id,
+                    'client_id' => $client_id,
+                    'delivery_id' => $delivery_id
                 ]);
             }
             else{

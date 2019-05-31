@@ -49,19 +49,17 @@ class ClientController extends Controller
             $lastname = $request->lastname;
             $phone = $request->phone;
 
-            // Se busca si la llave foranea existe.
-            //$user_id = Client::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
             if( !(is_numeric($name)) and !(is_numeric($lastname)) and (is_numeric($phone)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $client->updateOrCreate([
+                Client::create([
                     
                     'name' => $name,
                     'lastname' => $lastname,
-                    'phone' => $phone,
+                    'phone' => $phone
                 ]);
             }
             else{
@@ -125,13 +123,9 @@ class ClientController extends Controller
             $name = $request->name;
             $lastname = $request->lastname;
             $phone = $request->phone;
-
-            // Se busca si la llave foranea existe.
-            // $user_id = Flight::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if(//$user_id != null and 
-                !(is_numeric($name)) and !(is_numeric($lastname)) and (is_numeric($phone)))
+            if( !(is_numeric($name)) and !(is_numeric($lastname)) and (is_numeric($phone)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.

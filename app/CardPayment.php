@@ -14,6 +14,7 @@ class CardPayment extends Model
             'card_number',
             'account_type',
             'expiration_date',
+            'card_payment_id'
     ];
 
     protected $hidden = ['created_at','updated_at',];

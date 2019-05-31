@@ -57,11 +57,11 @@ class CardPaymentController extends Controller
             
             // Se realizan las validaciones de los datos.
             if(//$user_id != null and 
-                (is_numeric($autorization_code)) and (is_numeric($transaction_code)) and (is_numeric($card_number)) and !(is_numeric($account_type)) and !(is_numeric($expiration_date)))
+                (is_numeric($autorization_code)) and (is_numeric($transaction_code)) and (is_numeric($card_number)) and (is_numeric($account_type)) and !(is_numeric($expiration_date)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $cardPayment->updateOrCreate([
+                CardPayment::create([
                     
                     'autorization_code' => $autorization_code,
                     'transaction_code' => $transaction_code,
@@ -135,10 +135,10 @@ class CardPaymentController extends Controller
             $expiration_date = $request->expiration_date;
 
             // Se busca si la llave foranea existe.
-             $user_id = CardPayment::find($request->user_id);
+             //$user_id = CardPayment::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and (is_numeric($autorization_code)) and (is_numeric($transaction_code)) and (is_numeric($card_number)) and !(is_numeric($account_type)) and !(is_numeric($expiration_date)))
+            if((is_numeric($autorization_code)) and (is_numeric($transaction_code)) and (is_numeric($card_number)) and !(is_numeric($account_type)) and !(is_numeric($expiration_date)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.

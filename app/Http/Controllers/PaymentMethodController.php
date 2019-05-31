@@ -47,18 +47,17 @@ class PaymentMethodController extends Controller
             
             // Se guardan valores en las distintas variables de modelo.
             $payment_type = $request->payment_type;
-
-            // Se busca si la llave foranea existe.
-            $user_id = PaymentMethod::find($request->user_id);
+            $card_payment_id = $request->card_payment_id;
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and (is_numeric($payment_type)))
+            if((is_numeric($payment_type)) and (is_numeric($card_payment_id)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $payment_type->updateOrCreate([
+                PaymentMethod::create([
                     
                     'payment_type' => $payment_type,
+                    'card_payment_id' => $card_payment_id,
                 ]);
             }
             else{
@@ -120,12 +119,11 @@ class PaymentMethodController extends Controller
             
             // Se guardan valores en las distintas variables de modelo.
             $payment_type = $request->payment_type;
+            $card_payment_id = $request->card_payment_id;
 
-            // Se busca si la llave foranea existe.
-            $user_id = PaymentMethod::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and (is_numeric($payment_type)))
+            if((is_numeric($payment_type)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
@@ -136,6 +134,7 @@ class PaymentMethodController extends Controller
                 [
                     
                     'payment_type' => $payment_type,
+                    'card_payment_id' => $card_payment_id,
                 ]);
             }
             else{
