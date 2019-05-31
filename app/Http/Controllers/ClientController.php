@@ -53,7 +53,7 @@ class ClientController extends Controller
             //$user_id = Client::find($request->user_id);
             
             // Se realizan las validaciones de los datos.
-            if( !(is_numeric($name)) and !(is_numeric($lastname)) and !(is_numeric($phone)))
+            if( !(is_numeric($name)) and !(is_numeric($lastname)) and (is_numeric($phone)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
