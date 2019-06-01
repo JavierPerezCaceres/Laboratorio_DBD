@@ -13,7 +13,7 @@ class Valoration extends Model
     public function restaurant(){
     	return $this->belongsTo(Restaurant::class);
     }
-    public funtion user(){
+    public function user(){
       return $this->belongsTo(User::class);
     }
 }

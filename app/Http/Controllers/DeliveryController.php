@@ -50,10 +50,10 @@ class DeliveryController extends Controller
 
           if($restaurant_id != null and !(is_numeric($receptor_name)) and !(is_numeric($contact_number)) and is_numeric($extra_wait_time) and !(is_numeric($delivery_address))){
             $delivery->updateOrCreate([
-              'receptor_name'=$receptor_name,
-              'contact_number'=$contact_number,
-              'extra_wait_time'=$extra_wait_time,
-              'delivery_address'=$delivery_address,
+              'receptor_name'=>$receptor_name,
+              'contact_number'=>$contact_number,
+              'extra_wait_time'=>$extra_wait_time,
+              'delivery_address'=>$delivery_address,
               'restaurant_id' => $request->restaurant_id
             ]);
           }
@@ -119,8 +119,26 @@ class DeliveryController extends Controller
 
           $restaurant_id= Flight::find($request->restaurant_id);
 
-          
+          if($restaurant_id != null and !(is_numeric($receptor_name)) and is_numeric($extra_wait_time) and !(is_numeric($delivery_address))){
+            $delivery->updateOrCreate([
+              'id'=> $request->id
+            ],
+            [
+              'receptor_name'=>$receptor_name,
+              'contact_number'=>$contact_number,
+              'extra_wait_time'=>$extra_wait_time,
+              'delivery_address'=>$delivery_address,
+              'restaurant_id'=>$request->restaurant_id
+            ]);
+          }
+          else{
+            return "Error en los parametros ingresados.";
+          }
         }
+        else{
+          return "Error al actualizar Delivery, llave primaria no existe.";
+        }
+        return Delivery::all();
     }
 
     /**
@@ -131,6 +149,13 @@ class DeliveryController extends Controller
      */
     public function destroy(Delivery $delivery)
     {
-        //
+        $delivery= Delivery::find($id);
+        if($delivery == null){
+          return "No he encontrado el Delivery a eliminar.";
+        }
+        else{
+          $delivery->delete();
+          return "se ha eliminado el Delivery";
+        }
     }
 }

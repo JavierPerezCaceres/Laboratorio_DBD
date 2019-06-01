@@ -15,7 +15,7 @@ class Delivery extends Model
     public function restaurant(){
         return $this->belongsTo(Restaurant::class);
       }
-    public funtion purchaseOrder(){
+    public function purchaseOrder(){
         return $this->hasMany(PurchaseOrder::class);
       }
 }

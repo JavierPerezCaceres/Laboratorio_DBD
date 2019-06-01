@@ -14,7 +14,8 @@ class WebpageRecordController extends Controller
      */
     public function index()
     {
-        //
+        $webpageRecord= WebpageRecord::all();
+        return $webpageRecord;
     }
 
     /**
@@ -35,7 +36,26 @@ class WebpageRecordController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $verifyWebpageRecord= WebpageRecord::find($request->id);
+        if($verifyWebpageRecord ==null){
+
+          $webpageRecord= new WebpageRecord();
+
+          $action= $request->$action;
+
+          if(!(is_numeric($action))){
+            $webpageRecord->updateOrCreate([
+              'action'=>$action
+            ]);
+          }
+          else{
+            return "Error en los parametros ingresados.";
+          }
+        }
+        else{
+          return "Error al ingresar Webpage Record, llave primaria repetida";
+        }
+        return WebpageRecord::all();
     }
 
     /**
@@ -46,7 +66,14 @@ class WebpageRecordController extends Controller
      */
     public function show(WebpageRecord $webpageRecord)
     {
-        //
+        $webpageRecord= WebpageRecord::fin($id);
+
+        if($webpageRecord==null){
+          return "No se ha encontrado el Webpage Record buscado.";
+        }
+        else{
+          return $webpageRecord;
+        }
     }
 
     /**
@@ -69,7 +96,30 @@ class WebpageRecordController extends Controller
      */
     public function update(Request $request, WebpageRecord $webpageRecord)
     {
-        //
+        $verifyWebpageRecord = WebpageRecord::find($request->id);
+
+        if($verifyWebpageRecord != null){
+
+          $webpageRecord= new WebpageRecord();
+
+          $action= $request->$action;
+
+          if (!(is_numeric($action))){
+            $webpageRecord->updateOrCreate([
+              'id'=>$request->id
+            ],
+            [
+              'action'=>$action
+            ]);
+          }
+          else{
+            return "Error en los parametros ingresados.";
+          }
+        }
+        else{
+          return "Error al actualizar Webpage Record, llave primaria no existe.";
+        }
+        return WebpageRecord::all();
     }
 
     /**
@@ -80,6 +130,13 @@ class WebpageRecordController extends Controller
      */
     public function destroy(WebpageRecord $webpageRecord)
     {
-        //
+        $webpageRecord= WebpageRecord::find($id);
+        if($webpageRecord == null){
+          return "no he encontrado el Webpage Record a eliminar.";
+        }
+        else{
+          $webpageRecord->delete();
+          return "se ha eliminado el Webpage Record";
+        }
     }
 }

@@ -14,7 +14,8 @@ class ValorationController extends Controller
      */
     public function index()
     {
-        //
+        $valoration=Valoration::all();
+        return $valoration;
     }
 
     /**
@@ -35,7 +36,32 @@ class ValorationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $verifyValoration = Valoration::find($request->id);
+        if($verifyValoration == null){
+            $valoration= new Valoration();
+
+            $score=$request->$score;
+            $commentary=$request->$commentary;
+
+            $user_id= Flight::find($request->user_id);
+            $restaurant_id= Flight::find($request->$restaurant_id);
+
+            if($user_id != null and $restaurant_id != null and is_numeric(score) and !(is_numeric(commentary))){
+              $valoration->updateOrCreate([
+                'score'=>$score,
+                'commentary'=>$commentary,
+                'user_id'=>$request->user_id,
+                'restaurant_id'=>$request->restaurant_id
+              ]);
+            }
+            else{
+              return "Error en los parametros ingresados.";
+            }
+        }
+        else{
+          return "Error al ingresar Valoration, llave primaria repetida.";
+        }
+        return Valoration::all();
     }
 
     /**
@@ -46,7 +72,14 @@ class ValorationController extends Controller
      */
     public function show(Valoration $valoration)
     {
-        //
+      $valoration= Valoration::find($id);
+
+      if($valoration == null){
+          return "No se ha encontrado el Valoration buscado.";
+      }
+      else{
+        return $valoration;
+      }
     }
 
     /**
@@ -69,7 +102,35 @@ class ValorationController extends Controller
      */
     public function update(Request $request, Valoration $valoration)
     {
-        //
+      $verifyValoration = Valoration::find($request->id);
+      if($verifyValoration != null){
+          $valoration= new Valoration();
+
+          $score=$request->$score;
+          $commentary=$request->$commentary;
+
+          $user_id= Flight::find($request->user_id);
+          $restaurant_id= Flight::find($request->$restaurant_id);
+
+          if($user_id != null and $restaurant_id != null and is_numeric(score) and !(is_numeric(commentary))){
+            $valoration->updateOrCreate([
+                'id'->$request->id
+            ],
+            [
+              'score'=>$score,
+              'commentary'=>$commentary,
+              'user_id'=>$request->user_id,
+              'restaurant_id'=>$request->restaurant_id
+            ]);
+          }
+          else{
+            return "Error en los parametros ingresados.";
+          }
+      }
+      else{
+        return "Error al actualizar Valoration, llave primaria no existe.";
+      }
+      return Valoration::all();
     }
 
     /**
@@ -80,6 +141,13 @@ class ValorationController extends Controller
      */
     public function destroy(Valoration $valoration)
     {
-        //
+      $valoration= Valoration::find($id);
+      if($valoration == null){
+        return "No he encontrado el Valoration a eliminar.";
+      }
+      else{
+        $valoration->delete();
+        return "se ha eliminado el Valoration";
+      }
     }
 }

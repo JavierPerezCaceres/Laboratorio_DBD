@@ -18,7 +18,7 @@ Route::get('/', function () {
 // Cliente
 Route::get('/client','ClientController@index');
 Route::get('/client/{client}','ClientController@show');
-Route::post('/client', 'ClientController@store'); 
+Route::post('/client', 'ClientController@store');
 Route::put('/client/{client}', 'ClientController@update');
 Route::delete('/client/{client}', 'ClientController@destroy');
 
@@ -91,3 +91,31 @@ Route::get('/table_reservation/{table_reservation}', 'TableReservationController
 Route::post('/table_reservation', 'TableReservationController@store');
 Route::put('/table_reservation/{table_reservation}', 'TableReservationController@update');
 Route::delete('/table_reservation/{table_reservation}', 'TableReservationController@destroy');
+
+// Delivery.
+Route::get('/delivery', 'DeliveryController@index');
+Route::get('/delivery/{delivery}', 'DeliveryController@show');
+Route::post('/delivery', 'DeliveryController@store');
+Route::put('/delivery/{delivery}', 'DeliveryController@update');
+Route::delete('/delivery/{delivery}', 'DeliveryController@destroy');
+
+//RestaurantRequest
+Route::get('/restaurantRequest', 'RestaurantRequestController@index');
+Route::get('/restaurantRequest/{restaurantRequest}', 'RestaurantRequestController@show');
+Route::post('/restaurantRequest', 'RestaurantRequestController@store');
+Route::put('/restaurantRequest/{restaurantRequest}', 'RestaurantRequestController@update');
+Route::delete('/restaurantRequest/{restaurantRequest}', 'RestaurantRequestController@destroy');
+
+//Valoration
+Route::get('/valoration', 'ValorationController@index');
+Route::get('/valoration/{valoration}', 'ValorationController@show');
+Route::post('/valoration', 'ValorationController@store');
+Route::put('/valoration/{valoration}', 'ValorationController@update');
+Route::delete('/valoration/{valoration}', 'ValorationController@destroy');
+
+//WebpageRecord
+Route::get('/webpageRecord', 'WebpageRecordController@index');
+Route::get('/webpageRecord/{webpageRecord}', 'WebpageRecordController@show');
+Route::post('/webpageRecord', 'WebpageRecordController@store');
+Route::put('/webpageRecord/{webpageRecord}', 'WebpageRecordController@update');
+Route::delete('/webpageRecord/{webpageRecord}', 'WebpageRecordController@destroy');
