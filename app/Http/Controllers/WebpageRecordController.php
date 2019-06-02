@@ -41,11 +41,11 @@ class WebpageRecordController extends Controller
 
           $webpageRecord= new WebpageRecord();
 
-          $action= $request->$action;
+          $action= $request->action;
 
           if(!(is_numeric($action))){
-            $webpageRecord->updateOrCreate([
-              'action'=>$action
+            WebpageRecord::create([
+              'action'=>$action,
             ]);
           }
           else{
@@ -66,8 +66,6 @@ class WebpageRecordController extends Controller
      */
     public function show(WebpageRecord $webpageRecord)
     {
-        $webpageRecord= WebpageRecord::fin($id);
-
         if($webpageRecord==null){
           return "No se ha encontrado el Webpage Record buscado.";
         }
@@ -102,14 +100,14 @@ class WebpageRecordController extends Controller
 
           $webpageRecord= new WebpageRecord();
 
-          $action= $request->$action;
+          $action= $request->action;
 
           if (!(is_numeric($action))){
             $webpageRecord->updateOrCreate([
               'id'=>$request->id
             ],
             [
-              'action'=>$action
+              'action'=>$action,
             ]);
           }
           else{
@@ -130,7 +128,6 @@ class WebpageRecordController extends Controller
      */
     public function destroy(WebpageRecord $webpageRecord)
     {
-        $webpageRecord= WebpageRecord::find($id);
         if($webpageRecord == null){
           return "no he encontrado el Webpage Record a eliminar.";
         }

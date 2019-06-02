@@ -41,6 +41,7 @@ class MenuController extends Controller
             'name' => 'required',
             'total_price' => 'required',
             'discount' => 'required',
+            'restaurant_id' => 'required',
         ]);
         // Se busca la id ingresada, en caso de no existir arroja null.
         $verifyMenu = Menu::find($request->id);

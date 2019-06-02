@@ -8,9 +8,13 @@ use App\Product;
 use Faker\Generator as Faker;
 
 $factory->define(MenuProduct::class, function (Faker $faker) {
+	$product_id = DB::table('products')->select('id')->get();
+	$menu_id = DB::table('menus')->select('id')->get();
+
     return [
         'price' 		=> $faker->numberBetween($min = 1000, $max = 8000),
-        'menu_id' 		=> App\Menu::all()->random()->id,
-        'product_id' 	=> App\Product::all()->random()->id,
+        
+        'menu_id' 		=> $menu_id->random()->id,
+        'product_id' 	=> $product_id->random()->id,
     ];
 });

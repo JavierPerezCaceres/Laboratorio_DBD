@@ -51,7 +51,7 @@ class CategoryController extends Controller
             if(!(is_numeric($name))){
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-				$category->updateOrCreate([
+				Category::create([
 					
 				    'name' => $name
 	

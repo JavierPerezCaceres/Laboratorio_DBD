@@ -36,7 +36,30 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        return Address::create($request->all());
+        $verifyAddress = Address::find($request->id);
+
+        if( $verifyAddress == null ){
+            $address = new Address();
+
+            $street = $request->street;
+            $number = $request->number;
+            $district_id = $request->district_id;
+            $user_id = $request->user_id;
+
+            if( !(is_numeric($street)) and !(is_numeric($number)) ){
+                Address::create([
+                    'street' => $street,
+                    'number' => $number,
+                    'district_id' => $district_id,
+                    'user_id' => $user_id
+                ]);
+            }else{
+                return "Error en los parámetros ingresados";
+            }
+        }else{
+            return "Error al ingresar Dirección, llave primaria ya existente";
+        }
+        return Address::all();
     }
 
     /**
@@ -47,7 +70,12 @@ class AddressController extends Controller
      */
     public function show(Address $address)
     {
-        return Address::find($id);
+        if($address == null){
+            return "No se ha encontrado la Dirección";
+        }
+        else{
+            return $address;
+        }
     }
 
     /**
@@ -70,7 +98,32 @@ class AddressController extends Controller
      */
     public function update(Request $request, Address $address)
     {
-        //
+        $verifyAddress = Address::find($request->id);
+
+        if( $verifyAddress != null ){
+            $address = new Address();
+
+            $street = $request->street;
+            $number = $request->number;
+            $district_id = $request->district_id;
+            $user_id = $request->user_id;
+
+            if( !(is_numeric($street)) and !(is_numeric($number)) ){
+                $address->updateOrCreate([
+                    'id' => $request->id
+                ],[
+                    'street' => $street,
+                    'number' => $number,
+                    'district_id' => $district_id,
+                    'user_id' => $user_id
+                ]);
+            }else{
+                return "Error en los parámetros ingresados";
+            }
+        }else{
+            return "Error al ingresar Dirección, llave primaria no existente";
+        }
+        return Address::all();
     }
 
     /**
@@ -79,10 +132,16 @@ class AddressController extends Controller
      * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Address $address)
     {
-        $address = Address::find($id);
-        $address->delete();
-        return "Dirección eliminada";
+        // Si la id no existe en la tabla, se avisa al usuario.
+        if($address == null){
+            return "No se ha encontrado la Dirección a eliminar";
+        }
+        // Si la id existe en la tabla, se elimina.
+        else{
+            $address->delete();
+            return "Se ha eliminado la Dirección";
+        }
     }
 }

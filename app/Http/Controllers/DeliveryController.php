@@ -41,24 +41,24 @@ class DeliveryController extends Controller
 
           $delivery= new Delivery();
 
-          $receptor_name = $request->$receptor_name;
-          $contact_number= $request->$contact_number;
+          $receptor_name = $request->receptor_name;
+          $contact_number= $request->contact_number;
           $extra_wait_time= $request->extra_wait_time;
           $delivery_address= $request->delivery_address;
 
-          $restaurant_id=Flight::find($request->restaurant_id);
+          $restaurant_id = $request->restaurant_id;
 
-          if($restaurant_id != null and !(is_numeric($receptor_name)) and !(is_numeric($contact_number)) and is_numeric($extra_wait_time) and !(is_numeric($delivery_address))){
-            $delivery->updateOrCreate([
+          if( !(is_numeric($receptor_name)) and !(is_numeric($contact_number)) and is_numeric($extra_wait_time) and !(is_numeric($delivery_address))){
+            Delivery::create([
               'receptor_name'=>$receptor_name,
               'contact_number'=>$contact_number,
               'extra_wait_time'=>$extra_wait_time,
               'delivery_address'=>$delivery_address,
-              'restaurant_id' => $request->restaurant_id
+              'restaurant_id' =>$restaurant_id,
             ]);
           }
           else{
-            return "Error en los parametros ingresados.";
+              return "Error en los parametros ingresados.";
           }
         }
         else{
@@ -76,8 +76,6 @@ class DeliveryController extends Controller
      */
     public function show(Delivery $delivery)
     {
-        $delivery= Delivery::find($id);
-
         if($delivery == null){
             return "No se ha encontrado el Delivery buscado.";
         }
@@ -117,9 +115,9 @@ class DeliveryController extends Controller
           $extra_wait_time=$request->extra_wait_time;
           $delivery_address=$request->delivery_address;
 
-          $restaurant_id= Flight::find($request->restaurant_id);
+          $restaurant_id = $request->restaurant_id;
 
-          if($restaurant_id != null and !(is_numeric($receptor_name)) and is_numeric($extra_wait_time) and !(is_numeric($delivery_address))){
+          if( !(is_numeric($receptor_name)) and !(is_numeric($extra_wait_time)) and !(is_numeric($delivery_address))){
             $delivery->updateOrCreate([
               'id'=> $request->id
             ],
@@ -128,7 +126,8 @@ class DeliveryController extends Controller
               'contact_number'=>$contact_number,
               'extra_wait_time'=>$extra_wait_time,
               'delivery_address'=>$delivery_address,
-              'restaurant_id'=>$request->restaurant_id
+
+              'restaurant_id' =>$restaurant_id,
             ]);
           }
           else{
@@ -149,7 +148,6 @@ class DeliveryController extends Controller
      */
     public function destroy(Delivery $delivery)
     {
-        $delivery= Delivery::find($id);
         if($delivery == null){
           return "No he encontrado el Delivery a eliminar.";
         }

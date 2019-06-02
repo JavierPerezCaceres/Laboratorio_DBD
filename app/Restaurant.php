@@ -16,7 +16,8 @@ class Restaurant extends Model
         'closing_hour',
         'person_cost',
         'wait_time',
-        'direction'
+        'direction',
+        'user_id'
     ];
 
     protected $hidden = ['created_at','updated_at'];

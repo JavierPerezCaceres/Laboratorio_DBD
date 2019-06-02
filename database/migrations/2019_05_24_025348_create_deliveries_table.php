@@ -18,7 +18,7 @@ class CreateDeliveriesTable extends Migration
             $table->timestamps();
             $table->string('receptor_name');
             $table->string('contact_number');
-            $table->integer('extra_wait_time');
+            $table->time('extra_wait_time');
             $table->string('delivery_address');
 
             $table->unsignedInteger('restaurant_id');

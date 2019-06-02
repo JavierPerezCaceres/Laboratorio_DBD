@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\ProductCategory;
-use App\Product;
-use App\Category;
 use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
@@ -46,26 +44,18 @@ class ProductCategoryController extends Controller
 			// Se instancia un objeto del modelo
             $productCategory = new ProductCategory();
 
-            // Se busca si la llave foranea existe.
-            $product_id = Product::find($request->product_id);
-            $category_id = Category::find($request->category_id);
-            
-            // Se realizan las validaciones de los datos.
-            if($product_id != null and $category_id != null){
+            $product_id = $request->product_id;
+            $category_id = $request->category_id;
+
+            // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+            ProductCategory::create([
                 
-                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-				$productCategory->updateOrCreate([
-					
-                    'product_id' => $request->product_id,
-                    'category_id' => $request->category_id,
-	
-				]);
-			}
-			else{
-				return "Error en los parametros ingresados.";
-			}
+                'product_id' => $product_id,
+                'category_id' => $category_id
+
+            ]);
         }
-        
+
         else{
             return "Error al ingresar ProductoCategoria, llave primaria repetida.";
         }
@@ -119,29 +109,21 @@ class ProductCategoryController extends Controller
 			// Se instancia un objeto del modelo
             $productCategory = new ProductCategory();
 
-            // Se busca si la llave foranea existe.
-            $product_id = Product::find($request->product_id);
-            $category_id = Category::find($request->category_id);
-            
-            // Se realizan las validaciones de los datos.
-            if($product_id != null and $category_id != null){
+            $product_id = $request->product_id;
+            $category_id = $request->category_id;
                 
-                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $productCategory->updateOrCreate(
-                [
+            // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+            $productCategory->updateOrCreate(
+            [
 
-                    'id' => $request->id
-                ],
-                
-                [
-                    'product_id' => $request->product_id,
-                    'category_id' => $request->category_id,
-	
-				]);
-			}
-			else{
-				return "Error en los parametros ingresados.";
-			}
+                'id' => $request->id
+            ],
+            
+            [
+                'product_id' => $product_id,
+                'category_id' => $category_id,
+
+            ]);
         }
         
         else{
