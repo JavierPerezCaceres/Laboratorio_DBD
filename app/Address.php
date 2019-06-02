@@ -8,7 +8,7 @@ class Address extends Model
 {
     protected $table = 'addresses';
     
-    protected $fillable = ['street', 'number'];
+    protected $fillable = ['street', 'number', 'district_id', 'user_id'];
 
     public function district(){
         return $this->belongsTo(District::class);

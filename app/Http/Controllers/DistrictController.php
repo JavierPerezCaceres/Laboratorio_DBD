@@ -36,7 +36,37 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        return District::create($request->all());
+        // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyDistrict = District::find($request->id);
+
+        if($verifyDistrict == null){
+
+            // Se instancia un objeto del modelo
+            $district = new District();
+
+            // Se guardan valores en las distintas variables de modelo.
+            $name = $request->name;
+            $city_id = $request->city_id;
+
+            // Se realizan las validaciones de los datos.
+            if( !(is_numeric($name)) ){
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+                District::create([
+                    'name' => $name,
+                    'city_id' => $city_id
+                ]);
+
+            }else{
+                return "Error en los parámetros ingresados.";
+            }
+
+        }else{
+            return "Error al ingresar Comuna, llave primaria ya existente";
+        }
+
+        // Se muestran todos el contenido de la tabla User.
+        return District::all();
     }
 
     /**
@@ -47,7 +77,12 @@ class DistrictController extends Controller
      */
     public function show(District $district)
     {
-        return District::find($id);
+        if($district == null){
+            return "No se ha encontrado el Usuario buscado";
+        }
+        else{
+            return $district;
+        }
     }
 
     /**
@@ -70,7 +105,39 @@ class DistrictController extends Controller
      */
     public function update(Request $request, District $district)
     {
-        //
+        // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyDistrict = District::find($request->id);
+
+        if($verifyDistrict != null){
+
+            // Se instancia un objeto del modelo
+            $district = new District();
+
+            // Se guardan valores en las distintas variables de modelo.
+            $name = $request->name;
+            $city_id = $request->city_id;
+
+            // Se realizan las validaciones de los datos.
+            if( !(is_numeric($name)) ){
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+                $district->updateOrCreate([
+                    'id' => $request->id
+                ],[
+                    'name' => $name,
+                    'city_id' => $city_id
+                ]);
+
+            }else{
+                return "Error en los parámetros ingresados.";
+            }
+
+        }else{
+            return "Error al actualizas Comuna, llave primaria no existente";
+        }
+
+        // Se muestran todos el contenido de la tabla User.
+        return District::all();
     }
 
     /**
@@ -79,10 +146,13 @@ class DistrictController extends Controller
      * @param  \App\District  $district
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(District $district)
     {
-        $district = District::find($id);
-        $district->delete();
-        return "Comuna eliminada";
+        if( $district == null ){
+            return "No se ha encontrado la comuna a eliminar";
+        }else{
+            $district->delete();
+            return "Se ha eliminado la comuna";
+        }
     }
 }

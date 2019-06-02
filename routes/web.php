@@ -43,12 +43,6 @@ Route::post('/purchase_order', 'PurchaseOrderController@store');
 Route::put('/purchase_order/{purchase_order}', 'PurchaseOrderController@update');
 Route::delete('/purchase_order/{purchase_order}', 'PurchaseOrderController@destroy');
 
-Route::get('/address', 'AddressController@index');
-Route::get('/city', 'CityController@index');
-Route::get('/district', 'DistrictController@index');
-Route::get('/role', 'RoleController@index');
-Route::get('/user', 'UserController@index');
-
 // Categoria.
 Route::get('/category', 'CategoryController@index');
 Route::get('/category/{category}', 'CategoryController@show');
@@ -91,3 +85,38 @@ Route::get('/table_reservation/{table_reservation}', 'TableReservationController
 Route::post('/table_reservation', 'TableReservationController@store');
 Route::put('/table_reservation/{table_reservation}', 'TableReservationController@update');
 Route::delete('/table_reservation/{table_reservation}', 'TableReservationController@destroy');
+
+// User
+Route::get('/user', 'UserController@index');
+Route::get('/user/{user}', 'UserController@show');
+Route::post('/user', 'UserController@store');
+Route::put('/user/{user}', 'UserController@update');
+Route::delete('/user/{user}', 'UserController@destroy');
+
+// Role
+Route::get('/role', 'RoleController@index');
+Route::get('/role/{role}', 'RoleController@show');
+Route::post('/role', 'RoleController@store');
+Route::put('/role/{role}', 'RoleController@update');
+Route::delete('/role/{role}', 'RoleController@destroy');
+
+// Address
+Route::get('/address', 'AddressController@index');
+Route::get('/address/{address}', 'AddressController@show');
+Route::post('/address', 'AddressController@store');
+Route::put('/address/{address}', 'AddressController@update');
+Route::delete('/address/{address}', 'AddressController@destroy');
+
+// District
+Route::get('/district', 'DistrictController@index');
+Route::get('/district/{district}', 'DistrictController@show');
+Route::post('/district', 'DistrictController@store');
+Route::put('/district/{district}', 'DistrictController@update');
+Route::delete('/district/{district}', 'DistrictController@destroy');
+
+// City
+Route::get('/city', 'CityController@index');
+Route::get('/city/{city}', 'CityController@show');
+Route::post('/city', 'CityController@store');
+Route::put('/city/{city}', 'CityController@update');
+Route::delete('/city/{city}', 'CityController@destroy');
