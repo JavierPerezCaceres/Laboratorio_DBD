@@ -49,15 +49,12 @@ class TableController extends Controller
             $capacity = $request->capacity;
             $number = $request->number;
             $avaible = $request->avaible;
-
-            // Se busca si la llave foranea existe.
-            $restaurant_id = Restaurant::find($request->restaurant_id);
             
             // Se realizan las validaciones de los datos.
-            if($restaurant_id != null and is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
+            if(is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-				$restaurant->updateOrCreate([
+				Table::create([
 					
 				    'capacity' => $capacity,
                     'number' => $number,
@@ -126,15 +123,12 @@ class TableController extends Controller
             $capacity = $request->capacity;
             $number = $request->number;
             $avaible = $request->avaible;
-
-            // Se busca si la llave foranea existe.
-            $restaurant_id = Restaurant::find($request->restaurant_id);
             
             // Se realizan las validaciones de los datos.
-            if($restaurant_id != null and is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
+            if(is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $restaurant->updateOrCreate(
+                $table->updateOrCreate(
                 [
                     'id' => $request->id
                 ],

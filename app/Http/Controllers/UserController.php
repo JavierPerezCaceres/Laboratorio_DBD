@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
+use App\Client;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -36,7 +39,42 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return User::create($request->all());
+        // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyUser = User::find($request->id);
+
+        if($verifyUser == null){
+
+            // Se instancia un objeto del modelo
+            $user = new User();
+
+            // Se guardan valores en las distintas variables de modelo.
+            $email = $request->email;
+            $password = $request->password;
+            $role_id = $request->role_id;
+            $client_id = $request->client_id;
+
+            // Se realizan las validaciones de los datos.
+            if( !(is_numeric($email)) and !(is_numeric($password)) ){
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+                User::create([
+                    'email' => $email,
+                    'password' => $password,
+                    'role_id' => $role_id,
+                    'client_id' => $client_id,
+                    'name' => "no_aplica"
+                ]);
+
+            }else{
+                return "Error en los parámetros ingresados";
+            }
+
+        }else{
+            return "Error al ingresar Usuario, llave primaria ya existente";
+        }
+
+        // Se muestran todos el contenido de la tabla User.
+        return User::all();
     }
 
     /**
@@ -45,9 +83,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        return User::find($id);
+        if($user == null){
+            return "No se ha encontrado el Usuario buscado";
+        }
+        else{
+            return $user;
+        }
     }
 
     /**
@@ -68,9 +111,45 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyUser = User::find($request->id);
+
+        if($verifyUser != null){
+
+            // Se instancia un objeto del modelo
+            $user = new User();
+
+            // Se guardan valores en las distintas variables de modelo.
+            $email = $request->email;
+            $password = $request->password;
+            $role_id = $request->role_id;
+            $client_id = $request->client_id;
+
+            // Se realizan las validaciones de los datos.
+            if( !(is_numeric($email)) and !(is_numeric($password)) ){
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+                $user->updateOrCreate([
+                    'id' => $request->id
+                ],[
+                    'email' => $email,
+                    'password' => $password,
+                    'role_id' => $role_id,
+                    'client_id' => $client_id,
+                    'name' => "no_aplica"
+                ]);
+            }else{
+                return "Error en los parámetros ingresados.";
+            }
+
+        }else{
+            return "Error al actualizar Usuario, llave primaria no existente";
+        }
+
+        // Se muestran todos el contenido de la tabla User.
+        return User::all();
     }
 
     /**
@@ -79,10 +158,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
-        $user->delete();
-        return "Dirección eliminada";
+        // Si la id no existe en la tabla, se avisa al usuario.
+        if($user == null){
+            return "No se ha encontrado el Usuario a eliminar";
+        }
+        // Si la id existe en la tabla, se elimina.
+        else{
+            $user->delete();
+            return "Se ha eliminado el Usuario";
+        }
     }
 }

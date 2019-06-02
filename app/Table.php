@@ -11,7 +11,8 @@ class Table extends Model
     protected $fillable = [
         'capacity', 
         'number', 
-        'avaible'
+        'avaible',
+        'restaurant_id'
     ];
 
     protected $hidden = ['created_at','updated_at',];

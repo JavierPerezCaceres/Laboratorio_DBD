@@ -119,3 +119,41 @@ Route::get('/webpageRecord/{webpageRecord}', 'WebpageRecordController@show');
 Route::post('/webpageRecord', 'WebpageRecordController@store');
 Route::put('/webpageRecord/{webpageRecord}', 'WebpageRecordController@update');
 Route::delete('/webpageRecord/{webpageRecord}', 'WebpageRecordController@destroy');
+<<<<<<< HEAD
+=======
+
+// User
+Route::get('/user', 'UserController@index');
+Route::get('/user/{user}', 'UserController@show');
+Route::post('/user', 'UserController@store');
+Route::put('/user/{user}', 'UserController@update');
+Route::delete('/user/{user}', 'UserController@destroy');
+
+// Role
+Route::get('/role', 'RoleController@index');
+Route::get('/role/{role}', 'RoleController@show');
+Route::post('/role', 'RoleController@store');
+Route::put('/role/{role}', 'RoleController@update');
+Route::delete('/role/{role}', 'RoleController@destroy');
+
+// Address
+Route::get('/address', 'AddressController@index');
+Route::get('/address/{address}', 'AddressController@show');
+Route::post('/address', 'AddressController@store');
+Route::put('/address/{address}', 'AddressController@update');
+Route::delete('/address/{address}', 'AddressController@destroy');
+
+// District
+Route::get('/district', 'DistrictController@index');
+Route::get('/district/{district}', 'DistrictController@show');
+Route::post('/district', 'DistrictController@store');
+Route::put('/district/{district}', 'DistrictController@update');
+Route::delete('/district/{district}', 'DistrictController@destroy');
+
+// City
+Route::get('/city', 'CityController@index');
+Route::get('/city/{city}', 'CityController@show');
+Route::post('/city', 'CityController@store');
+Route::put('/city/{city}', 'CityController@update');
+Route::delete('/city/{city}', 'CityController@destroy');
+>>>>>>> master

@@ -36,7 +36,35 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        return City::create($request->all());
+        // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyCity = City::find($request->id);
+
+        if($verifyCity == null){
+
+            // Se instancia un objeto del modelo
+            $city = new City();
+
+            // Se guardan valores en las distintas variables de modelo.
+            $name = $request->name;
+
+            // Se realizan las validaciones de los datos.
+            if( !(is_numeric($name)) ){
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+                City::create([
+                    'name' => $name
+                ]);
+
+            }else{
+                return "Error en los parámetros ingresados";
+            }
+
+        }else{
+            return "Error al ingresar Ciudad, llave primaria ya existente";
+        }
+
+        // Se muestran todos el contenido de la tabla User.
+        return City::all();
     }
 
     /**
@@ -47,7 +75,12 @@ class CityController extends Controller
      */
     public function show(city $city)
     {
-        return City::find($id);
+        if($city == null){
+            return "No se ha encontrado la Reserva de Mesa buscada.";
+        }
+        else{
+            return $city;
+        }
     }
 
     /**
@@ -70,7 +103,37 @@ class CityController extends Controller
      */
     public function update(Request $request, city $city)
     {
-        //
+        // Se busca la id ingresada, en caso de no existir arroja null.
+        $verifyCity = City::find($request->id);
+
+        if($verifyCity != null){
+
+            // Se instancia un objeto del modelo
+            $city = new City();
+
+            // Se guardan valores en las distintas variables de modelo.
+            $name = $request->name;
+
+            // Se realizan las validaciones de los datos.
+            if( !(is_numeric($name)) ){
+                
+                // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+                $city->updateOrCreate([
+                    'id' => $request->id
+                ],[
+                    'name' => $request->name
+                ]);
+
+            }else{
+                return "Error en los parámetros ingresados";
+            }
+
+        }else{
+            return "Error al actualizar Ciudad, llave primaria no existente";
+        }
+
+        // Se muestran todos el contenido de la tabla User.
+        return City::all();
     }
 
     /**
@@ -79,10 +142,16 @@ class CityController extends Controller
      * @param  \App\city  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(City $city)
     {
-        $city = City::find($id);
-        $city->delete();
-        return "Ciudad eliminada";
+        // Si la id no existe en la tabla, se avisa al usuario.
+        if($city == null){
+            return "No se ha encontrado la Ciudad a eliminar.";
+        }
+        // Si la id existe en la tabla, se elimina.
+        else{
+            $city->delete();
+            return "Se ha eliminado la Ciudad";
+        }
     }
 }

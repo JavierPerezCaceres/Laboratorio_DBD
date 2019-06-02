@@ -36,7 +36,26 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        return Role::create($request->all());
+        $verifyRole = Role::find($request->id);
+
+        if( $verifyRole == null ){
+
+            $role = new Role();
+            $type = $request->type;
+            $description = $request->description;
+
+            if( !(is_numeric( $type )) and !(is_numeric( $description )) ){
+                Role::create([
+                    'type' => $type,
+                    'description' => $description
+                ]);
+            }else{
+                return "Error en los parámetros ingresados";
+            }
+        }else{
+            return "Error al ingresar Rol, llave primaria ya existente";
+        }
+        return Role::all();
     }
 
     /**
@@ -47,7 +66,11 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return Role::find($id);
+        if( $role != null ){
+            return $role;
+        }else{
+            return "No se ha encontrado el Rol buscado";
+        }
     }
 
     /**
@@ -70,7 +93,28 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $verifyRole = Role::find($request->id);
+
+        if( $verifyRole != null ){
+            $role = new Role();
+            $type = $request->type;
+            $description = $request->description;
+            if( !(is_numeric( $type )) and !(is_numeric( $description )) ){
+                $role->updateOrCreate([
+                    'id' => $request->id
+                ],
+                [
+                    'type' => $type,
+                    'description' => $description
+                ]);
+            }else{
+                return "Error en los parámetros ingresados";
+            }
+        }else{
+            return "Error al actualizar Rol, llave primaria no existente";
+        }
+
+        return Role::all();
     }
 
     /**
@@ -79,10 +123,14 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-     public function destroy($id)
-     {
-         $role = Role::find($id);
-         $role->delete();
-         return "Dirección eliminada";
-     }
+
+    public function destroy(Role $role)
+    {
+        if( $role != null ){
+            $role->delete();
+            return "Se ha eliminado un Rol";
+        }else{
+            return "No se ha encontrado el Rol a eliminar";
+        }
+    }
 }
