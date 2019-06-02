@@ -18,7 +18,7 @@ class CreatePaymentMethodsTable extends Migration
             $table->timestamps();
             $table->string('payment_type');
 
-            $table->string('card_payment_id');
+            $table->unsignedInteger('card_payment_id');
 
             $table->foreign('card_payment_id')->references('id')->on('card_payments')->onDelete('cascade');
 
