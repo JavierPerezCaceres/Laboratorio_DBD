@@ -14,7 +14,9 @@ class TableReservation extends Model
         'people_quantity',
         'reserve_date',
         'reserve_hour',
-        'reserve_confirmation'
+        'reserve_confirmation',
+        'table_id',
+        'purchase_order_id'
     ];
 
     protected $hidden = ['created_at','updated_at',];

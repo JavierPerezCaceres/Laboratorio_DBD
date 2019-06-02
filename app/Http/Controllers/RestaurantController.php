@@ -56,15 +56,14 @@ class RestaurantController extends Controller
             $wait_time = $request->wait_time;
             $direction = $request->direction;
 
-            // Se busca si la llave foranea existe.
-            $user_id = Flight::find($request->user_id);
+            $user_id = $request->user_id;
             
             // Se realizan las validaciones de los datos.
-            if($user_id != null and !(is_numeric($category)) and !(is_numeric($contact_number)) and !(is_numeric($kitchen_type))
+            if(!(is_numeric($category)) and !(is_numeric($contact_number)) and !(is_numeric($kitchen_type))
                 and is_numeric($person_cost) and is_numeric($wait_time) and !(is_numeric($direction))){
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-				$restaurant->updateOrCreate([
+				Restaurant::create([
 					
 				    'category' => $category,
                     'contact_number' => $contact_number,
@@ -74,7 +73,7 @@ class RestaurantController extends Controller
                     'person_cost' => $person_cost,
                     'wait_time' => $wait_time,
                     'direction' => $direction,
-					'user_id' => $request->user_id
+					'user_id' => $$user_id
 	
 				]);
 			}
@@ -147,11 +146,10 @@ class RestaurantController extends Controller
             $wait_time = $request->wait_time;
             $direction = $request->direction;
 
-            // Se busca si la llave foranea existe.
-            $user_id = Flight::find($request->user_id);
-            
+            $user_id = $request->user_id;
+
             // Se realizan las validaciones de los datos.
-            if($user_id != null and !(is_numeric($category)) and !(is_numeric($contact_number)) and !(is_numeric($kitchen_type))
+            if(!(is_numeric($category)) and !(is_numeric($contact_number)) and !(is_numeric($kitchen_type))
                 and is_numeric($person_cost) and is_numeric($wait_time) and !(is_numeric($direction))){
                 
                 // En caso de pasar las validaciones se actualiza la fila en la tabla.
@@ -169,7 +167,7 @@ class RestaurantController extends Controller
                     'person_cost' => $person_cost,
                     'wait_time' => $wait_time,
                     'direction' => $direction,
-					'user_id' => $request->user_id
+					'user_id' => $user_id
 	
 				]);
 			}

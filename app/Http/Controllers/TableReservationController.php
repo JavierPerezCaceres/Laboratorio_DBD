@@ -44,7 +44,7 @@ class TableReservationController extends Controller
         if($verifyTableReservation == null){
  
             // Se instancia un objeto del modelo
-            $tableReservation = new Table();
+            $tableReservation = new TableReservation();
          
             // Se guardan valores en las distintas variables de modelo.
             $reserve_number = $request->capacity;
@@ -53,16 +53,15 @@ class TableReservationController extends Controller
             $reserve_date = $request->reserve_date;
             $reserve_hour = $request->reserve_hour;
             $reserve_confirmation = $request->reserve_confirmation;
- 
-            // Se busca si la llave foranea existe.
-            $table_id = Table::find($request->table_id);
-            $purchase_order_id = PurchaseOrder::find($request->purchase_order_id);
+
+            $table_id = $request->table_id;
+            $purchase_order_id = $request->purchase_order_id;
              
             // Se realizan las validaciones de los datos.
-            if($table_id != null and purchase_order_id != null and is_numeric($people_quantity) and is_numeric($capacity) and !(is_numeric($reserve_name))){
+            if(is_numeric($people_quantity) and is_numeric($capacity) and !(is_numeric($reserve_name))){
                  
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $restaurant->updateOrCreate([
+                TableReservation::create([
                      
                     'reserve_number' => $reserve_number,
                     'reserve_name' => $reserve_name,
@@ -70,8 +69,8 @@ class TableReservationController extends Controller
                     'reserve_date' => $reserve_date,
                     'reserve_hour' => $reserve_hour,
                     'reserve_confirmation' => $reserve_confirmation,
-                    'table_id' => $request->table_id,
-                    'purchase_order_id' => $request->purchase_order_id
+                    'table_id' => $table_id,
+                    'purchase_order_id' => $purchase_order_id
  
                 ]);
             }
@@ -141,15 +140,14 @@ class TableReservationController extends Controller
             $reserve_hour = $request->reserve_hour;
             $reserve_confirmation = $request->reserve_confirmation;
  
-            // Se busca si la llave foranea existe.
-            $table_id = Table::find($request->table_id);
-            $purchase_order_id = PurchaseOrder::find($request->purchase_order_id);
+            $table_id = $request->table_id;
+            $purchase_order_id = $request->purchase_order_id;
              
             // Se realizan las validaciones de los datos.
-            if($table_id != null and purchase_order_id != null and is_numeric($people_quantity) and is_numeric($capacity) and !(is_numeric($reserve_name))){
+            if(is_numeric($people_quantity) and is_numeric($capacity) and !(is_numeric($reserve_name))){
                  
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $restaurant->updateOrCreate(
+                $tableReservation->updateOrCreate(
                 [
                     'id' => $request->id
                 ],
@@ -162,8 +160,8 @@ class TableReservationController extends Controller
                     'reserve_date' => $reserve_date,
                     'reserve_hour' => $reserve_hour,
                     'reserve_confirmation' => $reserve_confirmation,
-                    'table_id' => $request->table_id,
-                    'purchase_order_id' => $request->purchase_order_id
+                    'table_id' => $table_id,
+                    'purchase_order_id' => $purchase_order_id
  
                 ]);
             }

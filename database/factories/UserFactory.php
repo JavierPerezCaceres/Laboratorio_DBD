@@ -20,8 +20,8 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'role_id' => $faker->numberBetween($min = 1, $max = 10),
-        'client_id' => $faker->numberBetween($min = 1, $max = 10),
+        'role_id' => App\Role::all()->random()->id,
+        'client_id' => App\Client::all()->random()->id,
 
         'name' => $faker->name,
         'email_verified_at' => now(),
