@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PaymentMethod;
+use App\CardPayment;
 use Illuminate\Http\Request;
 
 class PaymentMethodController extends Controller
@@ -47,7 +48,7 @@ class PaymentMethodController extends Controller
             
             // Se guardan valores en las distintas variables de modelo.
             $payment_type = $request->payment_type;
-            $card_payment_id = $request->card_payment_id;
+            $card_payment_id = CardPayment::find($request->card_payment_id);
             
             // Se realizan las validaciones de los datos.
             if((is_numeric($payment_type)) and (is_numeric($card_payment_id)))
@@ -119,7 +120,7 @@ class PaymentMethodController extends Controller
             
             // Se guardan valores en las distintas variables de modelo.
             $payment_type = $request->payment_type;
-            $card_payment_id = $request->card_payment_id;
+            $card_payment_id = CardPayment::find($request->card_payment_id);
 
             
             // Se realizan las validaciones de los datos.
