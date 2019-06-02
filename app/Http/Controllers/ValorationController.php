@@ -43,15 +43,12 @@ class ValorationController extends Controller
             $score=$request->$score;
             $commentary=$request->$commentary;
 
-            $user_id= Flight::find($request->user_id);
-            $restaurant_id= Flight::find($request->$restaurant_id);
-
-            if($user_id != null and $restaurant_id != null and is_numeric(score) and !(is_numeric(commentary))){
-              $valoration->updateOrCreate([
+            if( is_numeric(score) and !(is_numeric(commentary))){
+              Valoration::create([
                 'score'=>$score,
                 'commentary'=>$commentary,
                 'user_id'=>$request->user_id,
-                'restaurant_id'=>$request->restaurant_id
+                'restaurant_id'=>$request->restaurant_id,
               ]);
             }
             else{
@@ -72,8 +69,6 @@ class ValorationController extends Controller
      */
     public function show(Valoration $valoration)
     {
-      $valoration= Valoration::find($id);
-
       if($valoration == null){
           return "No se ha encontrado el Valoration buscado.";
       }
@@ -109,18 +104,13 @@ class ValorationController extends Controller
           $score=$request->$score;
           $commentary=$request->$commentary;
 
-          $user_id= Flight::find($request->user_id);
-          $restaurant_id= Flight::find($request->$restaurant_id);
-
-          if($user_id != null and $restaurant_id != null and is_numeric(score) and !(is_numeric(commentary))){
+          if( is_numeric(score) and !(is_numeric(commentary))){
             $valoration->updateOrCreate([
                 'id'->$request->id
             ],
             [
               'score'=>$score,
               'commentary'=>$commentary,
-              'user_id'=>$request->user_id,
-              'restaurant_id'=>$request->restaurant_id
             ]);
           }
           else{
@@ -141,7 +131,6 @@ class ValorationController extends Controller
      */
     public function destroy(Valoration $valoration)
     {
-      $valoration= Valoration::find($id);
       if($valoration == null){
         return "No he encontrado el Valoration a eliminar.";
       }
