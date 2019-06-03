@@ -63,9 +63,8 @@ class PurchaseOrderController extends Controller
             // Se realizan las validaciones de los datos.
             if((is_numeric($amount)) and (is_numeric($delivery_method)) and (is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))))
             {
-                
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                PurchaseOrder::create([
+                    PurchaseOrder::create([
                     
                     'amount' => $amount,
                     'delivery_method' => $delivery_method,
@@ -77,6 +76,7 @@ class PurchaseOrderController extends Controller
                     'client_id' => $client_id,
                     'delivery_id' => $delivery_id
                 ]);
+
             }
             else{
                 return "Error en los parametros ingresados.";
@@ -107,6 +107,91 @@ class PurchaseOrderController extends Controller
         }
     }
 
+    public function viewComment(Request $request, PurchaseOrder $purchaseOrder)
+    {
+
+        if($purchaseOrder != null){
+
+            // Se realizan las validaciones de los datos.
+            if(($purchaseOrder->confirmation == 1) and (
+                $purchaseOrder->client_id != null))
+            {
+                return $purchaseOrder->observations;
+            }
+            else {
+                return "No existen comentarios dado el contexto";
+            }
+        }
+
+        else {
+            return "Error al obtener comentarios, Orden de Compra no encontrada";
+        }
+
+    }
+
+    public function updateComment(Request $request, PurchaseOrder $purchaseOrder)
+    {
+
+        if($purchaseOrder != null){
+
+            $observations = $request->observations;
+
+            // Se realizan las validaciones de los datos.
+            if(($purchaseOrder->confirmation == 1) and (
+                $purchaseOrder->client_id != null))
+            {
+                $purchaseOrder->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'observations' => $observations,
+                ]);
+
+                return $purchaseOrder;
+            }
+            else {
+                return "No existen comentarios dado el contexto";
+            }
+        }
+
+        else {
+            return "Error al obtener comentarios, Orden de Compra no encontrada";
+        }
+
+    }
+
+        public function deleteComment(Request $request, PurchaseOrder $purchaseOrder)
+    {
+
+        if($purchaseOrder != null){
+
+            $observations = $request->observations;
+
+            // Se realizan las validaciones de los datos.
+            if(($purchaseOrder->confirmation == 1) and (
+                $purchaseOrder->client_id != null))
+            {
+                $purchaseOrder->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'observations' => 'Sin comentario',
+                ]);
+
+                return $purchaseOrder;
+            }
+            else {
+                return "No existen comentarios dado el contexto";
+            }
+        }
+
+        else {
+            return "Error al obtener comentarios, Orden de Compra no encontrada";
+        }
+
+    }
     /**
      * Show the form for editing the specified resource.
      *
