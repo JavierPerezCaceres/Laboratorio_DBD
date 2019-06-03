@@ -13,11 +13,11 @@ class DatabaseSeeder extends Seeder
     {
 
 
-        //$this->call(RoleTableSeeder::class);
-        //$this->call(ClientSeeder::class);
-        //$this->call(UsersTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
+        $this->call(ClientSeeder::class);
+        $this->call(UsersTableSeeder::class);
 
-        //$this->call(RestaurantsTableSeeder::class);
+        $this->call(RestaurantsTableSeeder::class);
         $this->call(MenusTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
         $this->call(IngredientsTableSeeder::class);
@@ -25,9 +25,10 @@ class DatabaseSeeder extends Seeder
         $this->call(MenuProductsTableSeeder::class);
         $this->call(DeliverySeeder::class);
 
-        //$this->call(CardPaymentSeeder::class);
+        $this->call(CardPaymentSeeder::class);
         $this->call(PaymentMethodSeeder::class);
         $this->call(PurchaseOrderSeeder::class);
+        $this->call(MenuReservationsTableSeeder::class);
 
         $this->call(CityTableSeeder::class);
         $this->call(DistrictTableSeeder::class);
