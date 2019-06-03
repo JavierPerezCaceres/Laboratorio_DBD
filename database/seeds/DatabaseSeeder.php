@@ -25,11 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MenuProductsTableSeeder::class);
         $this->call(DeliverySeeder::class);
 
-        $this->call(ClientSeeder::class);
-        $this->call(CardPaymentSeeder::class);
-        $this->call(PaymentMethodSeeder::class);
-        $this->call(PurchaseOrderSeeder::class);
-
         $this->call(CardPaymentSeeder::class);
         $this->call(PaymentMethodSeeder::class);
         $this->call(PurchaseOrderSeeder::class);

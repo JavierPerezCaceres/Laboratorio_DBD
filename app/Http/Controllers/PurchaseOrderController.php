@@ -55,9 +55,9 @@ class PurchaseOrderController extends Controller
             $confirmation = $request->confirmation;
             $observations = $request->observations;
 
-            $payment_method_id = PaymentMethod::find($request->payment_method_id);
-            $client_id = Client::find($request->client_id);
-            $delivery_id = Delivery::find($request->delivery_id);
+            $payment_method_id = $request->payment_method_id;
+            $client_id = $request->client_id;
+            $delivery_id = $request->delivery_id;
 
 
             // Se realizan las validaciones de los datos.
@@ -142,9 +142,9 @@ class PurchaseOrderController extends Controller
             $confirmation = $request->confirmation;
             $observations = $request->observations;
             
-            $payment_method_id = PaymentMethod::find($request->payment_method_id);
-            $client_id = Client::find($request->client_id);
-            $delivery_id = Delivery::find($request->delivery_id);
+            $payment_method_id = $request->payment_method_id;
+            $client_id = $request->client_id;
+            $delivery_id = $request->delivery_id;
 
 
             // Se realizan las validaciones de los datos.
