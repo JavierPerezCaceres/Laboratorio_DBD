@@ -128,7 +128,7 @@ class PurchaseOrderController extends Controller
     public function update(Request $request, PurchaseOrder $purchaseOrder)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyPurchaseOrder = PurchaseOrder::find($request->id);
+        /*$verifyPurchaseOrder = PurchaseOrder::find($request->id);
 
         if($verifyPurchaseOrder != null){
 
@@ -177,7 +177,10 @@ class PurchaseOrderController extends Controller
         }
 
         // Se muestran todos el contenido de la tabla Client.
-        return PurchaseOrder::all();
+        return PurchaseOrder::all();*/
+
+        return "No es posible modificar una Orden de Compra";
+
     }
 
     /**
@@ -189,13 +192,17 @@ class PurchaseOrderController extends Controller
     public function destroy(PurchaseOrder $purchaseOrder)
     {
         // Si la id no existe en la tabla, se avisa al usuario.
-        if($purchaseOrder == null){
+        /*if($purchaseOrder == null){
             return "No se ha encontrado la Orden de Compra a eliminar.";
         }
         // Si la id existe en la tabla, se elimina.
         else{
             $purchaseOrder->delete();
             return "Se ha eliminado una Orden de Compra";
-        }
+
+        }*/
+
+        return "No es posible eliminar una Orden de Compra";
+        
     }
 }

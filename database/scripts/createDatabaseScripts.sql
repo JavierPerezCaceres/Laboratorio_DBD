@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS purchase_orders CASCADE;
 
 -- CREATE TABLE "clients" --------------------------------------
 CREATE TABLE IF NOT EXISTS clients ( 
-	"id" Bigint DEFAULT nextval('clients_id_seq'::regclass) NOT NULL,
+	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"name" Character Varying( 255 ) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS clients (
 
 -- CREATE TABLE "card_payments" --------------------------------
 CREATE TABLE IF NOT EXISTS card_payments ( 
-	"id" Bigint DEFAULT nextval('card_payments_id_seq'::regclass) NOT NULL,
+	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"autorization_code" Bigint NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS card_payments (
 
 -- CREATE TABLE "payment_methods" ------------------------------
 CREATE TABLE IF NOT EXISTS payment_methods ( 
-	"id" Bigint DEFAULT nextval('payment_methods_id_seq'::regclass) NOT NULL,
+	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"payment_type" Character Varying( 255 ) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS payment_methods (
 
 -- CREATE TABLE "purchase_orders" ------------------------------
 CREATE TABLE IF NOT EXISTS purchase_orders ( 
-	"id" Bigint DEFAULT nextval('purchase_orders_id_seq'::regclass) NOT NULL,
+	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"amount" Double Precision NOT NULL,
@@ -118,10 +118,10 @@ ALTER TABLE purchase_orders
 -- -------------------------------------------------------------
 
 -- CREATE "purchase_orders_delivery_id_foreign" -------------
-ALTER TABLE purchase_orders
-	ADD CONSTRAINT purchase_orders_delivery_id_foreign 
-	FOREIGN KEY ( delivery_id )
-	REFERENCES deliveries ( "id" ) MATCH SIMPLE;
+--ALTER TABLE purchase_orders
+--	ADD CONSTRAINT purchase_orders_delivery_id_foreign 
+--	FOREIGN KEY ( delivery_id )
+--	REFERENCES deliveries ( "id" ) MATCH SIMPLE;
 -- -------------------------------------------------------------
 
 -- CREATE "payment_methods_card_payment_id_foreign" -------
