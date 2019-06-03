@@ -8,10 +8,13 @@ use App\Product;
 use Faker\Generator as Faker;
 
 $factory->define(Model::class, function (Faker $faker) {
+	$product_id = DB::table('products')->select('id')->get();
+	$category_id = DB::table('categories')->select('id')->get();
+
     return [
         
-        'product_id' => App\Product::all()->random()->id,
-        'category_id' => App\Category::all()->random()->id,
+        'product_id' => $product_id->random()->id,
+        'category_id' => $category_id->random()->id,
 
     ];
 });

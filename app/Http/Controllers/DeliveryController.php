@@ -46,17 +46,19 @@ class DeliveryController extends Controller
           $extra_wait_time= $request->extra_wait_time;
           $delivery_address= $request->delivery_address;
 
+          $restaurant_id = $request->restaurant_id;
+
           if( !(is_numeric($receptor_name)) and !(is_numeric($contact_number)) and is_numeric($extra_wait_time) and !(is_numeric($delivery_address))){
             Delivery::create([
               'receptor_name'=>$receptor_name,
               'contact_number'=>$contact_number,
               'extra_wait_time'=>$extra_wait_time,
               'delivery_address'=>$delivery_address,
+              'restaurant_id' =>$restaurant_id,
             ]);
           }
           else{
-            return [!(is_numeric($receptor_name)),!(is_numeric($contact_number)),is_numeric($extra_wait_time),!(is_numeric($delivery_address))];
-            //return "Error en los parametros ingresados.";
+              return "Error en los parametros ingresados.";
           }
         }
         else{
@@ -113,7 +115,9 @@ class DeliveryController extends Controller
           $extra_wait_time=$request->extra_wait_time;
           $delivery_address=$request->delivery_address;
 
-          if( !(is_numeric($receptor_name)) and is_numeric($extra_wait_time) and !(is_numeric($delivery_address))){
+          $restaurant_id = $request->restaurant_id;
+
+          if( !(is_numeric($receptor_name)) and !(is_numeric($extra_wait_time)) and !(is_numeric($delivery_address))){
             $delivery->updateOrCreate([
               'id'=> $request->id
             ],
@@ -122,6 +126,8 @@ class DeliveryController extends Controller
               'contact_number'=>$contact_number,
               'extra_wait_time'=>$extra_wait_time,
               'delivery_address'=>$delivery_address,
+
+              'restaurant_id' =>$restaurant_id,
             ]);
           }
           else{

@@ -6,10 +6,13 @@ use App\Address;
 use Faker\Generator as Faker;
 
 $factory->define(Address::class, function (Faker $faker) {
+	$user_id = DB::table('users')->select('id')->get();
+	$district_id = DB::table('districts')->select('id')->get();
+
     return [
         'street' => $faker->streetName,
         'number' => $faker->streetAddress,
-        'district_id' => $faker->numberBetween($min = 1, $max = 10),
-        'user_id' => $faker->numberBetween($min = 1, $max = 10)
+        'district_id' => $district_id->random()->id,
+        'user_id' => $user_id->random()->id
     ];
 });

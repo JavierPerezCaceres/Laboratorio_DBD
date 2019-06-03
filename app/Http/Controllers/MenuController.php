@@ -41,6 +41,7 @@ class MenuController extends Controller
             'name' => 'required',
             'total_price' => 'required',
             'discount' => 'required',
+            'restaurant_id' => 'required',
         ]);
         // Se busca la id ingresada, en caso de no existir arroja null.
         $verifyMenu = Menu::find($request->id);
@@ -56,7 +57,7 @@ class MenuController extends Controller
             $discount = $request->discount;
 
             // Se busca si la llave foranea existe.
-            //$restaurant_id = Restaurant::find($request->restaurant_id);
+            $restaurant_id = Restaurant::find($request->restaurant_id);
             
             // Se realizan las validaciones de los datos.
             //if($restaurant_id != null and !(is_numeric($total_price)) and !(is_numeric($discount)) ){
@@ -68,7 +69,7 @@ class MenuController extends Controller
                     'name' => $name,
                     'total_price' => $total_price,
                     'discount' => $discount,
-                    //'restaurant_id' => $restaurant_id
+                    'restaurant_id' => $restaurant_id
     
                 ]);
             }
@@ -130,7 +131,7 @@ class MenuController extends Controller
             $discount = $request->discount;
 
             // Se busca si la llave foranea existe.
-            //$restaurant_id = Restaurant::find($request->restaurant_id);
+            $restaurant_id = Restaurant::find($request->restaurant_id);
             
             // Se realizan las validaciones de los datos.
             //if($restaurant_id != null and !(is_numeric($total_price)) and !(is_numeric($discount)) ){
@@ -147,7 +148,7 @@ class MenuController extends Controller
                     'name' => $name,
                     'total_price' => $total_price,
                     'discount' => $discount,
-                    //'restaurant_id' => $restaurant_id
+                    'restaurant_id' => $restaurant_id
     
                 ]);
             }

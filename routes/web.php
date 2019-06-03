@@ -119,8 +119,6 @@ Route::get('/webpageRecord/{webpageRecord}', 'WebpageRecordController@show');
 Route::post('/webpageRecord', 'WebpageRecordController@store');
 Route::put('/webpageRecord/{webpageRecord}', 'WebpageRecordController@update');
 Route::delete('/webpageRecord/{webpageRecord}', 'WebpageRecordController@destroy');
-<<<<<<< HEAD
-=======
 
 // User
 Route::get('/user', 'UserController@index');
@@ -156,4 +154,3 @@ Route::get('/city/{city}', 'CityController@show');
 Route::post('/city', 'CityController@store');
 Route::put('/city/{city}', 'CityController@update');
 Route::delete('/city/{city}', 'CityController@destroy');
->>>>>>> master

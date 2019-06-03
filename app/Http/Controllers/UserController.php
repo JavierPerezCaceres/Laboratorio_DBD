@@ -48,6 +48,7 @@ class UserController extends Controller
             $user = new User();
 
             // Se guardan valores en las distintas variables de modelo.
+            $name = $request->name;
             $email = $request->email;
             $password = $request->password;
             $role_id = $request->role_id;
@@ -58,11 +59,12 @@ class UserController extends Controller
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 User::create([
+                    'name' => $name,
                     'email' => $email,
                     'password' => $password,
                     'role_id' => $role_id,
                     'client_id' => $client_id,
-                    'name' => "no_aplica"
+
                 ]);
 
             }else{
@@ -122,6 +124,7 @@ class UserController extends Controller
             $user = new User();
 
             // Se guardan valores en las distintas variables de modelo.
+            $name = $request->name;
             $email = $request->email;
             $password = $request->password;
             $role_id = $request->role_id;
@@ -134,11 +137,12 @@ class UserController extends Controller
                 $user->updateOrCreate([
                     'id' => $request->id
                 ],[
+                    'name' => $name,
                     'email' => $email,
                     'password' => $password,
                     'role_id' => $role_id,
                     'client_id' => $client_id,
-                    'name' => "no_aplica"
+
                 ]);
             }else{
                 return "Error en los parámetros ingresados.";
