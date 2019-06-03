@@ -128,7 +128,7 @@ class PaymentMethodController extends Controller
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $payment_type->updateOrCreate([
+                $payment_method->updateOrCreate([
 
                     'id' => $request->id
                 ],

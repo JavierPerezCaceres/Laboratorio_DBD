@@ -8,7 +8,7 @@ class MenuReservation extends Model
 {
     protected $table = 'menu_reservations';
     
-    protected $fillable = ['price','quantity'];
+    protected $fillable = ['price','quantity','menu_id','purchase_order_id'];
 
     protected $hidden = ['created_at','updated_at'];
 

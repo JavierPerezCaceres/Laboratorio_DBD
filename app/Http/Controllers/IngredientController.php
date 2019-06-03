@@ -14,7 +14,8 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        //
+        $ingredient = Ingredient::all();
+        return $ingredient;
     }
 
     /**
@@ -35,7 +36,27 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $verifyIngredient=Ingredient::find($request->id);
+        if ($verifyIngredient == null){
+
+          $delivery= new Ingredient();
+
+          $name = $request->name;
+
+          if( !(is_numeric($name))){
+            Ingredient::create([
+              'name'=>$name,
+            ]);
+          }
+          else{
+              return "Error en los parametros ingresados.";
+          }
+        }
+        else{
+          return "Error al ingresar ingrediente, llave primaria repetida.";
+        }
+
+        return Ingredient::all();
     }
 
     /**
@@ -46,7 +67,12 @@ class IngredientController extends Controller
      */
     public function show(Ingredient $ingredient)
     {
-        //
+        if($ingredient == null){
+            return "No se ha encontrado el ingrediente buscado.";
+        }
+        else{
+          return $ingredient;
+        }
     }
 
     /**
@@ -69,7 +95,30 @@ class IngredientController extends Controller
      */
     public function update(Request $request, Ingredient $ingredient)
     {
-        //
+        $verifyIngredient=Ingredient::find($request->id);
+        if ($verifyIngredient != null){
+
+          $delivery= new Ingredient();
+
+          $name = $request->name;
+
+          if( !(is_numeric($name))){
+            Ingredient::updateOrCreate([
+                'id'=>$request->id
+            ]
+            ,[
+              'name'=>$name,
+            ]);
+          }
+          else{
+              return "Error en los parametros ingresados.";
+          }
+        }
+        else{
+          return "Error al actualizar ingrediente, llave primaria repetida.";
+        }
+
+        return Ingredient::all();
     }
 
     /**
@@ -80,6 +129,12 @@ class IngredientController extends Controller
      */
     public function destroy(Ingredient $ingredient)
     {
-        //
+        if($ingredient == null){
+          return "No he encontrado el ingrediente a eliminar.";
+        }
+        else{
+          $ingredient->delete();
+          return "se ha eliminado el ingrediente";
+        }
     }
 }

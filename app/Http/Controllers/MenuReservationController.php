@@ -14,7 +14,8 @@ class MenuReservationController extends Controller
      */
     public function index()
     {
-        //
+        $menuReservation = MenuReservation::all();
+        return $menuReservation;
     }
 
     /**
@@ -35,7 +36,32 @@ class MenuReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $verifyMenuReservation = MenuReservation::find($request->id);
+        if($verifyMenuReservation ==null){
+            $menuReservation = new MenuReservation();
+            $price = $request->price;
+            $quantity = $request->quantity;
+
+            $menu_id = $request->menu_id;
+            $purchase_order_id = $request->purchase_order_id;
+
+            if ((is_numeric($price)) and (is_numeric($quantity))) {
+                MenuReservation::create([
+                    'price'=>$price,
+                    'quantity'=>$quantity,
+                    'menu_id'=>$menu_id,
+                    'purchase_order_id'=>$purchase_order_id,
+                ]);
+            }
+            else{
+                return "Error en los parametros ingresados.";
+            }
+        }
+        else{
+            return "Error al ingresar Delivery, llave primaria repetida.";
+        }
+
+        return MenuReservation::all();
     }
 
     /**
@@ -46,7 +72,12 @@ class MenuReservationController extends Controller
      */
     public function show(MenuReservation $menuReservation)
     {
-        //
+        if($menuReservation == null){
+            return "No se ha encontrado el Delivery buscado.";
+        }
+        else{
+          return $menuReservation;
+        }
     }
 
     /**
@@ -69,7 +100,37 @@ class MenuReservationController extends Controller
      */
     public function update(Request $request, MenuReservation $menuReservation)
     {
-        //
+        $verifyMenuReservation = MenuReservation::find($request->id);
+        if($verifyMenuReservation != null){
+
+            $menuReservation = new MenuReservation();
+
+            $price = $request->price;
+            $quantity = $request->quantity;
+
+            $menu_id = $request->menu_id;
+            $purchase_order_id = $request->purchase_order_id;
+
+            if (!(is_numeric($price)) and !(is_numeric($quantity))) {
+                MenuReservation::updateOrCreate([
+                    'id'=> $request->id
+                ]
+                ,[
+                'price'=>$price,
+                'quantity'=>$quantity,
+                'menu_id'=>$menu_id,
+                'purchase_order_id'=>$purchase_order_id,
+                ]);
+            }
+            else{
+                return "Error en los parametros ingresados.";
+            }
+        }
+        else{
+            return "Error al actualizar Delivery, llave primaria repetida.";
+        }
+
+        return MenuReservation::all();
     }
 
     /**
@@ -80,6 +141,12 @@ class MenuReservationController extends Controller
      */
     public function destroy(MenuReservation $menuReservation)
     {
-        //
+        if($menuReservation == null){
+          return "No he encontrado la reservación de menú a eliminar.";
+        }
+        else{
+          $menuReservation->delete();
+          return "se ha eliminado la reservación de menú";
+        }
     }
 }
