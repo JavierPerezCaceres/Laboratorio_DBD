@@ -14,7 +14,8 @@ class MenuProductController extends Controller
      */
     public function index()
     {
-        //
+        $menuProduct = MenuProduct::all();
+        return $menuProduct;   
     }
 
     /**
@@ -35,7 +36,33 @@ class MenuProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $verifyMenuProduct = MenuProduct::find($request->id);
+        if ($verifyMenuProduct == null){
+
+          $menuProduct= new MenuProduct();
+
+          $price = $request->price;
+
+          $menu_id= $request->menu_id;
+          $product_id = $request->product_id;
+
+          if((is_numeric($price))){
+
+            MenuProduct::create([
+              'price'=>$price,
+              'menu_id'=>$menu_id,
+              'product_id'=>$product_id,
+            ]);
+          }
+          else{
+              return "Error en los parametros ingresados.";
+          }
+        }
+        else{
+          return "Error al ingresar MenuProduct, llave primaria repetida.";
+        }
+
+        return MenuProduct::all();
     }
 
     /**
@@ -46,7 +73,12 @@ class MenuProductController extends Controller
      */
     public function show(MenuProduct $menuProduct)
     {
-        //
+        if($menuProduct == null){
+            return "No se ha encontrado el producto de menú buscado.";
+        }
+        else{
+          return $menuProduct;
+        }
     }
 
     /**
@@ -69,7 +101,36 @@ class MenuProductController extends Controller
      */
     public function update(Request $request, MenuProduct $menuProduct)
     {
-        //
+        $verifyMenuProduct = MenuProduct::find($request->id);
+        if ($verifyMenuProduct != null){
+
+          $menuProduct= new MenuProduct();
+
+          $price = $request->price;
+
+          $menu_id= $request->menu_id;
+          $product_id = $request->product_id;
+
+          if(!(is_numeric($price))){
+
+            MenuProduct::updateOrCreate([
+                'id'=>$request->id
+            ]
+            ,[
+              'price'=>$price,
+              'menu_id'=>$menu_id,
+              'product_id'=>$product_id,
+            ]);
+          }
+          else{
+              return "Error en los parametros ingresados.";
+          }
+        }
+        else{
+          return "Error al actualizar MenuProduct, llave primaria repetida.";
+        }
+
+        return MenuProduct::all();
     }
 
     /**
@@ -80,6 +141,12 @@ class MenuProductController extends Controller
      */
     public function destroy(MenuProduct $menuProduct)
     {
-        //
+        if($menuProduct == null){
+          return "No he encontrado el producto en menu a eliminar.";
+        }
+        else{
+          $menuProduct->delete();
+          return "se ha eliminado el producto del menú";
+        }
     }
 }

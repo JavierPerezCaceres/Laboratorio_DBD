@@ -79,7 +79,7 @@ class MenuController extends Controller
         }
         
         else{
-            return "Error al ingresar Restaurant, llave primaria repetida.";
+            return "Error al ingresar menú, llave primaria repetida.";
         }
 
         // Se muestran todos el contenido de la tabla Restaurant.
@@ -158,7 +158,7 @@ class MenuController extends Controller
         }
         
         else{
-            return "Error al ingresar Restaurant, llave primaria repetida.";
+            return "Error al actualizar Menu, llave primaria repetida.";
         }
 
         // Se muestran todos el contenido de la tabla Restaurant.
