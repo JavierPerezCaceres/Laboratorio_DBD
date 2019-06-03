@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS clients (
 	"name" Character Varying( 255 ) NOT NULL,
 	"lastname" Character Varying( 255 ) NOT NULL,
 	"phone" Character Varying( 255 ) NOT NULL
- ;
+ );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "card_payments" --------------------------------
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS card_payments (
 	"card_number" Bigint NOT NULL,
 	"account_type" Character Varying( 255 ) NOT NULL,
 	"expiration_date" Character Varying( 255 ) NOT NULL
- ;
+ );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "ingredients" --------------------------------------
@@ -49,39 +49,42 @@ CREATE TABLE IF NOT EXISTS ingredients (
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"name" Character Varying( 45 ) NOT NULL
- ;
+ );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "menus" --------------------------------
-CREATE TABLE IF NOT EXISTS menus ( 
+CREATE TABLE IF NOT EXISTS menus (
+	"id" serial NOT NULL, 
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"name" Character Varying( 45 ) NOT NULL,
 	"total_price" Integer NOT NULL,
 	"discount" Integer NOT NULL,
 	"restaurant_id" Integer NOT NULL
- ;
+ );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "menu_products" --------------------------------
-CREATE TABLE IF NOT EXISTS menu_products ( 
+CREATE TABLE IF NOT EXISTS menu_products (
+	"id" serial NOT NULL, 
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"price" Integer NOT NULL,
 	"menu_id" Integer NOT NULL,
 	"product_id" Integer NOT NULL
- ;
+ );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "menu_reservations" --------------------------------
-CREATE TABLE IF NOT EXISTS menu_reservations ( 
+CREATE TABLE IF NOT EXISTS menu_reservations (
+	"id" serial NOT NULL, 
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"price" Integer NOT NULL,
 	"quantity" Integer NOT NULL,
 	"menu_id" Integer NOT NULL,
 	"purchase_order_id" Integer NOT NULL
- ;
+ );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "payment_methods" ------------------------------
@@ -91,7 +94,7 @@ CREATE TABLE IF NOT EXISTS payment_methods (
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"payment_type" Character Varying( 255 ) NOT NULL,
 	"card_payment_id" Integer NOT NULL
- ;
+ );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "products" --------------------------------------
@@ -100,16 +103,17 @@ CREATE TABLE IF NOT EXISTS products (
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"name" Character Varying( 45 ) NOT NULL
- ;
+ );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "product_ingredients" --------------------------------
 CREATE TABLE IF NOT EXISTS product_ingredients ( 
+	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"product_id" Integer NOT NULL,
 	"ingredient_id" Integer NOT NULL
- ;
+ );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "purchase_orders" ------------------------------
@@ -125,7 +129,7 @@ CREATE TABLE IF NOT EXISTS purchase_orders (
 	"payment_method_id" Integer NOT NULL,
 	"client_id" Integer NOT NULL,
 	"delivery_id" Integer NOT NULL
- ;
+ );
 -- -------------------------------------------------------------
 
 
