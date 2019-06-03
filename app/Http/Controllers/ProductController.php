@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $product = Product::all();
+        return $product;
     }
 
     /**
@@ -35,7 +36,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $verifyProduct=Product::find($request->id);
+        if ($verifyProduct == null){
+
+          $product= new Product();
+
+          $name = $request->name;
+
+          if( !(is_numeric($name))){
+            Delivery::create([
+              'receptor_name'=>$name,
+            ]);
+          }
+          else{
+              return "Error en los parametros ingresados.";
+          }
+        }
+        else{
+          return "Error al ingresar producto, llave primaria repetida.";
+        }
+
+        return Product::all();
     }
 
     /**
@@ -46,7 +67,12 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        if($product == null){
+            return "No se ha encontrado el producto buscado.";
+        }
+        else{
+          return $product;
+        }
     }
 
     /**
@@ -69,7 +95,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $verifyProduct=Product::find($request->id);
+        if ($verifyProduct != null){
+
+          $product= new Product();
+
+          $name = $request->name;
+
+          if( !(is_numeric($name))){
+            Delivery::updateOrCreate([
+                'id'=>$request->id
+            ],
+            [
+              'receptor_name'=>$name,
+            ]);
+          }
+          else{
+              return "Error en los parametros ingresados.";
+          }
+        }
+        else{
+          return "Error al actualizar producto, llave primaria no existe.";
+        }
+
+        return Product::all();
     }
 
     /**
@@ -80,6 +129,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if($product == null){
+          return "No he encontrado el producto a eliminar.";
+        }
+        else{
+          $product->delete();
+          return "se ha eliminado el producto";
+        }
     }
 }

@@ -64,6 +64,41 @@ Route::put('/menu/{menu}', 'MenuController@update');
 Route::delete('/menu/{menu}', 'MenuController@destroy');
 //Route::resource('menu','MenuController');
 
+//Reserva Menu
+Route::get('/menu_reservation', 'MenuReservationController@index');
+Route::get('/menu_reservation/{menu_reservation}', 'MenuReservationController@show');
+Route::post('/menu_reservation', 'MenuReservationController@store');
+Route::put('/menu_reservation/{menu_reservation}', 'MenuReservationController@update');
+Route::delete('/menu_reservation/{menu_reservation}', 'MenuReservationController@destroy');
+
+//Menu Producto
+Route::get('/menu_product', 'MenuProductController@index');
+Route::get('/menu_product/{menu_product}', 'MenuProductController@show');
+Route::post('/menu_product', 'MenuProductController@store');
+Route::put('/menu_product/{menu_product}', 'MenuProductController@update');
+Route::delete('/menu_product/{menu_product}', 'MenuProductController@destroy');
+
+//Producto
+Route::get('/product', 'ProductController@index');
+Route::get('/product/{product}', 'ProductController@show');
+Route::post('/product', 'ProductController@store');
+Route::put('/product/{product}', 'ProductController@update');
+Route::delete('/product/{product}', 'ProductController@destroy');
+
+//Producto Ingrediente
+Route::get('/product_ingredient', 'ProductIngredientController@index');
+Route::get('/product_ingredient/{product_ingredient}', 'ProductIngredientController@show');
+Route::post('/product_ingredient', 'ProductIngredientController@store');
+Route::put('/product_ingredient/{product_ingredient}', 'ProductIngredientController@update');
+Route::delete('/product_ingredient/{product_ingredient}', 'ProductIngredientController@destroy');
+
+//Ingrediente
+Route::get('/ingredient', 'IngredientController@index');
+Route::get('/ingredient/{ingredient}', 'IngredientController@show');
+Route::post('/ingredient', 'IngredientController@store');
+Route::put('/ingredient/{ingredient}', 'IngredientController@update');
+Route::delete('/ingredient/{ingredient}', 'IngredientController@destroy');
+
 // ProductoCategoria.
 Route::get('/product_category', 'ProductCategoryController@index');
 Route::get('/product_category/{product_category}', 'ProductCategoryController@show');
