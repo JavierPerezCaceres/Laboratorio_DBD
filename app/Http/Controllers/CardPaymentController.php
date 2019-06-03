@@ -133,7 +133,7 @@ class CardPaymentController extends Controller
 
             
             // Se realizan las validaciones de los datos.
-            if((is_numeric($autorization_code)) and (is_numeric($transaction_code)) and (is_numeric($card_number)) and !(is_numeric($account_type)) and !(is_numeric($expiration_date)))
+            if((is_numeric($autorization_code)) and (is_numeric($transaction_code)) and (is_numeric($card_number)) and (is_numeric($account_type)) and !(is_numeric($expiration_date)))
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
