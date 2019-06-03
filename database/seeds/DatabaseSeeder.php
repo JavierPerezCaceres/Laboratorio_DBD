@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductIngredientsTableSeeder::class);
         $this->call(MenuProductsTableSeeder::class);
         $this->call(DeliverySeeder::class);
+        $this->call(WebpageRecordSeeder::class);
+        $this->call(ValorationSeeder::class);
+        $this->call(RestaurantRequestSeeder::class);
 
         $this->call(CardPaymentSeeder::class);
         $this->call(PaymentMethodSeeder::class);

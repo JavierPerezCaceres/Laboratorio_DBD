@@ -10,7 +10,7 @@ $factory->define(Delivery::class, function (Faker $faker) {
 	$restaurant_id = DB::table('restaurants')->select('id')->get();
     return [
         'receptor_name' => $faker->name,
-        'contact_number' => $faker->e164PhoneNumber,
+        'contact_number' => $faker->tollFreePhoneNumber,
         'extra_wait_time' => $faker->numberBetween($min = 0, $max = 60),
         'delivery_address'=> $faker->address,
 
