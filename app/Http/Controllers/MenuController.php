@@ -57,11 +57,11 @@ class MenuController extends Controller
             $discount = $request->discount;
 
             // Se busca si la llave foranea existe.
-            $restaurant_id = Restaurant::find($request->restaurant_id);
+            $restaurant_id = $request->restaurant_id;
             
             // Se realizan las validaciones de los datos.
             //if($restaurant_id != null and !(is_numeric($total_price)) and !(is_numeric($discount)) ){
-            if(!(is_numeric($total_price)) and !(is_numeric($discount)) ){
+            if((is_numeric($total_price)) and (is_numeric($discount)) ){
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $menu->updateOrCreate([
@@ -131,11 +131,11 @@ class MenuController extends Controller
             $discount = $request->discount;
 
             // Se busca si la llave foranea existe.
-            $restaurant_id = Restaurant::find($request->restaurant_id);
+            $restaurant_id = $request->restaurant_id;
             
             // Se realizan las validaciones de los datos.
             //if($restaurant_id != null and !(is_numeric($total_price)) and !(is_numeric($discount)) ){
-            if(!(is_numeric($total_price)) and !(is_numeric($discount)) ){
+            if((is_numeric($total_price)) and (is_numeric($discount)) ){
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $menu->updateOrCreate(
