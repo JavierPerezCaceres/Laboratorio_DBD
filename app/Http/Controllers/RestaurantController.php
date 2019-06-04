@@ -202,4 +202,89 @@ class RestaurantController extends Controller
         }
     }
 
+    // public function viewComment(Request $request, PurchaseOrder $purchaseOrder)
+    // {
+
+    //     if($purchaseOrder != null){
+
+    //         // Se realizan las validaciones de los datos.
+    //         if(($purchaseOrder->confirmation == 1) and (
+    //             $purchaseOrder->client_id != null))
+    //         {
+    //             return $purchaseOrder->observations;
+    //         }
+    //         else {
+    //             return "No existen comentarios dado el contexto";
+    //         }
+    //     }
+
+    //     else {
+    //         return "Error al obtener comentarios, Orden de Compra no encontrada";
+    //     }
+
+    // }
+
+    // public function updateComment(Request $request, PurchaseOrder $purchaseOrder)
+    // {
+
+    //     if($purchaseOrder != null){
+
+    //         $observations = $request->observations;
+
+    //         // Se realizan las validaciones de los datos.
+    //         if(($purchaseOrder->confirmation == 1) and (
+    //             $purchaseOrder->client_id != null))
+    //         {
+    //             $purchaseOrder->updateOrCreate([
+
+    //                 'id' => $request->id
+    //             ],
+    //             [   
+    //                 'observations' => $observations,
+    //             ]);
+
+    //             return $purchaseOrder;
+    //         }
+    //         else {
+    //             return "No existen comentarios dado el contexto";
+    //         }
+    //     }
+
+    //     else {
+    //         return "Error al obtener comentarios, Orden de Compra no encontrada";
+    //     }
+
+    // }
+
+    // public function deleteComment(Request $request, PurchaseOrder $purchaseOrder)
+    // {
+
+    //     if($purchaseOrder != null){
+
+    //         $observations = $request->observations;
+
+    //         // Se realizan las validaciones de los datos.
+    //         if(($purchaseOrder->confirmation == 1) and (
+    //             $purchaseOrder->client_id != null))
+    //         {
+    //             $purchaseOrder->updateOrCreate([
+
+    //                 'id' => $request->id
+    //             ],
+    //             [   
+    //                 'observations' => 'Sin comentario',
+    //             ]);
+
+    //             return $purchaseOrder;
+    //         }
+    //         else {
+    //             return "No existen comentarios dado el contexto";
+    //         }
+    //     }
+
+    //     else {
+    //         return "Error al obtener comentarios, Orden de Compra no encontrada";
+    //     }
+
+    // }
 }
