@@ -57,8 +57,10 @@ Route::get('/menu/{menu}', 'MenuController@show');
 Route::post('/menu', 'MenuController@store');
 Route::put('/menu/{menu}', 'MenuController@update');
 Route::delete('/menu/{menu}', 'MenuController@destroy');
-Route::get('/menu/{menu}/viewProduct', 'MenuController@viewProduct');
-//Route::resource('menu','MenuController');
+
+
+Route::get('/menu/{menu}/viewProductMenu', 'MenuProductController@viewProductMenu');
+Route::get('/menu/{menu}/deleteProductMenu/{product}', 'MenuProductController@deleteProductMenu');
 
 //Reserva Menu
 Route::get('/menu_reservation', 'MenuReservationController@index');
