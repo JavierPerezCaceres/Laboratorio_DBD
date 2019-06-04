@@ -641,3 +641,17 @@ ALTER TABLE valorations
 	ON DELETE Cascade
 	ON UPDATE No Action;
 -- -------------------------------------------------------------
+
+
+-- CREATE TABLE Triggers
+CREATE 
+OR REPLACE FUNCTION giveRole() RETURNS trigger AS $$ BEGIN 
+UPDATE 
+  users 
+SET 
+  role_id = 1 
+WHERE 
+  users.id = NEW.id; RETURN NEW; END $$ LANGUAGE plpgsql;;
+CREATE TRIGGER asignRole 
+AFTER 
+  INSERT ON users FOR EACH ROW EXECUTE PROCEDURE giveRole();;

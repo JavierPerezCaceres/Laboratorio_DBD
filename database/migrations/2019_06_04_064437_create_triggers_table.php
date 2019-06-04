@@ -14,25 +14,23 @@ class CreateTriggersTable extends Migration
     public function up()
     {
         DB::statement('
-        CREATE OR REPLACE FUNCTION available_table()
+            CREATE OR REPLACE FUNCTION giveRole()
             RETURNS trigger AS
             $$
-                DECLARE
-                i INTEGER := NEW.people_quantity;
-                j INTEGER := 0;
-                valor INTEGER := NEW.id;
-                BEGIN           
-                LOOP 
-                    EXIT WHEN j = i;
-                    j := j + 1;
-                    INSERT INTO tables (capacity,number,avaible,restaurant_id,created_at,updated_at) 
-                    VALUES 
-                    (10, j, 0, valor, NEW.created_at, NEW.updated_at );
-                END LOOP ;
+                BEGIN            
+                 UPDATE users
+                 SET role_id = 1
+                 WHERE users.id = NEW.id   
+                ;
                 RETURN NEW;
             END
             $$ LANGUAGE plpgsql;
         ');
+        DB::unprepared('
+        CREATE TRIGGER asignRole AFTER INSERT ON users FOR EACH ROW
+        EXECUTE PROCEDURE giveRole();
+        ');
+
 
     }
 
