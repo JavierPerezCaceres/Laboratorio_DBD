@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MenuReservationsTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(ProductCategoriesTableSeeder::class);
-        $this->call(TablesTableSeeder::class);
+        //$this->call(TablesTableSeeder::class);
         $this->call(TableReservationsTableSeeder::class);
         $this->call(ValorationSeeder::class);
 

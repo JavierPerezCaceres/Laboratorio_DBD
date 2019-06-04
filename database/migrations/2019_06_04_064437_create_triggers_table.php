@@ -27,7 +27,9 @@ class CreateTriggersTable extends Migration
             $$ LANGUAGE plpgsql;
         ');
         DB::unprepared('
-        CREATE TRIGGER asignRole AFTER INSERT ON users FOR EACH ROW
+        CREATE TRIGGER asignRole 
+        AFTER INSERT ON users 
+        FOR EACH ROW
         EXECUTE PROCEDURE giveRole();
         ');
 
