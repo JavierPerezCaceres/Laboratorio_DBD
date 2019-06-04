@@ -22,7 +22,10 @@ DROP TABLE IF EXISTS table_reservations CASCADE;
 DROP TABLE IF EXISTS tables CASCADE;
 DROP TABLE IF EXISTS product_categories CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
-
+DROP TABLE IF EXISTS deliveries CASCADE;
+DROP TABLE IF EXISTS restaurant_requests CASCADE;
+DROP TABLE IF EXISTS valorations CASCADE;
+DROP TABLE IF EXISTS webpage_records CASCADE;
 
 
 --=====================================================================
@@ -30,7 +33,7 @@ DROP TABLE IF EXISTS categories CASCADE;
 --=====================================================================
 
 -- CREATE TABLE "clients" --------------------------------------
-CREATE TABLE IF NOT EXISTS clients ( 
+CREATE TABLE IF NOT EXISTS clients (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -41,7 +44,7 @@ CREATE TABLE IF NOT EXISTS clients (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "card_payments" --------------------------------
-CREATE TABLE IF NOT EXISTS card_payments ( 
+CREATE TABLE IF NOT EXISTS card_payments (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -54,7 +57,7 @@ CREATE TABLE IF NOT EXISTS card_payments (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "ingredients" --------------------------------------
-CREATE TABLE IF NOT EXISTS ingredients ( 
+CREATE TABLE IF NOT EXISTS ingredients (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -64,7 +67,7 @@ CREATE TABLE IF NOT EXISTS ingredients (
 
 -- CREATE TABLE "menus" --------------------------------
 CREATE TABLE IF NOT EXISTS menus (
-	"id" serial NOT NULL, 
+	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"name" Character Varying( 45 ) NOT NULL,
@@ -76,7 +79,7 @@ CREATE TABLE IF NOT EXISTS menus (
 
 -- CREATE TABLE "menu_products" --------------------------------
 CREATE TABLE IF NOT EXISTS menu_products (
-	"id" serial NOT NULL, 
+	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"price" Integer NOT NULL,
@@ -87,7 +90,7 @@ CREATE TABLE IF NOT EXISTS menu_products (
 
 -- CREATE TABLE "menu_reservations" --------------------------------
 CREATE TABLE IF NOT EXISTS menu_reservations (
-	"id" serial NOT NULL, 
+	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"price" Integer NOT NULL,
@@ -98,7 +101,7 @@ CREATE TABLE IF NOT EXISTS menu_reservations (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "payment_methods" ------------------------------
-CREATE TABLE IF NOT EXISTS payment_methods ( 
+CREATE TABLE IF NOT EXISTS payment_methods (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -108,7 +111,7 @@ CREATE TABLE IF NOT EXISTS payment_methods (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "products" --------------------------------------
-CREATE TABLE IF NOT EXISTS products ( 
+CREATE TABLE IF NOT EXISTS products (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -117,7 +120,7 @@ CREATE TABLE IF NOT EXISTS products (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "product_ingredients" --------------------------------
-CREATE TABLE IF NOT EXISTS product_ingredients ( 
+CREATE TABLE IF NOT EXISTS product_ingredients (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -127,7 +130,7 @@ CREATE TABLE IF NOT EXISTS product_ingredients (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "purchase_orders" ------------------------------
-CREATE TABLE IF NOT EXISTS purchase_orders ( 
+CREATE TABLE IF NOT EXISTS purchase_orders (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -143,48 +146,48 @@ CREATE TABLE IF NOT EXISTS purchase_orders (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "roles" ----------------------------------------
-CREATE TABLE roles ( 
+CREATE TABLE roles (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"type" Character Varying( 255 ) NOT NULL,
-	"description" Character Varying( 255 ) NOT NULL 
+	"description" Character Varying( 255 ) NOT NULL
 );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "cities" ---------------------------------------
-CREATE TABLE cities ( 
+CREATE TABLE cities (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
-	"name" Character Varying( 255 ) NOT NULL 
+	"name" Character Varying( 255 ) NOT NULL
 );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "districts" ------------------------------------
-CREATE TABLE districts ( 
+CREATE TABLE districts (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"name" Character Varying( 255 ) NOT NULL,
-	"city_id" Integer NOT NULL 
+	"city_id" Integer NOT NULL
 );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "addresses" ------------------------------------
-CREATE TABLE addresses ( 
+CREATE TABLE addresses (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"street" Character Varying( 255 ) NOT NULL,
 	"number" Character Varying( 255 ) NOT NULL,
 	"district_id" Integer NOT NULL,
-	"user_id" Integer NOT NULL 
+	"user_id" Integer NOT NULL
 );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "users" ----------------------------------------
-CREATE TABLE users ( 
+CREATE TABLE users (
 	"id" serial NOT NULL,
 	"email" Character Varying( 255 ) NOT NULL,
 	"password" Character Varying( 255 ) NOT NULL,
@@ -199,7 +202,7 @@ CREATE TABLE users (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "restaurants" --------------------------------------
-CREATE TABLE IF NOT EXISTS restaurants ( 
+CREATE TABLE IF NOT EXISTS restaurants (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -217,7 +220,7 @@ CREATE TABLE IF NOT EXISTS restaurants (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "table_reservations" --------------------------------------
-CREATE TABLE IF NOT EXISTS table_reservations ( 
+CREATE TABLE IF NOT EXISTS table_reservations (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -234,20 +237,20 @@ CREATE TABLE IF NOT EXISTS table_reservations (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "tables" --------------------------------------
-CREATE TABLE IF NOT EXISTS tables ( 
+CREATE TABLE IF NOT EXISTS tables (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"capacity" Integer NOT NULL,
 	"number" Integer NOT NULL,
 	"avaible" Integer NOT NULL,
-	"restaurant_id" Integer NOT NULL 
+	"restaurant_id" Integer NOT NULL
 
  );
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "product_categories" --------------------------------------
-CREATE TABLE IF NOT EXISTS product_categories ( 
+CREATE TABLE IF NOT EXISTS product_categories (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -258,7 +261,7 @@ CREATE TABLE IF NOT EXISTS product_categories (
 -- -------------------------------------------------------------
 
 -- CREATE TABLE "categories" --------------------------------------
-CREATE TABLE IF NOT EXISTS categories ( 
+CREATE TABLE IF NOT EXISTS categories (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -266,6 +269,55 @@ CREATE TABLE IF NOT EXISTS categories (
 
  );
 -- -------------------------------------------------------------
+
+-- CREATE TABLE "restaurant_requests" --------------------------
+CREATE TABLE restaurant_requests (
+	"id" serial NOT NULL,
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone,
+	"company_rut" Integer NOT NULL,
+	"cod_sis" Integer NOT NULL,
+	"owner_name" Character Varying( 255 ) NOT NULL,
+	"condition" Boolean NOT NULL,
+	"user_id" Integer NOT NULL
+  );
+
+	-- -------------------------------------------------------------
+
+ -- CREATE TABLE "valorations" ----------------------------------
+ CREATE TABLE valorations (
+ 	"id"serial NOT NULL,
+ 	"created_at" Timestamp( 0 ) Without Time Zone,
+ 	"updated_at" Timestamp( 0 ) Without Time Zone,
+ 	"score" Integer NOT NULL,
+ 	"commentary" Character Varying( 255 ) NOT NULL,
+ 	"user_id" Integer NOT NULL,
+ 	"restaurant_id" Integer NOT NULL
+  );
+
+	-- -------------------------------------------------------------
+
+  -- CREATE TABLE "webpage_records" ------------------------------
+  CREATE TABLE webpage_records (
+  	"id" Bigint DEFAULT nextval('webpage_records_id_seq'::regclass) NOT NULL,
+  	"created_at" Timestamp( 0 ) Without Time Zone,
+  	"updated_at" Timestamp( 0 ) Without Time Zone,
+  	"action" Character Varying( 255 ) NOT NULL
+     );
+
+		 -- -------------------------------------------------------------
+
+   -- CREATE TABLE "deliveries" -----------------------------------
+   CREATE TABLE deliveries (
+   	"id" serial NOT NULL,
+   	"created_at" Timestamp( 0 ) Without Time Zone,
+   	"updated_at" Timestamp( 0 ) Without Time Zone,
+   	"receptor_name" Character Varying( 255 ) NOT NULL,
+   	"contact_number" Character Varying( 255 ) NOT NULL,
+   	"extra_wait_time" Integer NOT NULL,
+   	"delivery_address" Character Varying( 255 ) NOT NULL,
+   	"restaurant_id" Integer NOT NULL
+    );
 
 
 --===========================
@@ -312,6 +364,22 @@ ALTER TABLE purchase_orders
     ADD CONSTRAINT purchase_orders_pkey
     PRIMARY KEY (id);
 
+ALTER TABLE restaurant_requests
+		ADD CONSTRAINT restaurant_requests_pkey;
+		PRIMARY KEY (id);
+
+ALTER TABLE valorations
+		ADD CONSTRAINT valorations_pkey;
+		PRIMARY KEY (id);
+
+ALTER TABLE webpage_records
+		ADD CONSTRAINT webpage_records_pkey;
+		PRIMARY KEY(id);
+
+ALTER TABLE webpage_records
+		ADD CONSTRAINT webpage_records_pkey;
+		PRIMARY KEY(id);
+
 ALTER TABLE card_payments
     ADD CONSTRAINT card_payments_autorization_code_unique
     UNIQUE (autorization_code);
@@ -344,6 +412,13 @@ ALTER TABLE categories
     ADD CONSTRAINT categories_pkey
     PRIMARY KEY (id);
 
+ALTER TABLE restaurant_requests
+		ADD CONSTRAINT resturant_requests_company_rut_unique
+		UNIQUE (company_rut);
+
+ALTER TABLE restaurant_requests
+		ADD CONSTRAINT resturant_requests_cod_sis_unique
+		UNIQUE (cod_sis);
 --===========================
 -- FOREIGN KEYS
 --===========================
@@ -406,21 +481,21 @@ ALTER TABLE purchase_orders
 
 -- CREATE "purchase_orders_client_id_foreign" -------------
 ALTER TABLE purchase_orders
-	ADD CONSTRAINT purchase_orders_client_id_foreign 
+	ADD CONSTRAINT purchase_orders_client_id_foreign
 	FOREIGN KEY ( client_id )
 	REFERENCES clients ( "id" ) MATCH SIMPLE;
 -- -------------------------------------------------------------
 
 -- CREATE "purchase_orders_delivery_id_foreign" -------------
 --ALTER TABLE purchase_orders
---	ADD CONSTRAINT purchase_orders_delivery_id_foreign 
+--	ADD CONSTRAINT purchase_orders_delivery_id_foreign
 --	FOREIGN KEY ( delivery_id )
 --	REFERENCES deliveries ( "id" ) MATCH SIMPLE;
 -- -------------------------------------------------------------
 
 -- CREATE "payment_methods_card_payment_id_foreign" -------
 ALTER TABLE payment_methods
-	ADD CONSTRAINT payment_methods_card_payment_id_foreign 
+	ADD CONSTRAINT payment_methods_card_payment_id_foreign
 	FOREIGN KEY ( card_payment_id )
 	REFERENCES card_payments ( "id" ) MATCH SIMPLE;
 -- -------------------------------------------------------------
@@ -518,3 +593,33 @@ ALTER TABLE product_categories
 	ON DELETE Cascade
 	ON UPDATE No Action;
 -- -------------------------------------------------------------
+
+-- CREATE LINK "restaurant_requests_user_id_foreign" -----------
+ALTER TABLE restaurant_requests
+	ADD CONSTRAINT restaurant_requests_user_id_foreign FOREIGN KEY ( "user_id" )
+	REFERENCES users ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+
+-- -------------------------------------------------------------
+-- CREATE LINK "valorations_restaurant_id_foreign" -------------
+ALTER TABLE valorations
+  ADD CONSTRAINT valorations_restaurant_id_foreign FOREIGN KEY ( "restaurant_id" )
+  REFERENCES restaurants ( "id" ) MATCH SIMPLE
+  ON DELETE Cascade
+  ON UPDATE No Action;
+
+-- -------------------------------------------------------------
+-- CREATE LINK "valorations_user_id_foreign" -------------------
+ALTER TABLE valorations
+  ADD CONSTRAINT valorations_user_id_foreign FOREIGN KEY ( "user_id" )
+  REFERENCES users ( "id" ) MATCH SIMPLE
+  ON DELETE Cascade
+  ON UPDATE No Action;
+-- -------------------------------------------------------------
+-- CREATE LINK "deliveries_restaurant_id_foreign" --------------
+ALTER TABLE deliveries
+  ADD CONSTRAINT deliveries_restaurant_id_foreign FOREIGN KEY ( "restaurant_id" )
+  REFERENCES restaurants ( "id" ) MATCH SIMPLE
+  ON DELETE Cascade
+  ON UPDATE No Action;
