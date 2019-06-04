@@ -185,7 +185,7 @@ class MenuController extends Controller
         }
     }
 
-    public function viewProduct(Menu $menu)
+    public function viewProductMenu(Menu $menu)
     {
         //Reviso si la id ingresada existe
         $menu = Menu::findOrFail($menu->id);
@@ -202,13 +202,42 @@ class MenuController extends Controller
             //Busco el producto encontrado
             $product = Product::findOrFail($id);
 
-            if (!in_array($product,$listaProductos)) {
-                //Agrago al array de productos
+            if (!in_array($product,$listaProductos)) 
+            {
+                //Agregar al array de productos
                 array_push($listaProductos,$product);
             }
         }
-
         return $listaProductos;
+    }
 
+    public function deleteProductMenu(Menu $menu, Product $product)
+    {
+        if($menu != null)
+        {
+
+            $product_id = $request->product_id;
+
+            // Se realizan las validaciones de los datos.
+            if($restaurant_id !=null)
+            {
+                $table->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'restaurant_id' => $restaurant_id,
+                ]);
+
+            }
+            else {
+                return "No existen mesas asociadas al restaurant";
+            }
+        }
+        else {
+            return "Error al obtener Menu, producto no encontrado";
+        }
+
+        return Menu::all();
     }
 }
