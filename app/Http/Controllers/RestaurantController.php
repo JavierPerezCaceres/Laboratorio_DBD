@@ -202,7 +202,7 @@ class RestaurantController extends Controller
         }
     }
 
-    public function viewDirection(Request $request, Restaurant $restaurant)
+    public function viewLocation(Request $request, Restaurant $restaurant)
      {
 
          if($restaurant != null){
@@ -213,54 +213,52 @@ class RestaurantController extends Controller
                  return $restaurant->direction;
              }
              else {
-                 return "No existe direccion asociada";
+                 return "No existe ubicacion asociada";
              }
          }
 
          else {
-             return "Error al obtener direccion, Restaurant no encontrado";
+             return "Error al obtener ubicacion, Restaurant no encontrado";
          }
 
      }
 
-    public function updateDirection(Request $request, Restaurant $restaurant)
+    public function updateLocation(Request $request, Restaurant $restaurant)
     {
 
-            if($restaurant != null){
-
-             $direction = $request->direction;
-
-             // Se realizan las validaciones de los datos.
-             if($restaurant->direction != null)
-             {
-                 $restaurant->updateOrCreate([
-
-                     'id' => $request->id
-                 ],
-                 [   
-                     'direction' => $direction,
-                 ]);
-
-                 return $restaurant;
-             }
-             else {
-                 return "No existen direccion asociada";
-             }
-         }
-
-         else {
-             return "Error al obtener direccion, Restaurant no encontrado";
-         }
-
-        return Restaurant::all();
-    }
-
-    public function deleteDirection(Request $request, Restaurant $restaurant)
-     {
-
-         if($restaurant != null){
+        if($restaurant != null){
 
             $direction = $request->direction;
+
+             // Se realizan las validaciones de los datos.
+            if($direction != null)
+            {
+               $restaurant->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'direction' => $direction,
+                ]);
+
+            }
+            else {
+                 return "No existen ubicacion asociada";
+            }
+         }
+
+        else {
+            return "Error al obtener ubicacion, Restaurant no encontrado";
+        }
+
+        return Restaurant::all();
+
+    }
+
+    public function deleteLocation(Request $request, Restaurant $restaurant)
+     {
+
+        if($restaurant != null){
 
              // Se realizan las validaciones de los datos.
              if($restaurant->direction != null)
@@ -272,17 +270,17 @@ class RestaurantController extends Controller
                  [   
                      'direction' => null,
                  ]);
-
-                 return $purchaseOrder;
              }
              else {
-                 return "No existen direccion asociada";
+                 return "No existen ubicacion asociada";
              }
          }
 
          else {
-             return "Error al obtener direccion, Restaurant no encontrado";
+             return "Error al obtener ubicacion, Restaurant no encontrado";
          }
+
+        return Restaurant::all();
 
      }
 }
