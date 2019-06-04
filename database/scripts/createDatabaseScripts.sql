@@ -507,12 +507,14 @@ ALTER TABLE purchase_orders
 	REFERENCES clients ( "id" ) MATCH SIMPLE;
 -- -------------------------------------------------------------
 
--- CREATE "purchase_orders_delivery_id_foreign" -------------
-ALTER TABLE purchase_orders
-	ADD CONSTRAINT purchase_orders_delivery_id_foreign
-	FOREIGN KEY ( delivery_id )
-	REFERENCES deliveries ( "id" ) MATCH SIMPLE;
--- -------------------------------------------------------------
+
+-- CREATE LINK "deliveries_restaurant_id_foreign" --------------
+ALTER TABLE deliveries
+  ADD CONSTRAINT deliveries_restaurant_id_foreign FOREIGN KEY ( "restaurant_id" )
+  REFERENCES restaurants ( "id" ) MATCH SIMPLE
+  ON DELETE Cascade
+  ON UPDATE No Action;
+
 
 -- CREATE "payment_methods_card_payment_id_foreign" -------
 ALTER TABLE payment_methods
@@ -635,12 +637,5 @@ ALTER TABLE valorations
 ALTER TABLE valorations
   ADD CONSTRAINT valorations_user_id_foreign FOREIGN KEY ( "client_id" )
   REFERENCES clients ( "id" ) MATCH SIMPLE
-  ON DELETE Cascade
-  ON UPDATE No Action;
--- -------------------------------------------------------------
--- CREATE LINK "deliveries_restaurant_id_foreign" --------------
-ALTER TABLE deliveries
-  ADD CONSTRAINT deliveries_restaurant_id_foreign FOREIGN KEY ( "restaurant_id" )
-  REFERENCES restaurants ( "id" ) MATCH SIMPLE
   ON DELETE Cascade
   ON UPDATE No Action;
