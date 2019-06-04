@@ -182,7 +182,7 @@ CREATE TABLE addresses (
 	"street" Character Varying( 255 ) NOT NULL,
 	"number" Character Varying( 255 ) NOT NULL,
 	"district_id" Integer NOT NULL,
-	"user_id" Integer NOT NULL
+	"client_id" Integer NOT NULL
 );
 -- -------------------------------------------------------------
 
@@ -284,8 +284,8 @@ CREATE TABLE restaurant_requests (
 
 	-- -------------------------------------------------------------
 
- -- CREATE TABLE "valorations" ----------------------------------
- CREATE TABLE valorations (
+-- CREATE TABLE "valorations" ----------------------------------
+CREATE TABLE valorations (
  	"id"serial NOT NULL,
  	"created_at" Timestamp( 0 ) Without Time Zone,
  	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -293,22 +293,22 @@ CREATE TABLE restaurant_requests (
  	"commentary" Character Varying( 255 ) NOT NULL,
  	"user_id" Integer NOT NULL,
  	"restaurant_id" Integer NOT NULL
-  );
+);
 
-	-- -------------------------------------------------------------
+-- -------------------------------------------------------------
 
-  -- CREATE TABLE "webpage_records" ------------------------------
-  CREATE TABLE webpage_records (
+-- CREATE TABLE "webpage_records" ------------------------------
+CREATE TABLE webpage_records (
   	"id" Bigint DEFAULT nextval('webpage_records_id_seq'::regclass) NOT NULL,
   	"created_at" Timestamp( 0 ) Without Time Zone,
   	"updated_at" Timestamp( 0 ) Without Time Zone,
   	"action" Character Varying( 255 ) NOT NULL
-     );
+);
 
-		 -- -------------------------------------------------------------
+-- -------------------------------------------------------------
 
-   -- CREATE TABLE "deliveries" -----------------------------------
-   CREATE TABLE deliveries (
+-- CREATE TABLE "deliveries" -----------------------------------
+CREATE TABLE deliveries (
    	"id" serial NOT NULL,
    	"created_at" Timestamp( 0 ) Without Time Zone,
    	"updated_at" Timestamp( 0 ) Without Time Zone,
@@ -317,7 +317,7 @@ CREATE TABLE restaurant_requests (
    	"extra_wait_time" Integer NOT NULL,
    	"delivery_address" Character Varying( 255 ) NOT NULL,
    	"restaurant_id" Integer NOT NULL
-    );
+);
 
 
 --===========================
@@ -380,18 +380,6 @@ ALTER TABLE webpage_records
 		ADD CONSTRAINT webpage_records_pkey;
 		PRIMARY KEY(id);
 
-ALTER TABLE card_payments
-    ADD CONSTRAINT card_payments_autorization_code_unique
-    UNIQUE (autorization_code);
-
-ALTER TABLE card_payments
-    ADD CONSTRAINT card_payments_transaction_code_unique
-    UNIQUE (transaction_code);
-
-ALTER TABLE card_payments
-    ADD CONSTRAINT card_payments_card_number_unique
-    UNIQUE (card_number);
-
 ALTER TABLE restaurants
     ADD CONSTRAINT restaurants_pkey
     PRIMARY KEY (id);
@@ -412,6 +400,38 @@ ALTER TABLE categories
     ADD CONSTRAINT categories_pkey
     PRIMARY KEY (id);
 
+ALTER TABLE roles
+	ADD CONSTRAINT roles_pkey
+	PRIMARY KEY (id)
+
+ALTER TABLE cities
+	ADD CONSTRAINT cities_pkey
+	PRIMARY KEY (id)
+
+ALTER TABLE districts
+	ADD CONSTRAINT districts_pkey
+	PRIMARY KEY (id)
+
+ALTER TABLE addresses
+	ADD CONSTRAINT addresses_pkey
+	PRIMARY KEY (id)
+
+ALTER TABLE users
+	ADD CONSTRAINT users_pkey
+	PRIMARY KEY (id)
+
+ALTER TABLE card_payments
+    ADD CONSTRAINT card_payments_autorization_code_unique
+    UNIQUE (autorization_code);
+
+ALTER TABLE card_payments
+    ADD CONSTRAINT card_payments_transaction_code_unique
+    UNIQUE (transaction_code);
+
+ALTER TABLE card_payments
+    ADD CONSTRAINT card_payments_card_number_unique
+    UNIQUE (card_number);
+
 ALTER TABLE restaurant_requests
 		ADD CONSTRAINT resturant_requests_company_rut_unique
 		UNIQUE (company_rut);
@@ -419,6 +439,7 @@ ALTER TABLE restaurant_requests
 ALTER TABLE restaurant_requests
 		ADD CONSTRAINT resturant_requests_cod_sis_unique
 		UNIQUE (cod_sis);
+
 --===========================
 -- FOREIGN KEYS
 --===========================
@@ -487,10 +508,10 @@ ALTER TABLE purchase_orders
 -- -------------------------------------------------------------
 
 -- CREATE "purchase_orders_delivery_id_foreign" -------------
---ALTER TABLE purchase_orders
---	ADD CONSTRAINT purchase_orders_delivery_id_foreign
---	FOREIGN KEY ( delivery_id )
---	REFERENCES deliveries ( "id" ) MATCH SIMPLE;
+ALTER TABLE purchase_orders
+	ADD CONSTRAINT purchase_orders_delivery_id_foreign
+	FOREIGN KEY ( delivery_id )
+	REFERENCES deliveries ( "id" ) MATCH SIMPLE;
 -- -------------------------------------------------------------
 
 -- CREATE "payment_methods_card_payment_id_foreign" -------
@@ -510,8 +531,8 @@ ALTER TABLE districts
 
 -- CREATE LINK "addresses_user_id_foreign" ---------------------
 ALTER TABLE addresses
-	ADD CONSTRAINT addresses_user_id_foreign FOREIGN KEY ( user_id )
-	REFERENCES users ( "id" ) MATCH SIMPLE
+	ADD CONSTRAINT addresses_client_id_foreign FOREIGN KEY ( client_id )
+	REFERENCES clients ( "id" ) MATCH SIMPLE
 	ON DELETE Cascade
 	ON UPDATE No Action;
 -- -------------------------------------------------------------
