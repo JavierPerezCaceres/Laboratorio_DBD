@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 use App\Restaurant;
+use App\Product;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -182,5 +183,32 @@ class MenuController extends Controller
             $menu->delete();
             return "Se ha eliminado un Menu";
         }
+    }
+
+    public function viewProduct(Menu $menu)
+    {
+        //Reviso si la id ingresada existe
+        $menu = Menu::findOrFail($menu->id);
+
+        //Guardo una lista con los productos asociados a la id de menu encontrada.
+        $listaRelacion = $menu->menuProduct;
+
+        //Genero una pila de productos
+        $listaProductos = array();
+
+        foreach ($listaRelacion as $product) {
+            //Saco la id del producto
+            $id = $product->product_id;
+            //Busco el producto encontrado
+            $product = Product::findOrFail($id);
+
+            if (!in_array($product,$listaProductos)) {
+                //Agrago al array de productos
+                array_push($listaProductos,$product);
+            }
+        }
+
+        return $listaProductos;
+
     }
 }
