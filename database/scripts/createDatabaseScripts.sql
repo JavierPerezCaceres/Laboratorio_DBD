@@ -291,7 +291,7 @@ CREATE TABLE valorations (
  	"updated_at" Timestamp( 0 ) Without Time Zone,
  	"score" Integer NOT NULL,
  	"comment" Character Varying( 255 ) NOT NULL,
- 	"client_id" Integer NOT NULL,
+ 	"purchase_order_id" Integer NOT NULL,
  	"restaurant_id" Integer NOT NULL
 );
 
@@ -633,9 +633,11 @@ ALTER TABLE valorations
   ON UPDATE No Action;
 
 -- -------------------------------------------------------------
--- CREATE LINK "valorations_user_id_foreign" -------------------
+
+-- CREATE LINK "valorations_purchase_order_id_foreign" ---------
 ALTER TABLE valorations
-  ADD CONSTRAINT valorations_user_id_foreign FOREIGN KEY ( "client_id" )
-  REFERENCES clients ( "id" ) MATCH SIMPLE
-  ON DELETE Cascade
-  ON UPDATE No Action;
+	ADD CONSTRAINT valorations_purchase_order_id_foreign FOREIGN KEY ( "purchase_order_id" )
+	REFERENCES purchase_orders ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------

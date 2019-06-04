@@ -76,12 +76,6 @@ VALUES ( '1','2019-06-03 05:56:48','2019-06-03 05:56:48','Cristian Matias Rodrig
 INSERT INTO "public"."webpage_records" ( "id","created_at", "updated_at", "action")
 VALUES ( '1','2019-06-03 05:56:48','2019-06-03 05:56:48','Se ha registrado el usuario id:1 en la pagina');
 
--- Valoraciones
-
-INSERT INTO "public"."valorations" ( "id","created_at", "updated_at",
-"score","comment","client_id","restaurant_id")
-VALUES ( '1','2019-06-03 05:56:48','2019-06-03 05:56:48','4','Buen servicio, pero pudo ser mejor.','1','1');
-
 -- Solicitud de restaurants
 
 INSERT INTO "public"."restaurant_requests" ( "id","created_at", "updated_at",
@@ -110,7 +104,7 @@ INSERT INTO "public"."purchase_orders" ( "amount", "client_id", "confirmation",
 VALUES ( '234567','1','1','2019-06-03 05:56:48','3','2','1','holi','1',
 	'2','2019-06-03 05:56:48');
 
--- Orden de Compra Menu
+-- Reserva Menu
 
 INSERT INTO "public"."menu_reservations" ( "created_at", "id", "price", "quantity",
  "menu_id", "purchase_order_id", "updated_at")
@@ -142,6 +136,12 @@ INSERT INTO "public"."table_reservations" ( "id","created_at", "updated_at",
 VALUES ( '1','2019-06-03 05:56:48','2019-06-03 05:56:48','23','JavierJorge','4',
 	'2019-06-03','14:00:00','1','1','1');
 
+-- Valoraciones
+
+INSERT INTO "public"."valorations" ( "id","created_at", "updated_at",
+"score","comment","purchase_order_id","restaurant_id")
+VALUES ( '1','2019-06-03 05:56:48','2019-06-03 05:56:48','4','Buen servicio, pero pudo ser mejor.','1','1');
+
 -- Ciudad
 
 INSERT INTO "public"."cities" ( "id","created_at", "updated_at", "name")
@@ -156,6 +156,3 @@ VALUES ('1', '2019-06-03 05:56:48', '2019-06-03 05:56:48', 'Pudahuel', '1');
 
 INSERT INTO "public"."addresses" ("id","created_at", "updated_at", "street", "number", "district_id", "client_id")
 VALUES ('1', '2019-06-03 05:56:48', '2019-06-03 05:56:48', 'Av. Serrano', '528-B', '1', '1');
-
-
-
