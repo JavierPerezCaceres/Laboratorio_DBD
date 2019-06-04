@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\ProductCategory;
+use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
@@ -154,82 +156,88 @@ class ProductCategoryController extends Controller
     }
 
 
-    public function viewProductCategory(Category $category)
+    public function viewProductCategory(Category $category, ProductCategory $productCategory)
     {
-        //Reviso si la id ingresada existe
-        $product = Product::findOrFail($product->id);
-
-        //Guardo una lista con los productos asociados a la id de menu encontrada.
-        $listaRelacion = $product->productCategory;
-
-        //Genero una pila de categorias
-        $listaCategorias = array();
-
-        foreach ($listaRelacion as $category) {
-            //Saco la id de la categoria
-            $id = $category->category_id;
-            //Busco el producto encontrado
-            $category = Category::findOrFail($id);
-
-            if (!in_array($category,$listaCategorias)) {
-                //Agrego al array de categorias
-                array_push($listaCategorias,$category);
-            }
-        }
-        return $listaCategorias;
-    }
-
-
-public funtion updateCategory(Request $request, ProductCategory $productCategory)
-  {
-    // Se busca la id ingresada, en caso de no existir arroja null.
-    $verifyProductCategory = ProductCategory::find($request->id);
-    if($verifyProductCategory!= null){
-
-    // Se instancia un objeto del modelo
-    $productCategory = new ProductCategory();
-
-    $product_id = $request->product_id;
-    $category_id = $request->category_id;
-
-    // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-    $productCategory->updateOrCreate(
-    [
-
-        'id' => $request->id
-    ],
-
-    [
-        'category_id' => $category_id,
-        ]);
-    }
-    else{
-        return "Error al actualizar ProductoCategoria, llave primaria no existe.";
-    }
-
-    // Se muestran todos el contenido de la tabla Restaurant.
-    return ProductCategory::all();
-  }
-
-  public function deleteProductCategory(Category $category, Product $product)
-    {
+        $category = Category::where('id',$productCategory->category_id)->get('name');
 
         if($category != null)
         {
             // Se realizan las validaciones de los datos.
-            if($product !=null)
+            if($productCategory->category_id !=null)
             {
-                $relacion = ProductCategory::where('category_id',$category_id)->
-                where('product_id',$product->id)->delete();
+                return $category;
             }
             else {
-                return "No existe el producto ingresado";
+                return "No existe categoria asociada al producto";
             }
         }
+
         else {
-            return "Error al obtener categoria";
+            return "Error al obtener categoria, producto no encontrado";
+        }
+    }
+
+
+public function updateProductCategory(Request $request, ProductCategory $productCategory)
+  {
+    if($productCategory != null)
+    {
+
+            $category_id = $request->category_id;
+
+            // Se realizan las validaciones de los datos.
+            if($category_id !=null)
+            {
+                $productCategory->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'category_id' => $category_id,
+                ]);
+
+            }
+            else {
+                return "No existe categoria asociadas al producto";
+            }
+    }
+
+        else {
+            return "Error al obtener categoria, producto no encontrado";
         }
 
+        return ProductCategory::all();
+
+  }
+
+  public function deleteProductCategory(Request $request,Category $category, ProductCategory $productCategory)
+    {
+
+        if($category != null)
+        {
+
+            // Se realizan las validaciones de los datos.
+            if($productCategory !=null)
+            {
+                $productCategory->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'category_id' => null,
+                ]);
+
+            }
+
+            else
+            {
+                return "No existe categoria asociada al producto";
+            }
+        }
+
+        else {
+            return "Error al obtener categoria, producto no encontrado";
+        }
         return ProductCategory::all();
     }
 }

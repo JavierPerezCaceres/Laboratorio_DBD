@@ -180,15 +180,16 @@ class TableController extends Controller
         }
     }
 
-    public function viewTable(Table $table)
+    public function viewTable(Table $table, Restaurant $restaurant)
     {
+        $direction = Restaurant::where('id',$table->restaurant_id)->get('direction');
 
         if($table != null)
         {
             // Se realizan las validaciones de los datos.
             if($table->restaurant_id !=null)
             {
-                return $table->restaurant_id;
+                return $direction;
             }
             else {
                 return "No existen mesas asociadas al restaurant";

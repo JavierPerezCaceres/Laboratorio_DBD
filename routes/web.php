@@ -104,6 +104,10 @@ Route::post('/product_category', 'ProductCategoryController@store');
 Route::put('/product_category/{product_category}', 'ProductCategoryController@update');
 Route::delete('/product_category/{product_category}', 'ProductCategoryController@destroy');
 
+Route::get('/product_category/{product_category}/viewProductCategory','ProductCategoryController@viewProductCategory');
+Route::put('/product_category/{product_category}/updateProductCategory','ProductCategoryController@updateProductCategory');
+Route::delete('/product_category/{product_category}/deleteProductCategory','ProductCategoryController@deleteProductCategory');
+
 // Restaurant.
 Route::get('/restaurant', 'RestaurantController@index');
 Route::get('/restaurant/{restaurant}', 'RestaurantController@show');
