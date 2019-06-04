@@ -180,7 +180,7 @@ class MenuProductController extends Controller
 
     public function deleteProductMenu(Menu $menu, Product $product)
     {
-
+        // Se realizan las validaciones de los datos.
         if($menu != null)
         {
             // Se realizan las validaciones de los datos.
@@ -197,6 +197,6 @@ class MenuProductController extends Controller
             return "Error al obtener Menu";
         }
 
-        return Menu::all();
+        return MenuProduct::all();
     }
 }
