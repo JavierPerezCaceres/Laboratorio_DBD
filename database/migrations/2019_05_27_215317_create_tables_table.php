@@ -20,7 +20,7 @@ class CreateTablesTable extends Migration
             $table->integer('number');
             $table->integer('avaible');
 
-            $table->unsignedInteger('restaurant_id');
+            $table->unsignedInteger('restaurant_id')->nullable();
 
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
         });

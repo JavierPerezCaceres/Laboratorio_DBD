@@ -20,7 +20,7 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('delivery_method');
             $table->string('purchase_type');
             $table->integer('confirmation');
-            $table->string('observations');
+            $table->string('observations')->nullable();
 
             $table->unsignedInteger('payment_method_id');
             $table->unsignedInteger('client_id');

@@ -177,7 +177,7 @@ class PurchaseOrderController extends Controller
                     'id' => $request->id
                 ],
                 [   
-                    'observations' => 'Sin comentario',
+                    'observations' => null,
                 ]);
 
             }

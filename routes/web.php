@@ -119,6 +119,10 @@ Route::post('/table', 'TableController@store');
 Route::put('/table/{table}', 'TableController@update');
 Route::delete('/table/{table}', 'TableController@destroy');
 
+Route::get('/table/{table}/viewTable','TableController@viewTable');
+Route::put('/table/{table}/updateTable','TableController@updateTable');
+Route::delete('/table/{table}/deleteTable','TableController@deleteTable');
+
 // TableReservation.
 Route::get('/table_reservation', 'TableReservationController@index');
 Route::get('/table_reservation/{table_reservation}', 'TableReservationController@show');
