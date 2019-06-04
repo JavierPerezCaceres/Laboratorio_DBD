@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\MenuProduct;
+use App\Menu;
+use App\Product;
 use Illuminate\Http\Request;
 
 class MenuProductController extends Controller
@@ -148,5 +150,53 @@ class MenuProductController extends Controller
           $menuProduct->delete();
           return "se ha eliminado el producto del menú";
         }
+    }
+
+    public function viewProductMenu(Menu $menu)
+    {
+        //Reviso si la id ingresada existe
+        $menu = Menu::findOrFail($menu->id);
+
+        //Guardo una lista con los productos asociados a la id de menu encontrada.
+        $listaRelacion = $menu->menuProduct;
+
+        //Genero una pila de productos
+        $listaProductos = array();
+
+        foreach ($listaRelacion as $product) {
+            //Saco la id del producto
+            $id = $product->product_id;
+            //Busco el producto encontrado
+            $product = Product::findOrFail($id);
+
+            if (!in_array($product,$listaProductos)) 
+            {
+                //Agregar al array de productos
+                array_push($listaProductos,$product);
+            }
+        }
+        return $listaProductos;
+    }
+
+    public function deleteProductMenu(Menu $menu, Product $product)
+    {
+
+        if($menu != null)
+        {
+            // Se realizan las validaciones de los datos.
+            if($product !=null)
+            {
+                $relacion = MenuProduct::where('menu_id',$menu->id)->
+                where('product_id',$product->id)->delete();
+            }
+            else {
+                return "No existe el producto ingresado";
+            }
+        }
+        else {
+            return "Error al obtener Menu";
+        }
+
+        return Menu::all();
     }
 }
