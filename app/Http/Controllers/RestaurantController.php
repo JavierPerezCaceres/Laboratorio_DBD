@@ -243,7 +243,6 @@ class RestaurantController extends Controller
     //                 'observations' => $observations,
     //             ]);
 
-    //             return $purchaseOrder;
     //         }
     //         else {
     //             return "No existen comentarios dado el contexto";
@@ -254,6 +253,7 @@ class RestaurantController extends Controller
     //         return "Error al obtener comentarios, Orden de Compra no encontrada";
     //     }
 
+    //     return PurchaseOrder::all();
     // }
 
     // public function deleteComment(Request $request, PurchaseOrder $purchaseOrder)
@@ -272,10 +272,9 @@ class RestaurantController extends Controller
     //                 'id' => $request->id
     //             ],
     //             [   
-    //                 'observations' => 'Sin comentario',
+    //                 'observations' => null,
     //             ]);
 
-    //             return $purchaseOrder;
     //         }
     //         else {
     //             return "No existen comentarios dado el contexto";
@@ -285,6 +284,6 @@ class RestaurantController extends Controller
     //     else {
     //         return "Error al obtener comentarios, Orden de Compra no encontrada";
     //     }
-
+    //     return PurchaseOrder::all();
     // }
 }
