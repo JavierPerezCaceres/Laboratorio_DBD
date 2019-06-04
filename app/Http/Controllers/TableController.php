@@ -49,8 +49,6 @@ class TableController extends Controller
             $capacity = $request->capacity;
             $number = $request->number;
             $avaible = $request->avaible;
-            $start_reservation = $request->start_reservation;
-            $end_reservation = $request->end_reservation;
             
             // Se realizan las validaciones de los datos.
             if(is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
@@ -61,8 +59,6 @@ class TableController extends Controller
 				    'capacity' => $capacity,
                     'number' => $number,
                     'avaible' => $avaible,
-                    'start_reservation' => $start_reservation,
-                    'end_reservation' => $end_reservation
 
 				]);
 			}
@@ -127,8 +123,6 @@ class TableController extends Controller
             $capacity = $request->capacity;
             $number = $request->number;
             $avaible = $request->avaible;
-            $start_reservation = $request->start_reservation;
-            $end_reservation = $request->end_reservation;
             
             // Se realizan las validaciones de los datos.
             if(is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
@@ -144,8 +138,6 @@ class TableController extends Controller
 				    'capacity' => $capacity,
                     'number' => $number,
                     'avaible' => $avaible,
-                    'start_reservation' => $start_reservation,
-                    'end_reservation' => $end_reservation
 
 				]);
 			}
@@ -179,5 +171,27 @@ class TableController extends Controller
             $table->delete();
             return "Se ha eliminado una Mesa";
         }
+    }
+
+    public function viewTable(Request $request, Restaurant $restaurant, Table $table)
+    {
+
+        if($table != null){
+
+            // Se realizan las validaciones de los datos.
+            if(($purchaseOrder->confirmation == 1) and (
+                $purchaseOrder->client_id != null))
+            {
+                return $purchaseOrder->observations;
+            }
+            else {
+                return "No existen comentarios dado el contexto";
+            }
+        }
+
+        else {
+            return "Error al obtener comentarios, Orden de Compra no encontrada";
+        }
+
     }
 }

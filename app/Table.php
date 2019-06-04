@@ -6,14 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Table extends Model
 {
-    protected $table = 'restaurants';
+    protected $table = 'tables';
     
     protected $fillable = [
         'capacity', 
         'number', 
         'avaible',
-        'start_reservation',
-        'end_reservation',
         'restaurant_id'
     ];
 
