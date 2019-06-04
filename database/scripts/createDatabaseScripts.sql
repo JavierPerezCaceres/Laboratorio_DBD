@@ -206,12 +206,12 @@ CREATE TABLE IF NOT EXISTS restaurants (
 	"category" Character Varying(50),
 	"contact_number" Character Varying(14),
 	"kitchen_type" Character Varying(50),
-	"opening_hour" Timestamp( 0 ) Without Time Zone,
-	"closing_hour" Timestamp( 0 ) Without Time Zone,
+	"opening_hour" Time,
+	"closing_hour" Time,
 	"person_cost" Integer NOT NULL,
 	"wait_time" Integer NOT NULL,
 	"direction" Character Varying(255),
-	"user_id" Integer NOT NULL,
+	"user_id" Integer NOT NULL
 
  );
 -- -------------------------------------------------------------
@@ -224,8 +224,8 @@ CREATE TABLE IF NOT EXISTS table_reservations (
 	"reserve_number" Integer NOT NULL,
 	"reserve_name" Character Varying(255),
 	"people_quantity" Integer NOT NULL,
-	"reserve_date" Time NOT NULL,
-	"reserve_hour" Timestamp( 0 ) Without Time Zone,
+	"reserve_date" Date,
+	"reserve_hour" Time,
 	"reserve_confirmation" Integer NOT NULL,
 	"table_id" Integer NOT NULL,
 	"purchase_order_id" Integer NOT NULL
@@ -252,7 +252,7 @@ CREATE TABLE IF NOT EXISTS product_categories (
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
 	"product_id" Integer NOT NULL,
-	"category_id" Integer NOT NULL,
+	"category_id" Integer NOT NULL
 
  );
 -- -------------------------------------------------------------
@@ -262,7 +262,7 @@ CREATE TABLE IF NOT EXISTS categories (
 	"id" serial NOT NULL,
 	"created_at" Timestamp( 0 ) Without Time Zone,
 	"updated_at" Timestamp( 0 ) Without Time Zone,
-	"name" Character Varying(255),
+	"name" Character Varying(255)
 
  );
 -- -------------------------------------------------------------
@@ -469,7 +469,7 @@ ALTER TABLE users
 ALTER TABLE restaurants
 	ADD CONSTRAINT restaurants_user_id_foreign
 	FOREIGN KEY ( "user_id" )
-	REFERENCES users ( "id" ) MATCH SIMPLE;
+	REFERENCES users ( "id" ) MATCH SIMPLE
 	ON DELETE Cascade
 	ON UPDATE No Action;
 -- -------------------------------------------------------------
@@ -478,7 +478,7 @@ ALTER TABLE restaurants
 ALTER TABLE table_reservations
 	ADD CONSTRAINT table_reservations_table_id_foreign
 	FOREIGN KEY ( "table_id" )
-	REFERENCES tables ( "id" ) MATCH SIMPLE;
+	REFERENCES tables ( "id" ) MATCH SIMPLE
 	ON DELETE Cascade
 	ON UPDATE No Action;
 -- -------------------------------------------------------------
@@ -487,7 +487,7 @@ ALTER TABLE table_reservations
 ALTER TABLE table_reservations
 	ADD CONSTRAINT table_purchase_order_id_foreign
 	FOREIGN KEY ( "table_reservation_id" )
-	REFERENCES table_reservations ( "id" ) MATCH SIMPLE;
+	REFERENCES table_reservations ( "id" ) MATCH SIMPLE
 	ON DELETE Cascade
 	ON UPDATE No Action;
 -- -------------------------------------------------------------
@@ -496,7 +496,7 @@ ALTER TABLE table_reservations
 ALTER TABLE tables
 	ADD CONSTRAINT tables_restaurant_id_foreign
 	FOREIGN KEY ( "restaurant_id" )
-	REFERENCES restaurants ( "id" ) MATCH SIMPLE;
+	REFERENCES restaurants ( "id" ) MATCH SIMPLE
 	ON DELETE Cascade
 	ON UPDATE No Action;
 -- -------------------------------------------------------------
@@ -505,7 +505,7 @@ ALTER TABLE tables
 ALTER TABLE product_categories
 	ADD CONSTRAINT product_categories_product_id_foreign
 	FOREIGN KEY ( "product_id" )
-	REFERENCES products ( "id" ) MATCH SIMPLE;
+	REFERENCES products ( "id" ) MATCH SIMPLE
 	ON DELETE Cascade
 	ON UPDATE No Action;
 -- -------------------------------------------------------------
@@ -514,7 +514,7 @@ ALTER TABLE product_categories
 ALTER TABLE product_categories
 	ADD CONSTRAINT product_categories_category_id_foreign
 	FOREIGN KEY ( "category_id" )
-	REFERENCES categories ( "id" ) MATCH SIMPLE;
+	REFERENCES categories ( "id" ) MATCH SIMPLE
 	ON DELETE Cascade
 	ON UPDATE No Action;
 -- -------------------------------------------------------------
