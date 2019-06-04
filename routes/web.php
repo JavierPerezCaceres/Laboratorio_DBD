@@ -61,6 +61,7 @@ Route::get('/menu/{menu}', 'MenuController@show');
 Route::post('/menu', 'MenuController@store');
 Route::put('/menu/{menu}', 'MenuController@update');
 Route::delete('/menu/{menu}', 'MenuController@destroy');
+Route::get('/menu/{menu}/viewProduct', 'MenuController@viewProduct');
 //Route::resource('menu','MenuController');
 
 //Reserva Menu
