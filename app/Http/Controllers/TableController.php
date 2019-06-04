@@ -49,6 +49,8 @@ class TableController extends Controller
             $capacity = $request->capacity;
             $number = $request->number;
             $avaible = $request->avaible;
+
+            $restaurant_id = $request->restaurant_id;
             
             // Se realizan las validaciones de los datos.
             if(is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
@@ -59,6 +61,7 @@ class TableController extends Controller
 				    'capacity' => $capacity,
                     'number' => $number,
                     'avaible' => $avaible,
+                    'restaurant_id' => $restaurant_id,
 
 				]);
 			}
@@ -123,6 +126,8 @@ class TableController extends Controller
             $capacity = $request->capacity;
             $number = $request->number;
             $avaible = $request->avaible;
+
+            $restaurant_id = $request->restaurant_id;
             
             // Se realizan las validaciones de los datos.
             if(is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
@@ -138,6 +143,8 @@ class TableController extends Controller
 				    'capacity' => $capacity,
                     'number' => $number,
                     'avaible' => $avaible,
+
+                    'restaurant_id' => $restaurant_id
 
 				]);
 			}
@@ -173,25 +180,89 @@ class TableController extends Controller
         }
     }
 
-    public function viewTable(Request $request, Restaurant $restaurant, Table $table)
+    public function viewTable(Request $request, Table $table)
     {
 
-        if($table != null){
-
+        if($table != null)
+        {
             // Se realizan las validaciones de los datos.
-            if(($purchaseOrder->confirmation == 1) and (
-                $purchaseOrder->client_id != null))
+            if($table !=null)
             {
-                return $purchaseOrder->observations;
+                return $table->restaurant_id;
             }
             else {
-                return "No existen comentarios dado el contexto";
+                return "No existen mesas asociadas al restaurant";
             }
         }
 
         else {
-            return "Error al obtener comentarios, Orden de Compra no encontrada";
+            return "Error al obtener restaurant, mesa no encontrada";
         }
 
+    }
+
+    public function updateTable(Request $request, Table $table)
+    {
+
+        if($table != null)
+        {
+
+            $restaurant_id = $request->restaurant_id;
+
+            // Se realizan las validaciones de los datos.
+            if($restaurant_id !=null)
+            {
+                $table->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'restaurant_id' => $restaurant_id,
+                ]);
+
+            }
+            else {
+                return "No existen mesas asociadas al restaurant";
+            }
+        }
+
+        else {
+            return "Error al obtener restaurant, mesa no encontrada";
+        }
+
+        return Table::all();
+    }
+
+    public function deleteTable(Request $request, Table $table)
+    {
+
+        if($table != null)
+        {
+
+            $restaurant_id = $request->restaurant_id;
+
+            // Se realizan las validaciones de los datos.
+            if($restaurant_id !=null)
+            {
+                $table->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'restaurant_id' => null,
+                ]);
+
+            }
+
+            else
+            {
+                return "No existen mesas asociadas al restaurant";
+            }
+        }
+
+        else {
+            return "Error al obtener restaurant, mesa no encontrada";
+        }
+        return Table::all();
     }
 }
