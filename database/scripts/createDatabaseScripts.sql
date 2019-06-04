@@ -416,6 +416,10 @@ ALTER TABLE users
 	ADD CONSTRAINT users_pkey
 	PRIMARY KEY (id);
 
+ALTER TABLE deliveries
+	ADD CONSTRAINT deliveries_pkey
+	PRIMARY KEY (id);
+
 ALTER TABLE card_payments
     ADD CONSTRAINT card_payments_autorization_code_unique
     UNIQUE (autorization_code);
@@ -577,8 +581,8 @@ ALTER TABLE table_reservations
 
 -- CREATE "table_reservations_purchase_order_id_foreign" -------
 ALTER TABLE table_reservations
-	ADD CONSTRAINT table_purchase_order_id_foreign
-	FOREIGN KEY ( "table_reservation_id" )
+	ADD CONSTRAINT table_reservations_purchase_order_id_foreign
+	FOREIGN KEY ( "purchase_order_id" )
 	REFERENCES table_reservations ( "id" ) MATCH SIMPLE
 	ON DELETE Cascade
 	ON UPDATE No Action;
