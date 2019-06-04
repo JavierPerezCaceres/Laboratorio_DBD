@@ -112,6 +112,10 @@ Route::post('/restaurant', 'RestaurantController@store');
 Route::put('/restaurant/{restaurant}', 'RestaurantController@update');
 Route::delete('/restaurant/{restaurant}', 'RestaurantController@destroy');
 
+Route::get('/restaurant/{restaurant}/viewDirection','RestaurantController@viewDirection');
+Route::put('/restaurant/{restaurant}/updateDirection','RestaurantController@updateDirection');
+Route::delete('/restaurant/{restaurant}/deleteDirection','RestaurantController@deleteDirection');
+
 // Table.
 Route::get('/table', 'TableController@index');
 Route::get('/table/{table}', 'TableController@show');

@@ -186,7 +186,7 @@ class TableController extends Controller
         if($table != null)
         {
             // Se realizan las validaciones de los datos.
-            if($table !=null)
+            if($table->restaurant_id !=null)
             {
                 return $table->restaurant_id;
             }

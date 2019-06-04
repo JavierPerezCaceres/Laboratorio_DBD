@@ -23,7 +23,7 @@ class CreateRestaurantsTable extends Migration
             $table->time('closing_hour');
             $table->integer('person_cost');
             $table->integer('wait_time');
-            $table->string('direction');
+            $table->string('direction')->nullable();
 
             $table->unsignedInteger('user_id');
 

@@ -202,88 +202,87 @@ class RestaurantController extends Controller
         }
     }
 
-    // public function viewComment(Request $request, PurchaseOrder $purchaseOrder)
-    // {
+    public function viewDirection(Request $request, Restaurant $restaurant)
+     {
 
-    //     if($purchaseOrder != null){
+         if($restaurant != null){
 
-    //         // Se realizan las validaciones de los datos.
-    //         if(($purchaseOrder->confirmation == 1) and (
-    //             $purchaseOrder->client_id != null))
-    //         {
-    //             return $purchaseOrder->observations;
-    //         }
-    //         else {
-    //             return "No existen comentarios dado el contexto";
-    //         }
-    //     }
+             // Se realizan las validaciones de los datos.
+             if($restaurant->direction)
+             {
+                 return $restaurant->direction;
+             }
+             else {
+                 return "No existe direccion asociada";
+             }
+         }
 
-    //     else {
-    //         return "Error al obtener comentarios, Orden de Compra no encontrada";
-    //     }
+         else {
+             return "Error al obtener direccion, Restaurant no encontrado";
+         }
 
-    // }
+     }
 
-    // public function updateComment(Request $request, PurchaseOrder $purchaseOrder)
-    // {
+    public function updateDirection(Request $request, Restaurant $restaurant)
+    {
 
-    //     if($purchaseOrder != null){
+            if($restaurant != null){
 
-    //         $observations = $request->observations;
+             $direction = $request->direction;
 
-    //         // Se realizan las validaciones de los datos.
-    //         if(($purchaseOrder->confirmation == 1) and (
-    //             $purchaseOrder->client_id != null))
-    //         {
-    //             $purchaseOrder->updateOrCreate([
+             // Se realizan las validaciones de los datos.
+             if($restaurant->direction != null)
+             {
+                 $restaurant->updateOrCreate([
 
-    //                 'id' => $request->id
-    //             ],
-    //             [   
-    //                 'observations' => $observations,
-    //             ]);
+                     'id' => $request->id
+                 ],
+                 [   
+                     'direction' => $direction,
+                 ]);
 
-    //         }
-    //         else {
-    //             return "No existen comentarios dado el contexto";
-    //         }
-    //     }
+                 return $restaurant;
+             }
+             else {
+                 return "No existen direccion asociada";
+             }
+         }
 
-    //     else {
-    //         return "Error al obtener comentarios, Orden de Compra no encontrada";
-    //     }
+         else {
+             return "Error al obtener direccion, Restaurant no encontrado";
+         }
 
-    //     return PurchaseOrder::all();
-    // }
+        return Restaurant::all();
+    }
 
-    // public function deleteComment(Request $request, PurchaseOrder $purchaseOrder)
-    // {
+    public function deleteDirection(Request $request, Restaurant $restaurant)
+     {
 
-    //     if($purchaseOrder != null){
+         if($restaurant != null){
 
-    //         $observations = $request->observations;
+            $direction = $request->direction;
 
-    //         // Se realizan las validaciones de los datos.
-    //         if(($purchaseOrder->confirmation == 1) and (
-    //             $purchaseOrder->client_id != null))
-    //         {
-    //             $purchaseOrder->updateOrCreate([
+             // Se realizan las validaciones de los datos.
+             if($restaurant->direction != null)
+             {
+                 $restaurant->updateOrCreate([
 
-    //                 'id' => $request->id
-    //             ],
-    //             [   
-    //                 'observations' => null,
-    //             ]);
+                     'id' => $request->id
+                 ],
+                 [   
+                     'direction' => null,
+                 ]);
 
-    //         }
-    //         else {
-    //             return "No existen comentarios dado el contexto";
-    //         }
-    //     }
+                 return $purchaseOrder;
+             }
+             else {
+                 return "No existen direccion asociada";
+             }
+         }
 
-    //     else {
-    //         return "Error al obtener comentarios, Orden de Compra no encontrada";
-    //     }
-    //     return PurchaseOrder::all();
-    // }
+         else {
+             return "Error al obtener direccion, Restaurant no encontrado";
+         }
+
+     }
 }
