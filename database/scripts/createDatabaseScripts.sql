@@ -299,7 +299,7 @@ CREATE TABLE valorations (
 
 -- CREATE TABLE "webpage_records" ------------------------------
 CREATE TABLE webpage_records (
-  	"id" Bigint DEFAULT nextval('webpage_records_id_seq'::regclass) NOT NULL,
+  	"id" serial NOT NULL,
   	"created_at" Timestamp( 0 ) Without Time Zone,
   	"updated_at" Timestamp( 0 ) Without Time Zone,
   	"action" Character Varying( 255 ) NOT NULL
@@ -365,19 +365,15 @@ ALTER TABLE purchase_orders
     PRIMARY KEY (id);
 
 ALTER TABLE restaurant_requests
-		ADD CONSTRAINT restaurant_requests_pkey;
+		ADD CONSTRAINT restaurant_requests_pkey
 		PRIMARY KEY (id);
 
 ALTER TABLE valorations
-		ADD CONSTRAINT valorations_pkey;
+		ADD CONSTRAINT valorations_pkey
 		PRIMARY KEY (id);
 
 ALTER TABLE webpage_records
-		ADD CONSTRAINT webpage_records_pkey;
-		PRIMARY KEY(id);
-
-ALTER TABLE webpage_records
-		ADD CONSTRAINT webpage_records_pkey;
+		ADD CONSTRAINT webpage_records_pkey
 		PRIMARY KEY(id);
 
 ALTER TABLE restaurants
@@ -402,23 +398,23 @@ ALTER TABLE categories
 
 ALTER TABLE roles
 	ADD CONSTRAINT roles_pkey
-	PRIMARY KEY (id)
+	PRIMARY KEY (id);
 
 ALTER TABLE cities
 	ADD CONSTRAINT cities_pkey
-	PRIMARY KEY (id)
+	PRIMARY KEY (id);
 
 ALTER TABLE districts
 	ADD CONSTRAINT districts_pkey
-	PRIMARY KEY (id)
+	PRIMARY KEY (id);
 
 ALTER TABLE addresses
 	ADD CONSTRAINT addresses_pkey
-	PRIMARY KEY (id)
+	PRIMARY KEY (id);
 
 ALTER TABLE users
 	ADD CONSTRAINT users_pkey
-	PRIMARY KEY (id)
+	PRIMARY KEY (id);
 
 ALTER TABLE card_payments
     ADD CONSTRAINT card_payments_autorization_code_unique
