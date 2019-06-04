@@ -60,6 +60,7 @@ Route::delete('/menu/{menu}', 'MenuController@destroy');
 
 
 Route::get('/menu/{menu}/viewProductMenu', 'MenuProductController@viewProductMenu');
+Route::post('/menu/{product}/updateProductMenu', 'MenuProductController@updateProductMenu');
 Route::delete('/menu/{menu}/deleteProductMenu/{product}', 'MenuProductController@deleteProductMenu');
 
 //Reserva Menu

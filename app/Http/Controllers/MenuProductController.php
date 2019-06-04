@@ -199,4 +199,26 @@ class MenuProductController extends Controller
 
         return MenuProduct::all();
     }
+
+    public function updateProductMenu(Request $request,Menu $menu, Product $product)
+    {
+        $product_id = $request->product_id;
+        
+        // Se realizan las validaciones de los datos.
+        if($product !=null)
+        {
+            $product->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'product_id' => $product_id,
+                ]);
+        }
+        else {
+            return "No existe el producto ingresado";
+        }
+
+        return MenuProduct::all();
+    }
 }
