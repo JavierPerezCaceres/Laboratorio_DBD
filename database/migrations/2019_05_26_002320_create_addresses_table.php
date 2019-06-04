@@ -20,11 +20,11 @@ class CreateAddressesTable extends Migration
             $table->string('number');
 
             $table->unsignedInteger('district_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('client_id');
 
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
     }
 
