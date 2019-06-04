@@ -123,7 +123,7 @@ class TableReservationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, TableReservation $tableReservation)
-    {   /*
+    {   
         // Se busca la id ingresada, en caso de no existir arroja null.
         $verifyTableReservation = TableReservation::find($request->id);
 
@@ -175,9 +175,9 @@ class TableReservationController extends Controller
         }
  
         // Se muestran todos el contenido de la tabla Restaurant.
-        return TableReservation::all();*/
+        return TableReservation::all();
 
-        return "No se puede actualizar la reserva de una Mesa."
+        return "No se puede actualizar la reserva de una Mesa.";
     }
 
     /**
@@ -187,7 +187,7 @@ class TableReservationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(TableReservation $tableReservation)
-    {   /*
+    {   
         // Si la id no existe en la tabla, se avisa al usuario.
         if($tableReservation == null){
             return "No se ha encontrado la Reserva de Mesa a eliminar.";
@@ -196,76 +196,81 @@ class TableReservationController extends Controller
         else{
             $tableReservation->delete();
             return "Se ha eliminado una Reserva de Mesa";
-        }*/
-        return "No es posible eliminar la reserva de una Mesa."
+        }
+        return "No es posible eliminar la reserva de una Mesa.";
     }
 
-    public function viewTableReservation(Request $request, TableReservation $tableReservation, Table $table)
+    public function viewTableReservation(TableReservation $tableReservation)
     {
-        if($purchaseOrder != null){
+        if($tableReservation != null){
 
-            if($tableReservation->reserve_confirmation == 1 and table_id != null){
+            if($tableReservation->reserve_confirmation == 1 and $tableReservation != null){
 
                 return $tableReservation->reserve_hour;
             }
             else{
-                return "La Reserva de la Mesa no esta confirmada"
+                return "La Reserva de la Mesa no esta confirmada";
             }
         }
         else{
-            return "Error al consultar por la Mesa".
+            return "Error al consultar por la Mesa";
         }
     }
 
-    public function updateTableReservation(Request $request, TableReservation $tableReservation, Table $table)
+    public function updateTableReservation(Request $request, TableReservation $tableReservation)
     {
-        if($purchaseOrder != null){
+        if($tableReservation != null){
 
             $reserve_hour = $request->reserve_hour;
 
             if($tableReservation->reserve_confirmation == 1 and $tableReservation->table_id != null){
 
-                $purchaseOrder->updateOrCreate([
+                $tableReservation->updateOrCreate([
 
                     'id' => $request->id
                 ],
                 [   
                     'reserve_hour' => $reserve_hour,
                 ]);
-
             }
             else{
-                return "La Reserva de la Mesa no esta confirmada"
+                return "La Reserva de la Mesa no esta confirmada";
             }
         }
         else{
-            return "Error al consultar por la Mesa".
+            return "Error al consultar por la Mesa";
         }
+
+        return TableReservation::all();
     }
 
     public function deleteTableReservation(Request $request, TableReservation $tableReservation, Table $table)
     {
-        if($purchaseOrder != null){
+        if($tableReservation != null){
 
             $reserve_hour = $request->reserve_hour;
 
             if($tableReservation->reserve_confirmation == 1 and $tableReservation->table_id != null){
 
-                $purchaseOrder->updateOrCreate([
+                $tableReservation->updateOrCreate([
 
                     'id' => $request->id
                 ],
                 [   
-                    'reserve_hour' => '02:00:00',
+                    'reserve_hour' => null,
+                    'reserve_confirmation' => null,
                 ]);
 
             }
             else{
-                return "La Reserva de la Mesa no esta confirmada"
+                return "La Reserva de la Mesa no esta confirmada";
             }
         }
         else{
-            return "Error al consultar por la Mesa".
+            return "Error al consultar por la Mesa";
         }
+        return TableReservation::all();
     }
+
+
 }

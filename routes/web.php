@@ -131,9 +131,9 @@ Route::post('/table_reservation', 'TableReservationController@store');
 Route::put('/table_reservation/{table_reservation}', 'TableReservationController@update');
 Route::delete('/table_reservation/{table_reservation}', 'TableReservationController@destroy');
 
-Route::get('/table_reservation/{table_reservation}/viewTableReservation', 'PurchaseOrderController@viewTableReservation');
-Route::put('/table_reservation/{table_reservation}/updateTableReservation', 'PurchaseOrderController@updateTableReservation');
-Route::delete('/table_reservation/{table_reservation}/deleteTableReservation', 'PurchaseOrderController@deleteTableReservation');
+Route::get('/table_reservation/{table_reservation}/viewTableReservation', 'TableReservationController@viewTableReservation');
+Route::put('/table_reservation/{table_reservation}/updateTableReservation', 'TableReservationController@updateTableReservation');
+Route::delete('/table_reservation/{table_reservation}/deleteTableReservation', 'TableReservationController@deleteTableReservation');
 
 // Delivery.
 Route::get('/delivery', 'DeliveryController@index');

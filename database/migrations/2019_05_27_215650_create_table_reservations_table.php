@@ -20,8 +20,8 @@ class CreateTableReservationsTable extends Migration
             $table->string('reserve_name');
             $table->integer('people_quantity');
             $table->date('reserve_date');
-            $table->time('reserve_hour');
-            $table->integer('reserve_confirmation');
+            $table->time('reserve_hour')->nullable();
+            $table->integer('reserve_confirmation')->nullable();
 
             $table->unsignedInteger('table_id');
             $table->unsignedInteger('purchase_order_id');
