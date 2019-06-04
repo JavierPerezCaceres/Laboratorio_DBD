@@ -43,11 +43,10 @@ Route::post('/purchase_order', 'PurchaseOrderController@store');
 Route::put('/purchase_order/{purchase_order}', 'PurchaseOrderController@update');
 Route::delete('/purchase_order/{purchase_order}', 'PurchaseOrderController@destroy');
 
-Route::get('/address', 'AddressController@index');
-Route::get('/city', 'CityController@index');
-Route::get('/district', 'DistrictController@index');
-Route::get('/role', 'RoleController@index');
-Route::get('/user', 'UserController@index');
+
+Route::get('/purchase_order/{purchase_order}/viewComment', 'PurchaseOrderController@viewComment');
+Route::put('/purchase_order/{purchase_order}/updateComment', 'PurchaseOrderController@updateComment');
+Route::delete('/purchase_order/{purchase_order}/deleteComment', 'PurchaseOrderController@deleteComment');
 
 // Categoria.
 Route::get('/category', 'CategoryController@index');
