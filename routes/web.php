@@ -60,7 +60,7 @@ Route::delete('/menu/{menu}', 'MenuController@destroy');
 
 
 Route::get('/menu/{menu}/viewProductMenu', 'MenuProductController@viewProductMenu');
-Route::get('/menu/{menu}/deleteProductMenu/{product}', 'MenuProductController@deleteProductMenu');
+Route::delete('/menu/{menu}/deleteProductMenu/{product}', 'MenuProductController@deleteProductMenu');
 
 //Reserva Menu
 Route::get('/menu_reservation', 'MenuReservationController@index');
