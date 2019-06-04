@@ -12,6 +12,12 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Role::class,10)->create();
+        //factory(Role::class,10)->create();
+        //Admin con id = 1
+        Role::create([ 'type' => 'Administrador', 'description' => 'Tiene permisos para modificar información de la página' ]);
+        //Restaurant con id = 2
+        Role::create([ 'type' => 'Restaurante', 'description' => 'Ofrece Comida' ]);
+        //Cliente con id = 3
+        Role::create([ 'type' => 'Cliente', 'description' => 'Consumidor el cual hace pedidos' ]);
     }
 }
