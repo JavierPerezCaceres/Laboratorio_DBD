@@ -17,6 +17,11 @@ DROP TABLE IF EXISTS cities CASCADE;
 DROP TABLE IF EXISTS districts CASCADE;
 DROP TABLE IF EXISTS addresses CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS restaurants CASCADE;
+DROP TABLE IF EXISTS table_reservations CASCADE;
+DROP TABLE IF EXISTS tables CASCADE;
+DROP TABLE IF EXISTS product_categories CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
 
 
 
@@ -193,6 +198,74 @@ CREATE TABLE users (
 );
 -- -------------------------------------------------------------
 
+-- CREATE TABLE "restaurants" --------------------------------------
+CREATE TABLE IF NOT EXISTS restaurants ( 
+	"id" serial NOT NULL,
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone,
+	"category" Character Varying(50),
+	"contact_number" Character Varying(14),
+	"kitchen_type" Character Varying(50),
+	"opening_hour" Time,
+	"closing_hour" Time,
+	"person_cost" Integer NOT NULL,
+	"wait_time" Integer NOT NULL,
+	"direction" Character Varying(255),
+	"user_id" Integer NOT NULL
+
+ );
+-- -------------------------------------------------------------
+
+-- CREATE TABLE "table_reservations" --------------------------------------
+CREATE TABLE IF NOT EXISTS table_reservations ( 
+	"id" serial NOT NULL,
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone,
+	"reserve_number" Integer NOT NULL,
+	"reserve_name" Character Varying(255),
+	"people_quantity" Integer NOT NULL,
+	"reserve_date" Date,
+	"reserve_hour" Time,
+	"reserve_confirmation" Integer NOT NULL,
+	"table_id" Integer NOT NULL,
+	"purchase_order_id" Integer NOT NULL
+
+ );
+-- -------------------------------------------------------------
+
+-- CREATE TABLE "tables" --------------------------------------
+CREATE TABLE IF NOT EXISTS tables ( 
+	"id" serial NOT NULL,
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone,
+	"capacity" Integer NOT NULL,
+	"number" Integer NOT NULL,
+	"avaible" Integer NOT NULL,
+	"restaurant_id" Integer NOT NULL 
+
+ );
+-- -------------------------------------------------------------
+
+-- CREATE TABLE "product_categories" --------------------------------------
+CREATE TABLE IF NOT EXISTS product_categories ( 
+	"id" serial NOT NULL,
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone,
+	"product_id" Integer NOT NULL,
+	"category_id" Integer NOT NULL
+
+ );
+-- -------------------------------------------------------------
+
+-- CREATE TABLE "categories" --------------------------------------
+CREATE TABLE IF NOT EXISTS categories ( 
+	"id" serial NOT NULL,
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone,
+	"name" Character Varying(255)
+
+ );
+-- -------------------------------------------------------------
 
 
 --===========================
@@ -208,8 +281,8 @@ ALTER TABLE card_payments
     PRIMARY KEY (id);
 
 ALTER TABLE ingredients
-ADD CONSTRAINT ingredients_pkey
-PRIMARY KEY (id);
+	ADD CONSTRAINT ingredients_pkey
+	PRIMARY KEY (id);
 
 ALTER TABLE menus
     ADD CONSTRAINT menus_pkey
@@ -228,12 +301,12 @@ ALTER TABLE payment_methods
     PRIMARY KEY (id);
 
 ALTER TABLE products
-ADD CONSTRAINT products_pkey
-PRIMARY KEY (id);
+	ADD CONSTRAINT products_pkey
+	PRIMARY KEY (id);
 
 ALTER TABLE product_ingredients
-ADD CONSTRAINT product_ingredients_pkey
-PRIMARY KEY (id);
+	ADD CONSTRAINT product_ingredients_pkey
+	PRIMARY KEY (id);
 
 ALTER TABLE purchase_orders
     ADD CONSTRAINT purchase_orders_pkey
@@ -251,7 +324,25 @@ ALTER TABLE card_payments
     ADD CONSTRAINT card_payments_card_number_unique
     UNIQUE (card_number);
 
+ALTER TABLE restaurants
+    ADD CONSTRAINT restaurants_pkey
+    PRIMARY KEY (id);
 
+ALTER TABLE table_reservations
+    ADD CONSTRAINT table_reservations_pkey
+    PRIMARY KEY (id);
+
+ALTER TABLE tables
+    ADD CONSTRAINT table_pkey
+    PRIMARY KEY (id);
+
+ALTER TABLE product_categories
+    ADD CONSTRAINT product_categories_pkey
+    PRIMARY KEY (id);
+
+ALTER TABLE categories
+    ADD CONSTRAINT categories_pkey
+    PRIMARY KEY (id);
 
 --===========================
 -- FOREIGN KEYS
@@ -370,6 +461,60 @@ ALTER TABLE users
 ALTER TABLE users
 	ADD CONSTRAINT users_role_id_foreign FOREIGN KEY ( role_id )
 	REFERENCES roles ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------
+
+-- CREATE "restaurants_user_id_foreign" ------------------------
+ALTER TABLE restaurants
+	ADD CONSTRAINT restaurants_user_id_foreign
+	FOREIGN KEY ( "user_id" )
+	REFERENCES users ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------
+
+-- CREATE "table_reservations_table_id_foreign" ----------------
+ALTER TABLE table_reservations
+	ADD CONSTRAINT table_reservations_table_id_foreign
+	FOREIGN KEY ( "table_id" )
+	REFERENCES tables ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------
+
+-- CREATE "table_reservations_purchase_order_id_foreign" -------
+ALTER TABLE table_reservations
+	ADD CONSTRAINT table_purchase_order_id_foreign
+	FOREIGN KEY ( "table_reservation_id" )
+	REFERENCES table_reservations ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------
+
+-- CREATE "tables_restaurant_id_foreign" ----------------
+ALTER TABLE tables
+	ADD CONSTRAINT tables_restaurant_id_foreign
+	FOREIGN KEY ( "restaurant_id" )
+	REFERENCES restaurants ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------
+
+-- CREATE "product_categories_product_id_foreign" ----------------
+ALTER TABLE product_categories
+	ADD CONSTRAINT product_categories_product_id_foreign
+	FOREIGN KEY ( "product_id" )
+	REFERENCES products ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------
+
+-- CREATE "product_categories_category_id_foreign" ----------------
+ALTER TABLE product_categories
+	ADD CONSTRAINT product_categories_category_id_foreign
+	FOREIGN KEY ( "category_id" )
+	REFERENCES categories ( "id" ) MATCH SIMPLE
 	ON DELETE Cascade
 	ON UPDATE No Action;
 -- -------------------------------------------------------------

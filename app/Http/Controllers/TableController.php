@@ -58,7 +58,7 @@ class TableController extends Controller
 					
 				    'capacity' => $capacity,
                     'number' => $number,
-                    'avaible' => $avaible
+                    'avaible' => $avaible,
 
 				]);
 			}
@@ -137,7 +137,7 @@ class TableController extends Controller
 					
 				    'capacity' => $capacity,
                     'number' => $number,
-                    'avaible' => $avaible
+                    'avaible' => $avaible,
 
 				]);
 			}
@@ -171,5 +171,27 @@ class TableController extends Controller
             $table->delete();
             return "Se ha eliminado una Mesa";
         }
+    }
+
+    public function viewTable(Request $request, Restaurant $restaurant, Table $table)
+    {
+
+        if($table != null){
+
+            // Se realizan las validaciones de los datos.
+            if(($purchaseOrder->confirmation == 1) and (
+                $purchaseOrder->client_id != null))
+            {
+                return $purchaseOrder->observations;
+            }
+            else {
+                return "No existen comentarios dado el contexto";
+            }
+        }
+
+        else {
+            return "Error al obtener comentarios, Orden de Compra no encontrada";
+        }
+
     }
 }

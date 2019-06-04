@@ -9,6 +9,7 @@ use Faker\Generator as Faker;
 
 $factory->define(TableReservation::class, function (Faker $faker) {
     $purchase_order_id = DB::table('purchase_orders')->select('id')->get();
+    $table_id = DB::table('tables')->select('id')->get();
 
     return [
         'reserve_number' => $faker->numberBetween($min = 1, $max = 25),
@@ -18,7 +19,7 @@ $factory->define(TableReservation::class, function (Faker $faker) {
         'reserve_hour' => $faker->time($format = 'H:i:s', $max = 'now'),
         'reserve_confirmation' => $faker->numberBetween($min = 0, $max = 1),
 
-        'table_id' => $table->random()->id,
+        'table_id' => $table_id->random()->id,
         'purchase_order_id' => $purchase_order_id->random()->id
     ];
 });
