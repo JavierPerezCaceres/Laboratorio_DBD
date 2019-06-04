@@ -12,6 +12,11 @@ DROP TABLE IF EXISTS products CASCADE;
 DROP TABLE IF EXISTS ingredients CASCADE;
 DROP TABLE IF EXISTS menu_products CASCADE;
 DROP TABLE IF EXISTS product_ingredients CASCADE;
+DROP TABLE IF EXISTS roles CASCADE;
+DROP TABLE IF EXISTS cities CASCADE;
+DROP TABLE IF EXISTS districts CASCADE;
+DROP TABLE IF EXISTS addresses CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 
 
 
@@ -130,6 +135,62 @@ CREATE TABLE IF NOT EXISTS purchase_orders (
 	"client_id" Integer NOT NULL,
 	"delivery_id" Integer NOT NULL
  );
+-- -------------------------------------------------------------
+
+-- CREATE TABLE "roles" ----------------------------------------
+CREATE TABLE roles ( 
+	"id" serial NOT NULL,
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone,
+	"type" Character Varying( 255 ) NOT NULL,
+	"description" Character Varying( 255 ) NOT NULL 
+);
+-- -------------------------------------------------------------
+
+-- CREATE TABLE "cities" ---------------------------------------
+CREATE TABLE cities ( 
+	"id" serial NOT NULL,
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone,
+	"name" Character Varying( 255 ) NOT NULL 
+);
+-- -------------------------------------------------------------
+
+-- CREATE TABLE "districts" ------------------------------------
+CREATE TABLE districts ( 
+	"id" serial NOT NULL,
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone,
+	"name" Character Varying( 255 ) NOT NULL,
+	"city_id" Integer NOT NULL 
+);
+-- -------------------------------------------------------------
+
+-- CREATE TABLE "addresses" ------------------------------------
+CREATE TABLE addresses ( 
+	"id" serial NOT NULL,
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone,
+	"street" Character Varying( 255 ) NOT NULL,
+	"number" Character Varying( 255 ) NOT NULL,
+	"district_id" Integer NOT NULL,
+	"user_id" Integer NOT NULL 
+);
+-- -------------------------------------------------------------
+
+-- CREATE TABLE "users" ----------------------------------------
+CREATE TABLE users ( 
+	"id" serial NOT NULL,
+	"email" Character Varying( 255 ) NOT NULL,
+	"password" Character Varying( 255 ) NOT NULL,
+	"role_id" Integer NOT NULL,
+	"client_id" Integer NOT NULL,
+	"name" Character Varying( 255 ) NOT NULL,
+	"email_verified_at" Timestamp( 0 ) Without Time Zone,
+	"remember_token" Character Varying( 100 ),
+	"created_at" Timestamp( 0 ) Without Time Zone,
+	"updated_at" Timestamp( 0 ) Without Time Zone
+);
 -- -------------------------------------------------------------
 
 
@@ -271,4 +332,44 @@ ALTER TABLE payment_methods
 	ADD CONSTRAINT payment_methods_card_payment_id_foreign 
 	FOREIGN KEY ( card_payment_id )
 	REFERENCES card_payments ( "id" ) MATCH SIMPLE;
+-- -------------------------------------------------------------
+
+-- CREATE LINK "districts_city_id_foreign" ---------------------
+ALTER TABLE districts
+	ADD CONSTRAINT districts_city_id_foreign FOREIGN KEY ( city_id )
+	REFERENCES cities ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------
+
+-- CREATE LINK "addresses_user_id_foreign" ---------------------
+ALTER TABLE addresses
+	ADD CONSTRAINT addresses_user_id_foreign FOREIGN KEY ( user_id )
+	REFERENCES users ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------
+
+-- CREATE LINK "addresses_district_id_foreign" -----------------
+ALTER TABLE addresses
+	ADD CONSTRAINT addresses_district_id_foreign FOREIGN KEY ( district_id )
+	REFERENCES districts ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------
+
+-- CREATE LINK "users_client_id_foreign" -----------------------
+ALTER TABLE users
+	ADD CONSTRAINT users_client_id_foreign FOREIGN KEY ( client_id )
+	REFERENCES clients ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
+-- -------------------------------------------------------------
+
+-- CREATE LINK "users_role_id_foreign" -------------------------
+ALTER TABLE users
+	ADD CONSTRAINT users_role_id_foreign FOREIGN KEY ( role_id )
+	REFERENCES roles ( "id" ) MATCH SIMPLE
+	ON DELETE Cascade
+	ON UPDATE No Action;
 -- -------------------------------------------------------------
