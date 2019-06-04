@@ -19,8 +19,6 @@ class CreateTablesTable extends Migration
             $table->integer('capacity');
             $table->integer('number');
             $table->integer('avaible');
-            $table->time('start_reservation');
-            $table->time('end_reservation');
 
             $table->unsignedInteger('restaurant_id');
 

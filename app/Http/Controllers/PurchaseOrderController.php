@@ -148,7 +148,6 @@ class PurchaseOrderController extends Controller
                     'observations' => $observations,
                 ]);
 
-                return $purchaseOrder;
             }
             else {
                 return "No existen comentarios dado el contexto";
@@ -159,6 +158,7 @@ class PurchaseOrderController extends Controller
             return "Error al obtener comentarios, Orden de Compra no encontrada";
         }
 
+        return PurchaseOrder::all();
     }
 
         public function deleteComment(Request $request, PurchaseOrder $purchaseOrder)
@@ -180,7 +180,6 @@ class PurchaseOrderController extends Controller
                     'observations' => 'Sin comentario',
                 ]);
 
-                return $purchaseOrder;
             }
             else {
                 return "No existen comentarios dado el contexto";
@@ -190,7 +189,7 @@ class PurchaseOrderController extends Controller
         else {
             return "Error al obtener comentarios, Orden de Compra no encontrada";
         }
-
+        return PurchaseOrder::all();
     }
     /**
      * Show the form for editing the specified resource.
