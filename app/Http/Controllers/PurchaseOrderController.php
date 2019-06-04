@@ -205,4 +205,21 @@ class PurchaseOrderController extends Controller
         return "No es posible eliminar una Orden de Compra";
         
     }
+
+    public function viewClientOrders(PurchaseOrder $purchaseOrder, Client $client)
+    {
+        $clientOrders = PurchaseOrder::where('client_id',$client->id)->get();
+
+            return $client->purchaseOrder;
+    }
+
+    public function updateClientOrders(PurchaseOrder $purchaseOrder, Client $client)
+    {
+        return "No es posible modificar el historial de cliente";
+    }
+
+    public function deleteClientOrders(PurchaseOrder $purchaseOrder, Client $client)
+    {
+        return "No es posible eliminar el historial de cliente";
+    }
 }

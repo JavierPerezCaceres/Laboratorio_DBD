@@ -43,6 +43,8 @@ Route::post('/purchase_order', 'PurchaseOrderController@store');
 Route::put('/purchase_order/{purchase_order}', 'PurchaseOrderController@update');
 Route::delete('/purchase_order/{purchase_order}', 'PurchaseOrderController@destroy');
 
+Route::get('/purchase_order/{client}/viewClientOrders','PurchaseOrderController@viewClientOrders');
+
 
 // Categoria.
 Route::get('/category', 'CategoryController@index');
@@ -150,11 +152,11 @@ Route::put('/delivery/{delivery}', 'DeliveryController@update');
 Route::delete('/delivery/{delivery}', 'DeliveryController@destroy');
 
 //RestaurantRequest
-Route::get('/restaurantRequest', 'RestaurantRequestController@index');
-Route::get('/restaurantRequest/{restaurantRequest}', 'RestaurantRequestController@show');
-Route::post('/restaurantRequest', 'RestaurantRequestController@store');
-Route::put('/restaurantRequest/{restaurantRequest}', 'RestaurantRequestController@update');
-Route::delete('/restaurantRequest/{restaurantRequest}', 'RestaurantRequestController@destroy');
+Route::get('/restaurant_request', 'RestaurantRequestController@index');
+Route::get('/restaurant_request/{restaurant_request}', 'RestaurantRequestController@show');
+Route::post('/restaurant_request', 'RestaurantRequestController@store');
+Route::put('/restaurant_request/{restaurant_request}', 'RestaurantRequestController@update');
+Route::delete('/restaurant_request/{restaurant_request}', 'RestaurantRequestController@destroy');
 
 //Valoration
 Route::get('/valoration', 'ValorationController@index');
@@ -168,11 +170,11 @@ Route::put('/valoration/{valoration}/updateComment', 'ValorationController@updat
 Route::delete('/valoration/{valoration}/deleteComment', 'ValorationController@deleteComment');
 
 //WebpageRecord
-Route::get('/webpageRecord', 'WebpageRecordController@index');
-Route::get('/webpageRecord/{webpageRecord}', 'WebpageRecordController@show');
-Route::post('/webpageRecord', 'WebpageRecordController@store');
-Route::put('/webpageRecord/{webpageRecord}', 'WebpageRecordController@update');
-Route::delete('/webpageRecord/{webpageRecord}', 'WebpageRecordController@destroy');
+Route::get('/webpage_record', 'WebpageRecordController@index');
+Route::get('/webpage_record/{webpage_record}', 'WebpageRecordController@show');
+Route::post('/webpage_record', 'WebpageRecordController@store');
+Route::put('/webpage_record/{webpage_record}', 'WebpageRecordController@update');
+Route::delete('/webpage_record/{webpage_record}', 'WebpageRecordController@destroy');
 
 // User
 Route::get('/user', 'UserController@index');
