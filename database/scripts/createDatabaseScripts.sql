@@ -290,8 +290,8 @@ CREATE TABLE valorations (
  	"created_at" Timestamp( 0 ) Without Time Zone,
  	"updated_at" Timestamp( 0 ) Without Time Zone,
  	"score" Integer NOT NULL,
- 	"commentary" Character Varying( 255 ) NOT NULL,
- 	"user_id" Integer NOT NULL,
+ 	"comment" Character Varying( 255 ) NOT NULL,
+ 	"client_id" Integer NOT NULL,
  	"restaurant_id" Integer NOT NULL
 );
 
@@ -445,10 +445,10 @@ ALTER TABLE restaurant_requests
 --===========================
 
 -- CREATE "menus_restaurant_id_foreign" -----
---ALTER TABLE menus
---	ADD CONSTRAINT menus_restaurant_id_foreign
---	FOREIGN KEY ( restaurant_id )
---	REFERENCES restaurants ( "id" ) MATCH SIMPLE;
+ALTER TABLE menus
+	ADD CONSTRAINT menus_restaurant_id_foreign
+	FOREIGN KEY ( restaurant_id )
+	REFERENCES restaurants ( "id" ) MATCH SIMPLE;
 -- -------------------------------------------------------------
 
 -- CREATE "menu_products_menu_id_foreign" -----
@@ -633,8 +633,8 @@ ALTER TABLE valorations
 -- -------------------------------------------------------------
 -- CREATE LINK "valorations_user_id_foreign" -------------------
 ALTER TABLE valorations
-  ADD CONSTRAINT valorations_user_id_foreign FOREIGN KEY ( "user_id" )
-  REFERENCES users ( "id" ) MATCH SIMPLE
+  ADD CONSTRAINT valorations_user_id_foreign FOREIGN KEY ( "client_id" )
+  REFERENCES clients ( "id" ) MATCH SIMPLE
   ON DELETE Cascade
   ON UPDATE No Action;
 -- -------------------------------------------------------------
