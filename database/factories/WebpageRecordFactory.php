@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(WebpageRecord::class, function (Faker $faker) {
     return [
-        'action'->$faker->realText
+        'action' => $faker-> text($maxNbChars = 200),
     ];
 });

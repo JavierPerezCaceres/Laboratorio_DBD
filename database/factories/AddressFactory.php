@@ -6,7 +6,7 @@ use App\Address;
 use Faker\Generator as Faker;
 
 $factory->define(Address::class, function (Faker $faker) {
-	$user_id = DB::table('clients')->select('id')->get();
+	$client_id = DB::table('clients')->select('id')->get();
 	$district_id = DB::table('districts')->select('id')->get();
 
     return [
