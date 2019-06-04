@@ -161,7 +161,7 @@ class PurchaseOrderController extends Controller
         return PurchaseOrder::all();
     }
 
-        public function deleteComment(Request $request, PurchaseOrder $purchaseOrder)
+    public function deleteComment(Request $request, PurchaseOrder $purchaseOrder)
     {
 
         if($purchaseOrder != null){

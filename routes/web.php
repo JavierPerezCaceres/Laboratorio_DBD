@@ -126,6 +126,10 @@ Route::post('/table_reservation', 'TableReservationController@store');
 Route::put('/table_reservation/{table_reservation}', 'TableReservationController@update');
 Route::delete('/table_reservation/{table_reservation}', 'TableReservationController@destroy');
 
+Route::get('/table_reservation/{table_reservation}/viewTableReservation', 'PurchaseOrderController@viewTableReservation');
+Route::put('/table_reservation/{table_reservation}/updateTableReservation', 'PurchaseOrderController@updateTableReservation');
+Route::delete('/table_reservation/{table_reservation}/deleteTableReservation', 'PurchaseOrderController@deleteTableReservation');
+
 // Delivery.
 Route::get('/delivery', 'DeliveryController@index');
 Route::get('/delivery/{delivery}', 'DeliveryController@show');
