@@ -333,7 +333,7 @@ ALTER TABLE table_reservations
     PRIMARY KEY (id);
 
 ALTER TABLE tables
-    ADD CONSTRAINT card_payments_pkey
+    ADD CONSTRAINT table_pkey
     PRIMARY KEY (id);
 
 ALTER TABLE product_categories
