@@ -44,10 +44,6 @@ Route::put('/purchase_order/{purchase_order}', 'PurchaseOrderController@update')
 Route::delete('/purchase_order/{purchase_order}', 'PurchaseOrderController@destroy');
 
 
-Route::get('/purchase_order/{purchase_order}/viewComment', 'PurchaseOrderController@viewComment');
-Route::put('/purchase_order/{purchase_order}/updateComment', 'PurchaseOrderController@updateComment');
-Route::delete('/purchase_order/{purchase_order}/deleteComment', 'PurchaseOrderController@deleteComment');
-
 // Categoria.
 Route::get('/category', 'CategoryController@index');
 Route::get('/category/{category}', 'CategoryController@show');
@@ -159,6 +155,10 @@ Route::get('/valoration/{valoration}', 'ValorationController@show');
 Route::post('/valoration', 'ValorationController@store');
 Route::put('/valoration/{valoration}', 'ValorationController@update');
 Route::delete('/valoration/{valoration}', 'ValorationController@destroy');
+
+Route::get('/valoration/{valoration}/viewComment', 'ValorationController@viewComment');
+Route::put('/valoration/{valoration}/updateComment', 'ValorationController@updateComment');
+Route::delete('/valoration/{valoration}/deleteComment', 'ValorationController@deleteComment');
 
 //WebpageRecord
 Route::get('/webpageRecord', 'WebpageRecordController@index');

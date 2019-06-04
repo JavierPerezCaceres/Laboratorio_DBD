@@ -17,12 +17,12 @@ class CreateValorationsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->integer('score');
-            $table->string('commentary');
+            $table->string('comment')->nullable();
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('purchase_order_id');
             $table->unsignedInteger('restaurant_id');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('purchase_order_id')->references('id')->on('purchase_orders')->onDelete('cascade');
             $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
 
         });

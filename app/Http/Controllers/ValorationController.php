@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Valoration;
+use App\PurchaseOrder;
 use Illuminate\Http\Request;
 
 class ValorationController extends Controller
@@ -40,15 +41,19 @@ class ValorationController extends Controller
         if($verifyValoration == null){
             $valoration= new Valoration();
 
-            $score=$request->$score;
-            $commentary=$request->$commentary;
+            $score=$request->score;
+            $comment=$request->commentary;
+
+            $purchase_order_id = $request->purchase_order_id;
+            $restaurant_id = $request->restaurant_id;
+
 
             if( is_numeric(score) and !(is_numeric(commentary))){
               Valoration::create([
                 'score'=>$score,
-                'commentary'=>$commentary,
-                'user_id'=>$request->user_id,
-                'restaurant_id'=>$request->restaurant_id,
+                'comment'=>$comment,
+                'purchase_order_id'=>$purchase_order_id,
+                'restaurant_id'=>$restaurant_id,
               ]);
             }
             else{
@@ -56,7 +61,7 @@ class ValorationController extends Controller
             }
         }
         else{
-          return "Error al ingresar Valoration, llave primaria repetida.";
+          return "Error al ingresar Valoracion, llave primaria repetida.";
         }
         return Valoration::all();
     }
@@ -70,7 +75,7 @@ class ValorationController extends Controller
     public function show(Valoration $valoration)
     {
       if($valoration == null){
-          return "No se ha encontrado el Valoration buscado.";
+          return "No se ha encontrado la valoracion buscada.";
       }
       else{
         return $valoration;
@@ -101,8 +106,11 @@ class ValorationController extends Controller
       if($verifyValoration != null){
           $valoration= new Valoration();
 
-          $score=$request->$score;
-          $commentary=$request->$commentary;
+          $score=$request->score;
+          $comment=$request->comment;
+
+          $purchase_order_id = $request->purchase_order_id;
+          $restaurant_id = $request->restaurant_id;
 
           if( is_numeric(score) and !(is_numeric(commentary))){
             $valoration->updateOrCreate([
@@ -110,7 +118,9 @@ class ValorationController extends Controller
             ],
             [
               'score'=>$score,
-              'commentary'=>$commentary,
+              'comment'=>$comment,
+              'purchase_order_id'=>$purchase_order_id,
+              'restaurant_id'=>$restaurant_id,
             ]);
           }
           else{
@@ -118,7 +128,7 @@ class ValorationController extends Controller
           }
       }
       else{
-        return "Error al actualizar Valoration, llave primaria no existe.";
+        return "Error al actualizar valoracion, llave primaria no existe.";
       }
       return Valoration::all();
     }
@@ -132,11 +142,89 @@ class ValorationController extends Controller
     public function destroy(Valoration $valoration)
     {
       if($valoration == null){
-        return "No he encontrado el Valoration a eliminar.";
+        return "No he encontrado la valoracion a eliminar.";
       }
       else{
         $valoration->delete();
-        return "se ha eliminado el Valoration";
+        return "Se ha eliminado la valoracion";
       }
+    }
+
+
+    public function viewComment(Request $request, PurchaseOrder $purchaseOrder, Valoration $valoration)
+    {
+        $purchaseOrder = PurchaseOrder::where('confirmation','1')->get();
+
+        if($valoration != null)
+        {
+                return $valoration->comment;
+        }
+
+        else {
+            return "Error al obtener valoracion, Orden de Compra no encontrada";
+        }
+    }
+
+    public function updateComment(Request $request, PurchaseOrder $purchaseOrder, Valoration $valoration)
+    {
+
+        $purchaseOrder = PurchaseOrder::where('confirmation','1')->get();
+
+        if($purchaseOrder != null){
+
+            $comment = $request->comment;
+
+            // Se realizan las validaciones de los datos.
+            if($valoration != null)
+            {
+                $valoration->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'comment' => $comment,
+                ]);
+
+            }
+            else {
+                return "No existen comentarios dado el contexto";
+            }
+        }
+
+        else {
+            return "Error al obtener comentarios, Orden de Compra no encontrada";
+        }
+
+        return Valoration::all();
+    }
+
+    public function deleteComment(Request $request, PurchaseOrder $purchaseOrder, Valoration $valoration)
+    {
+
+        if($purchaseOrder != null){
+
+            $comment = $request->comment;
+
+            // Se realizan las validaciones de los datos.
+            if($valoration != null)
+            {
+                $valoration->updateOrCreate([
+
+                    'id' => $request->id
+                ],
+                [   
+                    'comment' => null,
+                ]);
+
+            }
+            else {
+                return "No existen comentarios dado el contexto";
+            }
+        }
+
+        else {
+            return "Error al obtener comentarios, Orden de Compra no encontrada";
+        }
+        return Valoration::all();
     }
 }

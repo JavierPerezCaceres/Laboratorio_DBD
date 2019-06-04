@@ -37,4 +37,8 @@ class PurchaseOrder extends Model
     public function client(){
     	return $this->belongsTo(Client::class);
     }
+
+    public function valoration(){ 
+        return $this->hasMany(Valoration::class);
+    }
 }

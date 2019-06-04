@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MenuProductsTableSeeder::class);
         $this->call(DeliverySeeder::class);
         $this->call(WebpageRecordSeeder::class);
-        $this->call(ValorationSeeder::class);
         $this->call(RestaurantRequestSeeder::class);
 
         $this->call(CardPaymentSeeder::class);
@@ -35,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductCategoriesTableSeeder::class);
         $this->call(TablesTableSeeder::class);
         $this->call(TableReservationsTableSeeder::class);
+        $this->call(ValorationSeeder::class);
 
         $this->call(CityTableSeeder::class);
         $this->call(DistrictTableSeeder::class);

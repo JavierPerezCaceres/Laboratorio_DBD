@@ -35,27 +35,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function rol(){
-        return $this->hasOne(Rol::class);
+    public function role(){
+        return $this->hasOne(Role::class);
     }
-
-    public function address(){
-        return $this->hasMany(Address::class);
+    
+    public function restaurantRequest(){
+        return $this->hasMany(RestaurantRequest::class);
     }
-    /*
-    public function restaurant_request(){
-        return $this->hasMany(Restaurant_request::class);
-    }*/
 
     public function client(){
         return $this->belongsTo(Client::class);
     }
-    /*
+    
     public function restaurant(){
         return $this->hasMany(Restaurant::class);
-    }*/
-    /*
-    public function rate(){ //valoracion
-        return $this->hasMany(Rate::class);
-    }*/
+    }
 }

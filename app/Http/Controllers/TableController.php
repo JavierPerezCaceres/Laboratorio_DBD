@@ -180,7 +180,7 @@ class TableController extends Controller
         }
     }
 
-    public function viewTable(Request $request, Table $table)
+    public function viewTable(Table $table)
     {
 
         if($table != null)
@@ -238,8 +238,6 @@ class TableController extends Controller
 
         if($table != null)
         {
-
-            $restaurant_id = $request->restaurant_id;
 
             // Se realizan las validaciones de los datos.
             if($restaurant_id !=null)

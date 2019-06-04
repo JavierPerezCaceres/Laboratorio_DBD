@@ -7,13 +7,13 @@ class Valoration extends Model
 {
     protected $table = 'valorations';
 
-	protected $fillable = ['score','commentary','user_id','restaurant_id'];
+	protected $fillable = ['score','comment','purchase_order_id','restaurant_id'];
 
 
     public function restaurant(){
     	return $this->belongsTo(Restaurant::class);
     }
-    public function user(){
-      return $this->belongsTo(User::class);
+    public function purchaseOrder(){
+      return $this->belongsTo(PurchaseOrder::class);
     }
 }
