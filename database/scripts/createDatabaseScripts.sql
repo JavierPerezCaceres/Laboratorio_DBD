@@ -1,5 +1,5 @@
 --=======================
---	DROP relaciones
+---	DROP relaciones
 --=======================
 
 DROP TABLE IF EXISTS clients CASCADE;
