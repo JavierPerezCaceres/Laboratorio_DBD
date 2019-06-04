@@ -239,10 +239,6 @@ class TableController extends Controller
 
         if($table != null)
         {
-
-            // Se realizan las validaciones de los datos.
-            if($restaurant_id !=null)
-            {
                 $table->updateOrCreate([
 
                     'id' => $request->id
@@ -251,12 +247,6 @@ class TableController extends Controller
                     'restaurant_id' => null,
                 ]);
 
-            }
-
-            else
-            {
-                return "No existen mesas asociadas al restaurant";
-            }
         }
 
         else {
