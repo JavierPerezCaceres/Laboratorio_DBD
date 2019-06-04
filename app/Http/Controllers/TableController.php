@@ -49,6 +49,8 @@ class TableController extends Controller
             $capacity = $request->capacity;
             $number = $request->number;
             $avaible = $request->avaible;
+            $start_reservation = $request->start_reservation;
+            $end_reservation = $request->end_reservation;
             
             // Se realizan las validaciones de los datos.
             if(is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
@@ -58,7 +60,9 @@ class TableController extends Controller
 					
 				    'capacity' => $capacity,
                     'number' => $number,
-                    'avaible' => $avaible
+                    'avaible' => $avaible,
+                    'start_reservation' => $start_reservation,
+                    'end_reservation' => $end_reservation
 
 				]);
 			}
@@ -123,6 +127,8 @@ class TableController extends Controller
             $capacity = $request->capacity;
             $number = $request->number;
             $avaible = $request->avaible;
+            $start_reservation = $request->start_reservation;
+            $end_reservation = $request->end_reservation;
             
             // Se realizan las validaciones de los datos.
             if(is_numeric($capacity) and is_numeric($number) and is_numeric($avaible)){
@@ -137,7 +143,9 @@ class TableController extends Controller
 					
 				    'capacity' => $capacity,
                     'number' => $number,
-                    'avaible' => $avaible
+                    'avaible' => $avaible,
+                    'start_reservation' => $start_reservation,
+                    'end_reservation' => $end_reservation
 
 				]);
 			}

@@ -12,6 +12,8 @@ class Table extends Model
         'capacity', 
         'number', 
         'avaible',
+        'start_reservation',
+        'end_reservation',
         'restaurant_id'
     ];
 

@@ -67,3 +67,11 @@ INSERT INTO "public"."card_payments" ( "account_type", "autorization_code",
 	"updated_at") 
 VALUES ( '2','234567890','12456789876','2019-06-03 05:56:48','12/12','2',
 	'234567890','2019-06-03 05:56:48');
+
+-- Restaurants
+
+INSERT INTO "public"."restaurants" ( "id","created_at", "updated_at", 
+	"category", "contact_number", "kitchen_type", "opening_hour", "closing_hour", 
+	"person_cost", "wait_time", "direction", "user_id") 
+VALUES ( '1','2019-06-03 05:56:48','2019-06-03 05:56:48','China','+56923423422','2',
+	'234567890','2019-06-03 05:56:48');
