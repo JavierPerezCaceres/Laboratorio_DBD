@@ -51,7 +51,7 @@ class PaymentMethodController extends Controller
             $card_payment_id = $request->card_payment_id;
             
             // Se realizan las validaciones de los datos.
-            if((is_numeric($payment_type)) and (is_numeric($card_payment_id)))
+            if($payment_type == 'Efectivo' or $payment_type == 'Cheque Restaurant'or $payment_type == 'Tarjeta de Débito/Crédito')
             {
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
@@ -62,7 +62,7 @@ class PaymentMethodController extends Controller
                 ]);
             }
             else{
-                return "Error en los parametros ingresados.";
+                return "Medio de pago incorrecto";
             }
         }
         
@@ -108,15 +108,15 @@ class PaymentMethodController extends Controller
      * @param  \App\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PaymentMethod $paymentMethod)
+    public function update(Request $request, PaymentMethod $payment_method)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyPaymentMethod = PaymentMethod::find($request->id);
+        $verifyPaymentMethod = PaymentMethod::find($payment_method->id);
 
         if($verifyPaymentMethod != null){
 
             // Se instancia un objeto del modelo
-            $payment_method = new PaymentMethod();
+            // $payment_method = new PaymentMethod();
             
             // Se guardan valores en las distintas variables de modelo.
             $payment_type = $request->payment_type;
@@ -124,22 +124,20 @@ class PaymentMethodController extends Controller
 
             
             // Se realizan las validaciones de los datos.
-            if((is_numeric($payment_type)))
+            if($payment_type == 'Efectivo' or $payment_type == 'Cheque Restaurant'or $payment_type == 'Tarjeta de Débito/Crédito')
             {
-                
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
-                $payment_method->updateOrCreate([
-
-                    'id' => $request->id
+                return $payment_method->updateOrCreate([
+                    'id' => $payment_method->id,
                 ],
                 [
-                    
                     'payment_type' => $payment_type,
                     'card_payment_id' => $card_payment_id,
                 ]);
+                
             }
             else{
-                return "Error en los parametros ingresados.";
+                return "Medio de pago incorrecto";
             }
         }
         
@@ -148,7 +146,7 @@ class PaymentMethodController extends Controller
         }
 
         // Se muestran todos el contenido de la tabla Client.
-        return PaymentMethod::all();
+        //return PaymentMethod::all();
     }
 
     /**

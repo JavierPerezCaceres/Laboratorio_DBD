@@ -10,7 +10,7 @@ $factory->define(PaymentMethod::class, function (Faker $faker) {
 	$card_payment_id = DB::table('card_payments')->select('id')->get();
 
     return [
-        'payment_type' => $faker->randomElement($array = array('Efectivo', 'Cheque Restaurant', 'Tarjeta de Crédito/Débito')),
+        'payment_type' => $faker->randomElement($array = array('Efectivo', 'Cheque Restaurant', 'Tarjeta Crédito/Débito')),
 
         'card_payment_id' => $card_payment_id->random()->id,
     ];

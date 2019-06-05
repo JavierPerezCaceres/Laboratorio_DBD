@@ -179,7 +179,7 @@ class ValorationController extends Controller
             {
                 $valoration->updateOrCreate([
 
-                    'id' => $request->id
+                    'id' => $valoration->id
                 ],
                 [   
                     'comment' => $comment,
@@ -210,7 +210,7 @@ class ValorationController extends Controller
             {
                 $valoration->updateOrCreate([
 
-                    'id' => $request->id
+                    'id' => $valoration->id
                 ],
                 [   
                     'comment' => null,
