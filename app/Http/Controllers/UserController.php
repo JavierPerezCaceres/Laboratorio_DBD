@@ -116,12 +116,9 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyUser = User::find($request->id);
+        $verifyUser = User::find($user->id);
 
         if($verifyUser != null){
-
-            // Se instancia un objeto del modelo
-            $user = new User();
 
             // Se guardan valores en las distintas variables de modelo.
             $name = $request->name;
@@ -135,8 +132,9 @@ class UserController extends Controller
                 
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $user->updateOrCreate([
-                    'id' => $request->id
-                ],[
+                    'id' => $user->id
+                ],
+                [
                     'name' => $name,
                     'email' => $email,
                     'password' => $password,

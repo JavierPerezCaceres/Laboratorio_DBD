@@ -94,20 +94,19 @@ class WebpageRecordController extends Controller
      */
     public function update(Request $request, WebpageRecord $webpageRecord)
     {
-        $verifyWebpageRecord = WebpageRecord::find($request->id);
+        $verifyWebpageRecord = WebpageRecord::find($webpageRecord->id);
 
         if($verifyWebpageRecord != null){
-
-          $webpageRecord= new WebpageRecord();
 
           $action= $request->action;
 
           if (!(is_numeric($action))){
+
             $webpageRecord->updateOrCreate([
-              'id'=>$request->id
+              'id' => $webpageRecord->id
             ],
             [
-              'action'=>$action,
+              'action' => $action,
             ]);
           }
           else{

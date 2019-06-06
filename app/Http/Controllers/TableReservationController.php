@@ -204,7 +204,7 @@ class TableReservationController extends Controller
     {
         if($tableReservation != null){
 
-            if($tableReservation->reserve_confirmation == 1 and $tableReservation != null){
+            if($tableReservation->reserve_confirmation == 1){
 
                 return $tableReservation->reserve_hour;
             }
@@ -227,7 +227,7 @@ class TableReservationController extends Controller
 
                 $tableReservation->updateOrCreate([
 
-                    'id' => $request->id
+                    'id' => $tableReservation->id
                 ],
                 [   
                     'reserve_hour' => $reserve_hour,
@@ -254,11 +254,10 @@ class TableReservationController extends Controller
 
                 $tableReservation->updateOrCreate([
 
-                    'id' => $request->id
+                    'id' => $tableReservation->id
                 ],
                 [   
-                    'reserve_hour' => null,
-                    'reserve_confirmation' => null,
+                    'reserve_confirmation' => 0
                 ]);
 
             }

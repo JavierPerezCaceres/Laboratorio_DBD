@@ -39,21 +39,21 @@ class ValorationController extends Controller
     {
         $verifyValoration = Valoration::find($request->id);
         if($verifyValoration == null){
-            $valoration= new Valoration();
 
-            $score=$request->score;
-            $comment=$request->commentary;
+            $valoration = new Valoration();
+
+            $score = $request->score;
+            $comment = $request->comment;
 
             $purchase_order_id = $request->purchase_order_id;
             $restaurant_id = $request->restaurant_id;
 
-
-            if( is_numeric(score) and !(is_numeric(commentary))){
+            if( is_numeric($score) and !(is_numeric($comment))){
               Valoration::create([
-                'score'=>$score,
-                'comment'=>$comment,
-                'purchase_order_id'=>$purchase_order_id,
-                'restaurant_id'=>$restaurant_id,
+                'score' => $score,
+                'comment' => $comment,
+                'purchase_order_id' => $purchase_order_id,
+                'restaurant_id' => $restaurant_id,
               ]);
             }
             else{
@@ -102,25 +102,26 @@ class ValorationController extends Controller
      */
     public function update(Request $request, Valoration $valoration)
     {
-      $verifyValoration = Valoration::find($request->id);
-      if($verifyValoration != null){
-          $valoration= new Valoration();
+      $verifyValoration = Valoration::find($valoration->id);
 
-          $score=$request->score;
-          $comment=$request->comment;
+      if($verifyValoration != null){
+
+          $score = $request->score;
+          $comment = $request->comment;
 
           $purchase_order_id = $request->purchase_order_id;
           $restaurant_id = $request->restaurant_id;
 
-          if( is_numeric(score) and !(is_numeric(commentary))){
+          if( is_numeric($score) and !(is_numeric($comment))){
+            
             $valoration->updateOrCreate([
-                'id'->$request->id
+                'id' => $valoration->id
             ],
             [
-              'score'=>$score,
-              'comment'=>$comment,
-              'purchase_order_id'=>$purchase_order_id,
-              'restaurant_id'=>$restaurant_id,
+              'score' => $score,
+              'comment' => $comment,
+              'purchase_order_id' => $purchase_order_id,
+              'restaurant_id' => $restaurant_id,
             ]);
           }
           else{

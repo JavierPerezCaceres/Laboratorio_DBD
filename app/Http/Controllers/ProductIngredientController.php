@@ -97,17 +97,15 @@ class ProductIngredientController extends Controller
      */
     public function update(Request $request, ProductIngredient $productIngredient)
     {
-        $verifyProductIngredient = ProductIngredient::find($request->id);
+        $verifyProductIngredient = ProductIngredient::find($productIngredient->id);
         if ($verifyProductIngredient != null){
-
-          $productIngredient= new ProductIngredient();
 
           $product_id = $request->product_id;
           $ingredient_id= $request->ingredient_id;
 
           if( (is_numeric($product_id)) and (is_numeric($ingredient_id))){
             ProductIngredient::updateOrCreate([
-                'id'=>$request->id
+                'id'=>$productIngredient->id
             ]
             ,[
               'product_id'=>$product_id,

@@ -129,12 +129,11 @@ class RestaurantController extends Controller
     public function update(Request $request, Restaurant $restaurant)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyRestaurant = Restaurant::find($request->id);
+        $verifyRestaurant = Restaurant::find($restaurant->id);
 
 		if($verifyRestaurant != null){
 
 			// Se instancia un objeto del modelo
-            $restaurant = new Restaurant();
             
 			// Se guardan valores en las distintas variables de modelo.
             $category = $request->category;
@@ -155,7 +154,7 @@ class RestaurantController extends Controller
                 // En caso de pasar las validaciones se actualiza la fila en la tabla.
 				$restaurant->updateOrCreate([
 
-                    'id' => $request->id
+                    'id' => $restaurant->id
                 ],
                     
                 [
@@ -235,7 +234,7 @@ class RestaurantController extends Controller
             {
                $restaurant->updateOrCreate([
 
-                    'id' => $request->id
+                    'id' => $restaurant->id
                 ],
                 [   
                     'direction' => $direction,
@@ -265,7 +264,7 @@ class RestaurantController extends Controller
              {
                  $restaurant->updateOrCreate([
 
-                     'id' => $request->id
+                     'id' => $restaurant->id
                  ],
                  [   
                      'direction' => null,

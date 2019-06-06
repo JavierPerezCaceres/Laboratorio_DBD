@@ -93,24 +93,30 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        $verifyRole = Role::find($request->id);
+        $verifyRole = Role::find($role->id);
 
         if( $verifyRole != null ){
-            $role = new Role();
+
             $type = $request->type;
             $description = $request->description;
+
             if( !(is_numeric( $type )) and !(is_numeric( $description )) ){
+
                 $role->updateOrCreate([
-                    'id' => $request->id
+                    'id' => $role->id
                 ],
                 [
                     'type' => $type,
                     'description' => $description
                 ]);
-            }else{
+            }
+
+            else{
                 return "Error en los parámetros ingresados";
             }
-        }else{
+        }
+
+        else{
             return "Error al actualizar Rol, llave primaria no existente";
         }
 

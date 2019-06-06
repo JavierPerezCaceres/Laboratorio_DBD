@@ -44,8 +44,9 @@ class ProductController extends Controller
           $name = $request->name;
 
           if( !(is_numeric($name))){
-            Delivery::create([
-              'receptor_name'=>$name,
+
+            Product::create([
+              'name'=>$name,
             ]);
           }
           else{
@@ -95,19 +96,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $verifyProduct=Product::find($request->id);
+        $verifyProduct=Product::find($product->id);
+        
         if ($verifyProduct != null){
-
-          $product= new Product();
 
           $name = $request->name;
 
           if( !(is_numeric($name))){
-            Delivery::updateOrCreate([
-                'id'=>$request->id
+            Product::updateOrCreate([
+                'id'=>$product->id
             ],
             [
-              'receptor_name'=>$name,
+              'name'=>$name,
             ]);
           }
           else{
@@ -134,7 +134,7 @@ class ProductController extends Controller
         }
         else{
           $product->delete();
-          return "se ha eliminado el producto";
+          return "Se ha eliminado el producto";
         }
     }
 }

@@ -115,12 +115,9 @@ class TableController extends Controller
     public function update(Request $request, Table $table)
     {
         // Se busca la id ingresada, en caso de no existir arroja null.
-        $verifyTable = Table::find($request->id);
+        $verifyTable = Table::find($table->id);
 
 		if($verifyTable != null){
-
-			// Se instancia un objeto del modelo
-            $table = new Table();
             
 			// Se guardan valores en las distintas variables de modelo.
             $capacity = $request->capacity;
@@ -135,7 +132,7 @@ class TableController extends Controller
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $table->updateOrCreate(
                 [
-                    'id' => $request->id
+                    'id' => $table->id
                 ],
                 
                 [
@@ -180,16 +177,19 @@ class TableController extends Controller
         }
     }
 
-    public function viewTable(Table $table, Restaurant $restaurant)
+    public function viewTable(Restaurant $restaurant)
     {
-        $direction = Restaurant::where('id',$table->restaurant_id)->get('direction');
+        $restaurants = Restaurant::findOrFail($restaurant->id);
 
-        if($table != null)
+        if($restaurants != null)
         {
+
+            $tableList = $restaurants->table;
+
             // Se realizan las validaciones de los datos.
-            if($table->restaurant_id !=null)
+            if($tableList != null)
             {
-                return $direction;
+                return $tableList;
             }
             else {
                 return "No existen mesas asociadas al restaurant";
@@ -207,7 +207,6 @@ class TableController extends Controller
 
         if($table != null)
         {
-
             $restaurant_id = $request->restaurant_id;
 
             // Se realizan las validaciones de los datos.
@@ -215,7 +214,7 @@ class TableController extends Controller
             {
                 $table->updateOrCreate([
 
-                    'id' => $request->id
+                    'id' => $table->id
                 ],
                 [   
                     'restaurant_id' => $restaurant_id,
@@ -241,7 +240,7 @@ class TableController extends Controller
         {
                 $table->updateOrCreate([
 
-                    'id' => $request->id
+                    'id' => $table->id
                 ],
                 [   
                     'restaurant_id' => null,

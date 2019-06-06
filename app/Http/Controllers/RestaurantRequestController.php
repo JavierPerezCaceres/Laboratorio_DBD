@@ -103,8 +103,6 @@ class RestaurantRequestController extends Controller
 
         if($verifyRestaurantRequest != null){
 
-          $restaurantRequest= new RestaurantRequest();
-
           $company_rut= $request->$receptor_name;
           $cod_sis= $request->$cod_sis;
           $owner_name=$request->owner_name;
@@ -112,7 +110,7 @@ class RestaurantRequestController extends Controller
 
           if( is_numeric($company_rut) and is_numeric($cod_sis) and !(is_numeric($owner_name)) and is_numeric($condition)){
             $restaurantRequest->updateOrCreate([
-              'id'=> $request->id
+              'id'=> $restaurantRequest->id
             ],
             [
               'company_rut'=>$company_rut,
