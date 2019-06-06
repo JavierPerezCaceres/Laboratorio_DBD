@@ -7,7 +7,8 @@ class Valoration extends Model
 {
     protected $table = 'valorations';
 
-	protected $fillable = ['score','comment','purchase_order_id','restaurant_id'];
+  protected $fillable = ['score','comment','purchase_order_id','restaurant_id'];
+  protected $hidden = ['created_at','updated_at'];
 
 
     public function restaurant(){

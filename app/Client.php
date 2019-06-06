@@ -14,7 +14,7 @@ class Client extends Model
     	'phone',
     ];
 
-    protected $hidden = ['created_at','updated_at',];
+    protected $hidden = ['created_at','updated_at'];
 
     public function purchaseOrder(){
     	return $this->hasMany(PurchaseOrder::class);
@@ -26,5 +26,9 @@ class Client extends Model
 
     public function tableReservation(){
     	return $this->belongsTo(TableReservation::class);
+    }
+
+    public function address(){
+        return $this->belongsTo(Address::class);
     }
 }

@@ -19,7 +19,7 @@ class TableReservation extends Model
         'purchase_order_id'
     ];
 
-    protected $hidden = ['created_at','updated_at',];
+    protected $hidden = ['created_at','updated_at'];
 
     public function client(){
         return $this->belongsTo(Client::class);

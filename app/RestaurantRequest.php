@@ -10,6 +10,7 @@ class RestaurantRequest extends Model
 
 
   protected $fillable = ['company_rut','cod_sis','owner_name','condition','user_id'];
+  protected $hidden = ['created_at','updated_at'];
 
 
   public function user(){

@@ -13,7 +13,7 @@ class ProductCategory extends Model
         'category_id'
     ];
 
-    protected $hidden = ['created_at','updated_at',];
+    protected $hidden = ['created_at','updated_at'];
 
     public function product(){
         return $this->belongsTo(Product::class);

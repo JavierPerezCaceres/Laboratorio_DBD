@@ -20,7 +20,7 @@ class PurchaseOrder extends Model
         'delivery_id'
 	];
 
-    protected $hidden = ['created_at','updated_at',];
+    protected $hidden = ['created_at','updated_at'];
 
     public function paymentMethod(){
     	return $this->belongsTo(PaymentMethod::class);

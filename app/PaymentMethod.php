@@ -14,7 +14,7 @@ class PaymentMethod extends Model
     'card_payment_id'
 	];
 
-    protected $hidden = ['created_at','updated_at',];
+    protected $hidden = ['created_at','updated_at'];
 
     public function purchaseOrder(){
     	return $this->belongsTo(PurchaseOrder::class);

@@ -10,6 +10,7 @@ class Delivery extends Model
 
 
     protected $fillable = ['receptor_name','contact_number','extra_wait_time','delivery_address','restaurant_id'];
+    protected $hidden = ['created_at','updated_at'];
 
 
     public function restaurant(){

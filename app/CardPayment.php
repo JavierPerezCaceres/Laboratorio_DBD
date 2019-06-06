@@ -16,7 +16,7 @@ class CardPayment extends Model
             'expiration_date',
     ];
 
-    protected $hidden = ['created_at','updated_at',];
+    protected $hidden = ['created_at','updated_at'];
 
     public function paymentMethod(){
     	return $this->belongsTo(PaymentMethod::class);

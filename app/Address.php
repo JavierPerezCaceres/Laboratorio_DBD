@@ -8,13 +8,14 @@ class Address extends Model
 {
     protected $table = 'addresses';
     
-    protected $fillable = ['street', 'number', 'district_id', 'user_id'];
+    protected $fillable = ['street', 'number', 'district_id', 'client_id'];
+    protected $hidden = ['created_at','updated_at'];
 
     public function district(){
         return $this->belongsTo(District::class);
     }
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function client(){
+        return $this->belongsTo(Client::class);
     }
 }

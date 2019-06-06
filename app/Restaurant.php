@@ -37,4 +37,8 @@ class Restaurant extends Model
     public function valoration(){
         return $this->hasMany(Valoration::class);
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

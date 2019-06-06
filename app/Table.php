@@ -15,9 +15,13 @@ class Table extends Model
         'restaurant_id'
     ];
 
-    protected $hidden = ['created_at','updated_at',];
+    protected $hidden = ['created_at','updated_at'];
 
     public function restaurant(){
         return $this->belongsTo(Restaurant::class);
+    }
+
+    public function tableReservation(){
+        return $this->belongTo(TableReservation::class);
     }
 }
