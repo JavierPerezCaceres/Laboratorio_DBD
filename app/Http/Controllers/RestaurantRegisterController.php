@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\User;
 use App\Client;
+use App\Restaurant;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
-class RegisterController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
+class RestaurantRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +25,6 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -55,6 +57,13 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phoneNumber' =>['required','numeric','digits:11'],
+            'category' =>['required','string','max:255'],
+            'kitchen' =>['required','string','max:255'],
+            'opening' =>['required','string','max:255'],
+            'closing' =>['required','string','max:255'],
+            'personCost'=>['required','numeric'],
+            'waitTime' =>['requiered','string','max:255'],
+            'direction' =>['requiered','string','max:255'],
         ]);
     }
 
@@ -64,22 +73,34 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
         $client=Client::create([
-            'name' => $data['name'],
-            'lastname' => $data['lastname'],
-            'phone' => $data['phoneNumber']
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'phone' => $request->phoneNumber
         ]);
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user= User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
             'role_id' => 3,
             /**
             *role_id es 3 pues es un cliente normal por defecto.
             */
             'client_id' => $client->id
         ]);
+        $restaurant= Restaurant::create([
+          'category'=> $request->category,
+          'contact_number' => $request->phoneNumber,
+          'kitchen_type' => $request->kitchen,
+          'opening_hour' => $request->opening,
+          'closing_hour' => $request->closing,
+          'person_cost' => $request->personCost,
+          'wait_time' => $request->waitTime,
+          'direction' => $request->direction,
+          'user_id'=>$user->id
+        ]);
+        return view('main');
     }
 }
