@@ -1,0 +1,30 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template-overviews/shop-homepage)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+}
+
+/*Navbar*/
+.bg-dark {
+    background-color: #538985!important;
+}
+
+/*Texto de los items*/
+a {
+    color: #236863;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/*Estrellas*/
+.text-muted {
+    color: #236863!important;
+}
+
+/* Imágenes adaptables al contenedor y responsive*/
+.carousel-item img {
+  width: 100%;
+}
