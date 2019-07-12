@@ -6,10 +6,48 @@ use App\User;
 use App\Role;
 use App\Client;
 
+use App\Address;
+use App\PurchaseOrder;
+use App\WebpageRecord;
+use App\RestaurantRequest;
+
+use Auth;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    // Start new Controllers
+
+    public function selectControlPanel(){
+        if( Auth::user()->role_id == 1){ // admin
+
+            $records = WebpageRecord::all();
+            $requests = RestaurantRequest::all();
+            return view('adminPanelControl', compact('records','requests'));
+
+        }elseif(false){ // restaurant
+
+            return view('main');
+
+        }else{ // client
+
+            $user = User::find( Auth::user()->id );
+            //$clients = $user->client_id;
+            $client = Client::find( $user->client_id );
+
+            $address = Address::all();
+            $addresses = $address->where('client_id',$client->id);
+
+            $purchaseOrder = PurchaseOrder::all();
+            $purchaseOrders = $purchaseOrder->where('client_id',$client->id);
+
+            return view('userPanelControl', compact('client','addresses','purchaseOrders','user'));
+        }
+    }
+
+    // End new Controllers
+    
     /**
      * Display a listing of the resource.
      *
