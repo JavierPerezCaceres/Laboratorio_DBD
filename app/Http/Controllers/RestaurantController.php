@@ -4,10 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Restaurant;
 use App\User;
+use App\Category;
+use App\Ingredient;
+use App\Menu;
+
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
+
+    // Start New Controllers
+    public function showRestaurant(Restaurant $restaurant){ // Nico
+        if($restaurant == null){
+            return view('welcome');
+        }
+        $menus = Menu::select('id', 'name','total_price','discount')->where('restaurant_id',$restaurant->id)->get();
+        return view('restaurantView', compact('menus'));
+    }
+
+    public function search() // Vicho
+    {
+        $restaurants = Restaurant::all();
+        $restaurant_categories = Restaurant::select('category')->distinct()->get();
+        $product_categories = Category::select('name')->get();
+        $ingredients = Ingredient::select('name')->get();
+        //sacar valoración
+        
+        return view('search', compact(
+            'restaurants',
+            'restaurant_categories',
+            'product_categories',
+            'ingredients'
+        ));
+    }    
+    // End New Controllers
+
+
+
     /**
      * Display a listing of the resource.
      *
