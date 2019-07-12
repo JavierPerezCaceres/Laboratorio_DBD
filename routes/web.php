@@ -11,9 +11,53 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('main');
+// });
+
+// Javo
+Route::get('/controlPanel','UserController@selectControlPanel');
+
+
+
+
+// Vicho
+Route::get('/search', 'RestaurantController@search');
+
+Route::get('/main', function () {
+  return view('main');
 });
+
+// Nico
+
+// Route::get('/restaurantViews', function () {
+//     return view('restaurantView');
+// });
+Route::get('/restaurantViews/{restaurant}','RestaurantController@showRestaurant');
+
+
+
+
+
+// jorge
+
+Route::get('/', 'LandingpageController@index');
+
+// Jose
+
+Route::get('/login', function () {
+    return view('login');
+  });
+  
+Route::get('/restaurantRegister',function(){
+    return view('restaurantRegister');
+});
+Route::post('/login','LoginController@login')->name('login');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('restaurantRegister','RestaurantRegisterController@create')->name('restaurantRegister');
+
+// cambios desde aquí hacia arriba
 
 // Cliente
 Route::get('/client','ClientController@index');
