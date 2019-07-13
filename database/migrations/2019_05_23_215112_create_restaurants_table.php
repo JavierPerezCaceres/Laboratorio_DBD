@@ -16,9 +16,8 @@ class CreateRestaurantsTable extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('category');
+            $table->string('name');
             $table->string('contact_number');
-            $table->string('kitchen_type');
             $table->time('opening_hour');
             $table->time('closing_hour');
             $table->integer('person_cost');
@@ -26,8 +25,10 @@ class CreateRestaurantsTable extends Migration
             $table->string('direction')->nullable();
 
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('category_restaurant_id');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_restaurant_id')->references('id')->on('category_restaurants')->onDelete('cascade');
         });
     }
 

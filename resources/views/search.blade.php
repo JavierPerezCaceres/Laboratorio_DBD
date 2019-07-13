@@ -26,7 +26,7 @@
 						  <a href="/restaurantViews/{{ $restaurant->id }}"><img class="card-img-top" src="Img/4.jpg" alt=""></a>
 						  <div class="card-body">
 							<h1 class="card-title">
-								<a href="/restaurantViews/{{ $restaurant->id }}">Nombre del Restaurant</a>
+								<a href="/restaurantViews/{{ $restaurant->id }}">{{ $restaurant->name }}</a>
 							</h1>
 							<!-- calcular estrellas -->
 							<p class="card-text">3.5
@@ -43,7 +43,7 @@
 							<p class="card-text"><i class="fas fa-motorcycle"></i>
 							Delivery disponible!</p>
 							<p class="card-text"><i class="fas fa-utensils"></i>
-							Cocina: {{ $restaurant->kitchen_type }}</p>
+							Cocina: {{ $restaurant_categories[$restaurant->category_restaurant_id-1]->name}}</p>
 						  </div>
 					</div>
 				  </div>

@@ -7,6 +7,8 @@ use App\User;
 use App\Category;
 use App\Ingredient;
 use App\Menu;
+use App\CategoryRestaurant;
+use App\MenuProduct;
 
 use Illuminate\Http\Request;
 
@@ -19,13 +21,16 @@ class RestaurantController extends Controller
             return view('welcome');
         }
         $menus = Menu::select('id', 'name','total_price','discount')->where('restaurant_id',$restaurant->id)->get();
-        return view('restaurantView', compact('menus'));
+
+        $menu_productos = MenuProduct::all();
+        return view('restaurantView', compact('menus','restaurant'));
     }
 
     public function search() // Vicho
     {
         $restaurants = Restaurant::all();
-        $restaurant_categories = Restaurant::select('category')->distinct()->get();
+        $restaurant_categories = CategoryRestaurant::select('name')->get();
+        //$restaurant_categories = Restaurant::select('category')->distinct()->get();
         $product_categories = Category::select('name')->get();
         $ingredients = Ingredient::select('name')->get();
         //sacar valoración

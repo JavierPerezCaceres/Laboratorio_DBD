@@ -11,7 +11,7 @@
 
   <div class="col-lg-3">
 
-    <h1 class="my-4">"Nombre del Restaurant"</h1>
+    <h1 class="my-4">{{$restaurant->name}}</h1>
     <div class="list-group">
       <a href="#" class="list-group-item">Carta</a>
       <a href="#" class="list-group-item">Promociones</a>
@@ -62,9 +62,10 @@
                   </h4>
                   <h5>{{ $menu->total_price }}</h5>
                   <p class="card-text">
-
+                      @foreach($menu->menuProduct as $producto)
                       <i class="fas fa-utensils"></i>
-                      Lechuga, Tomate, Queso, Hamburguesa de Rinoceronte, Cebolla morada, Papas Fritas
+                      {{$producto->product->name}}<br>  
+                      @endforeach
 
 
                 </div>
