@@ -16,6 +16,7 @@ class Restaurant extends Model
         'person_cost',
         'wait_time',
         'direction',
+        'district_id',
         'user_id'
     ];
 
@@ -39,5 +40,9 @@ class Restaurant extends Model
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function district(){
+        return $this->belongsTo(District::class);
     }
 }

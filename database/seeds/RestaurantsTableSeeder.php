@@ -19,9 +19,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '23:00',
             'person_cost'=> '1990',
             'wait_time'=> '30',
-            'direction'=> 'Manuel Rodriguez 78',
+            'street' => 'Manuel Rodriguez',
+            'number' => '3854',
             'user_id'=> '1',
             'category_restaurant_id'=> '1',
+            'district_id' => '1',
             'created_at' => now()
         ]);
 
@@ -32,9 +34,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '21:00',
             'person_cost'=> '3390',
             'wait_time'=> '20',
-            'direction'=> 'Moneda 75',
+            'street' => 'Anibal Pinto',
+            'number' => '384',
             'user_id'=> '2',
             'category_restaurant_id'=> '1',
+            'district_id' => '1',
             'created_at' => now()
         ]);
 
@@ -45,9 +49,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '22:00',
             'person_cost'=> '2790',
             'wait_time'=> '30',
-            'direction'=> 'Monumento 574',
+            'street' => 'Los Libertadores',
+            'number' => '9485',
             'user_id'=> '3',
             'category_restaurant_id'=> '1',
+            'district_id' => '2',
             'created_at' => now()
         ]);
 
@@ -58,9 +64,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '23:00',
             'person_cost'=> '5590',
             'wait_time'=> '10',
-            'direction'=> 'Anibal Pinto 908',
+            'street' => 'La Moneda',
+            'number' => '3845',
             'user_id'=> '4',
             'category_restaurant_id'=> '1',
+            'district_id' => '2',
             'created_at' => now()
         ]);
 
@@ -71,9 +79,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '21:00',
             'person_cost'=> '4590',
             'wait_time'=> '15',
-            'direction'=> 'La Reforma 4289',
+            'street' => 'Baquedano',
+            'number' => '582',
             'user_id'=> '15',
             'category_restaurant_id'=> '1',
+            'district_id' => '3',
             'created_at' => now()
         ]);
 
@@ -84,9 +94,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '23:00',
             'person_cost'=> '3290',
             'wait_time'=> '30',
-            'direction'=> 'Monarca 9876',
+            'street' => 'Lo Heroes',
+            'number' => '213',
             'user_id'=> '14',
             'category_restaurant_id'=> '1',
+            'district_id' => '3',
             'created_at' => now()
         ]);
 
@@ -97,9 +109,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '19:00',
             'person_cost'=> '2990',
             'wait_time'=> '30',
-            'direction'=> 'El Paso 3847',
+            'street' => 'Parque Bustamante',
+            'number' => '86432',
             'user_id'=> '12',
             'category_restaurant_id'=> '1',
+            'district_id' => '3',
             'created_at' => now()
         ]);
 
@@ -110,9 +124,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '18:00',
             'person_cost'=> '4790',
             'wait_time'=> '30',
-            'direction'=> 'Palacio 27367',
+            'street' => 'Caupolican',
+            'number' => '4582',
             'user_id'=> '9',
             'category_restaurant_id'=> '3',
+            'district_id' => '1',
             'created_at' => now()
         ]);
 
@@ -123,9 +139,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '22:00',
             'person_cost'=> '3790',
             'wait_time'=> '35',
-            'direction'=> 'Rayen 394',
+            'street' => 'Ecuador',
+            'number' => '49592',
             'user_id'=> '7',
             'category_restaurant_id'=> '3',
+            'district_id' => '1',
             'created_at' => now()
         ]);
 
@@ -136,9 +154,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '19:00',
             'person_cost'=> '5590',
             'wait_time'=> '10',
-            'direction'=> 'La Coraza 21',
+            'street' => 'Lautaro',
+            'number' => '47111',
             'user_id'=> '4',
             'category_restaurant_id'=> '4',
+            'district_id' => '4',
             'created_at' => now()
         ]);
 
@@ -149,9 +169,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '19:30',
             'person_cost'=> '7390',
             'wait_time'=> '20',
-            'direction'=> 'La Colecta 87',
+            'street' => 'Avenida Brasil',
+            'number' => '123',
             'user_id'=> '8',
             'category_restaurant_id'=> '2',
+            'district_id' => '4',
             'created_at' => now()
         ]);
 
@@ -162,9 +184,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '23:00',
             'person_cost'=> '3490',
             'wait_time'=> '30',
-            'direction'=> 'Pedro Aguirre Cerda 3985',
+            'street' => 'Avenida Peru',
+            'number' => '9538',
             'user_id'=> '8',
             'category_restaurant_id'=> '2',
+            'district_id' => '1',
             'created_at' => now()
         ]);
 
@@ -175,9 +199,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '23:30',
             'person_cost'=> '3190',
             'wait_time'=> '30',
-            'direction'=> 'El Belloto 23',
+            'street' => 'Tarapaca',
+            'number' => '3847',
             'user_id'=> '11',
             'category_restaurant_id'=> '5',
+            'district_id' => '4',
             'created_at' => now()
         ]);
 
@@ -188,9 +214,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '23:00',
             'person_cost'=> '7690',
             'wait_time'=> '30',
-            'direction'=> 'Ecuador 1238',
+            'street' => 'Bandera',
+            'number' => '9584',
             'user_id'=> '9',
             'category_restaurant_id'=> '5',
+            'district_id' => '3',
             'created_at' => now()
         ]);
 
@@ -201,9 +229,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '22:00',
             'person_cost'=> '11000',
             'wait_time'=> '30',
-            'direction'=> 'Maraton 23',
+            'street' => 'Manuel Rodriguez',
+            'number' => '3854',
             'user_id'=> '5',
             'category_restaurant_id'=> '6',
+            'district_id' => '3',
             'created_at' => now()
         ]);
 
@@ -214,9 +244,11 @@ class RestaurantsTableSeeder extends Seeder
             'closing_hour'=> '23:00',
             'person_cost'=> '3890',
             'wait_time'=> '30',
-            'direction'=> 'Hipodromo 8894',
+            'street' => 'San Diego',
+            'number' => '402',
             'user_id'=> '3',
             'category_restaurant_id'=> '6',
+            'district_id' => '2',
             'created_at' => now()
         ]);
 

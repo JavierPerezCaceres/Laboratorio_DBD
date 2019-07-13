@@ -18,7 +18,6 @@
 	<div class="col-lg-9">
 
 		<div class="row">
-
 			@foreach ($restaurants as $restaurant)
 
 				<div class="col-lg-4 col-md-6 mb-4">
@@ -43,7 +42,7 @@
 								@endfor
 							  </p>
 							<p class="card-text"><i class="fas fa-map-marker-alt"></i>
-							{{ $restaurant->direction }}</p>
+							{{$restaurant->street}} {{$restaurant->number}}, {{ $restaurant->district->name }}</p>
 							<p class="card-text"><i class="fas fa-clock"></i>
 							Desde {{ $restaurant->opening_hour }} hasta {{ $restaurant->closing_hour }}</p>
 							<p class="card-text"><i class="fas fa-motorcycle"></i>

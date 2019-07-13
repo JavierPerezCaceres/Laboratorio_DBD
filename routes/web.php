@@ -22,7 +22,7 @@ Route::get('/controlPanel','UserController@selectControlPanel');
 
 
 // Vicho
-Route::get('/search', 'RestaurantController@search');
+Route::post('/search', 'RestaurantController@search')->name('search');
 
 Route::get('/main', function () {
   return view('main');

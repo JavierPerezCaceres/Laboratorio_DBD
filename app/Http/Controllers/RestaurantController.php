@@ -25,9 +25,10 @@ class RestaurantController extends Controller
         return view('restaurantView', compact('menus','restaurant'));
     }
 
-    public function search() // Vicho
+    public function search(Request $request) // Vicho
     {
-        $restaurants = Restaurant::all();
+        $district= $request->district_id;
+        $restaurants = Restaurant::all()->where('district_id',$request->district_id);
         $restaurant_categories = CategoryRestaurant::select('name')->get();
         //$restaurant_categories = Restaurant::select('category')->distinct()->get();
         $product_categories = Category::select('name')->get();
@@ -38,7 +39,8 @@ class RestaurantController extends Controller
             'restaurants',
             'restaurant_categories',
             'product_categories',
-            'ingredients'
+            'ingredients',
+            'district'
         ));
     }    
     // End New Controllers

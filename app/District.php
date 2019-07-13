@@ -18,4 +18,8 @@ class District extends Model
     public function address(){
         return $this->hasMany(Address::class);
     }
+
+    public function restaurant(){
+    	return $this->hasMany(Restaurant::class);
+    }
 }

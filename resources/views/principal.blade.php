@@ -31,7 +31,8 @@
 	                    <h3>We are non-profit NGO & Charity Organization</h3>
 	            </div> 
 	            </div>
-	            <form name="ubicacion" method="POST">
+	            <form action="{{ route('search') }}" method="POST">
+	            	@csrf
 	            <div class="row">
 	                      <div class="col-md-offset-2 col-md-8 col-sm-12 text-center"> 
 	                          <div class="search-form">
@@ -53,13 +54,13 @@
 	                  Select your district
 	                </option>
 	                @foreach ($districts->all() as $district)
-                        <option value="{{$district->name}}">{{$district->name}}</option>
+                        <option value="{{$district->id}}">{{$district->name}}</option>
                  	@endforeach
 	              </select>
 	            </div>
 	            <!-- /.col 3 -->
 	            <div class="col-sm-2">
-	                <a class="btn btn-lg btn-primary site-btn2" href="/search" disable>Search Now</a>
+	                <button type="submit"class="btn btn-lg btn-primary site-btn2">Search Now</button>
 	            </div>
 	            <!-- /.col 1 -->
 	         
@@ -85,7 +86,6 @@
 <div class="box">
     <div class="container">
      	<div class="row">
-			 	
 			 	@foreach($restaurants as $restaurant)
 			    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
