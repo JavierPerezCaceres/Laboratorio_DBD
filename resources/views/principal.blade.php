@@ -1,4 +1,4 @@
-@extends('admin.template.main')
+@extends('layouts.app')
 
 @section('title','Home')
 
@@ -48,7 +48,7 @@
 	            </div>
 	            
 	            <div class="col-sm-6">
-	              <select class="form-control" name="comuna_id" disabled="true" >
+	              <select class="form-control" name="district_id" disabled="true" onchange="habilitar_boton_search(this.form)">
 	                <option value="0" selected="selected">
 	                  Select your district
 	                </option>
@@ -59,7 +59,7 @@
 	            </div>
 	            <!-- /.col 3 -->
 	            <div class="col-sm-2">
-	                <a class="btn btn-lg btn-primary site-btn2" href="/search">Search Now</a>
+	                <a class="btn btn-lg btn-primary site-btn2" href="/search" disable>Search Now</a>
 	            </div>
 	            <!-- /.col 1 -->
 	         
@@ -78,125 +78,47 @@
 	  <a class="right carousel-control" href="#myCarousel" data-slide="next">
 	    <span class="icon-next"></span>
 	  </a>  
-	</div>
+</div>
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="box">
     <div class="container">
      	<div class="row">
-			 
+			 	
+			 	@foreach($restaurants as $restaurant)
 			    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
+
 					<div class="box-part text-center">
+						<img src="https://www.clikisalud.net/wp-content/uploads/2016/03/comida-r%C3%A1pida.jpg" class="card-img-top" style="width:100%" class="img-responsive"> 
+						<h4>{{$restaurant->name}}</h4>
+						<p class="card-text">{{round($restaurant->valoration->sum('score')/$restaurant->valoration->count(),1)}}
+								@for($i = 1; $i <6; $i++)
+									@if($i == intval($restaurant->valoration->sum('score')/$restaurant->valoration->count())+1)
+									  <i class="fas fa-star-half-alt"></i>
+									@else
+										@if($i>intval($restaurant->valoration->sum('score')/$restaurant->valoration->count())+1)
+											<i class="far fa-star"></i>
+										@else
+											<i class="fas fa-star"></i>
+										@endif
+									@endif
+								@endfor
+							  </p>
+						<p class="card-text"><i class="fas fa-map-marker-alt"></i>
+							{{ $restaurant->direction }}</p>
+							<p class="card-text"><i class="fas fa-clock"></i>
+							Desde {{ $restaurant->opening_hour }} hasta {{ $restaurant->closing_hour }}</p>
+							<p class="card-text"><i class="fas fa-motorcycle"></i>
+							Delivery disponible!</p>
+							<p class="card-text"><i class="fas fa-utensils"></i>
+							Cocina: {{ $restaurant_categories[$restaurant->category_restaurant_id-1]->name}}</p>
                         
-                        <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
-                        
-						<div class="title">
-							<h4>Instagram</h4>
-						</div>
-                        
-						<div class="text">
-							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-						</div>
-                        
-						<a href="#">Learn More</a>
-                        
-					 </div>
-				</div>	 
-				
-				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-					<div class="box-part text-center">
-					    
-					    <i class="fa fa-twitter fa-3x" aria-hidden="true"></i>
-                    
-						<div class="title">
-							<h4>Twitter</h4>
-						</div>
-                        
-						<div class="text">
-							<span id="restaurants">Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-						</div>
-                        
-						<a href="#">Learn More</a>
-                        
-					 </div>
-				</div>	 
-				
-				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-					<div class="box-part text-center">
-                        
-                        <i class="fa fa-facebook fa-3x" aria-hidden="true"></i>
-                        
-						<div class="title">
-							<h4>Facebook</h4>
-						</div>
-                        
-						<div class="text">
-							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-						</div>
-                        
-						<a href="#">Learn More</a>
-                        
-					 </div>
-				</div>	 
-				
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-					<div class="box-part text-center">
-                        
-                        <i class="fa fa-pinterest-p fa-3x" aria-hidden="true"></i>
-                        
-						<div class="title">
-							<h4>Pinterest</h4>
-						</div>
-                        
-						<div class="text">
-							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-						</div>
-                        
-						<a href="#">Learn More</a>
-                        
-					 </div>
-				</div>	 
-				
-				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-					<div class="box-part text-center">
-					    
-					    <i class="fa fa-google-plus fa-3x" aria-hidden="true"></i>
-                    
-						<div class="title">
-							<h4>Google</h4>
-						</div>
-                        
-						<div class="text">
-							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-						</div>
-                        
-						<a href="#">Learn More</a>
-                        
-					 </div>
-				</div>	 
-				
-				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-               
-					<div class="box-part text-center">
-                        
-                        <i class="fa fa-github fa-3x" aria-hidden="true"></i>
-                        
-						<div class="title">
-							<h4>Github</h4>
-						</div>
-                        
-						<div class="text">
-							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-						</div>
-                        
-						<a href="#">Learn More</a>
+						<a href="/restaurantViews/{{ $restaurant->id }}">Learn More</a>
                         
 					 </div>
 				</div>
+				@endforeach	 
 		
 		</div>		
     </div>
@@ -214,7 +136,7 @@ function habilitar(form,cities)
 
     {
 
-    form.comuna_id.disabled = true;
+    form.district_id.disabled = true;
 
     }
 
@@ -222,9 +144,22 @@ function habilitar(form,cities)
 
     {
 
-    form.comuna_id.disabled = false;
+    form.district_id.disabled = false;
     }
 
+}
+
+function habilitar_boton_search(form)
+{
+	if (form.district_id.selected == true)
+	{
+		form.boton_search.disabled =true;
+	}
+
+	else
+	{
+		form.boton_search.disabled =false;
+	}
 }
 
 
