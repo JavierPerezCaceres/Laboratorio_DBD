@@ -29,12 +29,18 @@
 								<a href="/restaurantViews/{{ $restaurant->id }}">{{ $restaurant->name }}</a>
 							</h1>
 							<!-- calcular estrellas -->
-							<p class="card-text">3.5
-									  <i class="fas fa-star"></i>
-									  <i class="fas fa-star"></i>
-									  <i class="fas fa-star"></i>
+							<p class="card-text">{{round($restaurant->valoration->sum('score')/$restaurant->valoration->count(),1)}}
+								@for($i = 1; $i <6; $i++)
+									@if($i == intval($restaurant->valoration->sum('score')/$restaurant->valoration->count())+1)
 									  <i class="fas fa-star-half-alt"></i>
-									  <i class="far fa-star"></i>
+									@else
+										@if($i>intval($restaurant->valoration->sum('score')/$restaurant->valoration->count())+1)
+											<i class="far fa-star"></i>
+										@else
+											<i class="fas fa-star"></i>
+										@endif
+									@endif
+								@endfor
 							  </p>
 							<p class="card-text"><i class="fas fa-map-marker-alt"></i>
 							{{ $restaurant->direction }}</p>

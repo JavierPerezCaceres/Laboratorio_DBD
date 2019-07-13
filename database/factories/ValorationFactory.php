@@ -12,7 +12,7 @@ $factory->define(Valoration::class, function (Faker $faker) {
 	$restaurant_id = DB::table('restaurants')->select('id')->get();
 
     return [
-        'score'=>$faker->numberBetween($min=0,$max=5),
+        'score'=>$faker->numberBetween($min=2,$max=5),
         'comment'=>$faker->text(200),
         
         'purchase_order_id'=> $purchase_order_id->random()->id,

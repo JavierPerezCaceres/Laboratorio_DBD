@@ -12,6 +12,6 @@ class ValorationSeeder extends Seeder
      */
     public function run()
     {
-        factory(Valoration::class,10)->create();
+        factory(Valoration::class,100)->create();
     }
 }

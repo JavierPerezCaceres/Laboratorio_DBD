@@ -60,7 +60,7 @@
                   <h4 class="card-title">
                       <a href="/">{{ $menu->name }}</a>
                   </h4>
-                  <h5>{{ $menu->total_price }}</h5>
+                  <h5>${{ $menu->total_price }}</h5>
                   <p class="card-text">
                       @foreach($menu->menuProduct as $producto)
                       <i class="fas fa-utensils"></i>

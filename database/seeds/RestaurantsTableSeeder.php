@@ -14,7 +14,7 @@ class RestaurantsTableSeeder extends Seeder
     {
         DB::table('restaurants')->insert([
             'name'=> 'Juan Maestro',
-            'contact_number'=> '+1503457773580',
+            'contact_number'=> '+56983758205',
             'opening_hour'=> '08:00',
             'closing_hour'=> '23:00',
             'person_cost'=> '1990',
@@ -40,7 +40,7 @@ class RestaurantsTableSeeder extends Seeder
 
         DB::table('restaurants')->insert([
             'name'=> 'Pedro, Juan y Diego',
-            'contact_number'=> '+5692435680',
+            'contact_number'=> '+56924356480',
             'opening_hour'=> '11:00',
             'closing_hour'=> '22:00',
             'person_cost'=> '2790',
@@ -183,7 +183,7 @@ class RestaurantsTableSeeder extends Seeder
 
         DB::table('restaurants')->insert([
             'name'=> 'Charly Dog',
-            'contact_number'=> '+1503457773580',
+            'contact_number'=> '+56937205710',
             'opening_hour'=> '08:00',
             'closing_hour'=> '23:00',
             'person_cost'=> '7690',

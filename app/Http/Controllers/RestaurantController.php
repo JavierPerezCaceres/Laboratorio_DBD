@@ -22,7 +22,6 @@ class RestaurantController extends Controller
         }
         $menus = Menu::select('id', 'name','total_price','discount')->where('restaurant_id',$restaurant->id)->get();
 
-        $menu_productos = MenuProduct::all();
         return view('restaurantView', compact('menus','restaurant'));
     }
 
