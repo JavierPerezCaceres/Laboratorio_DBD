@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header" style="background-color:#236A62;color:rgb(161, 182, 181)">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('newRegister') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -94,13 +94,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-
-                                @if (Route::has('restaurantRegister'))
-                                    <a class="btn btn-link" href="{{ route('restaurantRegister') }}">
-                                        {{ __('Quiere registrar un Restaurante?') }}
-                                    </a>
-                                @endif
-
                             </div>
                         </div>
                     </form>

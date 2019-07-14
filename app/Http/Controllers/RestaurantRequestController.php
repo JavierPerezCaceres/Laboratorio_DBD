@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\RestaurantRequest;
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Crypt;
 
 class RestaurantRequestController extends Controller
 {
@@ -12,6 +15,10 @@ class RestaurantRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function page($UI)
+    {
+     return view('/restaurantRequest',compact('UI'));
+    }
     public function index()
     {
         $restaurantRequest= RestaurantRequest::all();
@@ -23,11 +30,27 @@ class RestaurantRequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
+     public function create(Request $request)
+     {
+         $this->validator($request->all())->validate();
+         RestaurantRequest::create([
+           'company_rut'=>$request->company_rut,
+           'cod_sis'=>$request->cod_sis,
+           'owner_name'=>$request->owner_name,
+           'condition'=> false,
+           'user_id'=>$request->UI,
+         ]);
+         return redirect('');
+     }
 
+     protected function validator(array $data)
+     {
+         return Validator::make($data, [
+             'company_rut' => ['required', 'numeric', 'digits:9'],
+             'cod_sis' => ['required', 'numeric', 'digits:9'],
+             'owner_name' => ['required', 'string', 'max:255',],
+         ]);
+     }
     /**
      * Store a newly created resource in storage.
      *

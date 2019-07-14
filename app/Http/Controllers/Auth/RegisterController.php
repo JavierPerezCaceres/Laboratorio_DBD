@@ -6,8 +6,10 @@ use App\User;
 use App\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -64,22 +66,28 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        $client=Client::create([
-            'name' => $data['name'],
-            'lastname' => $data['lastname'],
-            'phone' => $data['phoneNumber']
-        ]);
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role_id' => 3,
-            /**
-            *role_id es 3 pues es un cliente normal por defecto.
-            */
-            'client_id' => $client->id
-        ]);
-    }
+     protected function guard(){
+       return Auth::guard();
+     }
+     protected function create(Request $request)
+     {
+         $this->validator($request->all())->validate();
+         $client=Client::create([
+             'name' => $request->name,
+             'lastname' => $request->lastname,
+             'phone' => $request->phoneNumber
+         ]);
+         $user= User::create([
+             'name' => $request->name,
+             'email' => $request->email,
+             'password' => Hash::make($request->password),
+             'role_id' => 3,
+             /**
+             *role_id es 3 pues es un cliente normal por defecto.
+             */
+             'client_id' => $client->id
+         ]);
+         $this->guard()->login($user);
+         return redirect('');
+     }
 }

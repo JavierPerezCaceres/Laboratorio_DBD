@@ -18,7 +18,7 @@
 
     <!-- Estilos en archivo prueba.css -->
     @yield('style')
-    
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -70,7 +70,11 @@
                                     <a class="nav-link" href="/"><i class="fas fa-shopping-cart"></i> Carrito de Compras</a>
                                 </li>
                             @endif
-                            
+                            <?php $UI=Crypt::encrypt(Auth::user()->id)?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/restaurantRequest/{{$UI}}"> Restaurant Request</a>
+                            </li>
+
 
 
                             <li class="nav-item dropdown">
@@ -114,7 +118,7 @@
                                     <p>CopyRight © 2019 Digital All Rights Reserved</p>
                                 </div>
                             </div> <!-- End Col -->
-                            
+
                         </div>
                     </div>
         </div>
