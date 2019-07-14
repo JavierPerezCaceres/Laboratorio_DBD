@@ -94,6 +94,13 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+
+                                @if (Route::has('restaurantRegister'))
+                                    <a class="btn btn-link" href="{{ route('restaurantRegister') }}">
+                                        {{ __('Quiere registrar un Restaurante?') }}
+                                    </a>
+                                @endif
+
                             </div>
                         </div>
                     </form>

@@ -31,7 +31,7 @@ class RestaurantRegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -101,6 +101,6 @@ class RestaurantRegisterController extends Controller
           'direction' => $request->direction,
           'user_id'=>$user->id
         ]);
-        return view('main');
+        return view('principal');
     }
 }
