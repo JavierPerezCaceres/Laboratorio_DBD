@@ -38,7 +38,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('newRegister','Auth\RegisterController@create')->name('newRegister');
 Route::get('/restaurantRequest/{user}','RestaurantRequestController@page');
-Route::post('restaurantRegister','RestaurantRegisterController@create')->name('restaurantRegister');
 Route::post('/restaurantRequest','RestaurantRequestController@create')->name('restaurantRequest');
 // cambios desde aquí hacia arriba
 

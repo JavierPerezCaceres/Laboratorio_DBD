@@ -17,6 +17,7 @@
 
 </head>
 <body class="form-v10">
+@include('layouts.app')
 	<div class="page-content">
 		<div class="form-v10-content">
 			<form class="form-detail" action="{{ route('restaurantRegister') }}" method="post" id="myform">
@@ -110,5 +111,6 @@
 			</form>
 		</div>
     </div>
+@include('layouts.footer')
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 </html>
