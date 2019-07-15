@@ -22,6 +22,7 @@ Route::get('/main', function () {
 Route::get('/restaurantViews/{restaurant}','RestaurantController@showRestaurant');
 
 Route::get('/', 'LandingpageController@index');
+Route::get('/districts/{city}', 'LandingpageController@getDistricts');
 
 Route::get('/login', function () {
     return view('login');

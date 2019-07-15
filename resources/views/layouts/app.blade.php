@@ -42,13 +42,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/search">Search</a>
-                        </li>
-
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="/main">Otro Home</a>
+                            <a class="nav-link" href="/">Algo XD</a>
                         </li>
                     </ul>
 

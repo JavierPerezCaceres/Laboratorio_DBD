@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Client;
 use App\Restaurant;
+use App\RestaurantRequest;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -75,19 +76,11 @@ class RestaurantRegisterController extends Controller
      */
     protected function create(Request $request)
     {
-        $client=Client::create([
-            'name' => $request->name,
-            'lastname' => $request->lastname,
-            'phone' => $request->phoneNumber
-        ]);
         $user= User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 3,
-            /**
-            *role_id es 3 pues es un cliente normal por defecto.
-            */
+            'role_id' => 2,
             'client_id' => $client->id
         ]);
         $restaurant= Restaurant::create([
@@ -101,6 +94,9 @@ class RestaurantRegisterController extends Controller
           'direction' => $request->direction,
           'user_id'=>$user->id
         ]);
+        // $restaurantRequest = RestaurantRequest::create([
+            
+        // ]);
         return view('principal');
     }
 }

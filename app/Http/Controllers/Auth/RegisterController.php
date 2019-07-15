@@ -82,9 +82,6 @@ class RegisterController extends Controller
              'email' => $request->email,
              'password' => Hash::make($request->password),
              'role_id' => 3,
-             /**
-             *role_id es 3 pues es un cliente normal por defecto.
-             */
              'client_id' => $client->id
          ]);
          $this->guard()->login($user);
