@@ -1,0 +1,36 @@
+/*Estrellas*/
+.text-muted {
+    color: #236863!important;
+}
+
+/*Texto de los items*/
+a {
+    color: #236863;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/* Imágenes adaptables al contenedor y responsive*/
+.carousel-item {
+  width: 70%;
+}
+
+/* Botón de agregar al carrito */
+.card-footer {
+  padding: 0.75rem 1.25rem;
+  background-color: rgb(83,137,133);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.btn{
+	color: #fff;
+}
+
+.button-carrito{
+  padding: 0rem;
+}
+
+/* Arreglar icono-texto */
+.fas{
+	margin-right: 20px;
+}

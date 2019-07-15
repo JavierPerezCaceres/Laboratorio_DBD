@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 <!-- nico -->
+@section('style')
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/1a73430d21.js"></script>
+
+@endsection
 
 @section('content')
 
@@ -69,9 +75,11 @@
 
 
                 </div>
-                <div class="card-footer">
-                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                </div>
+                <div class="card-footer button-carrito">
+                    <button class="btn btn-block"> 
+                    <i class="fas fa-shopping-cart"></i>
+                    Agregar a carrito </button>
+                  </div>
             </div>
           </div>
   @endforeach
