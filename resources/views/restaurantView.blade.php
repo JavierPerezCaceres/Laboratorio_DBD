@@ -19,9 +19,15 @@
 
     <h1 class="my-4">{{$restaurant->name}}</h1>
     <div class="list-group">
-      <a href="#" class="list-group-item">Carta</a>
-      <a href="#" class="list-group-item">Promociones</a>
-      <a href="#" class="list-group-item">Recomendados</a>
+      <a href="#" class="list-group-item">
+        <i class="fas fa-book-reader"></i>
+        Carta</a>
+      <a href="#" class="list-group-item">
+        <i class="fas fa-tag"></i>
+        Promociones</a>
+      <a href="#" class="list-group-item">
+        <i class="fas fa-hand-point-right"></i>
+        Recomendados</a>
     </div>
 
   </div>
@@ -61,7 +67,7 @@
     <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
               <!-- Se bugueo la imagen -->
-              <a href="#"><img class="card-img-top" src="Img/1.jpg" alt=""></a>
+              <a href="#"><img class="card-img-top" src="{{ asset('Img/no-disp.jpeg') }}" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                       <a href="/">{{ $menu->name }}</a>
