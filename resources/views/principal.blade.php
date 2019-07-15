@@ -47,10 +47,10 @@
 	                <div class="col-sm-4">
 	                  <select class="form-control" name="ciudad_id" id="ciudad_id" onChange="habilitar(this.form)">
 	                    <option value="0" selected="selected">
-	                      Select your city
+							Selecciona tu ciudad
 	                    </option>
-	                    @foreach ($cities as $citie)
-                        <option value="{{$citie->id}}">{{$citie->name}}</option>
+	                    @foreach ($cities as $city)
+                        <option value="{{$city->id}}">{{$city->name}}</option>
                  	    @endforeach
 	                  </select>
 	                </div>
@@ -58,14 +58,14 @@
 	                <div class="col-sm-6">
 	                  <select class="form-control" name="district_id" id="district" disabled="true" onchange="habilitar_boton_search(this.form) ">
 	                    <option value="0" selected="selected">
-	                      Select your district
+							Selecciona tu distrito
 	                    </option>
 	                    <option value=""></option>
 	                  </select>
 	                </div>
 	                <!-- /.col 3 -->
 	                <div class="col-sm-2">
-	                  <button type="submit"class="btn btn-lg btn-primary site-btn2">Search Now</button>
+	                  <button type="submit" id="boton_search" class="btn btn-lg btn-primary site-btn2" disabled="true">Search Now</button>
 	                </div>
 	                <!-- /.col 1 -->
 	      		    </div>
@@ -135,7 +135,7 @@
 
 function habilitar(form,cities)
 {
-  if (form.ciudad_id.selected == true)
+  if (form.ciudad_id.selected == true && form.cuidad_id.value != 0)
 
   {
     form.district_id.disabled = true;
@@ -146,9 +146,9 @@ function habilitar(form,cities)
   }
 }
 
-function habilitar_boton_search(form)
+function habilitar_boton_search(form, districts)
 {
-	if (form.district_id.selected == true)
+	if (form.district_id.selected == true && form.district_id.value != 0)
 	{
 		form.boton_search.disabled =true;
 	}
@@ -165,6 +165,7 @@ $('#ciudad_id').on('change', function(e){
   $.get('/districts/' + ciudad_id, function(data) {
     console.log(data);
     $('#district').empty();
+	$('#district').append('<option value="0" selected="selected">Selecciona tu distrito</option>');          
     $.each(data, function(index,subCatObj){
       $('#district').append('<option value="'+subCatObj.id+'">'+subCatObj.name+'</option>');          
     });
