@@ -96,7 +96,7 @@
               <div class="card h-100">
                 <a href="/restaurantViews/{{ $restaurant->id }}"><img class="card-img-top" src="Img/4.jpg" alt=""></a>
                 <div class="card-body">
-                  <h1 class="card-title">
+                  <h1 class="card-title text-center">
                     <a href="/restaurantViews/{{ $restaurant->id }}">{{ $restaurant->name }}</a>
                   </h1>
                   <!-- calcular estrellas -->

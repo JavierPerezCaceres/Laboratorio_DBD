@@ -10678,10 +10678,17 @@ a {
   background-color: transparent;
 }
 
-/* Imágenes adaptables al contenedor y responsive*/
+main.py-4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
 
-.carousel-item {
-  width: 70%;
+.text-center {
+  text-align: center !important;
+}
+
+.list-group {
+  font-size: 16px;
 }
 
 /* Botón de agregar al carrito */
@@ -10713,11 +10720,6 @@ a {
 .caraous-title span {
   color: #438b87;
   font-size: 3rem;
-}
-
-main.py-4 {
-  padding: 0px !important;
-  padding-top: 0px !important;
 }
 
 .caraous-title h1 {
@@ -10774,6 +10776,53 @@ h4,
   border-bottom: 2px solid #438b87;
 }
 
+/* Estilos de página */
+
+/*Estrellas*/
+
+.text-muted {
+  color: #236863 !important;
+}
+
+/*Texto de los items*/
+
+a {
+  color: #236863;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.card-title {
+  font-size: 20px;
+}
+
+.list-group {
+  font-size: 16px;
+}
+
+/* Arreglar icono-texto */
+
+.fas {
+  margin-right: 20px;
+}
+
+main.py-4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+.col-lg-3 {
+  padding-top: 50px;
+}
+
+.col-lg-4 {
+  padding-top: 50px;
+}
+
 .navbar-pedidosRightNow {
   background-color: #438b87 !important;
   padding: 0px !important;
@@ -10803,5 +10852,10 @@ a.navbar-brand {
 .navbar-light .navbar-nav .nav-link:focus {
   background-color: rgba(35, 104, 99, 0.9);
   color: #fff;
+}
+
+main.py-4 {
+  padding-top: 0px;
+  padding: 0px !important;
 }
 

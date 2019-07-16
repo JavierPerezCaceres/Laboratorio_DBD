@@ -25,8 +25,8 @@
 				<div class="form-left">
 					<h2>
 					    <i class="fas fa-info-circle"></i>
-					        Información de registro
-					    </h2>
+					        Información del solicitante
+					</h2>
 					<div class="form-row">
 					</div>
 					<div class="form-group">
@@ -67,9 +67,24 @@
                                 </span>
                             @enderror
 					</div>
-					<div class="centrado">
-					<img class= "picture1" src="Img/solicitud.svg" >
+
+					<h2>
+					    <i class="fas fa-sign-in-alt"></i>
+					    Regístrate como usuario dueño de restaurant
+					</h2>
+
+					<div class="form-row">
+						<input type="text" name="username" class="company" id="username" placeholder="Ingresa correo electrónico" required>
 					</div>
+
+					<div class="form-row">
+						<input type="text" name="password" class="company" id="password" placeholder="Ingresa tu contraseña" required>
+					</div>
+
+					<div class="form-row">
+						<input type="text" name="confirm-password" class="company" id="confirm-password" placeholder="Confirma tu contraseña" required>
+					</div>
+
 				</div>
 				<div class="form-right">
 					<h2>
@@ -86,7 +101,6 @@
                         @enderror
 					</div>
 					<div class="form-row">
-						<input type="text" name="street" class="street" id="street" placeholder="Dirección de la casa matriz" required>
 						<input id="dir_rest" type="text" class="form-control @error('dir_rest') is-invalid @enderror" name="dir_rest" value="{{ old('dir_rest') }}" placeholder="Dirección de la casa matriz" required autocomplete="dir_rest" autofocus>
 
                         @error('dir_rest')
