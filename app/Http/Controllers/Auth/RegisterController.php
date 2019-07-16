@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Crypt;
 
 class RegisterController extends Controller
 {
@@ -84,6 +86,9 @@ class RegisterController extends Controller
              'role_id' => 3,
              'client_id' => $client->id
          ]);
+         $UI=Crypt::encrypt($user->id);
+         Cart::store($UI);
+         Cart::instance($UI);
          $this->guard()->login($user);
          return redirect('');
      }

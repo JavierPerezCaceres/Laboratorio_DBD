@@ -40,7 +40,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('newRegister','Auth\RegisterController@create')->name('newRegister');
 Route::get('/restaurantRequest/{user}','RestaurantRequestController@page');
 Route::post('/restaurantRequest','RestaurantRequestController@create')->name('restaurantRequest');
-// cambios desde aquí hacia arriba
+
+Route::get('/shoppingCart/{name}','ShoppingCartController@show');
+Route::get('/purchaseOrder/{precio}/{UI}/{restaurantID}', 'PurchaseOrderController@create');
+Route::post('/redirect/{UI}/{precio}/{restaurantID}','PurchaseOrderController@redirect')->name('redirect');
+Route::post('/cardPayment/{UI}/{precio}/{clientNumber}/{clientName}/{clientLastname}/{delivery}/{address}/{restaurantID}','PurchaseOrderController@cardPay')->name('cardPayment');
+Route::get('/add/{UI}/{menuID}/{restaurantID}','ShoppingCartController@update');
+// cambios desde aquí hacia arriba (relacionados a vistas)
 
 // Cliente
 Route::get('/client','ClientController@index');

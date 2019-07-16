@@ -7,6 +7,12 @@ use App\PaymentMethod;
 use App\Client;
 use App\Delivery;
 use Illuminate\Http\Request;
+use App\Restaurant;
+use Illuminate\Support\Facades\Crypt;
+use App\cardPayment;
+use Faker\Factory as Faker;
+use App\User;
+
 
 class PurchaseOrderController extends Controller
 {
@@ -27,9 +33,70 @@ class PurchaseOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($precio,$UI,$restaurantID)
     {
-        //
+        return view('/PaymentMethod',compact('precio','UI','restaurantID'));
+    }
+
+    public function redirect(Request $request,$UI,$precio,$restaurantID){
+      $data=$request->all();
+      if($data['payment_method']=="Targeta Crédito/Débito"){
+        return view('CardPayment',compact('data','UI','precio','data','restaurantID'));
+      }
+      else{
+        return "caso: no existe tarjeta de la cual sacar el id para la forma de pago";
+      }
+    }
+    
+    public function cardPay(Request $request,$UI,$precio,$clientName,$clientLastname,$delivery,$clientNumber,$address,$restaurantID){
+      $faker = Faker::create();
+      $card=CardPayment::create([
+        'autorization_code'=> $request->autorizationCode,
+        'transaction_code'=>$faker->unique()->randomNumber($nbDigits=7),
+        'card_number'=>$request->cardNumber,
+        'account_type'=>$request->AccountType,
+        'expiration_date'=>$request->expiration_date
+      ]);
+      $paymentMethod=PaymentMethod::create([
+        'payment_type'=>$request->AccountType,
+        'card_payment_id'=>$card->id
+      ]);
+      $delivery=Delivery::create([
+        'receptor_name'=> $clientName,
+        'contact_number'=> $clientNumber,
+        'extra_wait_time'=>$faker->numberBetween($min = 0, $max = 60),
+        'delivery_address' =>$address,
+        'restaurant_id' => $restaurantID
+      ]);
+      $userID=Crypt::decrypt($UI);
+      if ($userID !=0){
+        $clientes=User::where('id',$userID)->get();
+        $purchaseOrder=PurchaseOrder::create([
+          'amount'=>$precio,
+          'delivery_method'=>$request->delivery,
+          'confirmation'=>0,
+          'payment_method_id'=>$paymentMethod->id,
+          'client_id'=>$clientes[0]->client_id,
+          'delivery_id'=> $delivery->id,
+        ]);
+      }
+      else{
+        $cliente=Client::create([
+          'name' => $clientName,
+          'lastname' => $clientLastname,
+          'phone'=> $clientNumber,
+        ]);
+        $purchaseOrder=PurchaseOrder::create([
+          'amount'=>$precio,
+          'delivery_method'=>$request->delivery,
+          'confirmation'=>0,
+          'payment_method_id'=>$paymentMethod->id,
+          'client_id'=>$cliente->id,
+          'delivery_id'=> $delivery->id,
+        ]);
+      }
+      return "se proceso la compra. La vista esta en desarrollo para ver que cosas despliega.";
+
     }
 
     /**
@@ -47,7 +114,7 @@ class PurchaseOrderController extends Controller
 
             // Se instancia un objeto del modelo
             $purchase_order = new PurchaseOrder();
-            
+
             // Se guardan valores en las distintas variables de modelo.
             $amount = $request->amount;
             $delivery_method = $request->delivery_method;
@@ -65,7 +132,7 @@ class PurchaseOrderController extends Controller
             {
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                     PurchaseOrder::create([
-                    
+
                     'amount' => $amount,
                     'delivery_method' => $delivery_method,
                     'purchase_type' => $purchase_type,
@@ -82,7 +149,7 @@ class PurchaseOrderController extends Controller
                 return "Error en los parametros ingresados.";
             }
         }
-        
+
         else{
             return "Error al ingresar Orden de Compra, llave primaria repetida.";
         }
@@ -134,14 +201,14 @@ class PurchaseOrderController extends Controller
 
             // Se instancia un objeto del modelo
             $purchase_order = new PurchaseOrder();
-            
+
             // Se guardan valores en las distintas variables de modelo.
             $amount = $request->amount;
             $delivery_method = $request->delivery_method;
             $purchase_type = $request->purchase_type;
             $confirmation = $request->confirmation;
             $observations = $request->observations;
-            
+
             $payment_method_id = $request->payment_method_id;
             $client_id = $request->client_id;
             $delivery_id = $request->delivery_id;
@@ -150,13 +217,13 @@ class PurchaseOrderController extends Controller
             // Se realizan las validaciones de los datos.
             if( (is_numeric($amount)) and (is_numeric($delivery_method)) and (is_numeric($purchase_type)) and (is_numeric($confirmation) and !(is_numeric($observations))))
             {
-                
+
                 // En caso de pasar las validaciones se crea la nueva fila en la tabla.
                 $purchaseOrder->updateOrCreate([
 
                     'id' => $request->id
                 ],
-                [   
+                [
                     'amount' => $amount,
                     'delivery_method' => $delivery_method,
                     'purchase_type' => $purchase_type,
@@ -171,7 +238,7 @@ class PurchaseOrderController extends Controller
                 return "Error en los parametros ingresados.";
             }
         }
-        
+
         else{
             return "Error al ingresar Orden de Compra, llave primaria no existe.";
         }
@@ -203,7 +270,7 @@ class PurchaseOrderController extends Controller
         }*/
 
         return "No es posible eliminar una Orden de Compra";
-        
+
     }
 
     public function viewClientOrders(PurchaseOrder $purchaseOrder, Client $client)

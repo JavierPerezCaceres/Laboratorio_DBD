@@ -28,6 +28,18 @@
       <a href="#" class="list-group-item">
         <i class="fas fa-hand-point-right"></i>
         Recomendados</a>
+
+      @guest
+        <?php $guestCart=Crypt::encrypt(0)?>
+        <a href="/shoppingCart/{{$guestCart}}" class="list-group-item"><i class="fas fa-shopping-cart"></i>Carrito de compras</a>
+      @else
+        <?php $UI=Crypt::encrypt(Auth::user()->id)?>
+
+        <span class="text-bold">
+         </span>
+        <a href="/shoppingCart/{{$UI}}" class="list-group-item"><i class="fas fa-shopping-cart" ></i>Carrito de compras</a>
+      @endguest
+
     </div>
 
   </div>
@@ -82,10 +94,18 @@
 
                 </div>
                 <div class="card-footer button-carrito">
-                    <button class="btn btn-block"> 
+                  <button class="btn btn-block"> 
                     <i class="fas fa-shopping-cart"></i>
-                    Agregar a carrito </button>
-                  </div>
+                    Agregar a carrito 
+                  </button>
+                </div>
+
+                @guest
+                  <a href="/add/{{$guestCart}}/{{$menu->id}}/{{$restaurant->id}}" class="btn btn-success btn-lg btn-block"><i class="fas fa-shopping-cart" ></i></a>
+                @else
+                  <a href="/add/{{$UI}}/{{$menu->id}}/{{$restaurant->id}}" class="btn btn-success btn-lg btn-block"><i class="fas fa-shopping-cart" ></i></a>
+                @endguest
+
             </div>
           </div>
   @endforeach
