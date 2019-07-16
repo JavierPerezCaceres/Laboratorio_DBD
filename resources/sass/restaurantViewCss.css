@@ -12,10 +12,19 @@ a {
     background-color: transparent;
 }
 
-/* Imágenes adaptables al contenedor y responsive*/
-.carousel-item {
-  width: 70%;
+main.py-4{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
 }
+
+.text-center {
+    text-align: center !important;
+}
+
+.list-group{
+  font-size: 16px;
+}
+
 
 /* Botón de agregar al carrito */
 .card-footer {

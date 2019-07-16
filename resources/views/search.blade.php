@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  @section('style')
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/1a73430d21.js"></script>
+
+  @endsection
+
 	<!-- Título página -->
 	<title>Pedidos Rightnow</title>
 	<!-- Funcion en archivo prueba.js -->
@@ -16,7 +24,9 @@
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">
                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <h3>Tipo Restaurant</h1>
+                  <h3>
+                  <i class="fas fa-book-reader"></i>
+                  Tipo de comida</h1>
                 </button>
               </h5>
             </div>
@@ -33,7 +43,9 @@
             <div class="card-header" id="headingTwo">
               <h5 class="mb-0">
                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  <h3>Comida</h3>
+                  <h3>
+                  <i class="fas fa-check-square"></i>
+                  Categorías</h3>
                 </button>
               </h5>
             </div>
@@ -50,7 +62,9 @@
             <div class="card-header" id="headingThree">
               <h5 class="mb-0">
                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  <h3>Valoración</h3>
+                  <h3>
+                  <i class="fas fa-star"></i>
+                  Valoración</h3>
                 </button>
               </h5>
             </div>
