@@ -20,7 +20,7 @@
 @include('layouts.app')
 	<div class="page-content">
 		<div class="form-v10-content">
-			<form class="form-detail" action="{{ route('restaurantRegister') }}" method="post" id="myform">
+			<form class="form-detail" action="{{ route('restaurantRegister') }}" method="post" id="solicitud_restaurante">
                 @csrf
 				<div class="form-left">
 					<h2>
@@ -31,21 +31,18 @@
 					</div>
 					<div class="form-group">
 						<div class="form-row form-row-1">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
+                            <input id="nombre_solicitante" type="text" class="form-control @error('nombre_solicitante') is-invalid @enderror" name="nombre_solicitante" value="{{ old('nombre_solicitante') }}" placeholder="Nombre solicitante" required autocomplete="nombre_solicitante" autofocus>
 
-                            <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" placeholder="Nombre solicitante" required autocomplete="first_name" autofocus>
-
-                            @error('first_name')
+                            @error('nombre_solicitante')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
 						</div>
 						<div class="form-row form-row-2">
-                            <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
-                            <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('llast_nameastname') }}" placeholder="Apellido solicitante" required autocomplete="last_name" autofocus>
+                            <input id="apellido_solicitante" type="text" class="form-control @error('apellido_solicitante') is-invalid @enderror" name="apellido_solicitante" value="{{ old('apellido_solicitante') }}" placeholder="Apellido solicitante" required autocomplete="apellido_solicitante" autofocus>
 
-                            @error('last_name')
+                            @error('apellido_solicitante')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -53,10 +50,22 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<input type="text" name="company" class="company" id="company" placeholder="Rut de Empresa" required>
+						<input id="rut_empresa" type="text" class="form-control @error('rut_empresa') is-invalid @enderror" name="rut_empresa" value="{{ old('rut_empresa') }}" placeholder="Rut de Empresa" required autocomplete="rut_empresa" autofocus>
+
+                            @error('rut_empresa')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 					</div>
 					<div class="form-row form-row-3">
-							<input type="text" name="business" class="business" id="business" placeholder="Código de la Superintendencia de salud" required>
+							<input id="csis" type="text" class="form-control @error('csis') is-invalid @enderror" name="csis" value="{{ old('csis') }}" placeholder="Código de la Superintendencia de salud" required autocomplete="csis" autofocus>
+
+                            @error('csis')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 					</div>
 					<div class="centrado">
 					<img class= "picture1" src="Img/solicitud.svg" >
@@ -68,10 +77,23 @@
 					Información general del Restaurant
 					</h2>
 					<div class="form-row">
-						<input type="text" name="additional" class="additional" id="additional" placeholder="Nombre del Restaurant" required>
+						<input id="nombre_restaurant" type="text" class="form-control @error('nombre_restaurant') is-invalid @enderror" name="nombre_restaurant" value="{{ old('nombre_restaurant') }}" placeholder="Nombre del Restaurant" required autocomplete="nombre_restaurant" autofocus>
+
+                        @error('nombre_restaurant')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 					</div>
 					<div class="form-row">
 						<input type="text" name="street" class="street" id="street" placeholder="Dirección de la casa matriz" required>
+						<input id="dir_rest" type="text" class="form-control @error('dir_rest') is-invalid @enderror" name="dir_rest" value="{{ old('dir_rest') }}" placeholder="Dirección de la casa matriz" required autocomplete="dir_rest" autofocus>
+
+                        @error('dir_rest')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 					</div>
 					<div class="form-row">
 						<select name="country">
