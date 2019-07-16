@@ -9,6 +9,9 @@ use App\Ingredient;
 use App\Menu;
 use App\CategoryRestaurant;
 use App\MenuProduct;
+use App\Product;
+use App\City;
+use App\District;
 
 use Illuminate\Http\Request;
 
@@ -29,13 +32,35 @@ class RestaurantController extends Controller
     {
         $district= $request->district_id;
         $restaurants = Restaurant::all()->where('district_id',$request->district_id);
-        $restaurant_categories = CategoryRestaurant::select('name')->get();
+        //$restaurant_categories = CategoryRestaurant::select('name')->get();
+        $restaurant_categories = CategoryRestaurant::select('id', 'name')->orderBy('name')->get();
         //$restaurant_categories = Restaurant::select('category')->distinct()->get();
         $product_categories = Category::select('name')->get();
         $ingredients = Ingredient::select('name')->get();
         //sacar valoración
+
+        $products = Product::select('id', 'name')->orderBy('name')->get();
+
+        // selecciona district_id de los restaurantes registrados
+        $district_ids = Restaurant::select('district_id')->distinct()->orderBy('district_id', 'asc')->get();
         
+        $districts = [];
+        foreach ($district_ids as $id){
+            $val = District::find($id->district_id);
+            array_push($districts, $val);
+        }
+        $cities = [];
+        foreach ($districts as $district){
+            $val = City::find($district->city_id);
+            array_push($cities, $val);
+        }
+        $cities = array_unique($cities);
+
         return view('search', compact(
+            'districts',
+            'cities',
+            'request',
+            'products',
             'restaurants',
             'restaurant_categories',
             'product_categories',
