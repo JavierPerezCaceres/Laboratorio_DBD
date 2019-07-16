@@ -33,9 +33,9 @@
 	      <div class="caraous-title text-center" >
           <div class="row">
 	          <div class="col-md-12">
-	            <span>Non-Profit Organization</span>
-	            <h1><span>RAISE</span> YOUR HELPING HAND</h1>
-	            <h3>We are non-profit NGO & Charity Organization</h3>
+	            <span> ¿Con hambre?</span>
+	            <h1><span>PIDE AHORA</span> EN TU RESTAURANT FAVORITO</h1>
+	            <h3>Comienza ingresando tu locación</h3>
 	          </div> 
 	        </div>
 	        <form action="{{ route('search') }}" method="POST">
@@ -58,14 +58,14 @@
 	                <div class="col-sm-6">
 	                  <select class="form-control" name="district_id" id="district" disabled="true" onchange="habilitar_boton_search(this.form) ">
 	                    <option value="0" selected="selected">
-							Selecciona tu distrito
+							Selecciona tu comuna
 	                    </option>
 	                    <option value=""></option>
 	                  </select>
 	                </div>
 	                <!-- /.col 3 -->
 	                <div class="col-sm-2">
-	                  <button type="submit" id="boton_search" class="btn btn-lg btn-primary site-btn2" disabled="true">Search Now</button>
+	                  <button type="submit" id="boton_search" class="btn btn-lg btn-primary site-btn2" disabled="true">Buscar</button>
 	                </div>
 	                <!-- /.col 1 -->
 	      		    </div>
@@ -118,7 +118,7 @@
 							<p class="card-text"><i class="fas fa-utensils"></i>
 							Cocina: {{ $restaurant_categories[$restaurant->category_restaurant_id-1]->name}}</p>
                         
-						<a href="/restaurantViews/{{ $restaurant->id }}">Learn More</a>
+						<a href="/restaurantViews/{{ $restaurant->id }}">Ver carta</a>
                         
 					 </div>
 				</div>

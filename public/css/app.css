@@ -10662,6 +10662,8 @@ a.text-dark:focus {
   }
 }
 
+/* Estilos de página */
+
 /*Estrellas*/
 
 .text-muted {
@@ -10704,10 +10706,102 @@ a {
   margin-right: 20px;
 }
 
-.navbar-pedidosRightNow {
-  background-color: #538985 !important;
+/* Estilos de página */
+
+/* Títulos imagen principal */
+
+.caraous-title span {
+  color: #438b87;
+  font-size: 3rem;
+}
+
+main.py-4 {
+  padding: 0px !important;
+  padding-top: 0px !important;
+}
+
+.caraous-title h1 {
+  font-size: 3rem;
+}
+
+/* Filtros de locacion */
+
+.form-control {
+  font-size: 2rem;
+}
+
+/* Boton buscar */
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+  color: #fff;
+  background-color: #438b87;
+  border-color: #438b87;
+}
+
+.btn-lg,
+.btn-group-lg > .btn {
+  padding: 0.5rem 1rem;
+  font-size: 2rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+}
+
+.btn.disabled,
+.btn:disabled {
+  opacity: 1;
+}
+
+/* Tarjetas con restaurants */
+
+.box {
   font-family: "Montserrat", sans-serif;
-  color: #000;
   font-size: 16px;
+  padding: 20px;
+}
+
+h4,
+.h4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  padding: 20px;
+  color: #438b87;
+}
+
+.box a {
+  text-decoration: none;
+  color: #438b87;
+  border-bottom: 2px solid #438b87;
+}
+
+.navbar-pedidosRightNow {
+  background-color: #438b87 !important;
+  padding: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+a.navbar-brand {
+  padding: 0px;
+}
+
+.navbar-brand > img {
+  max-height: 50px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+  font-size: 16px;
+  padding: 20px;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus {
+  background-color: rgba(35, 104, 99, 0.9);
+  color: #fff;
 }
 
