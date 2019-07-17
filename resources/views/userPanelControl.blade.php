@@ -352,23 +352,41 @@
         </div>
     </form>
 
-    <!--- Modal para Cambiar la Contraseña de un usuario --->
-    <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cambiar Telefono del Usuario</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                Tengo que averiguar aún lo de como encripta Laravel pero gg izi
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
-                    <button type="submit" class="btn btn-success">Cambiar Contraseña</button>
+
+        <!--- Modal para Cambiar la Contraseña de un usuario --->
+        <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Contraseña</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="pass1" class="control-label">Ingrese Contraseña Actual</label>
+                            <input type="text" name="pass1" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="pass2" class="control-label">Ingrese Nueva Contraseña</label>
+                            <input type="text" name="pass2" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="pass3" class="control-label">Repita Nueva Contraseña</label>
+                            <input type="text" name="pass3" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
+                        <button type="submit " class="btn btn-success" data-toggle="modal" data-target="#passModal">Cambiar Contraseña</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 @endsection
