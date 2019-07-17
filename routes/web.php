@@ -12,6 +12,12 @@
 */
 
 Route::get('/controlPanel','UserController@selectControlPanel');
+Route::post('/controlPanelA','UserController@addDirection')->name('addDirection');
+Route::post('/controlPanelCN','UserController@changeName')->name('changeName');
+Route::post('/controlPanelCLN','UserController@changeLastName')->name('changeLastName');
+Route::post('/controlPanelCE','UserController@changeEmail')->name('changeEmail');
+Route::post('/controlPanelCP','UserController@changePhone')->name('changePhone');
+Route::get('/controlPanelDD','UserController@deleteDirection')->name('deleteDirection');
 
 Route::post('/search', 'RestaurantController@search')->name('search');
 

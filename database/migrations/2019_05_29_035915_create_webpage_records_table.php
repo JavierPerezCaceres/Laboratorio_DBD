@@ -16,6 +16,7 @@ class CreateWebpageRecordsTable extends Migration
         Schema::create('webpage_records', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('user');
             $table->string('action');
         });
     }

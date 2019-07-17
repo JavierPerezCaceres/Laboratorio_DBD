@@ -3,10 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\WebpageRecord;
+use App\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class WebpageRecordController extends Controller
 {
+
+    public function addNewRecord($action){
+      // Variable que contiene al usuario actual.
+      $user = User::find( Auth::user()->id );
+      if($user == NULL){
+        $webPageRecord = new WebpageRecord();
+        WebpageRecord::create([
+        'user' => "Cliente",
+        'action' => $action,
+        'created_at' => now()
+        ]);
+      }
+      else{
+        $webPageRecord = new WebpageRecord();
+        WebpageRecord::create([
+        'user' => $user->name,
+        'action' => $action,
+        'created_at' => now()
+      ]);
+      }
+      return $webPageRecord;
+    }
+
+
     /**
      * Display a listing of the resource.
      *

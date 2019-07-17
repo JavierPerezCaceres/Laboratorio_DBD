@@ -12,6 +12,6 @@ class WebpageRecordSeeder extends Seeder
      */
     public function run()
     {
-        factory(WebpageRecord::class,10)->create();
+        //factory(WebpageRecord::class,10)->create();
     }
 }

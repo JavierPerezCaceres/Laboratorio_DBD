@@ -19,6 +19,7 @@ class CreateRestaurantRequestsTable extends Migration
             $table->integer('company_rut');
             $table->integer('cod_sis');
             $table->string('owner_name');
+            $table->string('name');
             $table->boolean('condition');
 
             $table->unsignedInteger('user_id');
