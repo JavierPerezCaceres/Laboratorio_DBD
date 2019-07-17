@@ -41,11 +41,11 @@ Route::post('newRegister','Auth\RegisterController@create')->name('newRegister')
 Route::get('/restaurantRequest/{user}','RestaurantRequestController@page');
 Route::post('/restaurantRequest','RestaurantRequestController@create')->name('restaurantRequest');
 
-Route::get('/shoppingCart/{name}','ShoppingCartController@show');
 Route::get('/purchaseOrder/{precio}/{UI}/{restaurantID}', 'PurchaseOrderController@create');
 Route::post('/redirect/{UI}/{precio}/{restaurantID}','PurchaseOrderController@redirect')->name('redirect');
 Route::post('/cardPayment/{UI}/{precio}/{clientNumber}/{clientName}/{clientLastname}/{delivery}/{address}/{restaurantID}','PurchaseOrderController@cardPay')->name('cardPayment');
-Route::get('/add/{UI}/{menuID}/{restaurantID}','ShoppingCartController@update');
+Route::get('/add/{menuID}','ShoppingCartController@update');
+Route::get('/remove/{menuID}','ShoppingCartController@remove');
 // cambios desde aquí hacia arriba (relacionados a vistas)
 
 // Cliente

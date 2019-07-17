@@ -10713,6 +10713,24 @@ main.py-4 {
   margin-right: 20px;
 }
 
+/* Carrito de compras */
+
+.card-body-chart {
+  padding: 0px;
+}
+
+.btn-primary {
+  background-color: #236863;
+  width: 100%;
+}
+
+.card-header {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: #fff;
+  background-color: rgb(83, 137, 133);
+}
+
 /* Estilos de página */
 
 /* Títulos imagen principal */

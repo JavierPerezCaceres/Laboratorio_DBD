@@ -18,28 +18,60 @@
   <div class="col-lg-3">
 
     <h1 class="my-4">{{$restaurant->name}}</h1>
-    <div class="list-group">
+    <div class="list-group mb-3">
       <a href="#" class="list-group-item">
         <i class="fas fa-book-reader"></i>
         Carta</a>
       <a href="#" class="list-group-item">
-        <i class="fas fa-tag"></i>
-        Promociones</a>
+        <i class="fas fa-check-square"></i>
+        Categorías</h3>
       <a href="#" class="list-group-item">
-        <i class="fas fa-hand-point-right"></i>
-        Recomendados</a>
+        <i class="fas fa-comment"></i>
+        Comentarios
+      </a>
+    </div>
 
-      @guest
-        <?php $guestCart=Crypt::encrypt(0)?>
-        <a href="/shoppingCart/{{$guestCart}}" class="list-group-item"><i class="fas fa-shopping-cart"></i>Carrito de compras</a>
-      @else
-        <?php $UI=Crypt::encrypt(Auth::user()->id)?>
-
-        <span class="text-bold">
-         </span>
-        <a href="/shoppingCart/{{$UI}}" class="list-group-item"><i class="fas fa-shopping-cart" ></i>Carrito de compras</a>
-      @endguest
-
+    <div class="card">
+      <div class="card-header">
+        <i class="fas fa-shopping-cart"></i>
+        Carrito de compras
+      </div>
+      <div class="card-body card-body-chart">
+        <table class="table table-sm table-striped">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Cant</th>
+              <th>Precio</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($carrito->all() as $menu)
+            <tr>
+                <td>{{$menu->name}}</td>
+                <td>{{$menu->qty}}</td>
+                <td>$ {{$menu->price}}</td>
+                <td>
+                  <a href="/remove/{{ $menu->id }}">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </td>
+                <td></td>
+            </tr>
+            @endforeach
+            <tr>
+              <td colspan="2" class="text-right">Total</td>
+              <td colspan="2" >$ {{ Cart::subtotal(0, ',', '.') }}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+          <!-- AIURA VICHO, AQUI VA REDIRIGIDO AL CHECKOUT  -->
+          <a href="/checkout-please/" class="btn btn-primary btn-chart">
+            <i class="fas fa-shopping-cart"></i> Pedir
+          </a>
+      </div>
     </div>
 
   </div>
@@ -94,17 +126,11 @@
 
                 </div>
                 <div class="card-footer button-carrito">
-                  <button class="btn btn-block"> 
+                  <a href="/add/{{ $menu->id }}" class="btn btn-block"> 
                     <i class="fas fa-shopping-cart"></i>
                     Agregar a carrito 
-                  </button>
+                  </a>
                 </div>
-
-                @guest
-                  <a href="/add/{{$guestCart}}/{{$menu->id}}/{{$restaurant->id}}" class="btn btn-success btn-lg btn-block"><i class="fas fa-shopping-cart" ></i></a>
-                @else
-                  <a href="/add/{{$UI}}/{{$menu->id}}/{{$restaurant->id}}" class="btn btn-success btn-lg btn-block"><i class="fas fa-shopping-cart" ></i></a>
-                @endguest
 
             </div>
           </div>

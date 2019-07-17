@@ -14,18 +14,31 @@ use App\City;
 use App\District;
 
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class RestaurantController extends Controller
 {
 
     // Start New Controllers
     public function showRestaurant(Restaurant $restaurant){ // Nico
+        Cart::restore(request()->session()->get('id'));
+        $carrito = Cart::content();
+        // $restaurantID=0;
+        if (Cart::count() != 0){
+          foreach (Cart::content()->all() as $a){
+            $menuCarro=Menu::where('id',$a->id)->get();
+            break;
+          }
+          // $restaurantID=$menuCarro[0]->restaurant_id;
+        }
+        // return view('shoppingCart',compact('carrito','UI','restaurantID'));
+
         if($restaurant == null){
             return view('welcome');
         }
         $menus = Menu::select('id', 'name','total_price','discount')->where('restaurant_id',$restaurant->id)->get();
 
-        return view('restaurantView', compact('menus','restaurant'));
+        return view('restaurantView', compact('menus','restaurant', 'carrito'));
     }
 
     public function search(Request $request) // Vicho
