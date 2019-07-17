@@ -147,8 +147,9 @@ class UserController extends Controller
         return UserController::selectControlPanel();
     }
 
-    public function deleteDirection(Request $request){
-        return $request;
+    public function deleteDirection(Request $request,Address $address){
+        $address->delete();
+        return UserController::selectControlPanel();
     }
 
     // End new Controllers

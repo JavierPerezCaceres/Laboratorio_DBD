@@ -107,8 +107,11 @@
                                             <label style="font-weight:bold;">Comuna</label>
                                         </div>
                                     </div>
+                                    <hr/>
                                     @foreach ($addresses as $address)
-                                    <form action="{{ route('deleteDirection') }}" method="DELETE">
+                                    <form action="{{ route('deleteDirection',$address->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
                                         <div class="row">
                                             <div class="col-sm-3 col-md-3 col-5">
                                                 <label style="font-weight:bold;">Direccion</label>
