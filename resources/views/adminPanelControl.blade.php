@@ -303,7 +303,8 @@
     </form>
 
     <!--- Modal para Cambiar la Contraseña de un usuario --->
-    <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModal" aria-hidden="true">
+    <form action="{{ route('updatePassword') }}" method="POST">    
+        <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -314,20 +315,20 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="pass1" class="control-label">Ingrese Contraseña Actual</label>
-                            <input type="text" name="pass1" class="form-control">
+                            <label for="mypassword" class="control-label">Ingrese Contraseña Actual</label>
+                            <input type="password" name="mypassword" class="form-control">
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="pass2" class="control-label">Ingrese Nueva Contraseña</label>
-                            <input type="text" name="pass2" class="form-control">
+                            <label for="password" class="control-label">Ingrese Nueva Contraseña</label>
+                            <input type="password" name="password" class="form-control">
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="pass3" class="control-label">Repita Nueva Contraseña</label>
-                            <input type="text" name="pass3" class="form-control">
+                            <label for="mypassword" class="control-label">Repita Nueva Contraseña</label>
+                            <input type="password" name="password_confirmation" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -337,5 +338,7 @@
                 </div>
             </div>
         </div>
+    </form>
+
 </div>
 @endsection

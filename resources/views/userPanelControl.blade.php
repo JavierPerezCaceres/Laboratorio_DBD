@@ -123,7 +123,7 @@
                                                 {{ $address->number }}
                                             </div>
                                             <div class="col-md-3 col-6">
-                                                {{ $address->district_id }}
+                                                {{ $address->district->name }}
                                             </div>
                                             <div>
                                                 <button type="submit" class="btn btn-success">Quitar Dirección</button>
@@ -272,7 +272,7 @@
     </form>
 
     <!--- Modal para Cambiar el apellido de un usuario --->
-    <form action="{{ route('changeLastName') }}" method="POST">
+    <form name="lastNameForm" action="{{ route('changeLastName') }}" method="POST" onsubmit="return validateLastNameForm()">
         @csrf
         <div class="modal fade" id="lastNameModal" tabindex="-1" role="dialog" aria-labelledby="lastNameModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -354,6 +354,7 @@
 
 
         <!--- Modal para Cambiar la Contraseña de un usuario --->
+    <form action="{{ route('updatePassword') }}" method="POST">    
         <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -365,20 +366,20 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="pass1" class="control-label">Ingrese Contraseña Actual</label>
-                            <input type="text" name="pass1" class="form-control">
+                            <label for="mypassword" class="control-label">Ingrese Contraseña Actual</label>
+                            <input type="password" name="mypassword" class="form-control">
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="pass2" class="control-label">Ingrese Nueva Contraseña</label>
-                            <input type="text" name="pass2" class="form-control">
+                            <label for="password" class="control-label">Ingrese Nueva Contraseña</label>
+                            <input type="password" name="password" class="form-control">
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="pass3" class="control-label">Repita Nueva Contraseña</label>
-                            <input type="text" name="pass3" class="form-control">
+                            <label for="mypassword" class="control-label">Repita Nueva Contraseña</label>
+                            <input type="password" name="password_confirmation" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -388,5 +389,26 @@
                 </div>
             </div>
         </div>
+    </form>
+    <script type="text/javascript">
+        
+        function validateLastNameForm(){
+
+            var letras="0123456789";
+            var x = document.forms["lastNameForm"]["name"].value;
+            if (x == "") {
+                alert("Campo de apellido debe ser llenado.");
+                return false;
+            }
+            for(i=0; i<x.length; i++){
+                if (letras.indexOf(x.charAt(i)) != -1){
+                    alert("Campo de apellido solo debe tener letras.");
+                    return false;
+                }
+            }
+            return true
+        }
+
+    </script>
 </div>
 @endsection

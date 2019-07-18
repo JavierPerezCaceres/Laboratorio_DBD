@@ -13,6 +13,8 @@ use App\WebpageRecord;
 use App\Http\Controllers\WebpageRecordController;
 use App\RestaurantRequest;
 use Auth;
+use Hash;
+use Validator;
 
 use Illuminate\Http\Request;
 
@@ -61,6 +63,7 @@ class UserController extends Controller
         $webpageAux = new WebPageRecordController();
         $webpage = $webpageAux->addNewRecord("Agregó Nueva Dirección");
         // En caso de pasar las validaciones se crea la nueva fila en la tabla.
+        
         Address::create([
             'street' => $request->street,
             'number' => $request->number,
@@ -92,6 +95,11 @@ class UserController extends Controller
         [
             'name' => $request->name,
         ]);
+
+        // Se añade acción al log de la página.
+        $webpageAux = new WebPageRecordController();
+        $webpage = $webpageAux->addNewRecord("Se Cambio el Nombre");
+
         return UserController::selectControlPanel();
     }
 
@@ -110,6 +118,10 @@ class UserController extends Controller
             'lastname' => $request->name,
         ]);
 
+        // Se añade acción al log de la página.
+        $webpageAux = new WebPageRecordController();
+        $webpage = $webpageAux->addNewRecord("Se Cambio el Apellido");
+
         return UserController::selectControlPanel();
     }
 
@@ -126,6 +138,10 @@ class UserController extends Controller
             'email' => $request->email
         ]);
         
+        // Se añade acción al log de la página.
+        $webpageAux = new WebPageRecordController();
+        $webpage = $webpageAux->addNewRecord("Cambio Su Correo");
+
         return UserController::selectControlPanel();
     }
 
@@ -144,12 +160,51 @@ class UserController extends Controller
             'phone' => $request->phone
         ]);
         
+        // Se añade acción al log de la página.
+        $webpageAux = new WebPageRecordController();
+        $webpage = $webpageAux->addNewRecord("Cambio su Número telefónico");
+
         return UserController::selectControlPanel();
     }
 
     public function deleteDirection(Request $request,Address $address){
         $address->delete();
+        // Se añade acción al log de la página.
+        $webpageAux = new WebPageRecordController();
+        $webpage = $webpageAux->addNewRecord("Eliminó una dirección");
         return UserController::selectControlPanel();
+    }
+
+    public function updatePassword(Request $request){
+        $rules = [
+            'mypassword' => 'required',
+            'password' => 'required|confirmed|min:6|max:18',
+        ];
+        
+        $messages = [
+            'mypassword.required' => 'El campo es requerido',
+            'password.required' => 'El campo es requerido',
+            'password.confirmed' => 'Los passwords no coinciden',
+            'password.min' => 'El mínimo permitido son 6 caracteres',
+            'password.max' => 'El máximo permitido son 18 caracteres',
+        ];
+        
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()){
+            return UserController::selectControlPanel();
+        }
+        else{
+            if (Hash::check($request->mypassword, Auth::user()->password)){
+                $user = new User;
+                $user->where('email', '=', Auth::user()->email)
+                     ->update(['password' => bcrypt($request->password)]);
+                return UserController::selectControlPanel();
+            }
+            else
+            {
+                return UserController::selectControlPanel();
+            }
+        }
     }
 
     // End new Controllers

@@ -18,6 +18,7 @@ Route::post('/controlPanelCLN','UserController@changeLastName')->name('changeLas
 Route::post('/controlPanelCE','UserController@changeEmail')->name('changeEmail');
 Route::post('/controlPanelCP','UserController@changePhone')->name('changePhone');
 Route::delete('/controlPanelDD/{address}','UserController@deleteDirection')->name('deleteDirection');
+Route::post('/controlPanelUP','UserController@updatePassword')->name('updatePassword');
 
 Route::post('/search', 'RestaurantController@search')->name('search');
 
