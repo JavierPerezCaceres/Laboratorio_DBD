@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/faq', function(){
+	return view('faq');
+});
+
 Route::get('/orderConfirmation', function(){
 	return view('orderConfirmation');
 });
