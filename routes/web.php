@@ -71,7 +71,7 @@ Route::get('/remove/{menuID}','ShoppingCartController@remove');
 
 
 Route::get('/purchase', 'PurchaseOrderController@confirmation');
-Route::post('/purchase', 'PurchaseOrderController@create')->name('purchase');
+Route::post('/confirmation', 'PurchaseOrderController@create')->name('confirmation');
 // Route::get('/purchase',function(){
 //   return view('purchase');
 // });
