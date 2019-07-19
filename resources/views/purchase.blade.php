@@ -1,31 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="author" content="colorlib.com">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Confirmación de pedido</title>
+@extends('layouts.app')
 
-    <!-- Font-->
-    <link rel="stylesheet" type="text/css" href="css/montserrat-font.css">
-    <link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+@section('style')
+
+     <!-- Font-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('/Checkout/css/montserrat-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/Checkout/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
     <!-- Font Icon -->
-    <link rel="stylesheet" href="fonts/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="{{ asset('/Checkout/fonts/themify-icons/themify-icons.css') }}">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('/Checkout/css/style.css') }}">
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/1a73430d21.js"></script>
-</head>
-<body>
-@include('layouts.app')
+@endsection
+
+@section('content')
+
 <div class="main">
 
 <div class="container-checkout">
     <h2>Confirmación de pedido</h2>
-        <form method="POST" class="form-detail" action="{{ route('purchase') }}">
+        <form method="POST" class="form-detail" id="signup-form" action="{{ route('purchase') }}">
             <h3>
                 <span class="icon"><i class="ti-user"></i></span>
                 <span class="title_text">Contacto</span>
@@ -249,12 +243,33 @@
 
 </div>
 
+@endsection
+
+@section('scriptPrueba')
     <!-- JS -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="vendor/jquery-validation/dist/additional-methods.min.js"></script>
-    <script src="vendor/jquery-steps/jquery.steps.min.js"></script>
-    <script src="vendor/minimalist-picker/dobpicker.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+    <script src="{{ asset('Checkout/vendor/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('Checkout/vendor/jquery-validation/dist/additional-methods.min.js') }}"></script>
+    <script src="{{ asset('Checkout/vendor/jquery-steps/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('Checkout/vendor/minimalist-picker/dobpicker.js') }}"></script>
+    <script src="{{ asset('Checkout/js/main.js') }}"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script type="text/javascript"> 
+        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        $.fn.datepicker.dates['es'] = {
+            days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+            daysShort: ["Dom", "Lun", "Man", "Mier", "Jue", "Vier", "Sab"],
+            daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+            months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+            monthsShort: ["Ene", "Febr", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+            today: "Hoy",
+            clear: "Limpiar",
+            format: "dd/mm/yyyy",
+            titleFormat: "DD yyyy", /* Leverages same syntax as 'format' */
+            weekStart: 0
+            };
+        $('.book-date').datepicker({language: "es"});
+
+    </script>
+@endsection

@@ -2,17 +2,17 @@
 
 @section('style')
     <!-- Font-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/Checkout/css/montserrat-font.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/Checkout/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('Checkout/css/montserrat-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('Checkout/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
     <!-- Font Icon -->
-    <link rel="stylesheet" href="{{ asset('/Checkout/fonts/themify-icons/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('Checkout/fonts/themify-icons/themify-icons.css') }}">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="{{ asset('/Checkout/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('Checkout/css/style.css') }}">
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/1a73430d21.js"></script>
+
 @endsection
+
 @section('content')
 
     <div class="main">
