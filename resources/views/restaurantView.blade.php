@@ -68,7 +68,7 @@
           </tbody>
         </table>
           <!-- AIURA VICHO, AQUI VA REDIRIGIDO AL CHECKOUT  -->
-          <a href="/checkout-please/" class="btn btn-primary btn-chart">
+          <a href="/checkout" class="btn btn-primary btn-chart">
             <i class="fas fa-shopping-cart"></i> Pedir
           </a>
       </div>
