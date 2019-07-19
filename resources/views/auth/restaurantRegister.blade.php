@@ -20,7 +20,7 @@
 @include('layouts.app')
 	<div class="page-content">
 		<div class="form-v10-content">
-			<form class="form-detail" action="{{ route('restaurantRegister') }}" method="post" id="solicitud_restaurante">
+			<form method="POST" class="form-detail" action="{{ route('restaurantRegister') }}">
                 @csrf
 				<div class="form-left">
 					<h2>

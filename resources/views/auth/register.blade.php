@@ -21,7 +21,7 @@
 <body class="form-v10">
 	<div class="page-content">
 		<div class="form-v10-content">
-            <form method="POST" class="form-detail" action="{{ route('newRegister') }}">
+            <form method="POST" class="form-detail" action="{{ route('register') }}">
                 @csrf
 				<div class="form-left">
 					<h2>
