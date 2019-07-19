@@ -10915,7 +10915,6 @@ div.card-body {
 }
 
 .rate {
-  float: left;
   height: 46px;
   padding: 0 10px;
 }
@@ -10926,13 +10925,12 @@ div.card-body {
 }
 
 .rate:not(:checked) > label {
-  float: right;
   width: 1em;
   overflow: hidden;
   white-space: nowrap;
   cursor: pointer;
   font-size: 30px;
-  color: #ccc;
+  color: #236863;
 }
 
 .rate:not(:checked) > label:before {
@@ -10940,12 +10938,12 @@ div.card-body {
 }
 
 .rate > input:checked ~ label {
-  color: #ffc700;
+  color: #ccc;
 }
 
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-  color: #deb217;
+  color: #fff;
 }
 
 .rate > input:checked + label:hover,
@@ -10953,7 +10951,7 @@ div.card-body {
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-  color: #c59b08;
+  color: #236863;
 }
 
 /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
