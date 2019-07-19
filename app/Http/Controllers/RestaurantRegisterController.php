@@ -6,6 +6,7 @@ use App\User;
 use App\Restaurant;
 use App\RestaurantRequest;
 use App\CategoryRestaurant;
+use App\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
