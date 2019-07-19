@@ -52,20 +52,20 @@
 					<div class="form-row">
 						<input id="rut_empresa" type="text" class="form-control @error('rut_empresa') is-invalid @enderror" name="rut_empresa" value="{{ old('rut_empresa') }}" placeholder="Rut de Empresa" required autocomplete="rut_empresa" autofocus>
 
-                            @error('rut_empresa')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+						@error('rut_empresa')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+						@enderror
 					</div>
 					<div class="form-row form-row-3">
-							<input id="csis" type="text" class="form-control @error('csis') is-invalid @enderror" name="csis" value="{{ old('csis') }}" placeholder="Código de la Superintendencia de salud" required autocomplete="csis" autofocus>
+						<input id="codigo_SIS" type="text" class="form-control @error('codigo_SIS') is-invalid @enderror" name="codigo_SIS" value="{{ old('codigo_SIS') }}" placeholder="Código de la Superintendencia de Salud" required autocomplete="codigo_SIS" autofocus>
 
-                            @error('csis')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+						@error('codigo_SIS')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+						@enderror
 					</div>
 
 					<h2>
@@ -73,23 +73,37 @@
 					    Regístrate como usuario dueño de restaurant
 					</h2>
 
-					<div class="form-row">
-						<input type="text" name="username" class="company" id="username" placeholder="Ingresa correo electrónico" required>
+					<div class="form-row form-row-3">
+						<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Ingrese correo electrónico" required autocomplete="email" autofocus>
+
+						@error('email')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+						@enderror
+					</div>
+
+					<div class="form-row form-row-3">
+						<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Ingresa tu contraseña" required autocomplete="new-password">
+
+						@error('password')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+						@enderror
 					</div>
 
 					<div class="form-row">
-						<input type="text" name="password" class="company" id="password" placeholder="Ingresa tu contraseña" required>
-					</div>
-
-					<div class="form-row">
-						<input type="text" name="confirm-password" class="company" id="confirm-password" placeholder="Confirma tu contraseña" required>
+						<div class="col-md-6">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirma tu contraseña" required autocomplete="new-password">
+                        </div>
 					</div>
 
 				</div>
 				<div class="form-right">
 					<h2>
 					<i class="fas fa-utensils"></i>
-					Información general del Restaurant
+						Información general del Restaurant
 					</h2>
 					<div class="form-row">
 						<input id="nombre_restaurant" type="text" class="form-control @error('nombre_restaurant') is-invalid @enderror" name="nombre_restaurant" value="{{ old('nombre_restaurant') }}" placeholder="Nombre del Restaurant" required autocomplete="nombre_restaurant" autofocus>
@@ -101,20 +115,20 @@
                         @enderror
 					</div>
 					<div class="form-row">
-						<input id="dir_rest" type="text" class="form-control @error('dir_rest') is-invalid @enderror" name="dir_rest" value="{{ old('dir_rest') }}" placeholder="Dirección de la casa matriz" required autocomplete="dir_rest" autofocus>
+						<input id="dir_casa_matriz" type="text" class="form-control @error('dir_casa_matriz') is-invalid @enderror" name="dir_casa_matriz" value="{{ old('dir_casa_matriz') }}" placeholder="Dirección de la casa matriz" required autocomplete="dir_casa_matriz" autofocus>
 
-                        @error('dir_rest')
+                        @error('dir_casa_matriz')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
 					</div>
 					<div class="form-row">
-						<select name="country">
-						    <option value="country">Tipo de cocina</option>
-						    <option value="Vietnam">China</option>
-						    <option value="Malaysia">Tradicional</option>
-						    <option value="India">Blabla</option>
+						<select name="category">
+						    <option value="0" disabled selected="selected">Tipo de cocina</option>
+							@foreach($restaurant_categories as $category)
+							<option value="{{ $category->id }}">{{ $category->name }}</option>
+							@endforeach
 						</select>
 						<span class="select-btn">
 						  	<i class="zmdi zmdi-chevron-down"></i>
@@ -123,9 +137,17 @@
 					<div class="form-group">
 						<div class="form-row form-row">
 							<input type="text" name="open" class="code" id="code" placeholder="Horario apertura" required>
+							<input id="opening_hour" type="text" class="form-control @error('opening_hour') is-invalid @enderror" name="opening_hour" value="{{ old('opening_hour') }}" placeholder="Horario apertura" required autocomplete="opening_hour" autofocus>
+
+                        @error('opening_hour')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
 						</div>
 						<div class="form-row form-row">
 							<input type="text" name="close" class="code" id="code" placeholder="Horario cierre" required>
+							
 						</div>
 					</div>
 					<div class="form-row">

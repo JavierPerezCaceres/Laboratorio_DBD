@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Restaurant;
 use App\RestaurantRequest;
+use App\CategoryRestaurant;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -13,6 +14,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+
 class RestaurantRegisterController extends Controller
 {
     /*
@@ -53,14 +55,19 @@ class RestaurantRegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
+            'nombre_solicitante' => ['required', 'string', 'max:255'],
+            'apellido_solicitante' => ['required', 'string', 'max:255'],
+            'rut_empresa' => ['required', 'string', 'max:255'],
+            'codigo_SIS' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phoneNumber' =>['required','numeric','digits:11'],
+            'nombre_restaurant' => ['required', 'string', 'max:255'],
+            'dir_casa_matriz' =>['required','string','max:255'],
             'category' =>['required','string','max:255'],
+            
             'kitchen' =>['required','string','max:255'],
-            'opening' =>['required','string','max:255'],
+            'phoneNumber' =>['required','numeric','digits:11'],
+            'opening_hour' =>['required','string','max:255'],
             'closing' =>['required','string','max:255'],
             'personCost'=>['required','numeric'],
             'waitTime' =>['requiered','string','max:255'],
@@ -76,6 +83,7 @@ class RestaurantRegisterController extends Controller
      */
     protected function create(Request $request)
     {
+        $this->validator($request->all())->validate();
         $user= User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -98,5 +106,11 @@ class RestaurantRegisterController extends Controller
             
         // ]);
         return view('principal');
+    }
+
+    public function index(){
+        $restaurant_categories = CategoryRestaurant::select('id', 'name')->orderBy('id')->get();
+        
+        return view('auth.restaurantRegister', compact('restaurant_categories') );
     }
 }

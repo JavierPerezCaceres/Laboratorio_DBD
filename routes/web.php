@@ -42,10 +42,8 @@ Route::get('/login', function () {
 });
 Route::post('/login','LoginController@login')->name('login');
 
-Route::get('/restaurantRegister',function(){
-    return view('restaurantRegister');
-});
-Route::post('restaurantRegister','RestaurantRegisterController@create')->name('restaurantRegister');
+Route::get('/restaurantRegister', 'RestaurantRegisterController@index');
+Route::post('/restaurantRegister','RestaurantRegisterController@create')->name('restaurantRegister');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
