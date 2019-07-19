@@ -169,7 +169,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'SushiLook',
             'email' => 'SushiLook@gmail.com',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => 'asdasdasd', // password
             'remember_token' => Str::random(10),
             'role_id' => 2, 
             'client_id' => null,

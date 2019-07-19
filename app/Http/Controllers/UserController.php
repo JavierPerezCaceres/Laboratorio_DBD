@@ -8,20 +8,26 @@ use App\Client;
 use App\City;
 use App\District;
 use App\Address;
+use App\DistrictRestaurant;
 use App\PurchaseOrder;
+use App\Product;
 use App\WebpageRecord;
+use App\Restaurant;
+use App\MenuProduct;
+use App\Menu;
 use App\Http\Controllers\WebpageRecordController;
 use App\RestaurantRequest;
 use Auth;
 use Hash;
 use Validator;
+use Session;
 
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     // Start new Controllers
-    // Para el Cliente me faltan hacer las validaciones de los metodos y que se puedan eliminar direcciones.
+    
     public function selectControlPanel(){
         if( Auth::user()->role_id == 1){ // admin
 
@@ -32,9 +38,18 @@ class UserController extends Controller
             $users = User::all();
             return view('adminPanelControl', compact('records','requests','user','users','client'));
 
-        }elseif(false){ // restaurant
+        }elseif( Auth::user()->role_id == 2){ // restaurant
 
-            return view('main');
+            $user = User::find( Auth::user()->id );
+            $rstnts = Restaurant::all();
+            $men = Menu::all();
+            $menProd = MenuProduct::all();
+            $rstntsDstrcts = DistrictRestaurant::all();
+            $restaurants = $rstnts->where('user_id',$user->id)->first();
+            $menus = $men->where('restaurant_id',$restaurants->id);
+            $district = $rstntsDstrcts->where('restaurant_id',$restaurants->id);
+
+            return view('restaurantPanelControl',compact('restaurants','district','menus'));
 
         }else{ // client
 
@@ -71,7 +86,7 @@ class UserController extends Controller
             'client_id' => $client->id
         ]);
 
-        return UserController::selectControlPanel();
+        return redirect('/controlPanel');
     }
 
     public function changeName(Request $request){
@@ -100,7 +115,7 @@ class UserController extends Controller
         $webpageAux = new WebPageRecordController();
         $webpage = $webpageAux->addNewRecord("Se Cambio el Nombre");
 
-        return UserController::selectControlPanel();
+        return redirect('/controlPanel');
     }
 
     public function changeLastName(Request $request){
@@ -122,7 +137,7 @@ class UserController extends Controller
         $webpageAux = new WebPageRecordController();
         $webpage = $webpageAux->addNewRecord("Se Cambio el Apellido");
 
-        return UserController::selectControlPanel();
+        return redirect('/controlPanel');
     }
 
     public function changeEmail(Request $request){
@@ -142,7 +157,7 @@ class UserController extends Controller
         $webpageAux = new WebPageRecordController();
         $webpage = $webpageAux->addNewRecord("Cambio Su Correo");
 
-        return UserController::selectControlPanel();
+        return redirect('/controlPanel');
     }
 
     public function changePhone(Request $request){
@@ -164,7 +179,7 @@ class UserController extends Controller
         $webpageAux = new WebPageRecordController();
         $webpage = $webpageAux->addNewRecord("Cambio su Número telefónico");
 
-        return UserController::selectControlPanel();
+        return redirect('/controlPanel');
     }
 
     public function deleteDirection(Request $request,Address $address){
@@ -172,7 +187,7 @@ class UserController extends Controller
         // Se añade acción al log de la página.
         $webpageAux = new WebPageRecordController();
         $webpage = $webpageAux->addNewRecord("Eliminó una dirección");
-        return UserController::selectControlPanel();
+        return redirect('/controlPanel');
     }
 
     public function updatePassword(Request $request){
@@ -191,22 +206,48 @@ class UserController extends Controller
         
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()){
-            return UserController::selectControlPanel();
+            return redirect('/controlPanel');
         }
         else{
             if (Hash::check($request->mypassword, Auth::user()->password)){
                 $user = new User;
                 $user->where('email', '=', Auth::user()->email)
                      ->update(['password' => bcrypt($request->password)]);
-                return UserController::selectControlPanel();
+                return redirect('/controlPanel');
             }
             else
             {
-                return UserController::selectControlPanel();
+                return redirect('/controlPanel');
             }
         }
     }
 
+    public function showProductView(Request $request,Menu $menu){
+        $all_product = MenuProduct::All();
+        $products_id = $all_product->where('menu_id',$menu->id);
+        $all_products = Product::All();
+        return view('addProductMenu',compact('menu','products_id','all_products'));
+    }
+
+    public function addProduct(Request $request,Menu $menu){
+        $menuProduct = new MenuProduct();
+        
+        MenuProduct::create([
+            'price' => 0,
+            'menu_id' => $menu->id,
+            'product_id' => $request->product_id
+        ]);
+
+        $menu2 = Menu::find($menu->id);
+        $menu2->updateOrCreate([
+            'id' => $menu2->id
+        ],
+        [
+            'total_price' => $menu2->total_price + rand(2000,3000),
+        ]);
+
+        return redirect('/controlPanel');
+    }
     // End new Controllers
     
     /**

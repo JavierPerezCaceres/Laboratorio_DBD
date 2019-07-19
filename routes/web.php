@@ -23,6 +23,8 @@ Route::post('/controlPanelCE','UserController@changeEmail')->name('changeEmail')
 Route::post('/controlPanelCP','UserController@changePhone')->name('changePhone');
 Route::delete('/controlPanelDD/{address}','UserController@deleteDirection')->name('deleteDirection');
 Route::post('/controlPanelUP','UserController@updatePassword')->name('updatePassword');
+Route::post('/controlPanelRestaurantAddProduct/{menu}','UserController@showProductView')->name('showProductView');
+Route::post('/controlPanelAddProduct/{menu}','UserController@addProduct')->name('addProductMenu');
 
 Route::post('/search', 'RestaurantController@search')->name('search');
 
