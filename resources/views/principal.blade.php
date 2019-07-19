@@ -165,7 +165,7 @@ $('#ciudad_id').on('change', function(e){
   $.get('/districts/' + ciudad_id, function(data) {
     console.log(data);
     $('#district').empty();
-	$('#district').append('<option value="0" selected="selected">Selecciona tu distrito</option>');          
+	$('#district').append('<option value="0" selected="selected">Selecciona tu comuna</option>');
     $.each(data, function(index,subCatObj){
       $('#district').append('<option value="'+subCatObj.id+'">'+subCatObj.name+'</option>');          
     });
