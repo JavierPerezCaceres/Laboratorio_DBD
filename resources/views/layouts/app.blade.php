@@ -72,9 +72,7 @@
                             <?php $UI=Crypt::encrypt(Auth::user()->id)?>
 
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="/restaurantRequest/{{$UI}}"> Restaurant Request</a>
-                            </li>
+                            
 
 
 
