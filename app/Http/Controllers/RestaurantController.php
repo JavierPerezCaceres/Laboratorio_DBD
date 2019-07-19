@@ -12,6 +12,7 @@ use App\MenuProduct;
 use App\Product;
 use App\City;
 use App\District;
+use App\DistrictRestaurant;
 
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -44,7 +45,9 @@ class RestaurantController extends Controller
     public function search(Request $request) // Vicho
     {
         $district= $request->district_id;
-        $restaurants = Restaurant::all()->where('district_id',$request->district_id);
+        $comuna = District::find($district);
+
+        $restaurants = $comuna->districtRestaurant;
         //$restaurant_categories = CategoryRestaurant::select('name')->get();
         $restaurant_categories = CategoryRestaurant::select('id', 'name')->orderBy('name')->get();
         //$restaurant_categories = Restaurant::select('category')->distinct()->get();
@@ -55,7 +58,7 @@ class RestaurantController extends Controller
         $products = Product::select('id', 'name')->orderBy('name')->get();
 
         // selecciona district_id de los restaurantes registrados
-        $district_ids = Restaurant::select('district_id')->distinct()->orderBy('district_id', 'asc')->get();
+        $district_ids = DistrictRestaurant::select('district_id')->distinct()->orderBy('district_id', 'asc')->get();
         
         $districts = [];
         foreach ($district_ids as $id){

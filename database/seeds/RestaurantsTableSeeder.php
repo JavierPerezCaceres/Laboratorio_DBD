@@ -21,9 +21,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '30',
             'street' => 'Manuel Rodriguez',
             'number' => '3854',
-            'user_id'=> '1',
+            'user_id'=> '16',
             'category_restaurant_id'=> '1',
-            'district_id' => '1',
+        
             'created_at' => now()
         ]);
 
@@ -36,9 +36,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '20',
             'street' => 'Anibal Pinto',
             'number' => '384',
-            'user_id'=> '2',
+            'user_id'=> '17',
             'category_restaurant_id'=> '1',
-            'district_id' => '1',
+        
             'created_at' => now()
         ]);
 
@@ -51,9 +51,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '30',
             'street' => 'Los Libertadores',
             'number' => '9485',
-            'user_id'=> '3',
+            'user_id'=> '18',
             'category_restaurant_id'=> '1',
-            'district_id' => '2',
+        
             'created_at' => now()
         ]);
 
@@ -66,9 +66,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '10',
             'street' => 'La Moneda',
             'number' => '3845',
-            'user_id'=> '4',
+            'user_id'=> '19',
             'category_restaurant_id'=> '1',
-            'district_id' => '2',
+        
             'created_at' => now()
         ]);
 
@@ -81,9 +81,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '15',
             'street' => 'Baquedano',
             'number' => '582',
-            'user_id'=> '15',
+            'user_id'=> '20',
             'category_restaurant_id'=> '1',
-            'district_id' => '3',
+        
             'created_at' => now()
         ]);
 
@@ -96,9 +96,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '30',
             'street' => 'Lo Heroes',
             'number' => '213',
-            'user_id'=> '14',
+            'user_id'=> '21',
             'category_restaurant_id'=> '1',
-            'district_id' => '3',
+        
             'created_at' => now()
         ]);
 
@@ -111,9 +111,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '30',
             'street' => 'Parque Bustamante',
             'number' => '86432',
-            'user_id'=> '12',
+            'user_id'=> '22',
             'category_restaurant_id'=> '1',
-            'district_id' => '3',
+        
             'created_at' => now()
         ]);
 
@@ -126,9 +126,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '30',
             'street' => 'Caupolican',
             'number' => '4582',
-            'user_id'=> '9',
+            'user_id'=> '23',
             'category_restaurant_id'=> '3',
-            'district_id' => '1',
+        
             'created_at' => now()
         ]);
 
@@ -141,9 +141,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '35',
             'street' => 'Ecuador',
             'number' => '49592',
-            'user_id'=> '7',
+            'user_id'=> '24',
             'category_restaurant_id'=> '3',
-            'district_id' => '1',
+        
             'created_at' => now()
         ]);
 
@@ -156,9 +156,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '10',
             'street' => 'Lautaro',
             'number' => '47111',
-            'user_id'=> '4',
+            'user_id'=> '25',
             'category_restaurant_id'=> '4',
-            'district_id' => '4',
+        
             'created_at' => now()
         ]);
 
@@ -171,9 +171,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '20',
             'street' => 'Avenida Brasil',
             'number' => '123',
-            'user_id'=> '8',
+            'user_id'=> '26',
             'category_restaurant_id'=> '2',
-            'district_id' => '4',
+        
             'created_at' => now()
         ]);
 
@@ -186,9 +186,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '30',
             'street' => 'Avenida Peru',
             'number' => '9538',
-            'user_id'=> '8',
+            'user_id'=> '27',
             'category_restaurant_id'=> '2',
-            'district_id' => '1',
+        
             'created_at' => now()
         ]);
 
@@ -201,9 +201,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '30',
             'street' => 'Tarapaca',
             'number' => '3847',
-            'user_id'=> '11',
+            'user_id'=> '28',
             'category_restaurant_id'=> '5',
-            'district_id' => '4',
+        
             'created_at' => now()
         ]);
 
@@ -216,9 +216,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '30',
             'street' => 'Bandera',
             'number' => '9584',
-            'user_id'=> '9',
+            'user_id'=> '29',
             'category_restaurant_id'=> '5',
-            'district_id' => '3',
+        
             'created_at' => now()
         ]);
 
@@ -231,9 +231,9 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '30',
             'street' => 'Manuel Rodriguez',
             'number' => '3854',
-            'user_id'=> '5',
+            'user_id'=> '30',
             'category_restaurant_id'=> '6',
-            'district_id' => '3',
+        
             'created_at' => now()
         ]);
 
@@ -246,11 +246,13 @@ class RestaurantsTableSeeder extends Seeder
             'wait_time'=> '30',
             'street' => 'San Diego',
             'number' => '402',
-            'user_id'=> '3',
+            'user_id'=> '31',
             'category_restaurant_id'=> '6',
-            'district_id' => '2',
+        
             'created_at' => now()
         ]);
+
+
 
         
     }

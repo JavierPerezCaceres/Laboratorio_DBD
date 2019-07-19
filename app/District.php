@@ -22,4 +22,8 @@ class District extends Model
     public function restaurant(){
     	return $this->hasMany(Restaurant::class);
     }
+
+    public function districtRestaurant(){
+        return $this->hasMany(DistrictRestaurant::class);
+    }
 }

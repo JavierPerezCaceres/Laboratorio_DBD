@@ -7,6 +7,7 @@ use App\City;
 use App\District;
 use App\Valoration;
 use App\CategoryRestaurant;
+use App\DistrictRestaurant;
 
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class LandingpageController extends Controller
     public function index()
     {
         // selecciona district_id de los restaurantes registrados
-        $district_ids = Restaurant::select('district_id')->distinct()->orderBy('district_id', 'asc')->get();
+        $district_ids = DistrictRestaurant::select('district_id')->distinct()->orderBy('district_id', 'asc')->get();
         
         $districts = [];
         foreach ($district_ids as $id){
@@ -39,7 +40,7 @@ class LandingpageController extends Controller
     }
 
     public function getDistricts(City $city){
-        $district_ids = Restaurant::select('district_id')->distinct()->orderBy('district_id', 'asc')->get();
+        $district_ids = DistrictRestaurant::select('district_id')->distinct()->orderBy('district_id', 'asc')->get();
         $districts = [];
         foreach ($district_ids as $id){
             $val = District::find($id->district_id);
