@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-  @section('style')
-
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/1a73430d21.js"></script>
-
-  @endsection
-
 	<!-- Título página -->
 	<title>Pedidos Rightnow</title>
 	<!-- Funcion en archivo prueba.js -->
@@ -19,21 +11,23 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-3">
+        <form action="{{ route('search') }}" method="POST">
+	      @csrf
         <div id="accordion">
+          <input name="ciudad_id" id="ciudad_id" hidden type="text" class="form-control" name="" value="{{ $request->ciudad_id }}">
+          <input name="district_id" id="district" hidden type="text" class="form-control" name="district" value="{{ $request->district_id }}">
           <div class="card">
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <h3>
-                  <i class="fas fa-book-reader"></i>
-                  Tipo de comida</h1>
-                </button>
+                <a class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <h3>Tipo Restaurant</h1>
+                </a>
               </h5>
             </div>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               @foreach( $restaurant_categories as $category )
                 <div class="card-body">
-                  <input type="checkbox" name="test-1" id="test-1" value="{{$category->id}}">
+                  <input class="form-control" type="radio" name="restaurant_category" id="restaurant_category" value="{{$category->id}}">
                   <label for="test-1"> {{ $category->name }}</label>
                 </div>
               @endforeach
@@ -42,17 +36,15 @@
           <div class="card">
             <div class="card-header" id="headingTwo">
               <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  <h3>
-                  <i class="fas fa-check-square"></i>
-                  Categorías</h3>
-                </button>
+                <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <h3>Comida</h3>
+                </a>
               </h5>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
               @foreach( $products as $product )
                 <div class="card-body">
-                  <input type="checkbox" name="test-1" id="test-1" value="{{$product->id}}">
+                  <input class="form-control" type="radio" name="product" id="product" value="{{$product->id}}">
                   <label for="test-1"> {{ $product->name }}</label>
                 </div>
               @endforeach
@@ -61,11 +53,9 @@
           <div class="card">
             <div class="card-header" id="headingThree">
               <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  <h3>
-                  <i class="fas fa-star"></i>
-                  Valoración</h3>
-                </button>
+                <a class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <h3>Valoración</h3>
+                </a>
               </h5>
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
@@ -73,7 +63,7 @@
                 <h3>Mayor a:</h3>
                 @for($i = 1; $i < 6; $i++)
                   <div class="card-body">
-                    <input type="checkbox" name="test-1" id="test-1" value="{{$i}}">
+                    <input class="form-control" type="radio" name="evaluation" id="evaluation" value="{{$i}}">
                     @if( $i == 1)
                       <label for="test-1"> 1 Estrella</label>
                     @else
@@ -85,7 +75,8 @@
             </div>
           </div>
         </div>
-        <button>Aplicar Filtros</button>
+        <button type="submit" id="boton_search" class="btn btn-lg btn-primary site-btn2">Aplicar Filtros</button>
+        </form>
       </div>
       <!-- /.col-lg-3 -->
 
@@ -96,7 +87,7 @@
               <div class="card h-100">
                 <a href="/restaurantViews/{{ $restaurant->id }}"><img class="card-img-top" src="Img/4.jpg" alt=""></a>
                 <div class="card-body">
-                  <h1 class="card-title text-center">
+                  <h1 class="card-title">
                     <a href="/restaurantViews/{{ $restaurant->id }}">{{ $restaurant->name }}</a>
                   </h1>
                   <!-- calcular estrellas -->
