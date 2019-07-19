@@ -136,29 +136,46 @@
 					</div>
 					<div class="form-group">
 						<div class="form-row form-row">
-							<input type="text" name="open" class="code" id="code" placeholder="Horario apertura" required>
 							<input id="opening_hour" type="text" class="form-control @error('opening_hour') is-invalid @enderror" name="opening_hour" value="{{ old('opening_hour') }}" placeholder="Horario apertura" required autocomplete="opening_hour" autofocus>
 
-                        @error('opening_hour')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+							@error('opening_hour')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
 						</div>
 						<div class="form-row form-row">
-							<input type="text" name="close" class="code" id="code" placeholder="Horario cierre" required>
+							<input id="closing_hour" type="text" class="form-control @error('closing_hour') is-invalid @enderror" name="closing_hour" value="{{ old('closing_hour') }}" placeholder="Horario apertura" required autocomplete="closing_hour" placeholder="Horario cierre" autofocus>
+
+							@error('closing_hour')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
 							
 						</div>
 					</div>
 					<div class="form-row">
-						<input type="text" name="your_email" id="your_email" class="input-text" placeholder="Precio promedio por persona">
+						<input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" placeholder="Precio promedio por persona" required autofocus>
+
+						@error('price')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+						@enderror
 					</div>
 					<div class="form-row">
-						<input type="text" name="phone" class="phone" id="phone" placeholder="Número de contacto" required>
+						<input id="contact_number" type="text" class="form-control @error('contact_number') is-invalid @enderror" name="contact_number" value="{{ old('contact_number') }}" placeholder="Número de contacto" required autofocus>
+
+						@error('contact_number')
+							<span class="invalid-feedback" role="alert">
+								<strong>{{ $message }}</strong>
+							</span>
+						@enderror
 					</div>
 					<div class="form-checkbox">
 						<label class="container"><p>Acepto los <a href="#" class="text">Términos y condiciones</a> de Pedidos Rightnow.</p>
-						  	<input type="checkbox" name="checkbox">
+						  	<input type="checkbox" name="checkbox" required>
 						  	<span class="checkmark"></span>
 						</label>
 					</div>

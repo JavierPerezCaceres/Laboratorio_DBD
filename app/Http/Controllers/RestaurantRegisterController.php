@@ -68,7 +68,7 @@ class RestaurantRegisterController extends Controller
             'kitchen' =>['required','string','max:255'],
             'phoneNumber' =>['required','numeric','digits:11'],
             'opening_hour' =>['required','string','max:255'],
-            'closing' =>['required','string','max:255'],
+            'closing_hour' =>['required','string','max:255'],
             'personCost'=>['required','numeric'],
             'waitTime' =>['requiered','string','max:255'],
             'direction' =>['requiered','string','max:255'],
@@ -85,13 +85,14 @@ class RestaurantRegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         $user= User::create([
-            'name' => $request->name,
+            'name' => $request->nombre_solicitante,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_id' => 2,
             'client_id' => $client->id
         ]);
-        $restaurant= Restaurant::create([
+        $restaurant = Restaurant::create([
+            'name' => $request->nombre_restaurant,
           'category'=> $request->category,
           'contact_number' => $request->phoneNumber,
           'kitchen_type' => $request->kitchen,
@@ -102,9 +103,14 @@ class RestaurantRegisterController extends Controller
           'direction' => $request->direction,
           'user_id'=>$user->id
         ]);
-        // $restaurantRequest = RestaurantRequest::create([
-            
-        // ]);
+        $restaurantRequest = RestaurantRequest::create([
+            'company_rut' => $request->rut_empresa,
+            'cod_sis' => $request->codigo_SIS,
+            'owner_name' => $request->nombre_solicitante,
+            'name',
+            'condition',
+            'user_id'
+        ]);
         return view('principal');
     }
 
