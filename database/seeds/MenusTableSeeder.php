@@ -171,7 +171,7 @@ class MenusTableSeeder extends Seeder
             'restaurant_id' => '4',
             'created_at' => now()
         ]);
-        
+
         DB::table('menus')->insert([
             'name'=> 'Whooper', // Burguer King
             'total_price' => '3500',
@@ -651,6 +651,46 @@ class MenusTableSeeder extends Seeder
             'restaurant_id' => '16',
             'created_at' => now()
         ]);
-        
+
+        DB::table('menus')->insert([
+            'name'=> 'Combo 1', // defecto
+            'total_price' => '3900',
+            'discount' => '0',
+            'restaurant_id' => '17',
+            'created_at' => now()
+        ]);
+
+        DB::table('menus')->insert([
+            'name'=> 'Combo 2', // defecto
+            'total_price' => '4200',
+            'discount' => '0',
+            'restaurant_id' => '17',
+            'created_at' => now()
+        ]);
+
+        DB::table('menus')->insert([
+            'name'=> 'Combo 3', // defecto
+            'total_price' => '4300',
+            'discount' => '0',
+            'restaurant_id' => '17',
+            'created_at' => now()
+        ]);
+
+        DB::table('menus')->insert([
+            'name'=> 'Combo 4', // defecto
+            'total_price' => '5200',
+            'discount' => '0',
+            'restaurant_id' => '17',
+            'created_at' => now()
+        ]);
+
+        DB::table('menus')->insert([
+            'name'=> 'Combo 5', // defecto
+            'total_price' => '5400',
+            'discount' => '0',
+            'restaurant_id' => '17',
+            'created_at' => now()
+        ]);
+
     }
 }

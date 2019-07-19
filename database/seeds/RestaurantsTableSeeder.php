@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Restaurant;
+use App\User;
 
 class RestaurantsTableSeeder extends Seeder
 {
@@ -12,6 +13,9 @@ class RestaurantsTableSeeder extends Seeder
      */
     public function run()
     {
+
+
+
         DB::table('restaurants')->insert([
             'name'=> 'Juan Maestro',
             'contact_number'=> '+56983758205',
@@ -23,9 +27,10 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '3854',
             'user_id'=> '16',
             'category_restaurant_id'=> '1',
-        
+
             'created_at' => now()
         ]);
+
 
         DB::table('restaurants')->insert([
             'name'=> 'Doggis',
@@ -38,7 +43,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '384',
             'user_id'=> '17',
             'category_restaurant_id'=> '1',
-        
+
             'created_at' => now()
         ]);
 
@@ -53,7 +58,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '9485',
             'user_id'=> '18',
             'category_restaurant_id'=> '1',
-        
+
             'created_at' => now()
         ]);
 
@@ -68,7 +73,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '3845',
             'user_id'=> '19',
             'category_restaurant_id'=> '1',
-        
+
             'created_at' => now()
         ]);
 
@@ -83,7 +88,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '582',
             'user_id'=> '20',
             'category_restaurant_id'=> '1',
-        
+
             'created_at' => now()
         ]);
 
@@ -98,7 +103,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '213',
             'user_id'=> '21',
             'category_restaurant_id'=> '1',
-        
+
             'created_at' => now()
         ]);
 
@@ -113,7 +118,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '86432',
             'user_id'=> '22',
             'category_restaurant_id'=> '1',
-        
+
             'created_at' => now()
         ]);
 
@@ -128,7 +133,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '4582',
             'user_id'=> '23',
             'category_restaurant_id'=> '3',
-        
+
             'created_at' => now()
         ]);
 
@@ -143,7 +148,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '49592',
             'user_id'=> '24',
             'category_restaurant_id'=> '3',
-        
+
             'created_at' => now()
         ]);
 
@@ -158,7 +163,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '47111',
             'user_id'=> '25',
             'category_restaurant_id'=> '4',
-        
+
             'created_at' => now()
         ]);
 
@@ -173,7 +178,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '123',
             'user_id'=> '26',
             'category_restaurant_id'=> '2',
-        
+
             'created_at' => now()
         ]);
 
@@ -188,7 +193,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '9538',
             'user_id'=> '27',
             'category_restaurant_id'=> '2',
-        
+
             'created_at' => now()
         ]);
 
@@ -203,7 +208,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '3847',
             'user_id'=> '28',
             'category_restaurant_id'=> '5',
-        
+
             'created_at' => now()
         ]);
 
@@ -218,7 +223,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '9584',
             'user_id'=> '29',
             'category_restaurant_id'=> '5',
-        
+
             'created_at' => now()
         ]);
 
@@ -233,7 +238,7 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '3854',
             'user_id'=> '30',
             'category_restaurant_id'=> '6',
-        
+
             'created_at' => now()
         ]);
 
@@ -248,12 +253,25 @@ class RestaurantsTableSeeder extends Seeder
             'number' => '402',
             'user_id'=> '31',
             'category_restaurant_id'=> '6',
+
+            'created_at' => now()
+        ]);
         
+        DB::table('restaurants')->insert([
+            'name'=> 'Eat rightNow',
+            'contact_number'=> '+56983758205',
+            'opening_hour'=> '08:00',
+            'closing_hour'=> '23:00',
+            'person_cost'=> '1990',
+            'wait_time'=> '30',
+            'street' => 'Manuel Rodriguez',
+            'number' => '3854',
+            'user_id'=> '33',
+            'category_restaurant_id'=> '1',
+
             'created_at' => now()
         ]);
 
 
-
-        
     }
 }
