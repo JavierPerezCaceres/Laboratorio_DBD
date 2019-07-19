@@ -16,6 +16,13 @@ use App\User;
 
 class PurchaseOrderController extends Controller
 {
+    public function confirmation(){
+        return view('purchase');
+    }
+
+
+    // nuevos controladores
+
     /**
      * Display a listing of the resource.
      *

@@ -6,6 +6,7 @@ use App\User;
 use App\Restaurant;
 use App\RestaurantRequest;
 use App\CategoryRestaurant;
+use App\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -83,7 +84,12 @@ class RestaurantRegisterController extends Controller
      */
     protected function create(Request $request)
     {
-        $this->validator($request->all())->validate();
+        //$this->validator($request->all())->validate();
+        $client=Client::create([
+            'name' => $request->nombre_solicitante,
+            'lastname' => $request->apellido_solicitante,
+            'phone' => $request->contact_number
+        ]);
         $user= User::create([
             'name' => $request->nombre_solicitante,
             'email' => $request->email,
@@ -92,24 +98,24 @@ class RestaurantRegisterController extends Controller
             'client_id' => $client->id
         ]);
         $restaurant = Restaurant::create([
+            'category_restaurant_id' => $request->category_id,
+            'closing_hour' => $request->closing_hour,
+            'contact_number' => $request->contact_number,
             'name' => $request->nombre_restaurant,
-          'category'=> $request->category,
-          'contact_number' => $request->phoneNumber,
-          'kitchen_type' => $request->kitchen,
-          'opening_hour' => $request->opening,
-          'closing_hour' => $request->closing,
-          'person_cost' => $request->personCost,
-          'wait_time' => $request->waitTime,
-          'direction' => $request->direction,
-          'user_id'=>$user->id
+            'number' => $request->num_casa_matriz,
+            'opening_hour' => $request->opening_hour,
+            'person_cost' => $request->price,
+            'street' => $request->dir_casa_matriz,
+            'user_id'=>$user->id,
+            'wait_time' => $request->waitTime                      
         ]);
         $restaurantRequest = RestaurantRequest::create([
             'company_rut' => $request->rut_empresa,
             'cod_sis' => $request->codigo_SIS,
             'owner_name' => $request->nombre_solicitante,
-            'name',
-            'condition',
-            'user_id'
+            'name' => $reques->nombre_restaurant,
+            'condition' => "No aplica",
+            'user_id' => $user->id
         ]);
         return view('principal');
     }

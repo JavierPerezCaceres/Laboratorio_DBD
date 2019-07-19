@@ -2,24 +2,24 @@
 
 @section('style')
     <!-- Font-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/Checkout/css/montserrat-font.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/Checkout/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('Checkout/css/montserrat-font.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('Checkout/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
     <!-- Font Icon -->
-    <link rel="stylesheet" href="{{ asset('/Checkout/fonts/themify-icons/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('Checkout/fonts/themify-icons/themify-icons.css') }}">
 
     <!-- Main css -->
-    <link rel="stylesheet" href="{{ asset('/Checkout/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('Checkout/css/style.css') }}">
 
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/1a73430d21.js"></script>
+
 @endsection
+
 @section('content')
 
     <div class="main">
 
         <div class="container-checkout">
             <h2>Confirmación de pedido</h2>
-            <form method="POST" id="signup-form" class="signup-form">
+                <form method="POST" class="form-detail" action="{{ route('checkout') }}">
                     <h3>
                         <span class="icon"><i class="ti-user"></i></span>
                         <span class="title_text">Contacto</span>
@@ -33,12 +33,19 @@
                         </legend>
                         <div class="form-group">
                             <label for="first_name" class="form-label  required">Nombre</label>
-                            <input type="text" name="first_name" id="first_name" />
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="last_name" class="form-label required">Apellidos</label>
                             <input type="text" name="last_name" id="last_name" />
+                            
                         </div>
 
                         <div class="form-group">

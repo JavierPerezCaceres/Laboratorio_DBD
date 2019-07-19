@@ -18,18 +18,6 @@
   <div class="col-lg-3">
 
     <h1 class="my-4">{{$restaurant->name}}</h1>
-    <div class="list-group mb-3">
-      <a href="#" class="list-group-item">
-        <i class="fas fa-book-reader"></i>
-        Carta</a>
-      <a href="#" class="list-group-item">
-        <i class="fas fa-check-square"></i>
-        Categorías</h3>
-      <a href="#" class="list-group-item">
-        <i class="fas fa-comment"></i>
-        Comentarios
-      </a>
-    </div>
 
     <div class="card">
       <div class="card-header header-carrito">
@@ -68,7 +56,7 @@
           </tbody>
         </table>
           <!-- AIURA VICHO, AQUI VA REDIRIGIDO AL CHECKOUT  -->
-          <a href="/checkout" class="btn btn-primary btn-chart">
+          <a href="/purchase" class="btn btn-primary btn-chart">
             <i class="fas fa-shopping-cart"></i> Pedir
           </a>
       </div>

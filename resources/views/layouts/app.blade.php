@@ -65,16 +65,14 @@
                             @endif
                             @if (Route::has('restaurantRegister'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('restaurantRegister') }}">{{ __('Registrar Restaurant') }}</a>
+                                    <a class="nav-link" href="{{ route('restaurantRegister') }}">{{ __('Registrar Restaurante') }}</a>
                                 </li>
                             @endif
                         @else
                             <?php $UI=Crypt::encrypt(Auth::user()->id)?>
 
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="/restaurantRequest/{{$UI}}"> Restaurant Request</a>
-                            </li>
+                            
 
 
 

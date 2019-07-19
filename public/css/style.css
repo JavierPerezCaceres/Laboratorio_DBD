@@ -1,3 +1,4 @@
+
 body {
 	margin:  0;
 }
@@ -12,6 +13,9 @@ img.picture1{
 	text-align: center;
 }
 
+.container-login input:checked ~ .checkmark {
+  background-color: #236863;
+}
 /* Fin de modificaciones */
 
 .page-content {
@@ -214,6 +218,7 @@ img.picture1{
     width: 15px;
     border: 1px solid #e5e5e5;
     cursor: pointer;
+    background-color: #236863;
 }
 .form-v10-content .form-detail .form-checkbox .checkmark::after {
 	content: "";

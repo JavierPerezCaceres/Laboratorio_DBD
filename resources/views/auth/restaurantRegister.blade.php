@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/montserrat-font.css">
 	<link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 	<!-- Main Style Css -->
-    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
 
     <!-- Font Awesome -->
 	<script src="https://kit.fontawesome.com/1a73430d21.js"></script>
@@ -20,7 +20,7 @@
 @include('layouts.app')
 	<div class="page-content">
 		<div class="form-v10-content">
-			<form class="form-detail" action="{{ route('restaurantRegister') }}" method="post" id="solicitud_restaurante">
+			<form method="POST" class="form-detail" action="{{ route('restaurantRegister') }}">
                 @csrf
 				<div class="form-left">
 					<h2>
@@ -114,17 +114,28 @@
                             </span>
                         @enderror
 					</div>
-					<div class="form-row">
-						<input id="dir_casa_matriz" type="text" class="form-control @error('dir_casa_matriz') is-invalid @enderror" name="dir_casa_matriz" value="{{ old('dir_casa_matriz') }}" placeholder="Dirección de la casa matriz" required autocomplete="dir_casa_matriz" autofocus>
+					<div class="form-group">
+						<div class="form-row form-row">
+							<input id="dir_casa_matriz" type="text" class="form-control @error('dir_casa_matriz') is-invalid @enderror" name="dir_casa_matriz" value="{{ old('dir_casa_matriz') }}" placeholder="Nombre Calle" required autocomplete="dir_casa_matriz" autofocus>
 
-                        @error('dir_casa_matriz')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+							@error('dir_casa_matriz')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+						<div class="form-row form-row">
+							<input id="num_casa_matriz" type="text" class="form-control @error('num_casa_matriz') is-invalid @enderror" name="num_casa_matriz" value="{{ old('num_casa_matriz') }}" placeholder="Numero" required autocomplete="num_casa_matriz" autofocus>
+
+							@error('num_casa_matriz')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
 					</div>
 					<div class="form-row">
-						<select name="category">
+						<select name="category_id">
 						    <option value="0" disabled selected="selected">Tipo de cocina</option>
 							@foreach($restaurant_categories as $category)
 							<option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -175,7 +186,7 @@
 					</div>
 					<div class="form-checkbox">
 						<label class="container"><p>Acepto los <a href="#" class="text">Términos y condiciones</a> de Pedidos Rightnow.</p>
-						  	<input type="checkbox" name="checkbox" required>
+						  	<input type="checkbox" name="checkbox">
 						  	<span class="checkmark"></span>
 						</label>
 					</div>

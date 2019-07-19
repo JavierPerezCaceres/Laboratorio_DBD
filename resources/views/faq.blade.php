@@ -1,13 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>document.getElementsByTagName("html")[0].className += " js";</script>
-  <link rel="stylesheet" href="{{ asset('sass/faqCss.css') }}">
-  <title>FAQ Template | CodyHouse</title>
-
-
+  <link rel="stylesheet" href="{{ asset('css/faqCss.css') }}">
 @endsection
 
 @section('content')
@@ -261,7 +255,10 @@
 	<a href="#0" class="cd-faq__close-panel text-replace">Close</a>
   
   <div class="cd-faq__overlay" aria-hidden="true"></div>
-</section> <!-- cd-faq -->
+</section>
+
+@endsection
+@section('scriptPrueba')
 <script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
 <script src="assets/js/main.js"></script> 
 
