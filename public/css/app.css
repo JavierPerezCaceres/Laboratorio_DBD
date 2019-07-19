@@ -10691,6 +10691,10 @@ main.py-4 {
   font-size: 16px;
 }
 
+.card-title {
+  text-align: center !important;
+}
+
 /* Botón de agregar al carrito */
 
 .card-footer {
