@@ -11,10 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="public/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 
 	<!-- Main Style Css -->
-    <link rel="stylesheet" href="/sass/loginCss.css>
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
-    <!-- Font Awesome -->
-	<script src="https://kit.fontawesome.com/1a73430d21.js"></script>
 
 </head>
 <body class="form-v10">

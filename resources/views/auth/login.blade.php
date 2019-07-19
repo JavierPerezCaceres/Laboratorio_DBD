@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
+@extends('layouts.app')
 
+@section('style')
 	<meta charset="utf-8">
 	<title>Ingresa</title>
 	<!-- Mobile Specific Metas -->
@@ -10,14 +9,13 @@
 	<link rel="stylesheet" type="text/css" href="public/css/montserrat-font.css">
 	<link rel="stylesheet" type="text/css" href="public/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 
+	<link rel="stylesheet" type="text/css" href="{{ asset('sass/loginCss.css') }}">
+
 	<!-- Main Style Css -->
-    <link rel="stylesheet" href="/sass/loginCss.css">
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+@endsection
 
-    <!-- Font Awesome -->
-	<script src="https://kit.fontawesome.com/1a73430d21.js" ></script>
-
-</head>
-@include('layouts.app')
+@section('content')
 <body class="form-v10">
 	<div class="page-content">
 		<div class="form-v10-content">
@@ -47,8 +45,8 @@
                                 @enderror
 					</div>
 
-					<div class="form-check">
-                    	<label class="container">Recuérdame
+					<div class="form-check-login">
+                    	<label class="container-login">Recuérdame
  							 <input type="checkbox" checked="checked">
   							<span class="checkmark"></span>
 						</label>
@@ -67,5 +65,4 @@
 			</form>
 		</div>
 	</div>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-</html>
+@endsection
