@@ -19,6 +19,8 @@ Route::get('/orderConfirmation', function(){
 	return view('orderConfirmation');
 });
 
+Route::get('/sendMail','MailController@sendMail');
+
 Route::get('/controlPanel','UserController@selectControlPanel');
 Route::post('/controlPanelA','UserController@addDirection')->name('addDirection');
 Route::post('/controlPanelCN','UserController@changeName')->name('changeName');

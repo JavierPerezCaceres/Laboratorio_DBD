@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Address;
 
 class SendMail extends Mailable
 {
@@ -17,13 +18,13 @@ class SendMail extends Mailable
      * @return void
      */
 
-    public $sub;
-    public $mess;
+  
+    public $orden;
 
-    public function __construct($subject,$message)
+    public function __construct($ordenCompra)
     {
-        $this->sub =  $subject;
-        $this->mess =  $message;
+
+        $this->orden = $ordenCompra;
     }
 
     /**
@@ -33,8 +34,20 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        $e_subject = $this->sub;
-        $e_message = $this->mess;
-        return $this->view('orderConfirmation',compact('e_message','e_subject'));
+
+        $orden = $this->orden;
+        $cliente = $orden->client;
+        $reservaciones = $orden->menuReservation;
+        $total =0;
+        foreach ($reservaciones as $reservation) {
+            $total = $total + ($reservation->menu->total_price * $reservation->quantity);
+        }
+        $restaurant = $reservaciones[0]->menu->restaurant->name;
+
+        $direccion = Address::all()->where('client_id',$cliente->id)->first();
+
+
+
+        return $this->view('orderConfirmation',compact('orden','cliente','total','restaurant','direccion'));
     }
 }
