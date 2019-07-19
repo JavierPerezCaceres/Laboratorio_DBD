@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
 
 
 
+
     	for ($i=0; $i < 15; $i++)
     	{
             $role_id = DB::table('roles')->select('id')->get();
@@ -31,23 +32,6 @@ class UsersTableSeeder extends Seeder
         	'client_id' => $i+1,
             'created_at' => now() ]);
     	}
-      DB::table('users')->insert([
-          'name' => 'pedidos RightNow',
-          'email' => 'pedidosRightNow@gmail.com',
-          'password' => Hash::make('prueba'), // password
-          'remember_token' => Str::random(10),
-          'role_id' => 1,
-          'client_id' => null,
-          'created_at' => now() ]);
-
-          DB::table('users')->insert([
-              'name' => 'restaurant prueba',
-              'email' => 'restaurantPrueba@gmail.com',
-              'password' => Hash::make('prueba'), // password
-              'remember_token' => Str::random(10),
-              'role_id' => 2,
-              'client_id' => null,
-              'created_at' => now() ]);
 
         DB::table('users')->insert([
             'name' => 'Juan Maestro',
@@ -192,6 +176,27 @@ class UsersTableSeeder extends Seeder
             'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
+
+
+            DB::table('users')->insert([
+                'name' => 'pedidos RightNow',
+                'email' => 'pedidosRightNow@gmail.com',
+                'password' => Hash::make('prueba'), // password
+                'remember_token' => Str::random(10),
+                'role_id' => 1,
+                'client_id' => null,
+                'created_at' => now() ]);
+
+              DB::table('users')->insert([
+                  'name' => 'restaurant prueba',
+                  'email' => 'restaurantPrueba@gmail.com',
+                  'password' => Hash::make('prueba'), // password
+                  'remember_token' => Str::random(10),
+                  'role_id' => 2,
+                  'client_id' => null,
+                  'created_at' => now() ]);
+
+
 
     }
 }
