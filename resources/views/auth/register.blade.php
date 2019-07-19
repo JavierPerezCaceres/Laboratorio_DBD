@@ -1,26 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
+@extends('layouts.app')
 
+@section('style')
 	<meta charset="utf-8">
 	<title>Regístrate</title>
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<!-- Font-->
-	<link rel="stylesheet" type="text/css" href="css/montserrat-font.css">
-	<link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-	<!-- Main Style Css -->
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="public/css/montserrat-font.css">
+    <link rel="stylesheet" type="text/css" href="public/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+	
+    <link rel="stylesheet" type="text/css" href="{{ asset('sass/loginCss.css') }}">
 
-    <!-- Font Awesome -->
-	<script src="https://kit.fontawesome.com/1a73430d21.js"></script>
+    <!-- Main Style Css -->
+    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 
-</head>
-@include('layouts.app')
+@endsection
+
+@section('content')
+
 <body class="form-v10">
 	<div class="page-content">
 		<div class="form-v10-content">
-            <form method="POST" action="{{ route('newRegister') }}">
+            <form method="POST" class="form-detail" action="{{ route('newRegister') }}">
                 @csrf
 				<div class="form-left">
 					<h2>
@@ -82,7 +83,7 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required placeholder="Confirma tu contraseña" autocomplete="new-password">
 					</div>
 
-					<div class="card-footer button-register centrado">
+					<div class="btn btn-block button-register">
                         <button type="submit" class="btn btn-primary">
                         <i class="fas fa-key"></i> Registrarse
                         </button>
@@ -92,5 +93,4 @@
 			</form>
 		</div>
 	</div>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-</html>
+@endsection

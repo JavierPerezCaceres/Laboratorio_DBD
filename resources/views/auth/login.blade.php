@@ -16,6 +16,7 @@
 @endsection
 
 @section('content')
+
 <body class="form-v10">
 	<div class="page-content">
 		<div class="form-v10-content">
