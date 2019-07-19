@@ -59,7 +59,7 @@ Route::post('/restaurantRegister','RestaurantRegisterController@create')->name('
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('register','Auth\RegisterController@create')->name('register');
+Route::post('/register','Auth\RegisterController@create')->name('register');
 Route::get('/restaurantRequest/{user}','RestaurantRequestController@page');
 Route::post('/restaurantRequest','RestaurantRequestController@create')->name('restaurantRequest');
 
@@ -70,7 +70,11 @@ Route::get('/add/{menuID}','ShoppingCartController@update');
 Route::get('/remove/{menuID}','ShoppingCartController@remove');
 
 
-Route::get('/checkout', 'PurchaseOrderController@confirmation');
+Route::get('/purchase', 'PurchaseOrderController@confirmation');
+Route::post('/purchase', 'PurchaseOrderController@create')->name('purchase');
+// Route::get('/purchase',function(){
+//   return view('purchase');
+// });
 
 Route::get('/faq',function(){
   return view('faq');

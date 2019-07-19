@@ -19,7 +19,7 @@
 
         <div class="container-checkout">
             <h2>Confirmación de pedido</h2>
-            <form method="POST" id="signup-form" class="signup-form">
+                <form method="POST" class="form-detail" action="{{ route('checkout') }}">
                     <h3>
                         <span class="icon"><i class="ti-user"></i></span>
                         <span class="title_text">Contacto</span>
@@ -33,12 +33,19 @@
                         </legend>
                         <div class="form-group">
                             <label for="first_name" class="form-label  required">Nombre</label>
-                            <input type="text" name="first_name" id="first_name" />
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="last_name" class="form-label required">Apellidos</label>
                             <input type="text" name="last_name" id="last_name" />
+                            
                         </div>
 
                         <div class="form-group">
