@@ -132,19 +132,19 @@
                                         <hr/>
                                     </form>   
                                     @endforeach
-                                        <hr/>
-                                        <div class="card-title mb-4">
-                                            <div class="d-flex justify-content-start">
-                                                <div class="col-md-8 col-6">
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#directionModal">Agregar Dirección</button>
-                                                </div>
-                                                <div class="ml-auto">
-                                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
-                                                </div>
+                                    <hr/>
+                                    <div class="card-title mb-4">
+                                        <div class="d-flex justify-content-start">
+                                            <div class="col-md-8 col-6">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#directionModal">Agregar Dirección</button>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
                                     <div class="tab-pane fade" id="userRequest" role="tabpanel" aria-labelledby="userRequest-tab">                                        
                                         <div class="container">
@@ -190,7 +190,7 @@
         </div>
     </div>
     <!-- Modal Para Agregar Dirección-->
-    <form action="{{ route('addDirection') }}" method="POST">
+    <form name="directionForm" action="{{ route('addDirection') }}" method="POST" onsubmit="return validateDirection()">
         @csrf
         <div class="modal fade" id="directionModal" tabindex="-1" role="dialog" aria-labelledby="directionModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -245,7 +245,7 @@
     </form>
 
     <!--- Modal para Cambiar el nombre de un usuario --->
-    <form action="{{ route('changeName') }}" method="POST">
+    <form name="nameForm" action="{{ route('changeName') }}" method="POST" onsubmit="return validateName()">
         @csrf
         <div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="nameModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -299,7 +299,7 @@
     </form>
 
     <!--- Modal para Cambiar el email de un usuario --->
-    <form action="{{ route('changeEmail') }}" method="POST">
+    <form name="emailForm" action="{{ route('changeEmail') }}" method="POST" onsubmit="return validateEmail()">
         @csrf
         <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -326,7 +326,7 @@
     </form>
 
     <!--- Modal para Cambiar el Telefono de un usuario --->
-    <form action="{{ route('changePhone') }}" method="POST">
+    <form name="telephoneForm" action="{{ route('changePhone') }}" method="POST" onsubmit="return validatePhone()">
         @csrf
         <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog" aria-labelledby="phoneModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -354,7 +354,8 @@
 
 
         <!--- Modal para Cambiar la Contraseña de un usuario --->
-    <form action="{{ route('updatePassword') }}" method="POST">    
+    <form name="passwordForm" action="{{ route('updatePassword') }}" method="POST" onsubmit="return validatePassword()">    
+        @csrf
         <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -390,23 +391,139 @@
             </div>
         </div>
     </form>
+
     <script type="text/javascript">
         
         function validateLastNameForm(){
-
-            var letras="0123456789";
+            var numeros="0123456789";
             var x = document.forms["lastNameForm"]["name"].value;
             if (x == "") {
                 alert("Campo de apellido debe ser llenado.");
                 return false;
             }
             for(i=0; i<x.length; i++){
-                if (letras.indexOf(x.charAt(i)) != -1){
+                if (numeros.indexOf(x.charAt(i)) != -1){
                     alert("Campo de apellido solo debe tener letras.");
                     return false;
                 }
             }
-            return true
+            return true;
+        }
+
+        function validateName(){
+            var numeros="0123456789";
+            var x = document.forms["nameForm"]["name"].value;
+            if (x == "") {
+                alert("Campo de Nombre debe ser llenado.");
+                return false;
+            }
+            for(i=0; i<x.length; i++){
+                if (numeros.indexOf(x.charAt(i)) != -1){
+                    alert("Campo de Nombre solo debe tener letras.");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function validateEmail(){
+            var letras="0123456789";
+            var arroba="@.";
+            var x = document.forms["emailForm"]["email"].value;
+            if (x == "") {
+                alert("Campo de Email debe ser llenado.");
+                return false;
+            }
+            for(i=0; i<x.length; i++){
+                if (arroba.indexOf(x.charAt(i)) != -1){
+                    return true;
+                }
+            }
+            alert("Campo de Email necesita caracter @.");
+            return false;
+        }
+
+        function validatePhone(){
+            var x = document.forms["telephoneForm"]["phone"].value;
+            var letras = "abcdefghijlmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+            var mas = "+";
+            if (x == "") {
+                alert("Campo de Número de Telefono debe ser llenado.");
+                return false;
+            }
+            for(i=0; i<x.length; i++){
+                if (letras.indexOf(x.charAt(i)) != -1){
+                    alert("Campo de Número de Telefono debe respetar el formato de número de Chile.");
+                    return false;
+                }
+            }
+            if ("+".indexOf(x.charAt(0)) == 0){
+                if(x.length > 12){
+                    alert("Número ingresado demasiado largo.");
+                    return false;
+                }
+                if(x.length < 12){
+                    alert("Número ingresado demasiado corto.");
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+            else{
+                alert("Campo de Número de Telefono debe tener el simbolo + al principio.");
+                return false;
+            }
+        }
+
+        function validatePassword(){
+            
+            var mypassword = document.forms["passwordForm"]["mypassword"].value;
+            var password = document.forms["passwordForm"]["password"].value;
+            var password_confirmation = document.forms["passwordForm"]["password_confirmation"].value;
+        
+            if (mypassword == "") {
+                alert("Campo de Contraseña Actual debe ser llenado.");
+                return false;
+            }
+            else{
+                if(password == ""){
+                    alert("Campo de Contraseña Nueva debe ser llenado.");
+                    return false;
+                }
+                else{
+                    if(password_confirmation == ""){
+                        alert("Campo de Confirmación Contraseña debe ser llenado.");
+                        return false;
+                    }
+                    else{
+                        if( (password.localeCompare(password_confirmation)) == 0){
+                            return true;
+                        }
+                        else{
+                            alert("Error en la confirmación de la contraseña.");
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        function validateDirection(){
+            var street = document.forms["directionForm"]["street"].value;
+            var number = document.forms["directionForm"]["number"].value;
+
+            if (street == "") {
+                alert("Campo de Calle debe ser llenado.");
+                return false;
+            }
+            else{
+                if (number == ""){
+                    alert("Campo de Número debe ser llenado.");
+                    return false;
+                }
+                return true;
+            }
         }
 
     </script>

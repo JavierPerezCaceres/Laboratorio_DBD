@@ -55,7 +55,7 @@
                                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#nameModal">Cambiar</button>
                                         </div>
                                     </div>
-                                    <hr />       
+                                    <hr/>       
                                     <div class="row">
                                         <div class="col-sm-3 col-md-2 col-5">
                                             <label style="font-weight:bold;">Email</label>
@@ -185,7 +185,6 @@
                                             </div>
                                         </div>
                                         <hr/>
-                                        <!--- No se como mezclar la información que tiene usuario con la tabla cliente.--->
                                         @foreach ($users as $user)
                                             @if ( $user->rol_id  != 2)
                                                 <div class="row">
@@ -195,13 +194,15 @@
                                                     <div class="col-sm-8">
                                                         @if ( $user->role_id === 1)
                                                             Administrador
+                                                        @elseif ($user->role_id === 2)
+                                                            Restaurant
                                                         @else
                                                             Cliente
                                                         @endif
                                                     </div>
                                                     <div class="col-sm-1">
                                                         <div>
-                                                            <button type="button" class="btn btn-success">Editar</button>
+                                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#userModal" >Editar</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -249,7 +250,7 @@
     </div>
 
     <!--- Modal para Cambiar el nombre de un usuario --->
-    <form action="{{ route('changeName') }}" method="POST">
+    <form name="nameForm" action="{{ route('changeName') }}" method="POST" onsubmit="return validateName()">
         @csrf
         <div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="nameModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -276,7 +277,7 @@
     </form>
 
     <!--- Modal para Cambiar el email de un usuario --->
-    <form action="{{ route('changeEmail') }}" method="POST">
+    <form name="emailForm" action="{{ route('changeEmail') }}" method="POST" onsubmit="return validateEmail()">
         @csrf
         <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -303,7 +304,7 @@
     </form>
 
     <!--- Modal para Cambiar la Contraseña de un usuario --->
-    <form action="{{ route('updatePassword') }}" method="POST">    
+    <form name="passwordForm" action="{{ route('updatePassword') }}" method="POST" onsubmit="return validatePassword()">    
         <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -339,6 +340,100 @@
             </div>
         </div>
     </form>
+
+    <!--- Modal para Cambiar el email de un usuario --->
+    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{$user->name}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="email" class="control-label"></label>
+                        <input type="text" name="email" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
+                    <button type="submit" class="btn btn-success">Cambiar Email</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        
+        function validateName(){
+            var numeros="0123456789";
+            var x = document.forms["nameForm"]["name"].value;
+            if (x == "") {
+                alert("Campo de Nombre debe ser llenado.");
+                return false;
+            }
+            for(i=0; i<x.length; i++){
+                if (numeros.indexOf(x.charAt(i)) != -1){
+                    alert("Campo de Nombre solo debe tener letras.");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function validateEmail(){
+            var letras="0123456789";
+            var arroba="@.";
+            var x = document.forms["emailForm"]["email"].value;
+            if (x == "") {
+                alert("Campo de Email debe ser llenado.");
+                return false;
+            }
+            for(i=0; i<x.length; i++){
+                if (arroba.indexOf(x.charAt(i)) != -1){
+                    return true;
+                }
+            }
+            alert("Campo de Email necesita caracter @.");
+            return false;
+        }
+
+        function validatePassword(){
+            
+            var mypassword = document.forms["passwordForm"]["mypassword"].value;
+            var password = document.forms["passwordForm"]["password"].value;
+            var password_confirmation = document.forms["passwordForm"]["password_confirmation"].value;
+        
+            if (mypassword == "") {
+                alert("Campo de Contraseña Actual debe ser llenado.");
+                return false;
+            }
+            else{
+                if(password == ""){
+                    alert("Campo de Contraseña Nueva debe ser llenado.");
+                    return false;
+                }
+                else{
+                    if(password_confirmation == ""){
+                        alert("Campo de Confirmación Contraseña debe ser llenado.");
+                        return false;
+                    }
+                    else{
+                        if( (password.localeCompare(password_confirmation)) == 0){
+                            return true;
+                        }
+                        else{
+                            alert("Error en la confirmación de la contraseña.");
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
 
 </div>
 @endsection
