@@ -59,6 +59,13 @@ Route::post('/redirect/{UI}/{precio}/{restaurantID}','PurchaseOrderController@re
 Route::post('/cardPayment/{UI}/{precio}/{clientNumber}/{clientName}/{clientLastname}/{delivery}/{address}/{restaurantID}','PurchaseOrderController@cardPay')->name('cardPayment');
 Route::get('/add/{menuID}','ShoppingCartController@update');
 Route::get('/remove/{menuID}','ShoppingCartController@remove');
+
+
+Route::get('/checkout',function(){
+  return view('checkout');
+});
+
+
 // cambios desde aquí hacia arriba (relacionados a vistas)
 
 // Cliente
