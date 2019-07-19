@@ -48,7 +48,7 @@
                     <ul class="navbar-nav ml-auto">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="/">
+                                <a class="nav-link" href="/faq">
                                 <i class="fas fa-question-circle"></i>Preguntas Frecuentes</a>
                             </li>
                         </ul>

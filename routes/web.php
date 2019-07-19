@@ -67,6 +67,10 @@ Route::get('/checkout',function(){
   return view('checkout');
 });
 
+Route::get('/faq',function(){
+  return view('faq');
+});
+
 
 // cambios desde aquí hacia arriba (relacionados a vistas)
 
