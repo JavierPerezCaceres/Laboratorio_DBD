@@ -47,7 +47,7 @@
 	                <div class="col-sm-4">
 	                  <select class="form-control" name="ciudad_id" id="ciudad_id" onChange="habilitar(this.form)">
 	                    <option value="0" selected="selected">
-							Selecciona tu ciudad
+							Selecciona tu Region
 	                    </option>
 	                    @foreach ($cities as $city)
                         <option value="{{$city->id}}">{{$city->name}}</option>
@@ -97,7 +97,7 @@
 						<img src="https://www.clikisalud.net/wp-content/uploads/2016/03/comida-r%C3%A1pida.jpg" class="card-img-top" style="width:100%" class="img-responsive"> 
 						<h4>{{$restaurant->name}}</h4>
 						<p class="card-text">{{round($restaurant->valoration->sum('score')/$restaurant->valoration->count(),1)}}
-								@for($i = 1; $i <6; $i++)
+								@for($i = 1; $i < 6; $i++)
 									@if($i == intval($restaurant->valoration->sum('score')/$restaurant->valoration->count())+1)
 									  <i class="fas fa-star-half-alt"></i>
 									@else
@@ -135,7 +135,7 @@
 
 function habilitar(form,cities)
 {
-  if (form.ciudad_id.selected == true && form.cuidad_id.value != 0)
+  if (form.ciudad_id.selected == true && form.ciudad_id.value != 0)
 
   {
     form.district_id.disabled = true;
