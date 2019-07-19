@@ -28,9 +28,152 @@ class UsersTableSeeder extends Seeder
         	'remember_token' => Str::random(10),
         	'role_id' => $role_random->id, 
         	'client_id' => $i+1,
-            'created_at' => now()
-        ]);
-
+            'created_at' => now() ]);
     	}
+
+        DB::table('users')->insert([
+            'name' => 'Juan Maestro',
+            'email' => 'juanmaestro@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'Doggis',
+            'email' => 'Doggis@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'Pedro, Juan y Diego',
+            'email' => 'PedroJuanyDiego@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'Telepizza',
+            'email' => 'Telepizza@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'Burger King',
+            'email' => 'BurgerKing@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'Martuca',
+            'email' => 'Martuca@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'HolyMoly',
+            'email' => 'HolyMoly@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'Govindas',
+            'email' => 'Govindas@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'VegetFood',
+            'email' => 'VegetFood@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'VeganFood',
+            'email' => 'VeganFood@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'TaiwanFood',
+            'email' => 'TaiwanFood@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'ChinaMaster',
+            'email' => 'ChinaMaster@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'La Piojera',
+            'email' => 'LaPiojera@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'Charly Dog',
+            'email' => 'CharlyDog@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'Burguesía',
+            'email' => 'Burguesía@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
+        DB::table('users')->insert([
+            'name' => 'SushiLook',
+            'email' => 'SushiLook@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'role_id' => 2, 
+            'client_id' => null,
+            'created_at' => now() ]);
+
     }
 }

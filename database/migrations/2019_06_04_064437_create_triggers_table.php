@@ -13,13 +13,14 @@ class CreateTriggersTable extends Migration
      */
     public function up()
     {
+        /**
         DB::statement('
             CREATE OR REPLACE FUNCTION giveRole()
             RETURNS trigger AS
             $$
                 BEGIN            
                  UPDATE users
-                 SET role_id = 1
+                 SET role_id = 3
                  WHERE users.id = NEW.id   
                 ;
                 RETURN NEW;
@@ -32,6 +33,8 @@ class CreateTriggersTable extends Migration
         FOR EACH ROW
         EXECUTE PROCEDURE giveRole();
         ');
+
+        */
 
 
     }

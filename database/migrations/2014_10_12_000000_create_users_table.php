@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
 
             $table->unsignedInteger('role_id');
-            $table->unsignedInteger('client_id');
+            $table->unsignedInteger('client_id')->nullable();
 
             $table->string('name');
             $table->timestamp('email_verified_at')->nullable();

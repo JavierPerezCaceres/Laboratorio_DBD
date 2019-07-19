@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ValorationSeeder::class);
 
         $this->call(AddressTableSeeder::class);
+        $this->call(DistrictRestaurantSeeder::class);
 
     }
 }
