@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<!-- Título página -->
-	<title>Pedidos Rightnow</title>
-	<!-- Funcion en archivo prueba.js -->
-	
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/1a73430d21.js"></script>
+@extends('layouts.app')
 
-</head>
-<body>
-  @include('layouts.app')
+@section('content')
   <div class="container">
     <div class="row">
       <div class="col-lg-3">
@@ -27,12 +17,14 @@
                   </h3>
                 </a>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body scroll-filter">
               @foreach( $restaurant_categories as $category )
-                <div class="card-body">
-                  <input class="form-control" type="radio" name="restaurant_category" id="restaurant_category" value="{{$category->id}}">
-                  <label for="test-1"> {{ $category->name }}</label>
-                </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="restaurant_category" id="restaurant_category-{{ $category->id }}" value="{{$category->id}}">
+                    <label class="form-check-label" for="restaurant_category-{{ $category->id }}"> {{ $category->name }}</label>
+                  </div>
               @endforeach
+              </div>
             </div>
           </div>
           <div class="card card-header" id="headingTwo">
@@ -42,12 +34,14 @@
                   Comida</h3>
                 </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body scroll-filter">
               @foreach( $products as $product )
-                <div class="card-body">
-                  <input class="form-control" type="radio" name="product" id="product" value="{{$product->id}}">
-                  <label for="test-1"> {{ $product->name }}</label>
-                </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="product-{{ $product->id }}" id="product-{{ $product->id }}" value="{{$product->id}}">
+                    <label class="form-check-label" for="product-{{ $product->id }}"> {{ $product->name }}</label>
+                  </div>
               @endforeach
+              </div>
             </div>
           </div>
           <div class="card card-header" id="headingThree">
@@ -58,17 +52,17 @@
                   </h3>
                 </a>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-              <div class="card-body">
+              <div class="card-body scroll-filter">
                 <h3>Mayor a:</h3>
                 @for($i = 1; $i < 6; $i++)
-                  <div class="card-body">
-                    <input class="form-control" type="radio" name="evaluation" id="evaluation" value="{{$i}}">
-                    @if( $i == 1)
-                      <label for="test-1"> 1 Estrella</label>
-                    @else
-                      <label for="test-1"> {{ $i }} Estrellas</label>
-                    @endif
-                  </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="evaluation" id="evaluation-{{ $i }}" value="{{$i}}">
+                      @if( $i == 1)
+                        <label class="form-check-label" for="evaluation-{{ $i }}"> 1 Estrella</label>
+                      @else
+                        <label class="form-check-label" for="evaluation-{{ $i }}"> {{ $i }} Estrellas</label>
+                      @endif
+                    </div>
                 @endfor
               </div>
             </div>
@@ -127,6 +121,4 @@
     </div>
     <!-- /.row -->
   </div>
-  <!-- /.container -->
-</body>
-</html>
+@endsection

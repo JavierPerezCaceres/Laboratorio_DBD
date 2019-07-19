@@ -10880,6 +10880,12 @@ h3,
 .btn.filtro-button {
   background-color: #236863 !important;
   border-color: #236863 !important;
+  font-size: 1rem;
+}
+
+.scroll-filter {
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 div.card-body {
