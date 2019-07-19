@@ -114,17 +114,28 @@
                             </span>
                         @enderror
 					</div>
-					<div class="form-row">
-						<input id="dir_casa_matriz" type="text" class="form-control @error('dir_casa_matriz') is-invalid @enderror" name="dir_casa_matriz" value="{{ old('dir_casa_matriz') }}" placeholder="Dirección de la casa matriz" required autocomplete="dir_casa_matriz" autofocus>
+					<div class="form-group">
+						<div class="form-row form-row">
+							<input id="dir_casa_matriz" type="text" class="form-control @error('dir_casa_matriz') is-invalid @enderror" name="dir_casa_matriz" value="{{ old('dir_casa_matriz') }}" placeholder="Nombre Calle" required autocomplete="dir_casa_matriz" autofocus>
 
-                        @error('dir_casa_matriz')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+							@error('dir_casa_matriz')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+						<div class="form-row form-row">
+							<input id="num_casa_matriz" type="text" class="form-control @error('num_casa_matriz') is-invalid @enderror" name="num_casa_matriz" value="{{ old('num_casa_matriz') }}" placeholder="Numero" required autocomplete="num_casa_matriz" autofocus>
+
+							@error('num_casa_matriz')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
 					</div>
 					<div class="form-row">
-						<select name="category">
+						<select name="category_id">
 						    <option value="0" disabled selected="selected">Tipo de cocina</option>
 							@foreach($restaurant_categories as $category)
 							<option value="{{ $category->id }}">{{ $category->name }}</option>
