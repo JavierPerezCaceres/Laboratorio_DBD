@@ -196,15 +196,15 @@ td .es-button-border-2:hover {
                        <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:100%;" class="cke_show_border" cellspacing="1" cellpadding="1" border="0" align="left"> 
                          <tr style="border-collapse:collapse;"> 
                           <td style="padding:0;Margin:0;font-size:14px;line-height:21px;">Orden #:</td> 
-                          <td style="padding:0;Margin:0;"><strong><span style="font-size:14px;line-height:21px;">9844523</span></strong></td> 
+                          <td style="padding:0;Margin:0;"><strong><span style="font-size:14px;line-height:21px;">{{ $orden->id}}</span></strong></td> 
                          </tr> 
                          <tr style="border-collapse:collapse;"> 
                           <td style="padding:0;Margin:0;font-size:14px;line-height:21px;">Fecha:</td> 
-                          <td style="padding:0;Margin:0;"><strong><span style="font-size:14px;line-height:21px;">May&nbsp;21, 2019</span></strong></td> 
+                          <td style="padding:0;Margin:0;"><strong><span style="font-size:14px;line-height:21px;">{{ $orden->created_at}}</span></strong></td> 
                          </tr> 
                          <tr style="border-collapse:collapse;"> 
                           <td style="padding:0;Margin:0;font-size:14px;line-height:21px;">Total:</td> 
-                          <td style="padding:0;Margin:0;"><strong><span style="font-size:14px;line-height:21px;">$</span></strong></td> 
+                          <td style="padding:0;Margin:0;"><strong><span style="font-size:14px;line-height:21px;">{{ $total }}</span></strong></td> 
                          </tr> 
                        </table><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;"><br></p> </td> 
                      </tr> 
@@ -220,7 +220,7 @@ td .es-button-border-2:hover {
                       <td align="left" style="Margin:0;padding-bottom:10px;padding-top:20px;padding-left:20px;padding-right:20px;"> <h4 style="Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#236863;">DIRECCIÓN DE ENVÍO:</h4> </td> 
                      </tr> 
                      <tr style="border-collapse:collapse;"> 
-                      <td align="left" style="padding:0;Margin:0;padding-bottom:20px;padding-left:20px;padding-right:20px;"> <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">Andry Petrin</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">78 Somewhere St</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">Somewhere, Canada 99743</p> </td> 
+                      <td align="left" style="padding:0;Margin:0;padding-bottom:20px;padding-left:20px;padding-right:20px;"> <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">{{ $cliente->name}}</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">{{ $direccion->street}} {{ $direccion->number}}</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">{{ $direccion->district->name}}</p> </td> 
                      </tr> 
                    </table> </td> 
                  </tr> 
@@ -229,7 +229,7 @@ td .es-button-border-2:hover {
              </tr> 
            </table> </td> 
          </tr> 
-       </table> 
+       </table>
        <table cellpadding="0" cellspacing="0" class="es-content" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;"> 
          <tr style="border-collapse:collapse;"> 
           <td align="center" style="padding:0;Margin:0;"> 
@@ -248,65 +248,34 @@ td .es-button-border-2:hover {
                  </tr> 
                </table> 
                <!--[if mso]></td><td width="20"></td><td width="386" valign="top"><![endif]--> 
+              @foreach($orden->menuReservation as $menu)
                <table cellpadding="0" cellspacing="0" class="es-right" align="right" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right;"> 
                  <tr style="border-collapse:collapse;"> 
                   <td width="386" align="left" style="padding:0;Margin:0;"> 
                    <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"> 
                      <tr style="border-collapse:collapse;"> 
-                      <td align="left" class="es-m-txt-l" style="padding:0;Margin:0;padding-top:10px;"> <h3 style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#236863;"><strong>Hamburguesa Sabrosona</strong></h3> </td> 
+                      <td align="left" class="es-m-txt-l" style="padding:0;Margin:0;padding-top:10px;"> <h3 style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#236863;"><strong>{{ $menu->menu->name}}</strong></h3> </td> 
+                     </tr> 
+
+                     <tr style="border-collapse:collapse;"> 
+                      <td align="left" class="es-m-txt-l" style="padding:0;Margin:0;padding-top:10px;"> <h3 style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#659C35;"><strong><span style="color:#000000;">Cantidad:</span>&nbsp;{{ $menu->quantity }}</strong></h3> </td> 
                      </tr> 
                      <tr style="border-collapse:collapse;"> 
-                      <td align="left" style="padding:0;Margin:0;padding-top:5px;"> <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">For those with active life style</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">and intensive gym trainings</p> </td> 
-                     </tr> 
-                     <tr style="border-collapse:collapse;"> 
-                      <td align="left" class="es-m-txt-l" style="padding:0;Margin:0;padding-top:10px;"> <h3 style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#659C35;"><strong><span style="color:#000000;">Qty:</span>&nbsp;1</strong></h3> </td> 
-                     </tr> 
-                     <tr style="border-collapse:collapse;"> 
-                      <td align="left" class="es-m-txt-l" style="padding:0;Margin:0;padding-top:10px;"> <h3 style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:'Montserrat', sans-serif, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#659C35;"><strong><span style="color:#000000;">Price:</span>&nbsp;$12.00</strong></h3> </td> 
+                      <td align="left" class="es-m-txt-l" style="padding:0;Margin:0;padding-top:10px;"> <h3 style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:'Montserrat', sans-serif, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#659C35;"><strong><span style="color:#000000;">Precio:</span>&nbsp;{{ $menu->menu->total_price }}</strong></h3> </td> 
                      </tr> 
                    </table> </td> 
                  </tr> 
                </table> 
+               @endforeach
                <!--[if mso]></td></tr></table><![endif]--> </td> 
              </tr> 
-             <tr style="border-collapse:collapse;"> 
-              <td align="left" style="Margin:0;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:20px;background-position:center top;"> 
-               <!--[if mso]><table width="560" cellpadding="0" cellspacing="0"><tr><td width="154" valign="top"><![endif]--> 
-               <table cellpadding="0" cellspacing="0" class="es-left" align="left" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left;"> 
-                 <tr style="border-collapse:collapse;"> 
-                  <td width="154" class="es-m-p20b" align="left" style="padding:0;Margin:0;"> 
-                   <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-position:left top;"> 
-                     <tr style="border-collapse:collapse;"> 
-                      <td align="center" style="padding:0;Margin:0;"> <img class="adapt-img" src="public/Img/no-disp.jpeg" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;" width="154"></td> 
-                     </tr> 
-                   </table> </td> 
-                 </tr> 
-               </table> 
-               <!--[if mso]></td><td width="20"></td><td width="386" valign="top"><![endif]--> 
-               <table cellpadding="0" cellspacing="0" class="es-right" align="right" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right;"> 
-                 <tr style="border-collapse:collapse;"> 
-                  <td width="386" align="left" style="padding:0;Margin:0;"> 
-                   <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"> 
-                     <tr style="border-collapse:collapse;"> 
-                      <td align="left" class="es-m-txt-l" style="padding:0;Margin:0;padding-top:10px;"> <h3 style="Margin:0;line-height:26px;mso-line-height-rule:exactly;font-family:'Montserrat', sans-serif, sans-serif;font-size:22px;font-style:normal;font-weight:normal;color:#236863;">Fajita Regordita<br></h3> </td> 
-                     </tr> 
-                     <tr style="border-collapse:collapse;"> 
-                      <td align="left" style="padding:0;Margin:0;padding-top:5px;"> <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;">Healthy food in your office</p> </td> 
-                     </tr> 
-                     <tr style="border-collapse:collapse;"> 
-                      <td align="left" class="es-m-txt-l" style="padding:0;Margin:0;padding-top:10px;"> <h3 style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#659C35;"><strong><span style="color:#000000;">Qty:</span>&nbsp;1</strong></h3> </td> 
-                     </tr> 
-                     <tr style="border-collapse:collapse;"> 
-                      <td align="left" class="es-m-txt-l" style="padding:0;Margin:0;padding-top:10px;"> <h3 style="Margin:0;line-height:23px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:19px;font-style:normal;font-weight:normal;color:#659C35;"><strong><span style="color:#000000;">Price:</span>&nbsp;$10.00</strong></h3> </td> 
-                     </tr> 
-                   </table> </td> 
-                 </tr> 
-               </table> 
-               <!--[if mso]></td></tr></table><![endif]--> </td> 
-             </tr> 
+
            </table> </td> 
          </tr> 
        </table> 
+
+
+
        <table cellpadding="0" cellspacing="0" class="es-content" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;"> 
          <tr style="border-collapse:collapse;"> 
           <td align="center" style="padding:0;Margin:0;"> 
@@ -322,7 +291,7 @@ td .es-button-border-2:hover {
                        <table border="0" cellspacing="1" cellpadding="1" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:500px;" class="cke_show_border"> 
                          <tr style="border-collapse:collapse;"> 
                           <td style="padding:0;Margin:0;"><h4 style="Margin:0;line-height:200%;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#333333;">Ítems comprados</h4></td> 
-                          <td style="padding:0;Margin:0;color:#236863;"><b>2</b></td> 
+                          <td style="padding:0;Margin:0;color:#236863;"><b>{{ $orden->menuReservation->count()}}</b></td> 
                          </tr> 
                          <tr style="border-collapse:collapse;"> 
                           <td style="padding:0;Margin:0;"><h4 style="Margin:0;line-height:200%;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#333333;">Tiempo de espera:</h4></td> 
@@ -330,7 +299,7 @@ td .es-button-border-2:hover {
                          </tr> 
                          <tr style="border-collapse:collapse;"> 
                           <td style="padding:0;Margin:0;"><h4 style="Margin:0;line-height:200%;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#333333;">Restaurant:&nbsp;</h4></td> 
-                          <td style="padding:0;Margin:0;color:#236863;"><b>Doggis</b></td> 
+                          <td style="padding:0;Margin:0;color:#236863;"><b>{{ $restaurant }}</b></td> 
                          </tr> 
                          <tr style="border-collapse:collapse;"> 
                           <td style="padding:0;Margin:0;"><h4 style="Margin:0;line-height:200%;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#333333;">Tipo de pago:</h4></td> 

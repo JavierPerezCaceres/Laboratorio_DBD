@@ -11,7 +11,7 @@ $factory->define(Address::class, function (Faker $faker) {
 
     return [
         'street' => $faker->streetName,
-        'number' => $faker->streetAddress,
+        'number' => $faker->numberBetween($min = 1, $max = 6798),
         'district_id' => $district_id->random()->id,
         'client_id' => $client_id->random()->id
     ];
