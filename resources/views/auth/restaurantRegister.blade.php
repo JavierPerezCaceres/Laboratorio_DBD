@@ -185,9 +185,10 @@
 						@enderror
 					</div>
 					<div class="form-checkbox">
-						<label class="container"><p>Acepto los <a href="#" class="text">Términos y condiciones</a> de Pedidos Rightnow.</p>
-						  	<input type="checkbox" name="checkbox" required>
+						<input type="checkbox" name="checkbox" required>
 						  	<span class="checkmark"></span>
+						<label class="container"><p>Acepto los <a href="#" class="text">Términos y condiciones</a> de Pedidos Rightnow.</p>
+						  	
 						</label>
 					</div>
 					<div class="form-row-last">

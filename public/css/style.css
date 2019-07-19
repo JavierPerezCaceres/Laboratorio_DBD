@@ -12,6 +12,9 @@ img.picture1{
 	text-align: center;
 }
 
+.container-login input:checked ~ .checkmark {
+  background-color: #236863;
+}
 /* Fin de modificaciones */
 
 .page-content {
