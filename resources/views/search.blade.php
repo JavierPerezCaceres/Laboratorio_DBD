@@ -82,13 +82,16 @@
 
       <div class="col-lg-9">
         <div class="row">
+          @if( $restaurants == null)
+            <div class="card h-100"><span>No pudimos encontrar restaurantes que cumplan con esos criterios de búsqueda.</span></div>
+          @endif
           @foreach ($restaurants as $restaurant)
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
                 <a href="/restaurantViews/{{ $restaurant->restaurant->id }}"><img class="card-img-top" src="Img/4.jpg" alt=""></a>
                 <div class="card-body">
                   <h1 class="card-title">
-                    <a href="/restaurantViews/{{ $restaurant->id }}">{{ $restaurant->name }}</a>
+                    <a href="/restaurantViews/{{ $restaurant->restaurant->id }}">{{ $restaurant->restaurant->name }}</a>
                   </h1>
                   <!-- calcular estrellas -->
                   <p class="card-text">{{round($restaurant->restaurant->valoration->sum('score')/$restaurant->restaurant->valoration->count(),1)}}

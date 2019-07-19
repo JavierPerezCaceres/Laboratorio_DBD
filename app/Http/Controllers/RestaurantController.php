@@ -48,16 +48,11 @@ class RestaurantController extends Controller
         $comuna = District::find($district);
 
         $restaurants = $comuna->districtRestaurant;
-        //$restaurant_categories = CategoryRestaurant::select('name')->get();
-        $restaurant_categories = CategoryRestaurant::select('id', 'name')->orderBy('name')->get();
-        //$restaurant_categories = Restaurant::select('category')->distinct()->get();
-        $product_categories = Category::select('name')->get();
-        $ingredients = Ingredient::select('name')->get();
-        //sacar valoración
-
-        $products = Product::select('id', 'name')->orderBy('name')->get();
-
-        // selecciona district_id de los restaurantes registrados
+        
+        $restaurant_categories = CategoryRestaurant::select('id', 'name')->orderBy('id')->get();
+        $product_categories = Category::select('id')->orderBy('id')->get();
+        $ingredients = Ingredient::select('name')->orderBy('id')->get();
+        $products = Product::select('id', 'name')->orderBy('id')->get();
         $district_ids = DistrictRestaurant::select('district_id')->distinct()->orderBy('district_id', 'asc')->get();
         
         $districts = [];
@@ -71,6 +66,46 @@ class RestaurantController extends Controller
             array_push($cities, $val);
         }
         $cities = array_unique($cities);
+
+        // Filtros
+        if( isset( $request['restaurant_category'] ) ){
+            $aux = [];
+            foreach( $restaurants as $restaurant ){
+                if( $request->restaurant_category ==  $restaurant->restaurant->category_restaurant_id){
+                    array_push($aux, $restaurant);
+                }
+            }
+            $restaurants = $aux;
+        }
+        if( isset( $request['product']) ){
+            $menu_productos = MenuProduct::select('menu_id')->where('product_id', $request->product)->get();
+            $menus = [];
+            $restaurants_menu = [];
+            $aux = [];
+            foreach( $menu_productos as $menu_producto){
+                array_push($menus, Menu::find($menu_producto->menu_id));
+            }
+            foreach( $restaurants as $restaurant ){
+                foreach( $menus as $menu ){
+                    if( $restaurant->id == $menu->restaurant_id){
+                        array_push($aux, $restaurant);
+                    }
+                }
+                $aux = array_unique($aux);
+            }
+            $restaurants = $aux;
+        }
+        if( isset( $request['evaluation']) ){
+            $aux = [];
+            foreach($restaurants as $restaurant){
+                $average = $restaurant->restaurant->valoration->sum('score')/$restaurant->restaurant->valoration->count();
+                if( $average > $request->evaluation){
+                    array_push($aux, $restaurant);
+                }
+            }
+            //return $aux;
+            $restaurants = $aux;
+        }
 
         return view('search', compact(
             'districts',
