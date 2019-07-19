@@ -63,8 +63,15 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Regístrate') }}</a>
                                 </li>
                             @endif
+                            @if (Route::has('restaurantRegister'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('restaurantRegister') }}">{{ __('Registrar Restaurant') }}</a>
+                                </li>
+                            @endif
                         @else
                             <?php $UI=Crypt::encrypt(Auth::user()->id)?>
+
+
                             <li class="nav-item">
                                 <a class="nav-link" href="/restaurantRequest/{{$UI}}"> Restaurant Request</a>
                             </li>
@@ -73,7 +80,7 @@
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <i class="fas fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
+                                    <i class="fas fa-user"></i> {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
