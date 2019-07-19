@@ -12,7 +12,7 @@ $factory->define(MenuReservation::class, function (Faker $faker) {
 	$purchase_order_id = DB::table('purchase_orders')->select('id')->get();
     return [
     	'price' => $faker->numberBetween($min = 2000, $max = 9000),
-        'quantity' => $faker->numberBetween($min = 100, $max = 2000),
+        'quantity' => $faker->numberBetween($min = 1, $max = 3),
         'menu_id' 		=> $menu_id->random()->id,
         'purchase_order_id' 	=> $purchase_order_id->random()->id,
     ];

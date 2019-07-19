@@ -19,6 +19,8 @@ Route::get('/orderConfirmation', function(){
 	return view('orderConfirmation');
 });
 
+Route::get('/sendMail','MailController@sendMail');
+
 Route::get('/controlPanel','UserController@selectControlPanel');
 Route::post('/controlPanelA','UserController@addDirection')->name('addDirection');
 Route::post('/controlPanelCN','UserController@changeName')->name('changeName');
@@ -71,7 +73,7 @@ Route::get('/remove/{menuID}','ShoppingCartController@remove');
 
 
 Route::get('/purchase', 'PurchaseOrderController@confirmation');
-Route::post('/purchase', 'PurchaseOrderController@create')->name('purchase');
+Route::post('/confirmation', 'PurchaseOrderController@create')->name('confirmation');
 // Route::get('/purchase',function(){
 //   return view('purchase');
 // });

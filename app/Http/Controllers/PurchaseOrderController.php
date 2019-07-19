@@ -12,12 +12,33 @@ use Illuminate\Support\Facades\Crypt;
 use App\cardPayment;
 use Faker\Factory as Faker;
 use App\User;
+use App\District;
+use App\City;
+use App\Menu;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 
 class PurchaseOrderController extends Controller
 {
     public function confirmation(){
-        return view('purchase');
+
+        $cities = City::all();
+        $districts = District::all();
+        Cart::restore(request()->session()->get('id'));
+        $carrito = Cart::content();
+        // $restaurantID=0;
+        if (Cart::count() != 0){
+          foreach (Cart::content()->all() as $a){
+            $menuCarro=Menu::where('id',$a->id)->get();
+            break;
+          }
+        }
+
+        return view('purchase', compact(
+            'cities',
+            'districts',
+            'carrito'
+        ));
     }
 
 
@@ -40,9 +61,18 @@ class PurchaseOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($precio,$UI,$restaurantID)
+    public function create(Request $request)
     {
-        return view('/PaymentMethod',compact('precio','UI','restaurantID'));
+        Cart::restore(request()->session()->get('id'));
+        $carrito = Cart::content();
+        // $restaurantID=0;
+        if (Cart::count() != 0){
+          foreach (Cart::content()->all() as $a){
+            $menuCarro=Menu::where('id',$a->id)->get();
+            break;
+          }
+        }
+        return view('ordenConfirmation');
     }
 
     public function redirect(Request $request,$UI,$precio,$restaurantID){

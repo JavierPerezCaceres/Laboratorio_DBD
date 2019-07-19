@@ -19,7 +19,7 @@
 
 <div class="container-checkout">
     <h2>Confirmación de pedido</h2>
-        <form method="POST" class="form-detail" id="signup-form" action="{{ route('purchase') }}">
+        <form method="POST" class="form-detail" id="signup-form" action="{{ route('confirmation') }}">
             <h3>
                 <span class="icon"><i class="ti-user"></i></span>
                 <span class="title_text">Contacto</span>
@@ -64,12 +64,13 @@
                 </div>
 
                 <div class="form-select">
-                    <label for="country" class="form-label">Ciudad</label>
+                    <label for="country" class="form-label">Región</label>
                     <div class="select-list required">
                         <select name="country" id="country">
-                            <option value="">Ciudad</option>
-                            <option value="Santiago">Santiago</option>
-                            <option value="Concepción">Concepción</option>
+                        <option value="">Región</option>
+                            @foreach($cities as $city)
+                            <option value="{{$city->id}}">{{$city->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -79,8 +80,9 @@
                     <div class="select-list">
                         <select name="district" id="gender">
                             <option value="">Comuna</option>
-                            <option value="Quilicura">Quilicura</option>
-                            <option value="Conchalí">Conchalí</option>
+                            @foreach($districts as $district)
+                            <option value="{{$district->id}}">{{$district->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -100,9 +102,9 @@
 
                     <div class="select-list">
                         <select name="delivery" id="delivery">
-                            <option value="">Método de entrega</option>
-                            <option value="Delivery">Delivery</option>
-                            <option value="Reservar Mesa">Reservar Mesa</option>
+                            <option value="0">Método de entrega</option>
+                            <option value="1">Delivery</option>
+                            <option value="2">Reservar Mesa</option>
                         </select>
                     </div>
 
@@ -110,9 +112,9 @@
 <!-- Acá se debe seedear con las direcciones guardadas del usuario, si no esta logeado, se pasa al input siguiente -->
                     <div class="select-list">
                         <select name="delivery" id="delivery">
-                            <option value="">Dirección de entrega</option>
-                            <option value="Casa 1">Casa 1</option>
-                            <option value="Casa 2">Casa 2</option>
+                            <option value="0">Dirección de entrega</option>
+                            <option value="1">Casa 1</option>
+                            <option value="2">Casa 2</option>
                         </select>
                     </div>
 
@@ -170,7 +172,42 @@
                     <span class="step-number">Paso 3 de 4</span>
                 </legend>
                 
-                <!-- CARRITO DE COMPRAS -->
+                <div class="card-header header-carrito">
+        <i class="fas fa-shopping-cart"></i>
+        Carrito de compras
+      </div>
+      <div class="card-body card-body-chart">
+        <table class="table table-sm table-striped">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Cant</th>
+              <th>Precio</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($carrito->all() as $menu)
+            <tr>
+                <td>{{$menu->name}}</td>
+                <td>{{$menu->qty}}</td>
+                <td>$ {{$menu->price}}</td>
+                <td>
+                  <a href="/remove/{{ $menu->id }}">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </td>
+                <td></td>
+            </tr>
+            @endforeach
+            <tr>
+              <td colspan="2" class="text-right">Total</td>
+              <td colspan="2" >$ {{ Cart::subtotal(0, ',', '.') }}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
             </fieldset>
 
             <h3>
