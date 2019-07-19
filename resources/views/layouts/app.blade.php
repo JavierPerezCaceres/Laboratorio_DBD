@@ -45,7 +45,7 @@
                     <ul class="navbar-nav ml-auto">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="/"> 
+                                <a class="nav-link" href="/">
                                 <i class="fas fa-question-circle"></i>Preguntas Frecuentes</a>
                             </li>
                         </ul>
@@ -61,11 +61,6 @@
                                 </li>
                             @endif
                         @else
-                            @if( Auth::user()->role_id == 3)
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/"><i class="fas fa-shopping-cart"></i> Carrito de Compras</a>
-                                </li>
-                            @endif
                             <?php $UI=Crypt::encrypt(Auth::user()->id)?>
                             <li class="nav-item">
                                 <a class="nav-link" href="/restaurantRequest/{{$UI}}"> Restaurant Request</a>
