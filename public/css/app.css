@@ -10705,6 +10705,7 @@ main.py-4 {
 
 .button-carrito {
   padding: 0rem;
+  background-color: #236863 !important;
 }
 
 /* Arreglar icono-texto */
@@ -10729,6 +10730,10 @@ main.py-4 {
   font-size: 14px;
   color: #fff;
   background-color: rgb(83, 137, 133);
+}
+
+.card-header {
+  padding: 10px;
 }
 
 /* Estilos de página */
@@ -10794,6 +10799,10 @@ h4,
   border-bottom: 2px solid #438b87;
 }
 
+.form-control {
+  width: 15px;
+}
+
 /* Estilos de página */
 
 /*Estrellas*/
@@ -10840,6 +10849,93 @@ main.py-4 {
 .col-lg-4 {
   padding-top: 50px;
 }
+
+/* Filtrados */
+
+.card-header {
+  padding: 0px;
+  color: #236863;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.button-all {
+  color: #fff;
+  background-color: #fff;
+  border-color: #fff;
+  padding-top: 1rem;
+  font-size: 1rem;
+}
+
+h3,
+.h3 {
+  font-size: 1rem;
+}
+
+.btn.filtro-button {
+  background-color: #236863 !important;
+  border-color: #236863 !important;
+  font-size: 1rem;
+}
+
+div.card-body {
+  background-color: #fff;
+}
+
+.form-control {
+  font-size: 0rem;
+}
+
+/* Valoración */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+
+.rate:not(:checked) > label:before {
+  content: "\2605   ";
+}
+
+.rate > input:checked ~ label {
+  color: #ffc700;
+}
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
 
 .navbar-pedidosRightNow {
   background-color: #438b87 !important;

@@ -53,3 +53,7 @@ h4, .h4 {
     color: #438b87;
     border-bottom: 2px solid #438b87;
 }
+
+.form-control{
+	width: 15px;
+}

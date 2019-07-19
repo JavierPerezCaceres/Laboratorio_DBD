@@ -44,3 +44,38 @@ main.py-4{
 }
 
 
+/* Filtrados */
+.card-header{
+  padding: 0px;
+  color: #236863;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.button-all{
+  color: #fff;
+  background-color: #fff;
+  border-color: #fff;
+  padding-top: 1rem;
+  font-size: 1rem;
+}
+
+h3, .h3 {
+    font-size: 1rem;
+}
+
+.btn.filtro-button{
+  background-color: #236863!important;
+  border-color: #236863!important;
+  font-size: 1rem;
+}
+
+div.card-body{
+  background-color: #fff;
+}
+
+.form-control{
+  font-size: 0rem;
+}
+
+

@@ -32,7 +32,7 @@
     </div>
 
     <div class="card">
-      <div class="card-header">
+      <div class="card-header header-carrito">
         <i class="fas fa-shopping-cart"></i>
         Carrito de compras
       </div>

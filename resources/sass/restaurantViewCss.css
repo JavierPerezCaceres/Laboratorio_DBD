@@ -39,6 +39,7 @@ main.py-4{
 
 .button-carrito{
   padding: 0rem;
+  background-color:#236863!important; 
 }
 
 /* Arreglar icono-texto */
@@ -63,4 +64,8 @@ main.py-4{
   color: #fff;
   background-color: rgb(83,137,133);
 
+}
+
+.card-header{
+  padding: 10px;
 }
