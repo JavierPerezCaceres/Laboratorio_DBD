@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/montserrat-font.css">
 	<link rel="stylesheet" type="text/css" href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 	<!-- Main Style Css -->
-    <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
 
     <!-- Font Awesome -->
 	<script src="https://kit.fontawesome.com/1a73430d21.js"></script>
@@ -185,10 +185,9 @@
 						@enderror
 					</div>
 					<div class="form-checkbox">
-						<input type="checkbox" name="checkbox" required>
-						  	<span class="checkmark"></span>
 						<label class="container"><p>Acepto los <a href="#" class="text">Términos y condiciones</a> de Pedidos Rightnow.</p>
-						  	
+						  	<input type="checkbox" name="checkbox">
+						  	<span class="checkmark"></span>
 						</label>
 					</div>
 					<div class="form-row-last">
