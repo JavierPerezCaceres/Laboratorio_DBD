@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -15,9 +16,9 @@ class UsersTableSeeder extends Seeder
     	$nombres = ['Alejandro','Tomas','Marcela','Roberto','sofia','Javier','Alejandra','Maria','Jorge','Mauricio','Pedro','Carla','Nicole','Vicente','Jose'];
     	$correos = ['alejandro@prueba.com','tomas@prueba.com','marcela@prueba.com','roberto@prueba.com','sofia@prueba.com','javier@prueba.com','alejandra@prueba.com','maria@prueba.com','jorge@prueba.com','mauricio@prueba.com','pedro@prueba.com','carla@prueba.com','nicole@prueba.com','vicente@prueba.com','jose@prueba.com'];
 
-    	
 
-    	for ($i=0; $i < 15; $i++) 
+
+    	for ($i=0; $i < 15; $i++)
     	{
             $role_id = DB::table('roles')->select('id')->get();
             $role_random = DB::table('roles')->inRandomOrder()->first();
@@ -26,17 +27,34 @@ class UsersTableSeeder extends Seeder
         	'email' => $correos[$i],
         	'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         	'remember_token' => Str::random(10),
-        	'role_id' => $role_random->id, 
+        	'role_id' => $role_random->id,
         	'client_id' => $i+1,
             'created_at' => now() ]);
     	}
+      DB::table('users')->insert([
+          'name' => 'pedidos RightNow',
+          'email' => 'pedidosRightNow@gmail.com',
+          'password' => Hash::make('prueba'), // password
+          'remember_token' => Str::random(10),
+          'role_id' => 1,
+          'client_id' => null,
+          'created_at' => now() ]);
+
+          DB::table('users')->insert([
+              'name' => 'restaurant prueba',
+              'email' => 'restaurantPrueba@gmail.com',
+              'password' => Hash::make('prueba'), // password
+              'remember_token' => Str::random(10),
+              'role_id' => 2,
+              'client_id' => null,
+              'created_at' => now() ]);
 
         DB::table('users')->insert([
             'name' => 'Juan Maestro',
             'email' => 'juanmaestro@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -45,7 +63,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'Doggis@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -54,7 +72,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'PedroJuanyDiego@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -63,7 +81,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'Telepizza@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -72,7 +90,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'BurgerKing@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -81,7 +99,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'Martuca@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -90,7 +108,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'HolyMoly@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -99,7 +117,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'Govindas@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -108,7 +126,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'VegetFood@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -117,7 +135,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'VeganFood@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -126,7 +144,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'TaiwanFood@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -135,7 +153,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'ChinaMaster@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -144,7 +162,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'LaPiojera@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -153,7 +171,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'CharlyDog@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -162,7 +180,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'Burguesía@gmail.com',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
@@ -171,7 +189,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'SushiLook@gmail.com',
             'password' => 'asdasdasd', // password
             'remember_token' => Str::random(10),
-            'role_id' => 2, 
+            'role_id' => 2,
             'client_id' => null,
             'created_at' => now() ]);
 
