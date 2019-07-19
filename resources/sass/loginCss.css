@@ -1,3 +1,7 @@
+.button-register {
+    padding: 0px;
+}
+
 /* Contraseña */
 
 .forgot-password{
@@ -105,3 +109,4 @@ img.picture1{
 .centrado{
 	text-align: center;
 }
+
