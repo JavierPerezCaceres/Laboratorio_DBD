@@ -44,12 +44,13 @@ class UserController extends Controller
             $rstnts = Restaurant::all();
             $men = Menu::all();
             $menProd = MenuProduct::all();
+            $products = Product::all();
             $rstntsDstrcts = DistrictRestaurant::all();
             $restaurants = $rstnts->where('user_id',$user->id)->first();
             $menus = $men->where('restaurant_id',$restaurants->id);
             $district = $rstntsDstrcts->where('restaurant_id',$restaurants->id);
 
-            return view('restaurantPanelControl',compact('restaurants','district','menus'));
+            return view('restaurantPanelControl',compact('restaurants','district','menus','products'));
 
         }else{ // client
 
@@ -248,6 +249,167 @@ class UserController extends Controller
 
         return redirect('/controlPanel');
     }
+
+    public function changeNameDirection(Request $request){
+        // Variable que contiene al usuario actual.
+        $user = User::find( Auth::user()->id );
+        // Edicion del Nombre para la tabla usuario.
+        $user->updateOrCreate([
+            'id' => $user->id
+        ],
+        [
+            'name' => $request->name,
+        ]);
+
+        $requestRestaurant = RestaurantRequest::All()->where('user_id',Auth::user()->id)->first();
+        // Edicion del Nombre para la tabla RestaurantRequest.
+        $requestRestaurant->updateOrCreate([
+            'id' => $requestRestaurant->id
+        ],
+        [
+            'name' => $request->name,
+        ]);
+
+        $restaurant = Restaurant::All()->where('user_id',Auth::user()->id)->first();
+        // Edicion del Nombre para la tabla RestaurantRequest.
+        $restaurant->updateOrCreate([
+            'id' => $restaurant->id
+        ],
+        [
+            'name' => $request->name,
+        ]);
+
+        return redirect('/controlPanel');
+    }
+
+    public function changePhoneRestaurant(Request $request){
+        $restaurant = Restaurant::All()->where('user_id',Auth::user()->id)->first();
+         // Edicion del Nombre para la tabla cliente.
+         $restaurant->updateOrCreate([
+             'id' => $restaurant->id
+         ],
+         [
+             'contact_number' => $request->phone
+         ]);
+         
+         // Se añade acción al log de la página.
+         $webpageAux = new WebPageRecordController();
+         $webpage = $webpageAux->addNewRecord("Cambio su Número telefónico");
+ 
+         return redirect('/controlPanel');
+    }
+
+    public function changeOpeningHour(Request $request){
+        $restaurant = Restaurant::All()->where('user_id',Auth::user()->id)->first();
+         // Edicion del Nombre para la tabla cliente.
+        $restaurant->updateOrCreate([
+             'id' => $restaurant->id
+        ],
+        [
+             'opening_hour' => $request->openingHour
+        ]);
+         
+        // Se añade acción al log de la página.
+        $webpageAux = new WebPageRecordController();
+        $webpage = $webpageAux->addNewRecord("Cambio su Número telefónico");
+ 
+        return redirect('/controlPanel');
+    }
+
+    public function changeClosingHour(Request $request){
+        $restaurant = Restaurant::All()->where('user_id',Auth::user()->id)->first();
+         // Edicion del Nombre para la tabla cliente.
+        $restaurant->updateOrCreate([
+             'id' => $restaurant->id
+        ],
+        [
+             'closing_hour' => $request->closingHour
+        ]);
+         
+        // Se añade acción al log de la página.
+        $webpageAux = new WebPageRecordController();
+        $webpage = $webpageAux->addNewRecord("Cambio su Número telefónico");
+ 
+        return redirect('/controlPanel');
+    }
+
+    public function changePersonCost(Request $request){
+        $restaurant = Restaurant::All()->where('user_id',Auth::user()->id)->first();
+         // Edicion del Nombre para la tabla cliente.
+        $restaurant->updateOrCreate([
+             'id' => $restaurant->id
+        ],
+        [
+             'person_cost' => $request->personCost
+        ]);
+         
+        // Se añade acción al log de la página.
+        $webpageAux = new WebPageRecordController();
+        $webpage = $webpageAux->addNewRecord("Cambio su Número telefónico");
+ 
+        return redirect('/controlPanel');
+    }
+
+    public function changeEstimatedTime(Request $request){
+        $restaurant = Restaurant::All()->where('user_id',Auth::user()->id)->first();
+         // Edicion del Nombre para la tabla cliente.
+        $restaurant->updateOrCreate([
+             'id' => $restaurant->id
+        ],
+        [
+             'wait_time' => $request->estimatedTime
+        ]);
+         
+        // Se añade acción al log de la página.
+        $webpageAux = new WebPageRecordController();
+        $webpage = $webpageAux->addNewRecord("Cambio su Número telefónico");
+ 
+        return redirect('/controlPanel');
+    }
+
+    public function addMenu(Request $request){
+        
+        // Variable que contiene al usuario actual.
+        $menu = new Menu();
+        $menuProduct = new MenuProduct();
+        $restaurants = Restaurant::All();
+        $restaurant = $restaurants->where('user_id',Auth::user()->id)->first();
+        // Se obtiene el usuario actual
+        
+        Menu::create([
+            'created_at' => now(),
+            'name' => $request->menuName,
+            'total_price' => $request->menuPrice,
+            'discount' => 0,
+            'restaurant_id' => $restaurant->id
+        ]);
+        $menu = Menu::All()->where('name',$request->menuName)->where('total_price',$request->menuPrice)->last();
+        
+        MenuProduct::create([
+            'price' => 0,
+            'created_at' => now(),
+            'menu_id' => $menu->id,
+            'product_id' => $request->product1
+        ]);
+
+        MenuProduct::create([
+            'price' => 0,
+            'created_at' => now(),
+            'menu_id' => $menu->id,
+            'product_id' => $request->product2
+        ]);
+
+        MenuProduct::create([
+            'price' => 0,
+            'created_at' => now(),
+            'menu_id' => $menu->id,
+            'product_id' => $request->product3
+        ]);
+        
+        
+        return redirect('/controlPanel');
+    }
+
     // End new Controllers
     
     /**

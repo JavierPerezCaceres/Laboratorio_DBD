@@ -29,6 +29,13 @@ Route::delete('/controlPanelDD/{address}','UserController@deleteDirection')->nam
 Route::post('/controlPanelUP','UserController@updatePassword')->name('updatePassword');
 Route::post('/controlPanelRestaurantAddProduct/{menu}','UserController@showProductView')->name('showProductView');
 Route::post('/controlPanelAddProduct/{menu}','UserController@addProduct')->name('addProductMenu');
+Route::post('/controlPanelAddMenu/','UserController@addMenu')->name('addMenu');
+Route::post('/controlPanelCRN','UserController@changeNameDirection')->name('changeRestaurantName');
+Route::post('/controlPanelCRP','UserController@changePhoneRestaurant')->name('changeRestaurantPhone');
+Route::post('/controlPanelCOH','UserController@changeOpeningHour')->name('changeOpeningHour');
+Route::post('/controlPanelCCH','UserController@changeClosingHour')->name('changeClosingHour');
+Route::post('/controlPanelCPC','UserController@changePersonCost')->name('changePersonCost');
+Route::post('/controlPanelCET','UserController@changeEstimatedTime')->name('changeEstimatedTime');
 
 Route::post('/search', 'RestaurantController@search')->name('search');
 

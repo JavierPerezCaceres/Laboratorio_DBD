@@ -9,7 +9,7 @@
                     <div class="card-title mb-4">
                         <div class="d-flex justify-content-start">
                             <div class="userData ml-3">
-                                <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"></h2>
+                                <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">{{$restaurants->name}}</h2>
                             </div>
                             <div class="ml-auto">
                                 <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
@@ -169,75 +169,82 @@
     </div>
 
     <!--- Modal Para Cambio de Nombre--->
-    <div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="nameModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cambiar Nombre de Restaurant</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name" class="control-label">Nuevo Nombre de Restaurant</label>
-                        <input type="text" name="name" class="form-control">
+    <form name="nameForm" action="{{ route('changeRestaurantName') }}" method="POST" onsubmit="return validateName()"> 
+        <div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="nameModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Nombre de Restaurant</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
-                    <button type="submit" class="btn btn-success">Cambiar Nombre</button>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Nuevo Nombre de Restaurant</label>
+                            <input type="text" name="name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
+                        <button type="submit" class="btn btn-success">Cambiar Nombre</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <!--- Modal Para Cambio de Telefono--->
-    <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog" aria-labelledby="phoneModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cambiar Telefono de Contacto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="phone" class="control-label">Nuevo Telefono de Contacto</label>
-                        <input type="text" name="phone" class="form-control">
+    <form name="telephoneForm" action="{{ route('changeRestaurantPhone') }}" method="POST" onsubmit="return validatePhone()"> 
+        <div class="modal fade" id="phoneModal" tabindex="-1" role="dialog" aria-labelledby="phoneModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Telefono de Contacto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
-                    <button type="submit" class="btn btn-success">Cambiar Telefono</button>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="phone" class="control-label">Nuevo Telefono de Contacto</label>
+                            <input type="text" name="phone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
+                        <button type="submit" class="btn btn-success">Cambiar Telefono</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <!--- Modal Para Cambio de Hora de Apertura--->
-    <div class="modal fade" id="openingHourModal" tabindex="-1" role="dialog" aria-labelledby="openingHourModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cambiar Hora de Apertura</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="openingHour" class="control-label">Nuevo Horario de Apertura</label>
-                        <input type="text" name="openingHour" class="form-control">
+    <form name="openingHourForm" action="{{ route('changeOpeningHour') }}" method="POST" onsubmit="return validateOpeningHour()"> 
+        <div class="modal fade" id="openingHourModal" tabindex="-1" role="dialog" aria-labelledby="openingHourModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Hora de Apertura</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
-                    <button type="submit" class="btn btn-success">Cambiar Horario de Apertura</button>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="openingHour" class="control-label">Nuevo Horario de Apertura</label>
+                            <input type="text" name="openingHour" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
+                        <button type="submit" class="btn btn-success">Cambiar Horario de Apertura</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <!--- Modal Para Cambio de Hora de Cierre--->
+    <form name="closingHourForm" action="{{ route('changeClosingHour') }}" method="POST" onsubmit="return validateClosingHour()"> 
     <div class="modal fade" id="closingHourModal" tabindex="-1" role="dialog" aria-labelledby="openingHourModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -260,52 +267,57 @@
             </div>
         </div>
     </div>
+    </form>
     <!--- Modal Para Cambio de Costo por Persona--->
-    <div class="modal fade" id="personCostModal" tabindex="-1" role="dialog" aria-labelledby="personCostModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cambiar Costo por Persona</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="personCost" class="control-label">Nuevo Costo por Persona</label>
-                        <input type="text" name="personCost" class="form-control">
+    <form name="personCostForm" action="{{ route('changePersonCost') }}" method="POST" onsubmit="return validatePersonCost()"> 
+        <div class="modal fade" id="personCostModal" tabindex="-1" role="dialog" aria-labelledby="personCostModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Costo por Persona</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
-                    <button type="submit" class="btn btn-success">Cambiar Costo por Persona</button>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="personCost" class="control-label">Nuevo Costo por Persona</label>
+                            <input type="text" name="personCost" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
+                        <button type="submit" class="btn btn-success">Cambiar Costo por Persona</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <!--- Modal Para Tiempo de Espera Estimado--->
-    <div class="modal fade" id="estimatedTimeModal" tabindex="-1" role="dialog" aria-labelledby="estimatedTimeModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cambiar Tiempo de Espera Estimado</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="personCost" class="control-label">Nuevo Tiempo de Espera Estimado</label>
-                        <input type="text" name="personCost" class="form-control">
+    <form name="estimatedTimeForm" action="{{ route('changeEstimatedTime') }}" method="POST" onsubmit="return validateEstimatedTime()"> 
+        <div class="modal fade" id="estimatedTimeModal" tabindex="-1" role="dialog" aria-labelledby="estimatedTimeModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cambiar Tiempo de Espera Estimado</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
-                    <button type="submit" class="btn btn-success">Cambiar Tiempo de Espera Estimado</button>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="estimatedTime" class="control-label">Nuevo Tiempo de Espera Estimado</label>
+                            <input type="text" name="estimatedTime" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
+                        <button type="submit" class="btn btn-success">Cambiar Tiempo de Espera Estimado</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <!--- Modal Para Cambio de Comuna--->
     <div class="modal fade" id="districtModal" tabindex="-1" role="dialog" aria-labelledby="districtModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -356,53 +368,77 @@
             </div>
         </div>
     </div>
+
     <!--- Modal Para Poder Crear el Menu --->
-    <div class="modal fade" id="createMenu" tabindex="-1" role="dialog" aria-labelledby="createMenu" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar Menú</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="menuName" class="control-label">Nombre Menú</label>
-                        <input type="text" name="menuName" class="form-control">
+    <form name="menuForm" action="{{ route('addMenu') }}" method="POST" onsubmit="return validateMenuCreation()"> 
+        <div class="modal fade" id="createMenu" tabindex="-1" role="dialog" aria-labelledby="createMenu" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar Menú</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="product_id1" class="control-label">Seleccione Producto</label>
-                        <select class="form-control" name="product_id1" id="product_id1" onChange="habilitar(this.form)">
-                            <option value="0" selected="selected">
-                        </select>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="menuName" class="control-label">Nombre Menú</label>
+                            <input type="text" name="menuName" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="product_id2" class="control-label">Seleccione Producto</label>
-                        <select class="form-control" name="product_id2" id="product_id2" onChange="habilitar(this.form)">
-                            <option value="0" selected="selected">
-                        </select>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="menuPrice" class="control-label">Indique un Precio</label>
+                            <input type="text" name="menuPrice" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="product_id3" class="control-label">Seleccione Producto</label>
-                        <select class="form-control" name="product_id3" id="product_id3" onChange="habilitar(this.form)">
-                            <option value="0" selected="selected">
-                        </select>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="product_id1" class="control-label">Seleccione Producto</label>
+                            <select class="form-control" name="product1" id="product1" onChange="habilitar(this.form)">
+                                <option value="0" selected="selected">
+                                    Selecciona tu Producto
+                                </option>
+                                @foreach ($products as $product)
+                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
-                    <button type="submit" class="btn btn-success">Agregar Menú</button>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="product_id2" class="control-label">Seleccione Producto</label>
+                            <select class="form-control" name="product2" id="product2" onChange="habilitar(this.form)">
+                                <option value="0" selected="selected">
+                                    Selecciona tu Producto
+                                </option>
+                                @foreach ($products as $product)
+                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                @endforeach
+                            </select
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="product_id3" class="control-label">Seleccione Producto</label>
+                            <select class="form-control" name="product3" id="product3" onChange="habilitar(this.form)">
+                                <option value="0" selected="selected">
+                                    Selecciona tu Producto
+                                </option>
+                                @foreach ($products as $product)
+                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                @endforeach
+                            </select
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
+                        <button type="submit" class="btn btn-success">Agregar Menú</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <!--- Modal Para Crear un Producto --->
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -475,7 +511,7 @@
 
         function validateOpeningHour(){
             var name = document.forms["openingHourForm"]["openingHour"].value;
-            if (street == "") {
+            if (name == ""){
                 alert("Campo de Hora de Apertura debe ser llenado.");
                 return false;
             }
@@ -486,7 +522,7 @@
 
         function validateCloseHour(){
             var name = document.forms["closingHourForm"]["closingHour"].value;
-            if (street == "") {
+            if (name == "") {
                 alert("Campo de Hora de Cierre debe ser llenado.");
                 return false;
             }
@@ -498,7 +534,7 @@
         function validatePersonCost(){
             var name = document.forms["personCostForm"]["personCost"].value;
             var letras = "abcdefghijlmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-            if (street == "") {
+            if (name == "") {
                 alert("Campo de Costo por Persona debe ser llenado.");
                 return false;
             }
@@ -512,9 +548,9 @@
         }
 
         function validateEstimatedTime(){
-            var name = document.forms["personCostForm"]["personCost"].value;
+            var name = document.forms["estimatedTimeForm"]["estimatedTime"].value;
             var letras = "abcdefghijlmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-            if (street == "") {
+            if (name == "") {
                 alert("Campo de Tiempo Estimado debe ser llenado.");
                 return false;
             }
@@ -525,6 +561,23 @@
                 }
             }
             return true;
+        }
+
+        function validateMenuCreation(){
+            var menuName = document.forms["menuForm"]["menuName"].value;
+            var menuPrice = document.forms["menuForm"]["menuPrice"].value;
+
+            if (menuName == "") {
+                alert("Campo de Nombre de Menú debe ser llenado.");
+                return false;
+            }
+            else{
+                if (menuPrice == ""){
+                    alert("Campo de Precio de Menú debe ser llenado.");
+                    return false;
+                }
+                return true;
+            }
         }
 
     </script>
