@@ -32,7 +32,7 @@
 	    <div class="container">
 	      <div class="caraous-title text-center" >
           <div class="row">
-	          <div class="col-md-12">
+	          <div class="col-md-12 filtro-ciudad">
 	            <span> ¿Con hambre?</span>
 	            <h1><span>PIDE AHORA</span> EN TU RESTAURANT FAVORITO</h1>
 	            <h3>Comienza ingresando tu locación</h3>

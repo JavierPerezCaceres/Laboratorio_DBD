@@ -10732,7 +10732,7 @@ main.py-4 {
   background-color: rgb(83, 137, 133);
 }
 
-.card-header {
+.header-carrito {
   padding: 10px;
 }
 
@@ -10751,7 +10751,7 @@ main.py-4 {
 
 /* Filtros de locacion */
 
-.form-control {
+.filtro-ciudad {
   font-size: 2rem;
 }
 
@@ -10800,7 +10800,8 @@ h4,
 }
 
 .form-control {
-  width: 15px;
+  width: 100%;
+  font-size: 2rem;
 }
 
 /* Estilos de página */
@@ -10880,10 +10881,6 @@ h3,
 
 div.card-body {
   background-color: #fff;
-}
-
-.form-control {
-  font-size: 0rem;
 }
 
 /* Valoración */

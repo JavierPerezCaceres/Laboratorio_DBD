@@ -11,7 +11,7 @@
 }
 
 /* Filtros de locacion */
-.form-control{
+.filtro-ciudad{
 	font-size: 2rem;
 }
 
@@ -55,5 +55,6 @@ h4, .h4 {
 }
 
 .form-control{
-	width: 15px;
+	width: 100%;
+	font-size: 2rem;
 }
