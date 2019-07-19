@@ -82,7 +82,9 @@
       <div class="col-lg-9">
         <div class="row">
           @if( $restaurants == null)
-            <div class="card h-100"><span>No pudimos encontrar restaurantes que cumplan con esos criterios de búsqueda.</span></div>
+            <div class="card h-100 rest-not-found"><span>No pudimos encontrar restaurantes que cumplan con esos criterios de búsqueda.</span>
+              <img class="sad" src="{{ asset('Img/sad.png') }}" alt="Sad">
+            </div>
           @endif
           @foreach ($restaurants as $restaurant)
             <div class="col-lg-4 col-md-6 mb-4">

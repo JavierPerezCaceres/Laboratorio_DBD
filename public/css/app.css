@@ -10887,6 +10887,21 @@ div.card-body {
   background-color: #fff;
 }
 
+.rest-not-found {
+  color: #236863;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  padding-top: 20px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.sad {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
+
 /* Valoración */
 
 * {
